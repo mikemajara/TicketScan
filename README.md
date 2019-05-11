@@ -45,3 +45,16 @@ Pruebas post procesamiento.
     # apply adaptive threshold to get black and white effect
     thresh = cv2.adaptiveThreshold(sharpen, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 21, 15)
 ```
+
+## 11/05/2019
+
+- lineas-1.0.py: Lee una imagen, busca líneas, y divide la imagen en tantas líneas como encuentre. Pendiente de probar:
+  1. threshold de altura que no divida la imágen en más trozos de los que debería. Es decir, que no pase trozos blancos, sino sólo aquellos de más de X.
+  2. Threshold también para que las sub-imágenes muy altas, sean procesadas de nuevo a ver si es que hemos cortado 3 líneas juntas (esto pasa ya por ejemplo en el de mercadona)
+  3. Colorear de blanco los fragmentos vacíos para mejorar la detección de líneas
+  4. Experimentar con preprocesamiento de imagen (eliminación de ruido, blancos más blancos, negros más negros, etc)
+
+- document-scanner: Fragmento prestado y modificado de un tuto. Escanea un documento a partir de una imagen. Se ha ajustado el código a nuestro caso (problemas de precisión, demasiadas asunciones para un caso real) Pendiente de probar/mejorar:
+  1. Tickets torcidos
+  2. Y si el ticket se sale de la pantalla?
+  3. Si son varias fotografías? Integrar código previo de sticker (en notebooks).

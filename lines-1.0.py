@@ -13,7 +13,7 @@ from PIL import Image
 
 PATH_WORKDIR = os.getcwd()
 PATH_IMAGES = 'images'  # os.path.join(PATH_WORKDIR, "images")
-FILENAME_IMAGE = 'result.jpg'
+FILENAME_IMAGE = 'croped_75_0.png'
 
 DEBUG = True
 
@@ -97,13 +97,18 @@ cv2.imshow("Result..?", rotated)
 
 orig_img = cv2.imread(get_image_path(FILENAME_IMAGE))
 
+no_ext_filename = os.path.splitext(FILENAME_IMAGE)[0]
+os.makedirs(
+    'output/cropped/' + no_ext_filename,
+    exist_ok=True
+)
+
 for lower, upper in zip(lowers + [H], [0] + uppers):
-    # img[y: y + h, x: x + w]
-    # img[11: 80-11, 0:w]
+
     if abs(upper-lower) > 5:
         crop_img = orig_img[upper:lower, 0:W]
         fname = "croped_" + str(lower) + "_" + str(upper) + ".png"
-        cv2.imwrite("output/cropped/" + fname, crop_img)
+        cv2.imwrite("output/cropped/" + no_ext_filename + "/" + fname, crop_img)
 
 # cv2.waitKey(0)
 
