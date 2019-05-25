@@ -283,47 +283,37 @@ key = wait_for_input()
 cv2.destroyAllWindows()
 
 # (5) find and draw the upper and lower boundary of each lines
-th = 1
+th = 11
 
 # TODO Extract method
 # uppers, lowers, img = draw_cut_lines(original, rotated, th)
 hist1 = []
-# for i in range(20):
+
+kernel = generate_motion_kernel(50)
+blurred = cv2.filter2D(rotated, -1, kernel)
+
 while True:
+
     H, W = img.shape[:2]
 
-    weight_array = get_weighted_array(W)
-    weighted_image = rotated * weight_array
+    hist2d = cv2.reduce(blurred, 1, cv2.REDUCE_AVG)
+    hist = hist2d.reshape(-1)
 
-    hist2d = cv2.reduce(weighted_image, 1, cv2.REDUCE_AVG)
-
-    # Prueba 1 (Fallida)
-    # hist2d[:] = [[0] if x[0] < 1 else [x] for x in hist2d]
-
-    # PRUEBA 2
-    hist_average = [[hist2d[0][0] / 2]]
-    for i, e in enumerate(hist2d, start=1):
-        if i >= len(hist2d) - 1:
-            break
-        hist_average.append([(hist2d[i - 1][0] + hist2d[i][0] + hist2d[i + 1][0]) / 3])
-    hist_average.append([hist2d[:-1][0] / 2])
-
-    hist_average = np.asarray(hist_average, dtype=np.float32)
-    hist = hist_average.reshape(-1)
-    # Original
-    # hist = hist2d.reshape(-1)
+    _rotated = cv2.cvtColor(rotated, cv2.COLOR_GRAY2BGR)
+    _blurred = cv2.cvtColor(blurred, cv2.COLOR_GRAY2BGR)
 
     # th += .5
     # Old algorithm
     uppers = [y for y in range(H - 1) if hist[y] <= th and hist[y + 1] > th]
     lowers = [y for y in range(H - 1) if hist[y] > th and hist[y + 1] <= th]
 
-    _rotated = cv2.cvtColor(rotated, cv2.COLOR_GRAY2BGR)
     for y in uppers:
         cv2.line(_rotated, (0, y), (W, y), (0, 255, 0), 1)
+        cv2.line(_blurred, (0, y), (W, y), (0, 255, 0), 1)
 
     for y in lowers:
         cv2.line(_rotated, (0, y), (W, y), (0, 255, 0), 1)
+        cv2.line(_blurred, (0, y), (W, y), (0, 255, 0), 1)
 
     print("Result for th: " + str(th))
     show_image_normal_window("Lines result", _rotated)
