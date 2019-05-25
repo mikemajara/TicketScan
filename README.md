@@ -49,12 +49,45 @@ Pruebas post procesamiento.
 ## 11/05/2019
 
 - lineas-1.0.py: Lee una imagen, busca líneas, y divide la imagen en tantas líneas como encuentre. Pendiente de probar:
-  1. threshold de altura que no divida la imágen en más trozos de los que debería. Es decir, que no pase trozos blancos, sino sólo aquellos de más de X.
-  2. Threshold también para que las sub-imágenes muy altas, sean procesadas de nuevo a ver si es que hemos cortado 3 líneas juntas (esto pasa ya por ejemplo en el de mercadona)
+  1. threshold de altura que no divida la imágen en más trozos de los que debería. Es decir, que no pase trozos blancos,
+   sino sólo aquellos de más de X.
+  2. Threshold también para que las sub-imágenes muy altas, sean procesadas de nuevo a ver si es que hemos cortado 3 
+  líneas juntas (esto pasa ya por ejemplo en el de mercadona)
   3. Colorear de blanco los fragmentos vacíos para mejorar la detección de líneas
   4. Experimentar con preprocesamiento de imagen (eliminación de ruido, blancos más blancos, negros más negros, etc)
 
-- document-scanner: Fragmento prestado y modificado de un tuto. Escanea un documento a partir de una imagen. Se ha ajustado el código a nuestro caso (problemas de precisión, demasiadas asunciones para un caso real) Pendiente de probar/mejorar:
+- document-scanner: Fragmento prestado y modificado de un tuto. Escanea un documento a partir de una imagen. Se ha 
+ajustado el código a nuestro caso (problemas de precisión, demasiadas asunciones para un caso real) Pendiente de 
+probar/mejorar:
   1. Tickets torcidos
   2. Y si el ticket se sale de la pantalla?
   3. Si son varias fotografías? Integrar código previo de sticker (en notebooks).
+
+## 19/05/2019
+
+- El script `scan-and-cut.py` ahora hace todo el proceso de escaneado y detección de líneas.
+- Hay un problema con los bordes del documento. Cuando los bordes hacen sombra, al aplicar el threshold a la imagen en 
+escala de grises, sale una línea gruesa que afecta a la media de píxeles negros por línea. he probado aplicando pesos a
+cada una de las líneas de manera que un 5% de los márgenes tenga menos peso en la media. Aún está por ver la validez de 
+la solución.
+- PENDIENTE: Cómo funciona el threshold que dibuja las líneas
+    - Quizá puedo dibujar líneas por cada fila de array "casi" vacío en lugar de lo que está
+    haciendo el algoritmo actual. Ningún threshold vale en general para todo. 
+    
+## 21/05/2019
+
+- Prueba 1: He probado poniendo a 0 todos los elementos que estaban por debajo del threshold, pero el resultado en la 
+práctica es el mismo. 
+- Prueba 2: Ahora estoy probando a jugar con las medias. El problema es que la media de píxeles oscuros de una línea
+no tiene por qué hacer justicia a los elementos que hay en esa línea. Un ejemplo es que una de las últimas líneas de
+merc3.jpeg hay un "3030". En ese conjunto de líneas, las partes centrales de las mitades superior e inferior (si
+separamos horizontalmente en 5 partes iguales la línea, la 1 y la 3, tienen menos píxeles que los extremos y el 
+ecuador). Para _threshold_ altos, que rinden bien en otras líneas (píxel y=459), el "3030", se parte en 4 líneas...
+    - Ahora mismo estoy probando a sacar la media de 3 líneas y de ahí probar un threshold normal. Sin embargo , la 
+    media lo que hace realmente es suavizar o "difuminar", las diferencias y no parece funcionar bien.
+    - PENDIENTE: Hay que probar a sacar medias ponderadas en que se de más valor a medias altas. o podemos probar
+    también haciendo la función nosotros en lugar de REDUCE_AVG, con REDUCE_SUM. También podemos hacer esta función por
+    partes: si un píxel tiene inmediatamente encima y/o inmediatamente debajo otro, le damos más valor. Así elaboramos
+    un sistema de "premios", que daría mucho más peso a píxeles rodeados, y evitaría el problema de líneas sueltas como
+    en el píxel y=459
+    - PENDIENTE: Probar a "emborronar" la foto horizontalmente, sacando la media de los píxeles del entorno en _X_.

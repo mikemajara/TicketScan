@@ -2,22 +2,50 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e240990c-a750-4a35-9745-9c9985e6d42c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/TicketScan.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/miguel.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/TicketScan.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/TicketScan.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template_matching/.ipynb_checkpoints/tickets1-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/template_matching/.ipynb_checkpoints/tickets1.5-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/template_matching/.ipynb_checkpoints/tickets13-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/template_matching/.ipynb_checkpoints/tickets14-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/template_matching/.ipynb_checkpoints/tickets2-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/template_matching/.ipynb_checkpoints/tickets_1-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/template_matching/tickets1.0.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/template_matching/tickets1.2.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/template_matching/tickets1.3.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/template_matching/tickets1.4.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/template_matching/tickets1.5.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/document-scanner/output/contour_result.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/document-scanner/scan.py" beforeDir="false" afterPath="$PROJECT_DIR$/document-scanner/scan.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/181010_carreforur_conflash_1.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/181010_carreforur_conflash_2.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/181010_carreforur_conflash_3.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/181010_carreforur_sinflash_1.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/181010_carreforur_sinflash_2.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/181010_carreforur_sinflash_3.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/181116_carrefour_noflash_buenascond_1.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/181116_carrefour_noflash_buenascond_2.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/IMG_0243.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/IMG_0244.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/IMG_0245.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/IMG_0246.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/contour_result.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/contour_result.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lines-1.0.py" beforeDir="false" afterPath="$PROJECT_DIR$/lines-1.0.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/cropped/contour_result/croped_1025_1004.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/cropped/contour_result/croped_1047_1028.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/cropped/contour_result/croped_1073_1053.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/cropped/contour_result/croped_1099_1080.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/cropped/contour_result/croped_1177_1153.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/cropped/contour_result/croped_1223_1216.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/cropped/contour_result/croped_123_103.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/cropped/contour_result/croped_18_0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/cropped/contour_result/croped_196_174.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/cropped/contour_result/croped_219_200.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/cropped/contour_result/croped_245_220.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/cropped/contour_result/croped_319_246.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/cropped/contour_result/croped_433_343.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/cropped/contour_result/croped_575_457.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/cropped/contour_result/croped_67_55.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/cropped/contour_result/croped_685_607.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/cropped/contour_result/croped_700_693.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/cropped/contour_result/croped_725_701.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/cropped/contour_result/croped_861_755.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/cropped/contour_result/croped_950_929.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/cropped/contour_result/croped_975_956.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/cropped/contour_result/croped_997_979.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/result.png" beforeDir="false" afterPath="$PROJECT_DIR$/output/result.png" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,21 +53,111 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/notebooks/lines-1.0.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lines-1.0.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="28" column="23" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
+            <state relative-caret-position="510">
+              <caret line="42" column="45" selection-start-line="42" selection-start-column="45" selection-end-line="42" selection-end-column="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/document-scanner/scan.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="405">
+              <caret line="34" column="85" selection-start-line="34" selection-end-line="35" />
               <folding>
-                <element signature="e#71#81#0" expanded="true" />
+                <element signature="e#82#95#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/scan-and-cut.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="260">
+              <caret line="306" column="17" lean-forward="true" selection-start-line="306" selection-start-column="17" selection-end-line="306" selection-end-column="17" />
+              <folding>
+                <element signature="e#83#92#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/readme.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="FIRST">
+              <first_editor relative-caret-position="508">
+                <caret line="88" column="57" selection-start-line="88" selection-start-column="57" selection-end-line="88" selection-end-column="57" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pyimagesearch/__init__.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/remove-shadows.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="22" selection-start-line="22" selection-end-line="22" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>img</find>
+      <find>findc</find>
+      <find>apply pers</find>
+      <find>ratio</find>
+      <find>findcon</find>
+      <find>resize</find>
+      <find>thre</find>
+      <find>destr</find>
+      <find>apply</find>
+      <find>rather</find>
+      <find>show_image_normal_window</find>
+      <find>Thresh</find>
+      <find>11</find>
+      <find>th</find>
+      <find>gray</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -48,13 +166,22 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/notebooks/lines-1.0.py" />
+        <option value="$PROJECT_DIR$/cuts-1.0.py" />
+        <option value="$PROJECT_DIR$/remove-shadows.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/idea.properties" />
+        <option value="$PROJECT_DIR$/document-scanner/scan.py" />
+        <option value="$PROJECT_DIR$/lines-1.0.py" />
+        <option value="$PROJECT_DIR$/readme.md" />
+        <option value="$PROJECT_DIR$/scan-and-cut.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="308" />
-    <option name="width" value="972" />
+  <component name="ProjectFrameBounds">
+    <option name="width" value="1170" />
     <option name="height" value="800" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -67,6 +194,16 @@
             <path>
               <item name="TicketScan" type="b2602c69:ProjectViewProjectNode" />
               <item name="TicketScan" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TicketScan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TicketScan" type="462c0819:PsiDirectoryNode" />
+              <item name="document-scanner" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TicketScan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TicketScan" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -81,7 +218,20 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/images" />
+      <recent name="$PROJECT_DIR$/images/multiple" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/images" />
+      <recent name="$PROJECT_DIR$/output" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -95,6 +245,108 @@
       </list>
     </option>
   </component>
+  <component name="RunManager" selected="Python.scan-and-cut">
+    <configuration name="lines-1.0" type="PythonConfigurationType" factoryName="Python">
+      <module name="TicketScan" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/lines-1.0.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="remove-shadows" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="TicketScan" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/remove-shadows.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="scan-and-cut" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="TicketScan" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scan-and-cut.py" />
+      <option name="PARAMETERS" value="-i images/merc3.jpeg" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="scan" type="PythonConfigurationType" factoryName="Python">
+      <module name="TicketScan" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/document-scanner" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/document-scanner/scan.py" />
+      <option name="PARAMETERS" value="-i images/merc3.jpeg" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.lines-1.0" />
+      <item itemvalue="Python.scan" />
+      <item itemvalue="Python.remove-shadows" />
+      <item itemvalue="Python.scan-and-cut" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.scan-and-cut" />
+        <item itemvalue="Python.remove-shadows" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -107,60 +359,272 @@
       <updated>1557572288868</updated>
       <workItem from="1557572290689" duration="39000" />
       <workItem from="1557572880687" duration="61000" />
-      <workItem from="1557572972917" duration="1041000" />
+      <workItem from="1557572972917" duration="9990000" />
+      <workItem from="1557598214135" duration="3979000" />
+      <workItem from="1558259031307" duration="5457000" />
+      <workItem from="1558269174773" duration="23689000" />
+      <workItem from="1558796226660" duration="4542000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1141000" />
+    <option name="totallyTimeSpent" value="47757000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1280" height="800" extended-state="6" />
+    <frame x="0" y="0" width="1170" height="800" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19709209" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49570817" weight="0.21621622" />
+      <window_info id="Structure" order="1" sideWeight="0.50429183" side_tool="true" weight="0.21621622" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32909605" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.40960452" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.32909605" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.32909605" />
       <window_info anchor="bottom" id="Terminal" order="11" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" />
+      <window_info anchor="right" x="239" y="22" width="922" height="778" id="SciView" order="3" type="WINDOWED" weight="0.35549647" />
       <window_info anchor="right" id="Database" order="4" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/scan-and-cut.py</url>
+          <line>261</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/scan-and-cut.py</url>
+          <line>140</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="uppers" />
+        <watch expression="lowers" />
+        <watch expression="W" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/TicketScan$lines_1_0.coverage" NAME="lines-1.0 Coverage Results" MODIFIED="1558278629677" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/TicketScan$scan_and_cut.coverage" NAME="scan-and-cut Coverage Results" MODIFIED="1558808330191" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/TicketScan$remove_shadows.coverage" NAME="remove-shadows Coverage Results" MODIFIED="1558262524818" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/TicketScan$scan.coverage" NAME="scan Coverage Results" MODIFIED="1558279675102" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/document-scanner" />
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="evaluateCodeFragment">
+      <expression>
+        <expression-string>b = &quot;&quot;
+for x in rotated:
+    b += (&quot;,&quot;.join(list(map(lambda y: str(y), x)))) + &quot;\n&quot;
+b</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>b = &quot;&quot;
+for x in rotated:
+    b += (&quot;,&quot;.join(list(map(lambda y: str(y), x)))) + &quot;\n&quot;</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>os.path.dirname(
+        'output/cropped/' + no_ext_filename
+    )</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+    </expressions>
+    <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>gray</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>type(image[0][0])</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>type(image[0][0][0])</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>type(image)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>type(image[0])</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>type(orig[0][0])</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>type(orig[0])</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>type(orig)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>orig</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/notebooks/lines1.0.ipynb" />
+    <entry file="file://$PROJECT_DIR$/../virtualEnvironments/venv-ticket-scan/lib/python3.7/site-packages/PIL/Image.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="2651" selection-start-line="2651" selection-end-line="2651" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cuts-1.0.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="52" selection-start-column="49" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/result.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/uñate.jpeg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shadows_out.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shadows_out_norm.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/document-scanner/images/merc3.jpeg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/document-scanner/output/contour_result.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/contour_result.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/idea.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="1" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../virtualEnvironments/venv-ticket-scan/lib/python3.7/site-packages/skimage/filters/thresholding.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1431">
+          <caret line="141" column="40" selection-start-line="141" selection-start-column="40" selection-end-line="141" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/document-scanner/pyimagesearch/transform.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-252">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+          <folding>
+            <element signature="e#32#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../virtualEnvironments/venv-ticket-scan/lib/python3.7/codecs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="309" selection-start-line="309" selection-end-line="309" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lines-1.0.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="42" column="45" selection-start-line="42" selection-start-column="45" selection-end-line="42" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/document-scanner/scan.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="34" column="85" selection-start-line="34" selection-end-line="35" />
+          <folding>
+            <element signature="e#82#95#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/remove-shadows.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/readme.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="285">
-            <caret line="19" column="30" lean-forward="true" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="508">
+            <caret line="88" column="57" selection-start-line="88" selection-start-column="57" selection-end-line="88" selection-end-column="57" />
           </first_editor>
           <second_editor />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/notebooks/lines-1.0.py">
+    <entry file="file://$PROJECT_DIR$/pyimagesearch/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scan-and-cut.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="23" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
+        <state relative-caret-position="260">
+          <caret line="306" column="17" lean-forward="true" selection-start-line="306" selection-start-column="17" selection-end-line="306" selection-end-column="17" />
           <folding>
-            <element signature="e#71#81#0" expanded="true" />
+            <element signature="e#83#92#0" expanded="true" />
           </folding>
         </state>
       </provider>
