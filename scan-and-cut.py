@@ -16,10 +16,28 @@ from skimage.filters import threshold_local
 from pyimagesearch.transform import four_point_transform
 
 
-DEBUG = False
+DEBUG = True
 PATH_WORKDIR = os.getcwd()
 PATH_IMAGES = 'images'  # os.path.join(PATH_WORKDIR, "images")
-FILENAME_IMAGE = 'merc3.jpg'
+# FILENAME_IMAGE = 'merc3.jpeg'
+
+BGR_BLUE = (255, 0, 0)
+BGR_GREEN = (0, 192, 0)
+BGR_RED = (0, 0, 255)
+BGR_PINK = (208, 96, 255)
+BGR_PURPLE = (255, 32, 160)
+BGR_YELLOW_GREEN = (128, 255, 96)
+BGR_YELLOW = (32, 224, 225)
+
+BGR_UPPER = [BGR_RED, BGR_PURPLE]
+BGR_LOWER = [BGR_GREEN, BGR_YELLOW]
+
+KEY_PLUS = 43
+KEY_MINUS = 45
+KEY_RIGHT_ACCENT = 96
+KEY_DOT = 46
+KEY_ENTER = 13
+KEY_ESC = 27
 
 
 def wait_for_input():
@@ -82,7 +100,7 @@ def threshold_image(wrapped, offset=None, block_size=None):
         show_image_normal_window(img_title, _wrapped)
         key = wait_for_input()
 
-        print(key)
+        print("key pressed: " + str(key))
         if key == 43:  # +
             block_size += 2
         elif key == 45:  # -
@@ -118,6 +136,13 @@ def generate_motion_kernel(size=15):
     kernel_motion_blur = kernel_motion_blur / size
     return kernel_motion_blur
 
+def generate_motion_kernel_vertical(size=15):
+    # generating the kernel
+    kernel_motion_blur = np.zeros((size, size))
+    kernel_motion_blur[:, int((size-1)/2)] = np.ones(size)
+    kernel_motion_blur = kernel_motion_blur / size
+    return kernel_motion_blur
+
 # ################################################ #
 # #########          SCAN IMAGE          ######### #
 # ################################################ #
@@ -131,6 +156,7 @@ args = vars(ap.parse_args())
 
 # load the image and compute the ratio of the old height
 # to the new height, clone it, and resize it
+filename_image = args["image"]
 image = cv2.imread(args["image"])
 # ratio = image.shape[0] / 500.0
 orig = image.copy()
@@ -259,7 +285,7 @@ wait_for_input()
 cv2.destroyAllWindows()
 
 # (2) threshold
-th, threshed = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)
+threshold_pxl_density, threshed = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)
 
 show_image_normal_window("Thresholded image", gray)
 key = wait_for_input()
@@ -283,15 +309,18 @@ key = wait_for_input()
 cv2.destroyAllWindows()
 
 # (5) find and draw the upper and lower boundary of each lines
-th = 11
+threshold_pxl_density = 11
 
 # TODO Extract method
 # uppers, lowers, img = draw_cut_lines(original, rotated, th)
 hist1 = []
 
-kernel = generate_motion_kernel(50)
-blurred = cv2.filter2D(rotated, -1, kernel)
+kernel_horiz = generate_motion_kernel(100)
+# kernel_vert = generate_motion_kernel_vertical(5)
+blurred = cv2.filter2D(rotated, -1, kernel_horiz)
+# blurred = cv2.filter2D(blurred, -1, kernel_vert)
 
+threshold_pxl_line = 5
 while True:
 
     H, W = img.shape[:2]
@@ -304,28 +333,40 @@ while True:
 
     # th += .5
     # Old algorithm
-    uppers = [y for y in range(H - 1) if hist[y] <= th and hist[y + 1] > th]
-    lowers = [y for y in range(H - 1) if hist[y] > th and hist[y + 1] <= th]
+    uppers = [y - 1 for y in range(H - 1) if hist[y] <= threshold_pxl_density and hist[y + 1] > threshold_pxl_density]
+    lowers = [y + 1 for y in range(H - 1) if hist[y] > threshold_pxl_density and hist[y + 1] <= threshold_pxl_density]
 
+    color_count = 0
     for y in uppers:
-        cv2.line(_rotated, (0, y), (W, y), (0, 255, 0), 1)
-        cv2.line(_blurred, (0, y), (W, y), (0, 255, 0), 1)
+        pt_y = max(y - threshold_pxl_line, 0)
+        cv2.line(_rotated, (0, pt_y), (W, pt_y), BGR_UPPER[color_count % 2], 1, cv2.LINE_8)
+        # cv2.line(_blurred, (0, y), (W, y), (0, 0, 255), 1, cv2.LINE_8)
+        color_count += 1
 
+    color_count = 0
     for y in lowers:
-        cv2.line(_rotated, (0, y), (W, y), (0, 255, 0), 1)
-        cv2.line(_blurred, (0, y), (W, y), (0, 255, 0), 1)
+        pt_y = min(y + threshold_pxl_line, H)
+        cv2.line(_rotated, (0, pt_y), (W, pt_y), BGR_LOWER[color_count % 2], 1, cv2.LINE_8)
+        # cv2.line(_blurred, (0, y), (W, y), (0, 255, 0), 1, cv2.LINE_8)
+        color_count += 1
 
-    print("Result for th: " + str(th))
+    print("Result for threshold_pxl_density: " + str(threshold_pxl_density))
+    print("Result for threshold_pxl_line: " + str(threshold_pxl_line) + "\n")
     show_image_normal_window("Lines result", _rotated)
     key = wait_for_input_no_matter_what()
 
-    print(key)
-    if key == 43:  # Left
-        th += .5
-    elif key == 45:  # Right
-        th -= .5
-    elif key == 27:
+    print("key pressed: " + str(key))
+    if key == KEY_PLUS:
+        threshold_pxl_density += .5
+    elif key == KEY_MINUS:
+        threshold_pxl_density -= .5
+    elif key == KEY_RIGHT_ACCENT:
+        threshold_pxl_line += 1
+    elif key == KEY_DOT:
+        threshold_pxl_line -= 1
+    elif key == KEY_ENTER or key == KEY_ESC:
         break
+
 
 cv2.destroyAllWindows()
 
@@ -334,20 +375,29 @@ cv2.destroyAllWindows()
 
 # #### (6) Crop and write images to output #### #
 
-# orig_img = cv2.imread(get_image_path(FILENAME_IMAGE))
-#
-# no_ext_filename = os.path.splitext(FILENAME_IMAGE)[0]
-# os.makedirs(
-#     'output/cropped/' + no_ext_filename,
-#     exist_ok=True
-# )
-#
-# for lower, upper in zip(lowers + [H], [0] + uppers):
-#
-#     if abs(upper-lower) > 5:
-#         crop_img = orig_img[upper:lower, 0:W]
-#         fname = "croped_" + str(lower) + "_" + str(upper) + ".png"
-#         cv2.imwrite("output/cropped/" + no_ext_filename + "/" + fname, crop_img)
+threshold_pxl_cut = 0
+parameters = str(threshold_pxl_density) + "_" + str(threshold_pxl_line) + "_" + str(threshold_pxl_cut)
+
+orig_img = cv2.imread(get_image_path(filename_image))
+
+no_ext_filename, ext = os.path.splitext(filename_image)
+os.makedirs(
+    'output/cropped/' + no_ext_filename + "_" + parameters,
+    exist_ok=True
+)
+
+for lower, upper in zip(lowers + [H], [0] + uppers):
+
+    if lower-upper > threshold_pxl_cut:
+
+        pt_upper = max(upper - threshold_pxl_line, 0)
+        pt_lower = min(lower + threshold_pxl_line, H)
+
+        crop_img = img[pt_upper:pt_lower, 0:W]
+        fname = "croped_" + str(lower) + "_" + str(upper) + ".png"
+        cv2.imwrite("output/cropped/" + no_ext_filename + "_" + parameters + "/" + fname, crop_img)
+
+cv2.imwrite("output/cropped/" + no_ext_filename + "_" + parameters + "/img" + ext, img)
 
 
 # wait_for_input()

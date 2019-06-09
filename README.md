@@ -85,9 +85,37 @@ separamos horizontalmente en 5 partes iguales la línea, la 1 y la 3, tienen men
 ecuador). Para _threshold_ altos, que rinden bien en otras líneas (píxel y=459), el "3030", se parte en 4 líneas...
     - Ahora mismo estoy probando a sacar la media de 3 líneas y de ahí probar un threshold normal. Sin embargo , la 
     media lo que hace realmente es suavizar o "difuminar", las diferencias y no parece funcionar bien.
-    - PENDIENTE: Hay que probar a sacar medias ponderadas en que se de más valor a medias altas. o podemos probar
-    también haciendo la función nosotros en lugar de REDUCE_AVG, con REDUCE_SUM. También podemos hacer esta función por
-    partes: si un píxel tiene inmediatamente encima y/o inmediatamente debajo otro, le damos más valor. Así elaboramos
-    un sistema de "premios", que daría mucho más peso a píxeles rodeados, y evitaría el problema de líneas sueltas como
-    en el píxel y=459
-    - PENDIENTE: Probar a "emborronar" la foto horizontalmente, sacando la media de los píxeles del entorno en _X_.
+
+- PENDIENTE: Hay que probar a sacar medias ponderadas en que se de más valor a medias altas. o podemos probar
+también haciendo la función nosotros en lugar de REDUCE_AVG, con REDUCE_SUM. También podemos hacer esta función por
+partes: si un píxel tiene inmediatamente encima y/o inmediatamente debajo otro, le damos más valor. Así elaboramos
+un sistema de "premios", que daría mucho más peso a píxeles rodeados, y evitaría el problema de líneas sueltas como
+en el píxel y=459
+- PENDIENTE: Probar a "emborronar" la foto horizontalmente, sacando la media de los píxeles del entorno en _X_.
+    
+## 25/05/2019
+
+- BINGO! Haciendo un difuminado horizontal (horizontal blur) de la imagen, las líneas quedan mejor definidas, y se
+evitan imprecisiones como la que se daba en la línea del "3030" para la parte media e la línea. Sin embargo, se observan
+algunos problemas con las mayúsculas (en upper camel case) y línas ligeramente torcidas por un lado, y por otro con 
+aquellas líneas que tienen distintas alturas (por distintas fuentes por ejemplo).
+    - Líneas de distinta altura: En el píxel y=240 y el y=260, la palabra "NIF" es más alta que el propio NIF, que está 
+    en una fuente ligeramente menor. Esto da lugar a la detección de 2 líneas, en lugar de 1 como realmente es.
+    Igual pasa para teléfono.
+    - Líneas mayúsculas y ligeramente torcidas: En el caso del título "Avenida Infante Juan Manuel", el ticket está
+    ligeramente abombado en el centro, lo que tuerce suavemente la línea como una campana de gauss., algunas letras
+    quedan por este motivo ligeramente cortadas, y hay que observar la capacidad que tiene el OCR de sobreponerse a
+    esta falta de información.    
+    
+- [ ] PENDIENTE: Cómo se genera el kernel? Generar uno combinado? Es decir, combinando bluring horizontal y vertical.
+    - [ ] Probar un bluring vertical muy pequeño tras el horizontal para ver si de esa manera conseguimos
+homogeneizar los problemas de líneas.
+- [x] Probar a dibujar las líneas un píxel por encima del detectado, para superiores, y uno por debajo para
+inferiores. El número "3030" queda cortado por abajo por estar ligeramente torcido el primer 3 (más exterior en la 
+hoja)
+- [ ] PENDIENTE: (también para "homogeneizar" el problemad de las líneas) Probar a sacar una media de altura de línea y
+a partir de ahí, sacar un porcentaje de margen para cortar cada imagen.
+- [ ] PENDIENTE: Probar a sacar las proporciones del ticket para aplicar thresholds distintos a cada porción. 
+
+    
+ 
