@@ -68,7 +68,11 @@ def pair_lower_upper_bounds(lowers, uppers):
             return lowers, uppers[:-1]
 
 
-def slice(image, interactive=False, threshold_pxl_density=5.5, line_padding=7):
+def slice(path_image, interactive=False, threshold_pxl_density=5.5, line_padding=7):
+
+    filename_image = path_image
+    image = cv2.imread(path_image)
+
     orig = image.copy()
     working_image = image.copy()
 
@@ -133,7 +137,9 @@ def slice(image, interactive=False, threshold_pxl_density=5.5, line_padding=7):
     # #### (6) Crop and write images to output #### #
     lowers, uppers = pair_lower_upper_bounds(lowers, uppers)
     line_mean_hight = np.mean(np.array(list(map(lambda x: x[0] - x[1], zip(lowers, uppers)))))
-    threshold_pxl_cut = round(line_mean_hight / 2)
+
+    lower_th_pxl_cut = line_mean_hight / 2
+    upper_th_pxl_cut = line_mean_hight * 2
 
     parameters_str = str(threshold_pxl_density) + "_" + str(line_padding)  # + "_" + str(threshold_pxl_cut)
     path, basename, ext = get_path_base_and_ext(filename_image)
@@ -141,16 +147,18 @@ def slice(image, interactive=False, threshold_pxl_density=5.5, line_padding=7):
     os.makedirs(path_output, exist_ok=True)
 
     for lower, upper in zip(lowers, uppers):
-        if line_mean_hight / 2 < lower - upper < line_mean_hight * 2:
+        if lower_th_pxl_cut < lower - upper < upper_th_pxl_cut:
             pt_upper = max(upper - line_padding, 0)
             pt_lower = min(lower + line_padding, H)
 
             crop_img = orig[pt_upper:pt_lower, 0:W]
-            fname = "croped_" + str(lower) + "_" + str(upper) + ".png"
+            fname = "cropped_" + str(lower) + "_" + str(upper) + ".png"
             cv2.imwrite(path_output + "/" + fname, crop_img)
 
     now_timestamp = datetime.now().strftime("%Y%m%d_%H%M")
-    cv2.imwrite(path_output + "/" + now_timestamp + ext, orig)
+    cv2.imwrite(path_output + "/original_" + now_timestamp + ext, orig)
+
+    return path_output
 
 
 # construct the argument parser and parse the arguments
@@ -174,10 +182,7 @@ ap.add_argument("-v", "--interactive",
 if __name__ == "__main__":
     args = vars(ap.parse_args())
 
-    filename_image = args["image"]
-    image = cv2.imread(args["image"])
-
-    slice(image,
+    slice(path_image=args["image"],
           interactive=args["interactive"],
           threshold_pxl_density=args["threshold_pxl_density"],
           line_padding=args["line_padding"]

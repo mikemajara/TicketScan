@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e240990c-a750-4a35-9745-9c9985e6d42c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/images/181010_carreforur_conflash_1.JPG" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/images/181010_carreforur_conflash_2.JPG" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/images/181010_carreforur_conflash_3.JPG" beforeDir="false" />
@@ -14,7 +15,8 @@
       <change beforePath="$PROJECT_DIR$/images/IMG_0244.JPG" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/images/IMG_0245.JPG" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/images/IMG_0246.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scan-and-cut.py" beforeDir="false" afterPath="$PROJECT_DIR$/scan-and-cut.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/slice.py" beforeDir="false" afterPath="$PROJECT_DIR$/slice.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/text_recognition_custom.py" beforeDir="false" afterPath="$PROJECT_DIR$/ocr.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,49 +39,52 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.6308562">
+    <splitter split-orientation="horizontal" split-proportion="0.62399286">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/slice.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="328">
-                  <caret line="140" column="43" lean-forward="true" selection-start-line="140" selection-start-column="43" selection-end-line="140" selection-end-column="43" />
-                  <folding>
-                    <element signature="e#0#9#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/text_recognition_custom.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-501">
-                  <caret line="76" column="36" selection-start-line="76" selection-start-column="36" selection-end-line="76" selection-end-column="36" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/text_recognition.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="3105">
-                  <caret line="212" selection-start-line="212" selection-end-line="212" />
-                  <folding>
-                    <element signature="e#248#304#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/loop_text_recognition.py">
-              <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="255">
-                  <caret line="17" selection-start-line="17" selection-end-line="17" />
+                  <caret line="153" selection-start-line="153" selection-end-line="153" />
                   <folding>
                     <element signature="e#0#9#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/ocr.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="632">
+                  <caret line="134" column="74" selection-start-line="110" selection-end-line="134" selection-end-column="74" />
+                  <folding>
+                    <element signature="e#432#2585#0" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/ocr_batch.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="239">
+                  <caret line="25" column="33" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="33" />
+                  <folding>
+                    <element signature="e#0#15#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/main.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="367">
+                  <caret line="31" selection-start-line="31" selection-end-line="31" />
+                  <folding>
+                    <element signature="e#0#10#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -116,8 +121,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/scan.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="226">
-                  <caret line="142" selection-start-line="142" selection-end-line="145" selection-end-column="76" />
+                <state relative-caret-position="183">
+                  <caret line="71" column="9" selection-start-line="71" selection-start-column="9" selection-end-line="71" selection-end-column="9" />
                   <folding>
                     <element signature="e#159#168#0" expanded="true" />
                   </folding>
@@ -128,8 +133,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/scan-and-cut.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="221">
-                  <caret line="228" selection-start-line="228" selection-end-line="228" />
+                <state relative-caret-position="265">
+                  <caret line="292" column="1" selection-start-line="292" selection-start-column="1" selection-end-line="292" selection-end-column="1" />
                   <folding>
                     <element signature="e#83#92#0" expanded="true" />
                   </folding>
@@ -150,12 +155,8 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>transf</find>
-      <find>append</find>
-      <find>frozen</find>
       <find>lang</find>
       <find>args</find>
-      <find>image</find>
       <find>pad</find>
       <find>orig</find>
       <find>ó</find>
@@ -180,6 +181,10 @@
       <find>orig_img</find>
       <find>working_image</find>
       <find>motion</find>
+      <find>PATH_IMAGES</find>
+      <find>DEFAULT_PAD</find>
+      <find>image</find>
+      <find>line_padding</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -206,14 +211,16 @@
         <option value="$PROJECT_DIR$/readme.md" />
         <option value="$PROJECT_DIR$/text_recognition_bckp.py" />
         <option value="$PROJECT_DIR$/text_recognition.py" />
-        <option value="$PROJECT_DIR$/text_recognition_custom.py" />
-        <option value="$PROJECT_DIR$/loop_text_recognition.py" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/document-scanner/scan.py" />
         <option value="$PROJECT_DIR$/scan.py" />
         <option value="$PROJECT_DIR$/helpers.py" />
         <option value="$PROJECT_DIR$/scan-and-cut.py" />
+        <option value="$PROJECT_DIR$/text_recognition_custom.py" />
+        <option value="$PROJECT_DIR$/ocr.py" />
+        <option value="$PROJECT_DIR$/loop_text_recognition.py" />
+        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/slice.py" />
+        <option value="$PROJECT_DIR$/ocr_batch.py" />
       </list>
     </option>
   </component>
@@ -277,7 +284,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.slice">
+  <component name="RunManager" selected="Python.main">
     <configuration name="lines-1.0" type="PythonConfigurationType" factoryName="Python">
       <module name="TicketScan" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -300,7 +307,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="loop_text_recognition" type="PythonConfigurationType" factoryName="Python">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python">
       <module name="TicketScan" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -313,8 +320,8 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/loop_text_recognition.py" />
-      <option name="PARAMETERS" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="-i images/primer_completo.jpg" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -322,7 +329,29 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="remove-shadows" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="ocr_batch" type="PythonConfigurationType" factoryName="Python">
+      <module name="TicketScan" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ocr_batch.py" />
+      <option name="PARAMETERS" value="images/output_cropped/img_1.5_9_13.0" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="remove-shadows" type="PythonConfigurationType" factoryName="Python">
       <module name="TicketScan" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -410,41 +439,18 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="text_recognition" type="PythonConfigurationType" factoryName="Python">
-      <module name="TicketScan" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/text_recognition.py" />
-      <option name="PARAMETERS" value="--east frozen_east_text_detection_copy.pb --image images/mercadona/corte.jpg -p 1" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <list>
       <item itemvalue="Python.lines-1.0" />
-      <item itemvalue="Python.loop_text_recognition" />
-      <item itemvalue="Python.text_recognition" />
       <item itemvalue="Python.scan" />
       <item itemvalue="Python.slice" />
       <item itemvalue="Python.remove-shadows" />
       <item itemvalue="Python.scan-and-cut" />
+      <item itemvalue="Python.ocr_batch" />
+      <item itemvalue="Python.main" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.scan-and-cut" />
-        <item itemvalue="Python.remove-shadows" />
       </list>
     </recent_temporary>
   </component>
@@ -472,29 +478,29 @@
       <workItem from="1560099871926" duration="11749000" />
       <workItem from="1560163202763" duration="5119000" />
       <workItem from="1561209577629" duration="12494000" />
-      <workItem from="1561279403019" duration="14087000" />
+      <workItem from="1561279403019" duration="18467000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="98522000" />
+    <option name="totallyTimeSpent" value="102902000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49263158" weight="0.22051696" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49263158" visible="true" weight="0.09773829" />
       <window_info id="Structure" order="1" sideWeight="0.50736845" side_tool="true" weight="0.2158029" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32909605" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.3361582" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.31920904" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.3022599" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" x="21" y="43" width="1259" height="757" id="Version Control" order="8" type="WINDOWED" weight="0.32909605" />
+      <window_info anchor="bottom" x="6" y="43" width="1259" height="757" id="Version Control" order="8" type="WINDOWED" visible="true" weight="0.32909605" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.32909605" />
       <window_info anchor="bottom" id="Terminal" order="11" />
@@ -508,6 +514,16 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -565,6 +581,16 @@
           <line>228</line>
           <option name="timeStamp" value="27" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/slice.py</url>
+          <line>184</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main.py</url>
+          <line>31</line>
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -579,6 +605,8 @@
     <SUITE FILE_PATH="coverage/TicketScan$lines_1_0.coverage" NAME="lines-1.0 Coverage Results" MODIFIED="1558278629677" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/TicketScan$scan_and_cut.coverage" NAME="scan-and-cut Coverage Results" MODIFIED="1561307403398" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/TicketScan$slice.coverage" NAME="slice Coverage Results" MODIFIED="1561307444610" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/TicketScan$ocr_batch.coverage" NAME="ocr_batch Coverage Results" MODIFIED="1561310112368" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/TicketScan$main.coverage" NAME="main Coverage Results" MODIFIED="1561311379743" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/TicketScan$remove_shadows.coverage" NAME="remove-shadows Coverage Results" MODIFIED="1558262524818" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/TicketScan$text_recognition.coverage" NAME="text_recognition Coverage Results" MODIFIED="1561229511452" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/TicketScan$loop_text_recognition.coverage" NAME="loop_text_recognition Coverage Results" MODIFIED="1561236217070" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -610,6 +638,11 @@ for x in rotated:
       </expression>
     </expressions>
     <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>args[&quot;image&quot;]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>dirname + &quot;/&quot; + basename + &quot;_scan_result&quot; + ext</expression-string>
         <language-id>Python</language-id>
@@ -650,20 +683,9 @@ for x in rotated:
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
-      <expression>
-        <expression-string>len(lower)</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/shadows_out.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shadows_out_norm.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/document-scanner/images/merc3.jpeg">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -784,16 +806,6 @@ for x in rotated:
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/text_recognition.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3105">
-          <caret line="212" selection-start-line="212" selection-end-line="212" />
-          <folding>
-            <element signature="e#248#304#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../virtualEnvironments/venv-ticket-scan/lib/python3.7/codecs.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4620">
@@ -815,23 +827,6 @@ for x in rotated:
             <caret line="135" column="96" selection-start-line="135" selection-start-column="96" selection-end-line="135" selection-end-column="96" />
           </first_editor>
           <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/loop_text_recognition.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/text_recognition_custom.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-501">
-          <caret line="76" column="36" selection-start-line="76" selection-start-column="36" selection-end-line="76" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -858,10 +853,27 @@ for x in rotated:
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/text_recognition.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1359">
+          <caret line="212" selection-start-line="212" selection-end-line="212" />
+          <folding>
+            <element signature="e#248#304#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Caches/PyCharm2019.1/python_stubs/-764701211/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68850">
+          <caret line="4590" column="8" selection-start-line="4590" selection-start-column="8" selection-end-line="4590" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/scan.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="142" selection-start-line="142" selection-end-line="145" selection-end-column="76" />
+        <state relative-caret-position="183">
+          <caret line="71" column="9" selection-start-line="71" selection-start-column="9" selection-end-line="71" selection-end-column="9" />
           <folding>
             <element signature="e#159#168#0" expanded="true" />
           </folding>
@@ -870,8 +882,8 @@ for x in rotated:
     </entry>
     <entry file="file://$PROJECT_DIR$/scan-and-cut.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="228" selection-start-line="228" selection-end-line="228" />
+        <state relative-caret-position="265">
+          <caret line="292" column="1" selection-start-line="292" selection-start-column="1" selection-end-line="292" selection-end-column="1" />
           <folding>
             <element signature="e#83#92#0" expanded="true" />
           </folding>
@@ -880,10 +892,40 @@ for x in rotated:
     </entry>
     <entry file="file://$PROJECT_DIR$/slice.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="140" column="43" lean-forward="true" selection-start-line="140" selection-start-column="43" selection-end-line="140" selection-end-column="43" />
+        <state relative-caret-position="255">
+          <caret line="153" selection-start-line="153" selection-end-line="153" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ocr.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="632">
+          <caret line="134" column="74" selection-start-line="110" selection-end-line="134" selection-end-column="74" />
+          <folding>
+            <element signature="e#432#2585#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ocr_batch.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="25" column="33" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>
