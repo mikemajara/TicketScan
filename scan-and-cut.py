@@ -56,7 +56,7 @@ def random_color():
     random.shuffle(rgbl)
     return tuple(rgbl)
 
-
+s
 def fig(width, height):
     plt.figure(figsize=(width, height))
 
@@ -160,7 +160,7 @@ args = vars(ap.parse_args())
 # to the new height, clone it, and resize it
 filename_image = args["image"]
 image = cv2.imread(args["image"])
-# image = image[15:-15] ## TODO si empieza un lower o empieza un upper hay que mirarlo.
+
 # ratio = image.shape[0] / 500.0
 orig = image.copy()
 # image = imutils.resize(image, height=500)
