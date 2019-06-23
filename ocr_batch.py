@@ -32,7 +32,7 @@ def extract_lines_of_text(path,
             text_recognised = tr.extract_text(img=orig,
                                               oem=oem,
                                               psm=psm,
-                                              lang="deu",
+                                              lang="spa",
                                               full_box_image=full_box_image,
                                               side_margin=side_margin)
             text_recognition_dict[file] = text_recognised

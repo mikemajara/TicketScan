@@ -14,6 +14,25 @@
       <change beforePath="$PROJECT_DIR$/images/IMG_0244.JPG" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/images/IMG_0245.JPG" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/images/IMG_0246.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/contour_result.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/croped_75_0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/croped_861_755.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/imagen3.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/output.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/output0.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/output1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/result.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebooks/lines1.0.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebooks/noise-reduce.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebooks/output0.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebooks/output1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebooks/requirements-lines.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebooks/result.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebooks/tickets1.0.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebooks/tickets1.2.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebooks/tickets1.3.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebooks/tickets1.4.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebooks/tickets1.5.ipynb" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ocr_batch.py" beforeDir="false" afterPath="$PROJECT_DIR$/ocr_batch.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -55,8 +74,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/ocr.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="302">
-                  <caret line="112" column="40" lean-forward="true" selection-start-line="112" selection-start-column="40" selection-end-line="112" selection-end-column="40" />
+                <state relative-caret-position="651">
+                  <caret line="112" column="40" selection-start-line="112" selection-start-column="40" selection-end-line="112" selection-end-column="40" />
                   <folding>
                     <element signature="e#432#2585#0" />
                   </folding>
@@ -67,8 +86,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/ocr_batch.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="916">
-                  <caret line="87" column="42" selection-start-line="87" selection-start-column="42" selection-end-line="87" selection-end-column="42" />
+                <state relative-caret-position="121">
+                  <caret line="34" column="55" selection-start-line="34" selection-start-column="55" selection-end-line="34" selection-end-column="55" />
                   <folding>
                     <element signature="e#0#15#0" expanded="true" />
                   </folding>
@@ -79,7 +98,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/main.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="367">
+                <state relative-caret-position="347">
                   <caret line="31" selection-start-line="31" selection-end-line="31" />
                   <folding>
                     <element signature="e#0#10#0" expanded="true" />
@@ -116,25 +135,13 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/scan.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="183">
                   <caret line="71" column="9" selection-start-line="71" selection-start-column="9" selection-end-line="71" selection-end-column="9" />
                   <folding>
                     <element signature="e#159#168#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/scan-and-cut.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="265">
-                  <caret line="292" column="1" selection-start-line="292" selection-start-column="1" selection-end-line="292" selection-end-column="1" />
-                  <folding>
-                    <element signature="e#83#92#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -476,12 +483,12 @@
       <workItem from="1560099871926" duration="11749000" />
       <workItem from="1560163202763" duration="5119000" />
       <workItem from="1561209577629" duration="12494000" />
-      <workItem from="1561279403019" duration="18780000" />
+      <workItem from="1561279403019" duration="19411000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103215000" />
+    <option name="totallyTimeSpent" value="103846000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -569,16 +576,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/scan-and-cut.py</url>
-          <line>286</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/scan-and-cut.py</url>
-          <line>228</line>
-          <option name="timeStamp" value="27" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/slice.py</url>
           <line>184</line>
@@ -868,16 +865,6 @@ for x in rotated:
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scan.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="71" column="9" selection-start-line="71" selection-start-column="9" selection-end-line="71" selection-end-column="9" />
-          <folding>
-            <element signature="e#159#168#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scan-and-cut.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="265">
@@ -898,9 +885,19 @@ for x in rotated:
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ocr.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="651">
+          <caret line="112" column="40" selection-start-line="112" selection-start-column="40" selection-end-line="112" selection-end-column="40" />
+          <folding>
+            <element signature="e#432#2585#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
+        <state relative-caret-position="347">
           <caret line="31" selection-start-line="31" selection-end-line="31" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
@@ -908,20 +905,20 @@ for x in rotated:
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ocr.py">
+    <entry file="file://$PROJECT_DIR$/scan.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="112" column="40" lean-forward="true" selection-start-line="112" selection-start-column="40" selection-end-line="112" selection-end-column="40" />
+        <state relative-caret-position="183">
+          <caret line="71" column="9" selection-start-line="71" selection-start-column="9" selection-end-line="71" selection-end-column="9" />
           <folding>
-            <element signature="e#432#2585#0" />
+            <element signature="e#159#168#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ocr_batch.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="916">
-          <caret line="87" column="42" selection-start-line="87" selection-start-column="42" selection-end-line="87" selection-end-column="42" />
+        <state relative-caret-position="121">
+          <caret line="34" column="55" selection-start-line="34" selection-start-column="55" selection-end-line="34" selection-end-column="55" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
