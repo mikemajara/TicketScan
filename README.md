@@ -115,7 +115,22 @@ inferiores. El número "3030" queda cortado por abajo por estar ligeramente torc
 hoja)
 - [ ] PENDIENTE: (también para "homogeneizar" el problemad de las líneas) Probar a sacar una media de altura de línea y
 a partir de ahí, sacar un porcentaje de margen para cortar cada imagen.
-- [ ] PENDIENTE: Probar a sacar las proporciones del ticket para aplicar thresholds distintos a cada porción. 
+- [ ] PENDIENTE: Probar a sacar las proporciones del ticket para aplicar thresholds distintos a cada porción.
+- [ ] PENDIENTE: Dejo pendiente probar con thresholds distintos (para detección de líneas con texto), en los distintos
+puntos del ticket. Ejemplo: Podríamos usar un threshold de 11.0 en el primer tercio del ticket, uno de 15.0 en el
+segundo, y uno de 3.0 en el tercero, según la longitud de las líneas, la alineación, etc.
 
     
- 
+## 10/06/2019 
+
+- Me pongo con el reconocimiento de texto.
+- Apis: he probado varias apis para ver qué resultados dan. La mayoría no valen para nada. Google Cloud es 
+indescifrable. Por lo demás he probado Cloudmersive, Taggun y alguna más, todas fallan estrepitosamente. La única que
+detecta muy bien toda la información es Textract de aws.
+- [ ] PENDIENTE: AWS devuelve información sobre los puntos en los que encuentra texto? Si lo hace podríamos obtener
+líneas de producto de esa manera.
+- [ ] PENDIENTE: Estudiar la viabilidad de integrar AWS, o de entrenar nuestro propio OCR.
+- Me he quedado a medio de hacer este 
+(tutorial)[https://docs.aws.amazon.com/es_es/IAM/latest/UserGuide/getting-started_create-admin-group.html]
+he creado un usuario administrador de IAM (consola).
+- Y si implemento un detector de texto, y con las coordenadas xy es como detecto las líneas??...
