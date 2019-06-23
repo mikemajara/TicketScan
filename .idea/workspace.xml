@@ -37,38 +37,26 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5347334">
+    <splitter split-orientation="horizontal" split-proportion="0.6308562">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/scan-and-cut.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="200">
-                  <caret line="58" column="1" selection-start-line="58" selection-start-column="1" selection-end-line="58" selection-end-column="1" />
-                  <folding>
-                    <element signature="e#83#92#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/document-scanner/scan.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-372">
-                  <caret line="86" selection-start-line="86" selection-end-line="116" selection-end-column="23" />
-                  <folding>
-                    <element signature="e#82#95#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/slice.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="328">
+                  <caret line="140" column="43" lean-forward="true" selection-start-line="140" selection-start-column="43" selection-end-line="140" selection-end-column="43" />
+                  <folding>
+                    <element signature="e#0#9#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/text_recognition_custom.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-653">
-                  <caret line="76" column="36" lean-forward="true" selection-start-line="76" selection-start-column="36" selection-end-line="76" selection-end-column="36" />
+                <state relative-caret-position="-501">
+                  <caret line="76" column="36" selection-start-line="76" selection-start-column="36" selection-end-line="76" selection-end-column="36" />
                 </state>
               </provider>
             </entry>
@@ -98,24 +86,6 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/../virtualEnvironments/venv-ticket-scan/lib/python3.7/codecs.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="4620">
-                  <caret line="309" selection-start-line="309" selection-end-line="309" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/tests.json">
-              <provider selected="true" editor-type-id="text-editor">
-                <state>
-                  <caret column="17" selection-start-column="17" selection-end-column="17" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/readme.md">
               <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
                 <state split_layout="FIRST">
@@ -134,26 +104,34 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/helpers.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="302">
+                <state relative-caret-position="315">
                   <caret line="21" column="29" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
+                  <folding>
+                    <element signature="e#0#9#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/scan.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="226">
+                  <caret line="142" selection-start-line="142" selection-end-line="145" selection-end-column="76" />
+                  <folding>
+                    <element signature="e#159#168#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/scan.py">
+            <entry file="file://$PROJECT_DIR$/scan-and-cut.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="194">
-                  <caret line="156" column="17" selection-start-line="156" selection-start-column="17" selection-end-line="156" selection-end-column="17" />
+                <state relative-caret-position="221">
+                  <caret line="228" selection-start-line="228" selection-end-line="228" />
                   <folding>
-                    <element signature="e#159#168#0" expanded="true" />
-                    <element signature="e#416#482#0" />
-                    <element signature="e#528#754#0" />
-                    <element signature="e#795#1042#0" />
-                    <element signature="e#1084#1239#0" />
-                    <element signature="e#1286#1348#0" />
-                    <element signature="e#1556#1827#0" />
-                    <element signature="e#2169#3336#0" />
+                    <element signature="e#83#92#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -172,14 +150,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>gray</find>
-      <find>blurre</find>
-      <find>key pres</find>
-      <find>Thresh</find>
-      <find>merc3</find>
-      <find>ext</find>
-      <find>merc</find>
-      <find>FILENAME_IMAGE</find>
       <find>transf</find>
       <find>append</find>
       <find>frozen</find>
@@ -200,8 +170,16 @@
       <find>PAD</find>
       <find>show_image</find>
       <find>cnt</find>
-      <find>random_color</find>
       <find>Outline</find>
+      <find>draw_cut</find>
+      <find>random_color</find>
+      <find>threshold_pxl_density</find>
+      <find>hist1</find>
+      <find>filename_image</find>
+      <find>no_ext_filename</find>
+      <find>orig_img</find>
+      <find>working_image</find>
+      <find>motion</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -231,10 +209,11 @@
         <option value="$PROJECT_DIR$/text_recognition_custom.py" />
         <option value="$PROJECT_DIR$/loop_text_recognition.py" />
         <option value="$PROJECT_DIR$/main.py" />
-        <option value="$PROJECT_DIR$/scan-and-cut.py" />
         <option value="$PROJECT_DIR$/document-scanner/scan.py" />
-        <option value="$PROJECT_DIR$/helpers.py" />
         <option value="$PROJECT_DIR$/scan.py" />
+        <option value="$PROJECT_DIR$/helpers.py" />
+        <option value="$PROJECT_DIR$/scan-and-cut.py" />
+        <option value="$PROJECT_DIR$/slice.py" />
       </list>
     </option>
   </component>
@@ -298,7 +277,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.scan">
+  <component name="RunManager" selected="Python.slice">
     <configuration name="lines-1.0" type="PythonConfigurationType" factoryName="Python">
       <module name="TicketScan" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -409,6 +388,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="slice" type="PythonConfigurationType" factoryName="Python">
+      <module name="TicketScan" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/slice.py" />
+      <option name="PARAMETERS" value="-i images/img.jpg -d 5.5 -p 7 -v" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="text_recognition" type="PythonConfigurationType" factoryName="Python">
       <module name="TicketScan" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -436,6 +437,7 @@
       <item itemvalue="Python.loop_text_recognition" />
       <item itemvalue="Python.text_recognition" />
       <item itemvalue="Python.scan" />
+      <item itemvalue="Python.slice" />
       <item itemvalue="Python.remove-shadows" />
       <item itemvalue="Python.scan-and-cut" />
     </list>
@@ -470,12 +472,12 @@
       <workItem from="1560099871926" duration="11749000" />
       <workItem from="1560163202763" duration="5119000" />
       <workItem from="1561209577629" duration="12494000" />
-      <workItem from="1561279403019" duration="6429000" />
+      <workItem from="1561279403019" duration="14087000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="90864000" />
+    <option name="totallyTimeSpent" value="98522000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -486,8 +488,8 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32909605" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.2217514" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.36299434" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3361582" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.31920904" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -555,13 +557,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/scan-and-cut.py</url>
-          <line>406</line>
+          <line>286</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/scan.py</url>
-          <line>162</line>
-          <option name="timeStamp" value="17" />
+          <url>file://$PROJECT_DIR$/scan-and-cut.py</url>
+          <line>228</line>
+          <option name="timeStamp" value="27" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -575,7 +577,8 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/TicketScan$lines_1_0.coverage" NAME="lines-1.0 Coverage Results" MODIFIED="1558278629677" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/TicketScan$scan_and_cut.coverage" NAME="scan-and-cut Coverage Results" MODIFIED="1561236260336" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/TicketScan$scan_and_cut.coverage" NAME="scan-and-cut Coverage Results" MODIFIED="1561307403398" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/TicketScan$slice.coverage" NAME="slice Coverage Results" MODIFIED="1561307444610" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/TicketScan$remove_shadows.coverage" NAME="remove-shadows Coverage Results" MODIFIED="1558262524818" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/TicketScan$text_recognition.coverage" NAME="text_recognition Coverage Results" MODIFIED="1561229511452" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/TicketScan$loop_text_recognition.coverage" NAME="loop_text_recognition Coverage Results" MODIFIED="1561236217070" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -655,12 +658,6 @@ for x in rotated:
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/result.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/images/uñate.jpeg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/shadows_out.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -831,19 +828,19 @@ for x in rotated:
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scan-and-cut.py">
+    <entry file="file://$PROJECT_DIR$/text_recognition_custom.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="58" column="1" selection-start-line="58" selection-start-column="1" selection-end-line="58" selection-end-column="1" />
-          <folding>
-            <element signature="e#83#92#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-501">
+          <caret line="76" column="36" selection-start-line="76" selection-start-column="36" selection-end-line="76" selection-end-column="36" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/cuts-1.0.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/document-scanner/scan.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-372">
+        <state relative-caret-position="-1035">
           <caret line="86" selection-start-line="86" selection-end-line="116" selection-end-column="23" />
           <folding>
             <element signature="e#82#95#0" expanded="true" />
@@ -853,31 +850,40 @@ for x in rotated:
     </entry>
     <entry file="file://$PROJECT_DIR$/helpers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
+        <state relative-caret-position="315">
           <caret line="21" column="29" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/text_recognition_custom.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-653">
-          <caret line="76" column="36" lean-forward="true" selection-start-line="76" selection-start-column="36" selection-end-line="76" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scan.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="156" column="17" selection-start-line="156" selection-start-column="17" selection-end-line="156" selection-end-column="17" />
+        <state relative-caret-position="226">
+          <caret line="142" selection-start-line="142" selection-end-line="145" selection-end-column="76" />
           <folding>
             <element signature="e#159#168#0" expanded="true" />
-            <element signature="e#416#482#0" />
-            <element signature="e#528#754#0" />
-            <element signature="e#795#1042#0" />
-            <element signature="e#1084#1239#0" />
-            <element signature="e#1286#1348#0" />
-            <element signature="e#1556#1827#0" />
-            <element signature="e#2169#3336#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scan-and-cut.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="228" selection-start-line="228" selection-end-line="228" />
+          <folding>
+            <element signature="e#83#92#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/slice.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="140" column="43" lean-forward="true" selection-start-line="140" selection-start-column="43" selection-end-line="140" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>

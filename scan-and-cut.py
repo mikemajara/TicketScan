@@ -56,7 +56,7 @@ def random_color():
     random.shuffle(rgbl)
     return tuple(rgbl)
 
-s
+
 def fig(width, height):
     plt.figure(figsize=(width, height))
 
@@ -131,6 +131,7 @@ def get_weighted_array(length, margin_threshold=.04):
 
     return array
 
+
 def generate_motion_kernel(size=15):
     # generating the kernel
     kernel_motion_blur = np.zeros((size, size))
@@ -138,16 +139,13 @@ def generate_motion_kernel(size=15):
     kernel_motion_blur = kernel_motion_blur / size
     return kernel_motion_blur
 
+
 def generate_motion_kernel_vertical(size=15):
     # generating the kernel
     kernel_motion_blur = np.zeros((size, size))
     kernel_motion_blur[:, int((size-1)/2)] = np.ones(size)
     kernel_motion_blur = kernel_motion_blur / size
     return kernel_motion_blur
-
-# ################################################ #
-# #########          SCAN IMAGE          ######### #
-# ################################################ #
 
 
 # construct the argument parser and parse the arguments
@@ -160,131 +158,13 @@ args = vars(ap.parse_args())
 # to the new height, clone it, and resize it
 filename_image = args["image"]
 image = cv2.imread(args["image"])
-
-# ratio = image.shape[0] / 500.0
 orig = image.copy()
-# image = imutils.resize(image, height=500)
-
-# convert the image to grayscale, blur it, and find edges
-# in the image
-gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-# gray = cv2.GaussianBlur(gray, (5, 5), 0)
-# edged = cv2.Canny(gray, 75, 200)
-#
-# # show the original image and the edge detected image
-# print("STEP 1: Edge Detection")
-# show_image_normal_window("Image", image)
-# show_image_normal_window("Edged", image)
-# cv2.destroyAllWindows()
-#
-# # # find the contours in the edged image, keeping only the
-# # # largest ones, and initialize the screen contour
-# # cnts = cv2.findContours(edged.copy(), cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
-# # cnts = imutils.grab_contours(cnts)
-# #
-# # # close contours that are open.
-# # for i, cnt in enumerate(cnts):
-# #     cnts[i] = cv2.convexHull(cnts[i])
-# #
-# # cnts = sorted(cnts, key=cv2.contourArea, reverse=True)[:10]
-# # areas = list(map(cv2.contourArea, cnts))
-# #
-# #
-# # count = 0
-# # max_area = 0
-# # # loop over the contours
-# # for c in cnts:
-# #
-# #     # approximate the contour
-# #     perimetre = cv2.arcLength(c, True)
-# #     area = cv2.contourArea(c, True)
-# #     approx = cv2.approxPolyDP(c, 0.02 * perimetre, True)
-# #
-# #     # cv2.drawContours(image, [approx], -1, (0, 255, 0), 2)
-# #     # cv2.imshow("Contour" + str(count), image)
-# #     # wait_for_input()
-# #     # cv2.destroyAllWindows()
-# #     # count += 1
-# #
-# #     # if our approximated contour has four points, then we
-# #     # can assume that we have found our screen
-# #     if 3 < len(approx) < 6 and area > max_area:
-# #         epsylon = 0.02
-# #         while len(approx) > 4:
-# #             approx = cv2.approxPolyDP(c, epsylon, True)
-# #             epsylon += 0.1
-# #             count += 1
-# #
-# #         # cv2.drawContours(image, [approx], -1, random_color(), 2)
-# #         # img_title = "Contour" + str(count) + " " + str(len(approx)) + " sides "
-# #         # show_image_normal_window(img_title, image)
-# #         # wait_for_input()
-# #         # cv2.destroyAllWindows()
-# #         # count += 1
-# #
-# #         screenCnt = approx
-# #         max_area = area
-# #
-# # # show the contour (outline) of the piece of paper
-# # print("STEP 2: Find or rather draw the found contours of paper")
-# # cv2.drawContours(image, [screenCnt], -1, (0, 255, 255), 1)
-# # show_image_normal_window("Outline", image)
-# # wait_for_input()
-# # cv2.destroyAllWindows()
-# #
-# #
-# # # apply the four point transform to obtain a top-down
-# # # view of the original image
-# # wrapped = four_point_transform(orig, screenCnt.reshape(4, 2))
-# # show_image_normal_window("apply the four point transform...", wrapped)
-# # wait_for_input()
-# # cv2.destroyAllWindows()
-# wrapped = image.copy()
-# # convert the warped image to grayscale, then threshold it
-# # to give it that 'black and white' paper effect
-# wrapped = cv2.cvtColor(wrapped, cv2.COLOR_BGR2GRAY)
-# show_image_normal_window("convert the warped image to grayscale...", wrapped)
-# wait_for_input()
-# cv2.destroyAllWindows()
-#
-# cv2.imwrite("output/scan_result_no_threshold.jpg", wrapped)
-#
-# # _wrapped = threshold_image(wrapped, 11, 29)
-# _wrapped = threshold_image(wrapped, 17, 33)
-# # _wrapped = threshold_image(wrapped)
-#
-# # show the original and scanned images
-# print("STEP 3: Apply perspective transform")
-# show_image_normal_window("Thresholded image", _wrapped)
-# wait_for_input()
-# cv2.destroyAllWindows()
-# cv2.imwrite("output/scan_result_with_threshold.jpg", _wrapped)
+img = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
 
-# Deactivate image scan
-_wrapped = gray.copy()
-
-
-# ############################################### #
-# #########     CUT IMAGE IN PIECES     ######### #
-# ############################################### #
-
-img = _wrapped
-
-# How to show images
-# img2 = Image.open(get_image_path(FILENAME_IMAGE))
-# img2.show()
-
-# img = read_image(get_image_path(FILENAME_IMAGE))
-# plot_image(img, 5, 5)
-
-
-# (1) read
-# img = cv2.imread(get_image_path(FILENAME_IMAGE))  # No need to read in complete workflow
-# ratio = img.shape[0] / 500.0  # Redimension messes up quality
-# orig = img.copy()  # No need for copy
-# img = imutils.resize(img, height=500)  # Redimension messes up definition
-# gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)  # Already gray, no need.
+# ################################################# #
+# #########     SLICE IMAGE IN PIECES     ######### #
+# ################################################# #
 
 
 show_image_normal_window("Scanned", img)
@@ -294,7 +174,7 @@ cv2.destroyAllWindows()
 # (2) threshold
 threshold_pxl_density, threshed = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)
 
-show_image_normal_window("Thresholded image", gray)
+show_image_normal_window("Thresholded image", img)
 key = wait_for_input()
 cv2.destroyAllWindows()
 
