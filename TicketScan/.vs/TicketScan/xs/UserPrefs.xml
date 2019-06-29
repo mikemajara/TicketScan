@@ -1,0 +1,42 @@
+﻿<Properties StartupConfiguration="{AC6F475E-F969-4B22-9C33-CBBE047B1999}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="TicketScan/Models/Ticket.cs">
+    <Files>
+      <File FileName="TicketScan/Views/AboutPage.xaml" Line="1" Column="1" />
+      <File FileName="TicketScan/Views/AboutPage.xaml.cs" Line="18" Column="2" />
+      <File FileName="TicketScan/Models/Ticket.cs" Line="7" Column="10" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="TicketScan" expanded="True">
+            <Node name="TicketScan" expanded="True">
+              <Node name="Models" expanded="True">
+                <Node name="Ticket.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.TicketScan.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.B7DBB025-C97B-4FE9-966C-B808E2DA4340" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.TicketScan.Android FirstBuild="True" PreferredExecutionTarget="Android.Android_Accelerated_Nougat" />
+  <MonoDevelop.Ide.ItemProperties.TicketScan.MobileAppService FirstBuild="True" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations>
+    <MultiItemSolutionRunConfiguration Id="multiprojId" Name="Varios proyectos">
+      <Items>
+        <StartupItem ItemId="{91201C87-FA9B-4135-A163-25A2B7C0F8B7}" ItemName="TicketScan.Android" />
+        <StartupItem ItemId="{AC6F475E-F969-4B22-9C33-CBBE047B1999}" ItemName="TicketScan.iOS" />
+        <StartupItem ItemId="{0BEFD5A1-FAE0-4D37-9271-C1E990761C6E}" ItemName="TicketScan.MobileAppService" />
+      </Items>
+    </MultiItemSolutionRunConfiguration>
+  </MultiItemStartupConfigurations>
+</Properties>
