@@ -15,11 +15,11 @@ namespace TicketScan.ViewModels
         public ObservableCollection<Item> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
 
-        public ItemsViewModel()
+        public ItemsViewModel(string type)
         {
             Title = "Browse";
             Items = new ObservableCollection<Item>();
-            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand(type));
 
             MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>
             {
@@ -29,7 +29,7 @@ namespace TicketScan.ViewModels
             });
         }
 
-        async Task ExecuteLoadItemsCommand()
+        async Task ExecuteLoadItemsCommand(string type)
         {
             if (IsBusy)
                 return;
@@ -39,7 +39,7 @@ namespace TicketScan.ViewModels
             try
             {
                 Items.Clear();
-                var items = await DataStore.GetItemsAsync(true);
+                var items = await DataStore.GetItemsAsync(type, true);
                 foreach (var item in items)
                 {
                     Items.Add(item);

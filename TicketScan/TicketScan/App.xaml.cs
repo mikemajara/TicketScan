@@ -23,7 +23,7 @@ namespace TicketScan
             if (UseMockDataStore)
                 DependencyService.Register<MockDataStore>();
             else
-                DependencyService.Register<AzureDataStore>();
+                DependencyService.Register<MockDataStore>();
             MainPage = new MainPage();
         }
 

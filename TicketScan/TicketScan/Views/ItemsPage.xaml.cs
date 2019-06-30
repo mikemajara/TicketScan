@@ -20,11 +20,19 @@ namespace TicketScan.Views
     {
         ItemsViewModel viewModel;
 
+
         public ItemsPage()
         {
             InitializeComponent();
 
-            BindingContext = viewModel = new ItemsViewModel();
+            BindingContext = this.viewModel = new ItemsViewModel("tickets");
+        }
+
+        public ItemsPage(ItemsViewModel viewModel)
+        {
+            InitializeComponent();
+
+            BindingContext = this.viewModel = viewModel;
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
@@ -33,7 +41,9 @@ namespace TicketScan.Views
             if (item == null)
                 return;
 
-            await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
+            List<Line> lines = (item as Ticket).Lines;
+            await Navigation.PushAsync(new ItemsPage(new ItemsViewModel("lines")));
+            //await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
 
             // Manually deselect item.
             ItemsListView.SelectedItem = null;
