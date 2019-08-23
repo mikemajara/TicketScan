@@ -2,27 +2,152 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e240990c-a750-4a35-9745-9c9985e6d42c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/TicketScan/.vs/TicketScan/xs/UserPrefs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.Android/Assets/AboutAssets.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.Android/MainActivity.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.Android/Properties/AndroidManifest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.Android/Properties/AssemblyInfo.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.Android/Resources/AboutResources.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.Android/Resources/Resource.designer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.Android/Resources/drawable/xamarin_logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.Android/Resources/layout/Tabbar.axml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.Android/Resources/layout/Toolbar.axml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.Android/Resources/mipmap-anydpi-v26/icon.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.Android/Resources/mipmap-anydpi-v26/icon_round.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.Android/Resources/mipmap-hdpi/icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.Android/Resources/mipmap-hdpi/launcher_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.Android/Resources/mipmap-mdpi/icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.Android/Resources/mipmap-mdpi/launcher_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.Android/Resources/mipmap-xhdpi/icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.Android/Resources/mipmap-xhdpi/launcher_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.Android/Resources/mipmap-xxhdpi/icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.Android/Resources/mipmap-xxhdpi/launcher_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.Android/Resources/mipmap-xxxhdpi/icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.Android/Resources/mipmap-xxxhdpi/launcher_foreground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.Android/Resources/values/colors.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.Android/Resources/values/styles.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.Android/TicketScan.Android.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.Android/obj/Debug/TicketScan.Android.csprojAssemblyReference.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.Android/obj/Debug/designtime/build.props" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.Android/obj/Debug/designtime/libraryimports.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.Android/obj/Debug/designtime/libraryimports.cache.stamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.Android/obj/Debug/designtime/libraryprojectimports.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.Android/obj/Debug/lp/map.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.Android/obj/Debug/stamp/_ResolveLibraryProjectImports.stamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.MobileAppService/Controllers/ItemController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.MobileAppService/Models/IItemRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.MobileAppService/Models/Item.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.MobileAppService/Models/ItemRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.MobileAppService/Program.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.MobileAppService/Properties/launchSettings.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.MobileAppService/Startup.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.MobileAppService/TicketScan.MobileAppService.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.MobileAppService/appsettings.Development.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.MobileAppService/appsettings.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.iOS/AppDelegate.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.iOS/Assets.xcassets/AppIcon.appiconset/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.iOS/Assets.xcassets/AppIcon.appiconset/Icon1024.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.iOS/Assets.xcassets/AppIcon.appiconset/Icon120.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.iOS/Assets.xcassets/AppIcon.appiconset/Icon152.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.iOS/Assets.xcassets/AppIcon.appiconset/Icon167.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.iOS/Assets.xcassets/AppIcon.appiconset/Icon180.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.iOS/Assets.xcassets/AppIcon.appiconset/Icon20.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.iOS/Assets.xcassets/AppIcon.appiconset/Icon29.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.iOS/Assets.xcassets/AppIcon.appiconset/Icon40.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.iOS/Assets.xcassets/AppIcon.appiconset/Icon58.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.iOS/Assets.xcassets/AppIcon.appiconset/Icon60.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.iOS/Assets.xcassets/AppIcon.appiconset/Icon76.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.iOS/Assets.xcassets/AppIcon.appiconset/Icon80.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.iOS/Assets.xcassets/AppIcon.appiconset/Icon87.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.iOS/Entitlements.plist" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.iOS/Info.plist" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.iOS/Main.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.iOS/Properties/AssemblyInfo.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.iOS/Resources/Default-568h@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.iOS/Resources/Default-Portrait.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.iOS/Resources/Default-Portrait@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.iOS/Resources/Default.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.iOS/Resources/Default@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.iOS/Resources/LaunchScreen.storyboard" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.iOS/Resources/scanner_100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.iOS/Resources/scanner_50.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.iOS/Resources/tab_about.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.iOS/Resources/tab_about@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.iOS/Resources/tab_about@3x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.iOS/Resources/tab_feed.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.iOS/Resources/tab_feed@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.iOS/Resources/tab_feed@3x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.iOS/Resources/xamarin_logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.iOS/Resources/xamarin_logo@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.iOS/Resources/xamarin_logo@3x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.iOS/TicketScan.iOS.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan.sln" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan/App.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan/App.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan/AssemblyInfo.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan/Models/Item.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan/Models/Line.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan/Models/Product.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan/Models/Ticket.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan/Services/IDataStore.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan/Services/MockDataStore.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan/TicketScan.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan/ViewModels/AboutViewModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan/ViewModels/BaseViewModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan/ViewModels/ItemDetailViewModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan/ViewModels/ItemsViewModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan/ViewModels/TicketsViewModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan/Views/AboutPage.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan/Views/AboutPage.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan/Views/ItemDetailPage.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan/Views/ItemDetailPage.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan/Views/ItemsPage.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan/Views/ItemsPage.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan/Views/MainPage.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan/Views/MainPage.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan/Views/NewItemPage.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan/Views/NewItemPage.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan/Views/TicketsPage.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicketScan/TicketScan/Views/TicketsPage.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/181010_carreforur_conflash_1.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/181010_carreforur_conflash_2.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/181010_carreforur_conflash_3.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/181010_carreforur_sinflash_1.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/181010_carreforur_sinflash_2.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/181010_carreforur_sinflash_3.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/181116_carrefour_noflash_buenascond_1.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/181116_carrefour_noflash_buenascond_2.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/IMG_0243.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/IMG_0244.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/IMG_0245.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/IMG_0246.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/contour_result.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/croped_75_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/croped_861_755.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/imagen3.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/output.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/output0.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/output1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/result.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicketScan/.vs/TicketScan/xs/UserPrefs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TicketScan/.vs/TicketScan/xs/UserPrefs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicketScan/.vs/TicketScan/xs/project-cache/TicketScan-Debug.json" beforeDir="false" afterPath="$PROJECT_DIR$/TicketScan/.vs/TicketScan/xs/project-cache/TicketScan-Debug.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicketScan/.vs/TicketScan/xs/project-cache/TicketScan.iOS-Debug|iPhoneSimulator.json" beforeDir="false" afterPath="$PROJECT_DIR$/TicketScan/.vs/TicketScan/xs/project-cache/TicketScan.iOS-Debug|iPhoneSimulator.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicketScan/.vs/TicketScan/xs/sqlite3/storage.ide" beforeDir="false" afterPath="$PROJECT_DIR$/TicketScan/.vs/TicketScan/xs/sqlite3/storage.ide" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicketScan/TicketScan.Android/obj/Debug/TicketScan.Android.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TicketScan/TicketScan.Android/obj/Debug/TicketScan.Android.csprojAssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicketScan/TicketScan.Android/obj/Debug/designtime/libraryimports.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TicketScan/TicketScan.Android/obj/Debug/designtime/libraryimports.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicketScan/TicketScan.Android/obj/Debug/designtime/libraryprojectimports.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TicketScan/TicketScan.Android/obj/Debug/designtime/libraryprojectimports.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicketScan/TicketScan.Android/obj/Debug/lp/1.stamp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicketScan/TicketScan.Android/obj/Debug/lp/1/jl/formsviewgroup.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicketScan/TicketScan.Android/obj/Debug/lp/map.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TicketScan/TicketScan.Android/obj/Debug/lp/map.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicketScan/TicketScan.MobileAppService/obj/Debug/netcoreapp2.1/TicketScan.MobileAppService.RazorAssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TicketScan/TicketScan.MobileAppService/obj/Debug/netcoreapp2.1/TicketScan.MobileAppService.RazorAssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicketScan/TicketScan.MobileAppService/obj/Debug/netcoreapp2.1/TicketScan.MobileAppService.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TicketScan/TicketScan.MobileAppService/obj/Debug/netcoreapp2.1/TicketScan.MobileAppService.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicketScan/TicketScan.MobileAppService/obj/Debug/netcoreapp2.1/TicketScan.MobileAppService.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TicketScan/TicketScan.MobileAppService/obj/Debug/netcoreapp2.1/TicketScan.MobileAppService.csprojAssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicketScan/TicketScan.MobileAppService/obj/TicketScan.MobileAppService.csproj.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TicketScan/TicketScan.MobileAppService/obj/TicketScan.MobileAppService.csproj.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicketScan/TicketScan.MobileAppService/obj/TicketScan.MobileAppService.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/TicketScan/TicketScan.MobileAppService/obj/TicketScan.MobileAppService.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicketScan/TicketScan.MobileAppService/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/TicketScan/TicketScan.MobileAppService/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicketScan/TicketScan.iOS/TicketScan.iOS.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/TicketScan/TicketScan.iOS/TicketScan.iOS.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicketScan/TicketScan.iOS/obj/iPhoneSimulator/Debug/TicketScan.iOS.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/TicketScan/TicketScan.iOS/obj/iPhoneSimulator/Debug/TicketScan.iOS.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicketScan/TicketScan/Services/IDataStore.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TicketScan/TicketScan/Services/IDataStore.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicketScan/TicketScan/Services/MockDataStore.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TicketScan/TicketScan/Services/MockDataStore.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicketScan/TicketScan/TicketScan.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/TicketScan/TicketScan/TicketScan.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicketScan/TicketScan/ViewModels/ItemsViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TicketScan/TicketScan/ViewModels/ItemsViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicketScan/TicketScan/Views/ItemsPage.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/TicketScan/TicketScan/Views/ItemsPage.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicketScan/TicketScan/Views/ItemsPage.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TicketScan/TicketScan/Views/ItemsPage.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicketScan/TicketScan/Views/MainPage.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/TicketScan/TicketScan/Views/MainPage.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicketScan/TicketScan/Views/MainPage.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TicketScan/TicketScan/Views/MainPage.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicketScan/TicketScan/bin/Debug/netstandard2.0/TicketScan.dll" beforeDir="false" afterPath="$PROJECT_DIR$/TicketScan/TicketScan/bin/Debug/netstandard2.0/TicketScan.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicketScan/TicketScan/bin/Debug/netstandard2.0/TicketScan.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/TicketScan/TicketScan/bin/Debug/netstandard2.0/TicketScan.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicketScan/TicketScan/bin/Debug/netstandard2.0/ref/TicketScan.dll" beforeDir="false" afterPath="$PROJECT_DIR$/TicketScan/TicketScan/bin/Debug/netstandard2.0/ref/TicketScan.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicketScan/TicketScan/obj/Debug/netstandard2.0/TicketScan.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TicketScan/TicketScan/obj/Debug/netstandard2.0/TicketScan.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicketScan/TicketScan/obj/Debug/netstandard2.0/TicketScan.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TicketScan/TicketScan/obj/Debug/netstandard2.0/TicketScan.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicketScan/TicketScan/obj/Debug/netstandard2.0/TicketScan.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TicketScan/TicketScan/obj/Debug/netstandard2.0/TicketScan.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicketScan/TicketScan/obj/Debug/netstandard2.0/TicketScan.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TicketScan/TicketScan/obj/Debug/netstandard2.0/TicketScan.csprojAssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicketScan/TicketScan/obj/Debug/netstandard2.0/TicketScan.dll" beforeDir="false" afterPath="$PROJECT_DIR$/TicketScan/TicketScan/obj/Debug/netstandard2.0/TicketScan.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicketScan/TicketScan/obj/Debug/netstandard2.0/TicketScan.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/TicketScan/TicketScan/obj/Debug/netstandard2.0/TicketScan.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicketScan/TicketScan/obj/Debug/netstandard2.0/Views/ItemsPage.xaml.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TicketScan/TicketScan/obj/Debug/netstandard2.0/Views/ItemsPage.xaml.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicketScan/TicketScan/obj/Debug/netstandard2.0/ref/TicketScan.dll" beforeDir="false" afterPath="$PROJECT_DIR$/TicketScan/TicketScan/obj/Debug/netstandard2.0/ref/TicketScan.dll" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -45,13 +170,13 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.62399286">
+    <splitter split-orientation="horizontal" split-proportion="0.7502246">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/slice.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="287">
+                <state relative-caret-position="240">
                   <caret line="21" selection-start-line="21" selection-end-line="21" />
                   <folding>
                     <element signature="e#0#9#0" expanded="true" />
@@ -61,22 +186,31 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/ocr.py">
+            <entry file="file://$PROJECT_DIR$/scan.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-951">
-                  <caret line="112" column="40" selection-start-line="112" selection-start-column="40" selection-end-line="112" selection-end-column="40" />
+                <state relative-caret-position="406">
+                  <caret line="154" column="23" selection-start-line="154" selection-start-column="23" selection-end-line="154" selection-end-column="23" />
                   <folding>
-                    <element signature="e#432#2585#0" />
+                    <element signature="e#159#168#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/ocr.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1305">
+                  <caret line="91" column="1" selection-start-line="91" selection-start-column="1" selection-end-line="91" selection-end-column="1" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/ocr_batch.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="336">
-                  <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+                <state relative-caret-position="375">
+                  <caret line="30" selection-start-line="30" selection-end-line="30" />
                   <folding>
                     <element signature="e#0#15#0" expanded="true" />
                   </folding>
@@ -87,8 +221,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/main.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="480">
-                  <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
+                <state relative-caret-position="435">
+                  <caret line="32" selection-start-line="32" selection-end-line="32" />
                   <folding>
                     <element signature="e#0#10#0" expanded="true" />
                   </folding>
@@ -96,11 +230,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/readme.md">
               <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
                 <state split_layout="FIRST">
-                  <first_editor relative-caret-position="2025">
+                  <first_editor relative-caret-position="1824">
                     <caret line="135" column="96" selection-start-line="135" selection-start-column="96" selection-end-line="135" selection-end-column="96" />
                   </first_editor>
                   <second_editor />
@@ -111,8 +245,8 @@
         </leaf>
       </split-first>
       <split-second>
-        <leaf>
-          <file pinned="false" current-in-tab="false">
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/helpers.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="315">
@@ -124,11 +258,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/scan.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="183">
-                  <caret line="71" column="9" selection-start-line="71" selection-start-column="9" selection-end-line="71" selection-end-column="9" />
+                <state relative-caret-position="1230">
+                  <caret line="82" selection-start-line="82" selection-end-line="82" />
                   <folding>
                     <element signature="e#159#168#0" expanded="true" />
                   </folding>
@@ -149,10 +283,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>lang</find>
-      <find>args</find>
-      <find>pad</find>
-      <find>orig</find>
       <find>ó</find>
       <find>rW</find>
       <find>os.path</find>
@@ -179,6 +309,10 @@
       <find>DEFAULT_PAD</find>
       <find>image</find>
       <find>line_padding</find>
+      <find>type.*?=.*?bool</find>
+      <find>bool</find>
+      <find>default.*True</find>
+      <find>type_</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -222,7 +356,7 @@
     <option name="width" value="1280" />
     <option name="height" value="800" />
   </component>
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectView">
@@ -230,6 +364,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -241,7 +376,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -438,9 +572,9 @@
       <item itemvalue="Python.scan" />
       <item itemvalue="Python.slice" />
       <item itemvalue="Python.remove-shadows" />
-      <item itemvalue="Python.scan-and-cut" />
       <item itemvalue="Python.ocr_batch" />
       <item itemvalue="Python.main" />
+      <item itemvalue="Python.scan-and-cut" />
     </list>
     <recent_temporary>
       <list>
@@ -473,17 +607,20 @@
       <workItem from="1560163202763" duration="5119000" />
       <workItem from="1561209577629" duration="12494000" />
       <workItem from="1561279403019" duration="21060000" />
+      <workItem from="1561913534272" duration="264000" />
+      <workItem from="1562784233526" duration="857000" />
+      <workItem from="1563706943552" duration="1121000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="105495000" />
+    <option name="totallyTimeSpent" value="107737000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49263158" visible="true" weight="0.09773829" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49263158" visible="true" weight="0.17447495" />
       <window_info id="Structure" order="1" sideWeight="0.50736845" side_tool="true" weight="0.2158029" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -494,7 +631,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" x="6" y="43" width="1259" height="757" id="Version Control" order="8" type="WINDOWED" visible="true" weight="0.32909605" />
+      <window_info anchor="bottom" x="6" y="43" width="1259" height="757" id="Version Control" order="8" type="WINDOWED" weight="0.32909605" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.32909605" />
       <window_info anchor="bottom" id="Terminal" order="11" />
@@ -670,12 +807,8 @@ for x in rotated:
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/document-scanner/images/merc3.jpeg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/document-scanner/output/contour_result.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/document-scanner/images/merc3.jpeg" />
+    <entry file="file://$PROJECT_DIR$/document-scanner/output/contour_result.jpg" />
     <entry file="file://$PROJECT_DIR$/images/contour_result.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -696,40 +829,12 @@ for x in rotated:
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/document-scanner/pyimagesearch/transform.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-252">
-          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
-          <folding>
-            <element signature="e#32#50#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lines-1.0.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="107" selection-start-line="107" selection-end-line="108" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/document-scanner/pyimagesearch/transform.py" />
+    <entry file="file://$PROJECT_DIR$/lines-1.0.py" />
     <entry file="file://$PROJECT_DIR$/output/cropped/merc3/croped_195_176.png" />
-    <entry file="file://$PROJECT_DIR$/remove-shadows.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pyimagesearch/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/images/merc3.jpeg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/remove-shadows.py" />
+    <entry file="file://$PROJECT_DIR$/pyimagesearch/__init__.py" />
+    <entry file="file://$PROJECT_DIR$/images/merc3.jpeg" />
     <entry file="file://$PROJECT_DIR$/output/cropped/merc3_no_shadows/croped_31_0.png" />
     <entry file="file://$PROJECT_DIR$/output/cropped/merc3_no_shadows/croped_71_13.png" />
     <entry file="file://$PROJECT_DIR$/output/cropped/merc3_no_shadows/croped_128_68.png" />
@@ -752,37 +857,11 @@ for x in rotated:
     <entry file="file://$PROJECT_DIR$/images/output1.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/output/cropped/images/merc3_11_6_0/text_recognition_1_13.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/output/cropped/images/merc3_11_5_0/text_recognition.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="7" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/output/cropped/images/merc3_11_5_0/text_recognition_1_13.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="35" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/output/cropped/images/merc3_11_6_0/text_recognition_1_7.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="50" selection-start-line="13" selection-start-column="50" selection-end-line="13" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests2.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="17" selection-start-column="17" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/output/cropped/images/merc3_11_6_0/text_recognition_1_13.json" />
+    <entry file="file://$PROJECT_DIR$/output/cropped/images/merc3_11_5_0/text_recognition.json" />
+    <entry file="file://$PROJECT_DIR$/output/cropped/images/merc3_11_5_0/text_recognition_1_13.json" />
+    <entry file="file://$PROJECT_DIR$/output/cropped/images/merc3_11_6_0/text_recognition_1_7.json" />
+    <entry file="file://$PROJECT_DIR$/tests2.json" />
     <entry file="file://$PROJECT_DIR$/../virtualEnvironments/venv-ticket-scan/lib/python3.7/site-packages/imutils/object_detection.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -797,32 +876,51 @@ for x in rotated:
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests.json">
+    <entry file="file://$PROJECT_DIR$/tests.json" />
+    <entry file="file://$PROJECT_DIR$/cuts-1.0.py" />
+    <entry file="file://$PROJECT_DIR$/document-scanner/scan.py" />
+    <entry file="file://$PROJECT_DIR$/text_recognition.py" />
+    <entry file="file://$USER_HOME$/Library/Caches/PyCharm2019.1/python_stubs/-764701211/builtins.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="17" selection-start-column="17" selection-end-column="17" />
+        <state relative-caret-position="68850">
+          <caret line="4590" column="8" selection-start-line="4590" selection-start-column="8" selection-end-line="4590" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/readme.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="2025">
-            <caret line="135" column="96" selection-start-line="135" selection-start-column="96" selection-end-line="135" selection-end-column="96" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cuts-1.0.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/document-scanner/scan.py">
+    <entry file="file://$PROJECT_DIR$/scan-and-cut.py" />
+    <entry file="file://$PROJECT_DIR$/slice.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1035">
-          <caret line="86" selection-start-line="86" selection-end-line="116" selection-end-column="23" />
+        <state relative-caret-position="240">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
           <folding>
-            <element signature="e#82#95#0" expanded="true" />
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ocr.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1305">
+          <caret line="91" column="1" selection-start-line="91" selection-start-column="1" selection-end-line="91" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ocr_batch.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -837,80 +935,23 @@ for x in rotated:
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/text_recognition.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1359">
-          <caret line="212" selection-start-line="212" selection-end-line="212" />
-          <folding>
-            <element signature="e#248#304#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/Caches/PyCharm2019.1/python_stubs/-764701211/builtins.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68850">
-          <caret line="4590" column="8" selection-start-line="4590" selection-start-column="8" selection-end-line="4590" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scan-and-cut.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="292" column="1" selection-start-line="292" selection-start-column="1" selection-end-line="292" selection-end-column="1" />
-          <folding>
-            <element signature="e#83#92#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scan.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="71" column="9" selection-start-line="71" selection-start-column="9" selection-end-line="71" selection-end-column="9" />
+        <state relative-caret-position="406">
+          <caret line="154" column="23" selection-start-line="154" selection-start-column="23" selection-end-line="154" selection-end-column="23" />
           <folding>
             <element signature="e#159#168#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/slice.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ocr.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-951">
-          <caret line="112" column="40" selection-start-line="112" selection-start-column="40" selection-end-line="112" selection-end-column="40" />
-          <folding>
-            <element signature="e#432#2585#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ocr_batch.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
+    <entry file="file://$PROJECT_DIR$/readme.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="1824">
+            <caret line="135" column="96" selection-start-line="135" selection-start-column="96" selection-end-line="135" selection-end-column="96" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
