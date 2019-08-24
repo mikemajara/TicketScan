@@ -1,7 +1,9 @@
 # Specific files
 tmp.*
 
-# dirs
+# ticket_scan
+
+ticket_scan/images/* 
 
 # ticket_scan_draft
 ticket_scan_draft/basura/*

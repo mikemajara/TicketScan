@@ -40,7 +40,13 @@ def extract_lines_of_text(path,
     f = open(os.path.join(path, "text_recognition_" +
                           str(oem) + "_" + str(psm) + ".json"), "w")
     json.dump(text_recognition_dict, f, ensure_ascii=False, indent=2)
+
+    f = open(os.path.join(path, "result"), "w")
+    json.dump(text_recognition_dict, f, ensure_ascii=False, indent=2)
+
     f.close()
+
+    return text_recognition_dict
 
 
 # construct the argument parser and parse the arguments

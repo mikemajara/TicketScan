@@ -21,10 +21,14 @@ import argparse
 import sys
 import logging
 
+from server import Server
+from flask import Flask
+from flask_restful import Api
+
 from scanner import slicer, ocr_batch
 
 
-DEFAULT_SCAN = False
+DEFAULT_LISTEN = False
 
 
 __author__ = "Miguel López-N. Alcalde"
@@ -49,12 +53,14 @@ def parse_args(args):
         '--version',
         action='version',
         version='ticket_scan {ver}'.format(ver=__version__))
-    parser.add_argument("-i", "--image", required=True,
-                        help="Path to the image to be scanned")
-    parser.add_argument("-s", "--scan",
-                        action="store_true",
-                        default=DEFAULT_SCAN,
-                        help="Crop and transform image searching for document form")
+    parser.add_argument(
+        "-i", "--image", required=False,
+        help="Path to the image to be scanned")
+    parser.add_argument(
+        "-l", "--listen",
+        action="store_true",
+        default=DEFAULT_LISTEN,
+        help="Crop and transform image searching for document form")
     parser.add_argument(
         '-v',
         '--verbose',
@@ -83,6 +89,13 @@ def setup_logging(loglevel):
                         format=logformat, datefmt="%Y-%m-%d %H:%M:%S")
 
 
+def create_app():
+    app = Flask(__name__)
+    api = Api(app)
+    api.add_resource(Server, '/api')
+    return app
+
+
 def main(args):
     """Main entry point allowing external calls
 
@@ -95,18 +108,24 @@ def main(args):
 
     path_image = args.image
 
-    if args.scan:
-        pass
-
-    path_output = slicer.slice(path_image, interactive=False)
-
-    ocr_batch.extract_lines_of_text(path_output)
+    if args.listen:
+        app = create_app()
+        app.run(debug=True)
+    elif args.image:
+        path_output = slicer.slice(path_image, interactive=False)
+        ocr_batch.extract_lines_of_text(path_output)
 
 
 def run():
     """Entry point for console_scripts
     """
     main(sys.argv[1:])
+
+
+def listen():
+    """Start server
+    """
+    pass
 
 
 if __name__ == "__main__":
