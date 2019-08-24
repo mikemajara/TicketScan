@@ -1,5 +1,10 @@
-basura/*
-images/*
-pdf/*
+# Specific files
 tmp.*
-__pycache__
+
+# dirs
+
+# ticket_scan_draft
+ticket_scan_draft/basura/*
+ticket_scan_draft/images/*
+ticket_scan_draft/pdf/*
+ticket_scan_draft/__pycache__
