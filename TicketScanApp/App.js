@@ -8,7 +8,7 @@
 
 import React, { Fragment } from 'react';
 import {
-  SafeAreaView,
+  SafeAreaView, //
   StyleSheet,
   ScrollView,
   View,
