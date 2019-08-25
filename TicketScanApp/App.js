@@ -5,53 +5,44 @@
  * @format
  * @flow
  */
+import React from 'react';
+import { View } from 'react-native';
 
-import React, { Fragment } from 'react';
-import {
-  SafeAreaView, //
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
-
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
 import {
   createStackNavigator,
   createBottomTabNavigator,
   createAppContainer,
 } from 'react-navigation';
+import ScannerViewContainer from './src/containers/ScannerViewContainer';
 // import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const dummyComponent = () => {
   return <View />;
 };
 
-export const TicketListStackNavigator = createStackNavigator(
-  {
-    TicketList: {
-      screen: dummyComponent,
-    },
-  }
-);
+export const ScannerStackNavigator = createStackNavigator({
+  TicketList: {
+    screen: ScannerViewContainer,
+  },
+});
 
-export const SettingsStackNavigator = createStackNavigator(
-  {
-    Settings: {
-      screen: dummyComponent,
-    },
-  }
-);
+export const TicketListStackNavigator = createStackNavigator({
+  TicketList: {
+    screen: dummyComponent,
+  },
+});
+
+export const SettingsStackNavigator = createStackNavigator({
+  Settings: {
+    screen: dummyComponent,
+  },
+});
 
 export const TabNavigator = createBottomTabNavigator(
   {
+    Scanner: {
+      screen: ScannerStackNavigator,
+    },
     TicketList: {
       screen: TicketListStackNavigator,
     },
@@ -60,16 +51,14 @@ export const TabNavigator = createBottomTabNavigator(
     },
   },
   {
-    initialRouteName: 'TicketList',
+    initialRouteName: 'Scanner',
   },
 );
 
 const AppContainer = createAppContainer(TabNavigator);
 
 const App = () => {
-  return (
-    <AppContainer />
-  );
+  return <AppContainer />;
 };
 
 export default App;

@@ -4,6 +4,7 @@ tmp.*
 # ticket_scan
 
 ticket_scan/images/* 
+ticket_scan/uploaded_images/*
 
 # ticket_scan_draft
 ticket_scan_draft/basura/*

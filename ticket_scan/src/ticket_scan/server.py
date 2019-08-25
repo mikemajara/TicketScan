@@ -14,11 +14,16 @@ class Server(Resource):
         args = parse.parse_args()
 
         file = args['file']
-        timestamp = dt.datetime.now().isoformat()
-        filext = os.path.splitext(file.filename)[1]
-        filepath = '../../uploaded_images/' + timestamp + filext
-        file.save(filepath)
-        path_output = slicer.slice(filepath, interactive=False)
-        result = ocr_batch.extract_lines_of_text(path_output)
+        result = None
+        if file:
+            timestamp = dt.datetime.now().isoformat()
+            #filext = os.path.splitext(file.filename)[1]
+            filext = file.content_type.split("/")[1]
+            filepath = '../../uploaded_images/' + timestamp + "." + filext
+            file.save(filepath)
+            path_output = slicer.slice(filepath, interactive=False)
+            result = ocr_batch.extract_lines_of_text(path_output)
+        else:
+            raise Exception("file is None")
 
-        return result
+        return result if result else { 'msg': 'ok'}
