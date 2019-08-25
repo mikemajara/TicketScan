@@ -63,6 +63,7 @@ const ScannerViewContainer = props => {
         }}
       />
       <Button title="Upload photo" onPress={handleUploadPhoto} />
+      <Button title="Go to Ticket" onPress={() => props.navigation.navigate('TicketView')} />
       <Text>{JSON.stringify(ticket, null, 2)}</Text>
     </View >
   );

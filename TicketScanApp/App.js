@@ -14,17 +14,26 @@ import {
   createAppContainer,
 } from 'react-navigation';
 import ScannerViewContainer from './src/containers/ScannerViewContainer';
+import TicketViewContainer from './src/containers/TicketViewContainer';
 // import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const dummyComponent = () => {
   return <View />;
 };
 
-export const ScannerStackNavigator = createStackNavigator({
-  TicketList: {
-    screen: ScannerViewContainer,
+export const ScannerStackNavigator = createStackNavigator(
+  {
+    ScannerView: {
+      screen: ScannerViewContainer,
+    },
+    TicketView: {
+      screen: TicketViewContainer,
+    },
   },
-});
+  {
+    initialRouteName: 'TicketView',
+  }
+);
 
 export const TicketListStackNavigator = createStackNavigator({
   TicketList: {
