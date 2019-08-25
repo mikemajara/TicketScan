@@ -41,7 +41,7 @@ def extract_lines_of_text(path,
                           str(oem) + "_" + str(psm) + ".json"), "w")
     json.dump(text_recognition_dict, f, ensure_ascii=False, indent=2)
 
-    f = open(os.path.join(path, "result"), "w")
+    f = open(os.path.join(path, "result.json"), "w")
     json.dump(text_recognition_dict, f, ensure_ascii=False, indent=2)
 
     f.close()
