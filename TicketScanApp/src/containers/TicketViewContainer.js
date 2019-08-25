@@ -8,20 +8,30 @@ export default function TicketViewContainer(props) {
   const arr = Object.values(mockupTicket).slice(0, 6);
   const headerItems = [];
   arr.forEach((e, i) => {
-    console.log(e)
-    headerItems.push(<Text style={styles.lineButton} onPress={() => alert(e)}>{e}</Text>)
+    console.log(e);
+    headerItems.push(
+      <Text style={styles.lineHeaderButton} onPress={() => alert(e)}>
+        {e}
+      </Text>
+    );
   });
+  const footerLine = [
+    <Text>TOTAL........EUROS: 17,74</Text>,
+    <Text>EFECTIVO.....EUROS: 18,00</Text>,
+    <Text>DEVOLUCION...EUROS: 0,26</Text>,
+  ]
   return (
     <View>
-      <View style={styles.header}>
-        {headerItems}
-      </View>
+      <View style={styles.header}>{headerItems}</View>
       <FlatList
         style={styles.list}
-        data={Object.values(mockupTicket).slice(6)}
-        renderItem={({ item, index, section }) => <Button title={item} />}
+        data={Object.values(mockupTicket).slice(6, 14)}
+        renderItem={({ item, index, section }) => (
+          <Text style={styles.lineHeaderButton}>{item}</Text>
+        )}
         keyExtractor={(item, index) => index}
       />
+      <View style={styles.lineFooterButton}>{footerLine}</View>
     </View>
   );
 }
@@ -35,13 +45,19 @@ const styles = StyleSheet.create({
     ...styleDebug('blue'),
     alignItems: 'center',
   },
+  footer: {
+    ...styleDebug('purple'),
+    alignItems: 'center',
+  },
   list: {
     ...styleDebug('darkgreen'),
-    marginBottom: 100,
   },
-  lineButton: {
+  lineHeaderButton: {
     margin: 0,
     padding: 0,
+    color: 'black',
+  },
+  lineFooterButton: {
     color: 'black',
   },
 });
