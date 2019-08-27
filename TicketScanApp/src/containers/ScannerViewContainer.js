@@ -33,11 +33,12 @@ const ScannerViewContainer = props => {
       .then(response => response.json())
       .then(response => {
         console.log('upload succes', response);
-        alert('Upload success!');
         console.log(response)
         setTicket(response);
+        console.log(`${new Date().toISOString()} - ScannerViewContainer:handleUploadPhoto:response`);
+        console.log(response);
+        props.navigation.navigate('TicketView', { elements: response })
         setPhoto(null);
-
       })
       .catch(error => {
         console.log('upload error', error);

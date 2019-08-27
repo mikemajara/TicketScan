@@ -6,7 +6,9 @@ import { Button, ListItem } from 'react-native-elements';
 import { styleDebug, mockupTicket } from '../helpers';
 
 export default function TicketViewContainer(props) {
-  const [elements, setElements] = useState(Object.values(mockupTicket));
+  const [elements, setElements] = useState(
+    Object.values(props.navigation.getParam('elements', {}))
+  );
 
   const handlePressedLine = index => {
     Alert.prompt(
@@ -24,12 +26,12 @@ export default function TicketViewContainer(props) {
   };
 
   const arr2obj = arr => {
-    const obj = {}
+    const obj = {};
     arr.forEach((e, i) => {
       obj[`linea${i}`] = e;
     });
     return obj;
-  }
+  };
 
   async function handleConfirmPress() {
     let responseJson = null;
@@ -43,9 +45,11 @@ export default function TicketViewContainer(props) {
       });
       if (response.status === 200) {
         responseJson = await response.json();
-        console.log(`${new Date().toISOString()} - TicketViewContainer:handleConfirmPress:responseJson`);
+        console.log(
+          `${new Date().toISOString()} - TicketViewContainer:handleConfirmPress:responseJson`
+        );
         console.log(responseJson);
-        alert(`Success: ${response.status} ${response.statusText || ''}`)
+        alert(`Success: ${response.status} ${response.statusText || ''}`);
         return responseJson;
       }
       alert(`Error: ${response.status} ${response.statusText || ''}`);

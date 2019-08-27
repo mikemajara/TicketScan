@@ -31,7 +31,7 @@ export const ScannerStackNavigator = createStackNavigator(
     },
   },
   {
-    initialRouteName: 'TicketView',
+    initialRouteName: 'ScannerView',
   }
 );
 
