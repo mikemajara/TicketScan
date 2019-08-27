@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Alert, Text, FlatList } from 'react-native';
 import { Button, ListItem } from 'react-native-elements';
@@ -6,23 +6,37 @@ import { Button, ListItem } from 'react-native-elements';
 import { styleDebug, mockupTicket } from '../helpers';
 
 export default function TicketViewContainer(props) {
-  const [elements, setElements] = useState(
-    Object.values(props.navigation.getParam('elements', {}))
-  );
+  const [elements, setElements] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  async function getTickets() {
+    let responseJson = null;
+    try {
+      const response = await fetch('http://127.0.0.1:5001/get_all_tickets');
+      if (response.status === 200) {
+        responseJson = await response.json();
+        console.log(
+          `${new Date().toISOString()} - TicketViewContainer:handleConfirmPress:responseJson`
+        );
+        console.log(responseJson);
+        alert(`Success: ${response.status} ${response.statusText || ''}`);
+      }
+      alert(`Error: ${response.status} ${response.statusText || ''}`);
+      return responseJson;
+    } catch (error) {
+      alert(error);
+      return responseJson;
+    }
+  }
+
+  useEffect(async () => {
+    setElements(await getTickets());
+    setLoading(false);
+  }, []);
 
   const handlePressedLine = index => {
-    Alert.prompt(
-      'Number of digits per operation',
-      'How many digits do you want the operands to have in your training?',
-      itemValue => {
-        const arr = [...elements];
-        arr[index] = itemValue;
-        setElements(arr);
-      },
-      'plain-text',
-      elements[index],
-      'numeric'
-    );
+    // TODO: get ticket pressed
+    // props.navigation.navigate('TicketView', { elements: response })
   };
 
   const arr2obj = arr => {
@@ -33,49 +47,27 @@ export default function TicketViewContainer(props) {
     return obj;
   };
 
-  async function handleConfirmPress() {
-    let responseJson = null;
-    try {
-      const response = await fetch('http://127.0.0.1:5001/add_ticket', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ ticket: arr2obj(elements) }),
-      });
-      if (response.status === 200) {
-        responseJson = await response.json();
-        console.log(
-          `${new Date().toISOString()} - TicketViewContainer:handleConfirmPress:responseJson`
-        );
-        console.log(responseJson);
-        alert(`Success: ${response.status} ${response.statusText || ''}`);
-        return responseJson;
-      }
-      alert(`Error: ${response.status} ${response.statusText || ''}`);
-    } catch (error) {
-      alert(error);
-      return responseJson;
-    }
+  if (loading) {
+    return <View><Text>Loading</Text></View>
   }
 
   return (
     <View style={styles.container}>
       <FlatList
         style={styles.list}
-        data={elements}
+        data={elements.tickets}
         renderItem={({ item, index }) => {
           return (
             <ListItem
-              title={item}
+              title={item._id}
               containerStyle={{ padding: 5 }}
-              onPress={() => handlePressedLine(index)}
+              onPress={() => handlePressedLine(item._id)}
             />
           );
         }}
-        keyExtractor={(item, index) => index.toString()}
+        keyExtractor={(item, index) => item._id || index.toString()}
       />
-      <Button title="Save" style={styles.button} onPress={handleConfirmPress} />
+      <Button title="Save" style={styles.button} onPress={handlePressedLine} />
     </View>
   );
 }

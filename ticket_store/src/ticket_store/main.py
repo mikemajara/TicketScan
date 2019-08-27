@@ -108,6 +108,11 @@ def main(args):
             _id = mongo.db.tickets.insert_one(j.get('ticket')).inserted_id
             return {'msg':'ok','_id': str(_id)}
 
+        @app.route("/get_all_tickets", methods=['GET'])
+        def get_all_tickets():
+            tickets = mongo.db.tickets.find({});
+            return { 'tickets': json.loads(json.dumps([ticket for ticket in tickets], default=str))}
+
         @app.route("/get_ticket/<id>", methods=['GET'])
         def get_ticket(id):
             ticket = mongo.db.tickets.find_one(ObjectId(id))
