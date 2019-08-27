@@ -1,37 +1,77 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Button, Text, FlatList } from 'react-native';
+import { StyleSheet, View, Alert, Text, FlatList } from 'react-native';
+import { Button, ListItem } from 'react-native-elements';
 // import { Animated } from 'react-native-reanimated';
 import { styleDebug, mockupTicket } from '../helpers';
 
 export default function TicketViewContainer(props) {
-  const arr = Object.values(mockupTicket).slice(0, 6);
-  const headerItems = [];
-  arr.forEach((e, i) => {
-    console.log(e);
-    headerItems.push(
-      <Text style={styles.lineHeaderButton} onPress={() => alert(e)}>
-        {e}
-      </Text>
+  const [elements, setElements] = useState(Object.values(mockupTicket));
+
+  const handlePressedLine = index => {
+    Alert.prompt(
+      'Number of digits per operation',
+      'How many digits do you want the operands to have in your training?',
+      itemValue => {
+        const arr = [...elements];
+        arr[index] = itemValue;
+        setElements(arr);
+      },
+      'plain-text',
+      elements[index],
+      'numeric'
     );
-  });
-  const footerLine = [
-    <Text>TOTAL........EUROS: 17,74</Text>,
-    <Text>EFECTIVO.....EUROS: 18,00</Text>,
-    <Text>DEVOLUCION...EUROS: 0,26</Text>,
-  ]
+  };
+
+  const arr2obj = arr => {
+    const obj = {}
+    arr.forEach((e, i) => {
+      obj[`linea${i}`] = e;
+    });
+    return obj;
+  }
+
+  async function handleConfirmPress() {
+    let responseJson = null;
+    try {
+      const response = await fetch('http://127.0.0.1:5001/add_ticket', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ticket: arr2obj(elements) }),
+      });
+      if (response.status === 200) {
+        responseJson = await response.json();
+        console.log(`${new Date().toISOString()} - TicketViewContainer:handleConfirmPress:responseJson`);
+        console.log(responseJson);
+        alert(`Success: ${response.status} ${response.statusText || ''}`)
+        return responseJson;
+      }
+      alert(`Error: ${response.status} ${response.statusText || ''}`);
+    } catch (error) {
+      alert(error);
+      return responseJson;
+    }
+  }
+
   return (
-    <View>
-      <View style={styles.header}>{headerItems}</View>
+    <View style={styles.container}>
       <FlatList
         style={styles.list}
-        data={Object.values(mockupTicket).slice(6, 14)}
-        renderItem={({ item, index, section }) => (
-          <Text style={styles.lineHeaderButton}>{item}</Text>
-        )}
-        keyExtractor={(item, index) => index}
+        data={elements}
+        renderItem={({ item, index }) => {
+          return (
+            <ListItem
+              title={item}
+              containerStyle={{ padding: 5 }}
+              onPress={() => handlePressedLine(index)}
+            />
+          );
+        }}
+        keyExtractor={(item, index) => index.toString()}
       />
-      <View style={styles.lineFooterButton}>{footerLine}</View>
+      <Button title="Confirm" style={styles.button} onPress={handleConfirmPress} />
     </View>
   );
 }
@@ -41,24 +81,8 @@ const styles = StyleSheet.create({
     ...styleDebug('red'),
     flex: 1,
   },
-  header: {
-    ...styleDebug('blue'),
-    alignItems: 'center',
-  },
-  footer: {
-    ...styleDebug('purple'),
-    alignItems: 'center',
-  },
   list: {
     ...styleDebug('darkgreen'),
-  },
-  lineHeaderButton: {
-    margin: 0,
-    padding: 0,
-    color: 'black',
-  },
-  lineFooterButton: {
-    color: 'black',
   },
 });
 

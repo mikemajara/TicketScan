@@ -50,5 +50,8 @@
     },
     "plugins": [
         "prettier"
-    ]
+    ],
+    "globals": {
+        "fetch": true
+    }
 }
