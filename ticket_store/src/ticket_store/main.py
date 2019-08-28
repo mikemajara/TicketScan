@@ -108,14 +108,27 @@ def main(args):
             _id = mongo.db.tickets.insert_one(j.get('ticket')).inserted_id
             return {'msg':'ok','_id': str(_id)}
 
+        @app.route("/update_ticket", methods=['POST'])
+        def update_ticket():
+            j = request.get_json()
+            # _id = j['ticket']['_id']
+            # del
+            ack = mongo.db.tickets.update_one(
+                {"_id": ObjectId(j.get('_id'))},
+                {"$set": j.get('ticket')}
+            ).acknowledged
+            return {'msg': ack}
+
         @app.route("/get_all_tickets", methods=['GET'])
         def get_all_tickets():
-            tickets = mongo.db.tickets.find({});
+            tickets = mongo.db.tickets.find({})
             return { 'tickets': json.loads(json.dumps([ticket for ticket in tickets], default=str))}
 
         @app.route("/get_ticket/<id>", methods=['GET'])
         def get_ticket(id):
             ticket = mongo.db.tickets.find_one(ObjectId(id))
+            if ticket is None:
+                return {}
             return json.loads(json.dumps(ticket, default=str))
 
         @app.route("/delete_ticket/<id>", methods=['GET'])
