@@ -40,6 +40,9 @@ export const TicketListStackNavigator = createStackNavigator({
   TicketList: {
     screen: TicketListViewContainer,
   },
+  TicketView: {
+    screen: TicketViewContainer,
+  },
 });
 
 export const SettingsStackNavigator = createStackNavigator({

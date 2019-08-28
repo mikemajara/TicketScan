@@ -1,19 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Alert, Text, FlatList } from 'react-native';
 import { Button, ListItem } from 'react-native-elements';
 // import { Animated } from 'react-native-reanimated';
 import { styleDebug, mockupTicket } from '../helpers';
 
+async function retrieveTicket(id) {
+  let responseJson = null;
+  try {
+    const response = await fetch(`http://127.0.0.1:5001/get_ticket/${id}`);
+    if (response.status === 200) {
+      responseJson = await response.json();
+      alert(`Success: ${response.status} ${response.statusText || ''}`);
+    }
+    alert(`Error: ${response.status} ${response.statusText || ''}`);
+    return responseJson;
+  } catch (error) {
+    alert(error);
+    return responseJson;
+  }
+}
+
 export default function TicketViewContainer(props) {
-  const [elements, setElements] = useState(
-    Object.values(props.navigation.getParam('elements', {}))
-  );
+  const [ticketId, setTicketId] = useState(props.navigation.getParam('_id', null));
+  const [elements, setElements] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      console.log('fetching data...');
+      let elems = {};
+      if (ticketId) {
+        elems = await retrieveTicket(ticketId);
+      } else {
+        elems = props.navigation.getParam('elements', {});
+      }
+      elems = Object.values(elems);
+      setElements(elems);
+    };
+
+    fetchData();
+  }, []);
 
   const handlePressedLine = index => {
     Alert.prompt(
-      'Number of digits per operation',
-      'How many digits do you want the operands to have in your training?',
+      'Edit',
+      'Correct the line as you see fit',
       itemValue => {
         const arr = [...elements];
         arr[index] = itemValue;
@@ -28,31 +58,34 @@ export default function TicketViewContainer(props) {
   const arr2obj = arr => {
     const obj = {};
     arr.forEach((e, i) => {
-      obj[`linea${i}`] = e;
+      obj[`line${i}`] = e;
     });
     return obj;
   };
 
   async function handleConfirmPress() {
     let responseJson = null;
+    const url = ticketId
+      ? 'http://127.0.0.1:5001/update_ticket'
+      : 'http://127.0.0.1:5001/add_ticket';
+    const body = ticketId
+      ? { _id: ticketId, ticket: arr2obj(elements) }
+      : { ticket: arr2obj(elements) };
     try {
-      const response = await fetch('http://127.0.0.1:5001/add_ticket', {
+      console.log(`${ticketId ? 'updating ' : 'adding '}${JSON.stringify(body)}`);
+      const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ ticket: arr2obj(elements) }),
+        body: JSON.stringify(body),
       });
       if (response.status === 200) {
         responseJson = await response.json();
-        console.log(
-          `${new Date().toISOString()} - TicketViewContainer:handleConfirmPress:responseJson`
-        );
-        console.log(responseJson);
         alert(`Success: ${response.status} ${response.statusText || ''}`);
-        return responseJson;
       }
       alert(`Error: ${response.status} ${response.statusText || ''}`);
+      return responseJson;
     } catch (error) {
       alert(error);
       return responseJson;

@@ -34,7 +34,8 @@ export default function TicketViewContainer(props) {
     setLoading(false);
   }, []);
 
-  const handlePressedLine = index => {
+  const handlePressedLine = _id => {
+    props.navigation.navigate('TicketView', { _id })
     // TODO: get ticket pressed
     // props.navigation.navigate('TicketView', { elements: response })
   };
@@ -42,7 +43,7 @@ export default function TicketViewContainer(props) {
   const arr2obj = arr => {
     const obj = {};
     arr.forEach((e, i) => {
-      obj[`linea${i}`] = e;
+      obj[`line${i}`] = e;
     });
     return obj;
   };
@@ -67,7 +68,6 @@ export default function TicketViewContainer(props) {
         }}
         keyExtractor={(item, index) => item._id || index.toString()}
       />
-      <Button title="Save" style={styles.button} onPress={handlePressedLine} />
     </View>
   );
 }
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   list: {
-    ...styleDebug('darkgreen'),
+    ...styleDebug('lightgreen'),
   },
 });
 
