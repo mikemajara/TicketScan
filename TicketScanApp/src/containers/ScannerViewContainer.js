@@ -39,6 +39,7 @@ const ScannerViewContainer = props => {
         console.log(response);
         props.navigation.navigate('TicketView', { elements: response })
         setPhoto(null);
+        setTicket({});
       })
       .catch(error => {
         console.log('upload error', error);
