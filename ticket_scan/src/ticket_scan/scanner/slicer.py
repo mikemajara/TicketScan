@@ -66,6 +66,7 @@ def pair_lower_upper_bounds(lowers, uppers):
             return lowers[1:], uppers
         else:
             return lowers, uppers[:-1]
+    return lowers, uppers
 
 
 def slice(path_image, interactive=False, threshold_pxl_density=5.5, line_padding=7):
