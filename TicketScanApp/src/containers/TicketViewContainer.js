@@ -4,6 +4,7 @@ import { StyleSheet, View, Alert, Text, FlatList } from 'react-native';
 import { Button, ListItem } from 'react-native-elements';
 // import { Animated } from 'react-native-reanimated';
 import { iOSUIKit } from 'react-native-typography';
+import { Col, Row, Grid } from 'react-native-easy-grid';
 import { styleDebug, mockupTicket } from '../helpers';
 import Ticket from '../model/Ticket';
 import Store from '../model/Store';
@@ -123,17 +124,19 @@ export default function TicketViewContainer(props) {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <View style={styles.companyName}><Text style={iOSUIKit.largeTitleEmphasized}>{ticket.store.company}</Text></View>
-        <View style={styles.companyInfo}>
-          <View style={styles.companyInfoRow1}>
-            <View style={styles.location}><Text style={iOSUIKit.title3}>{ticket.store.address}</Text></View>
-          </View>
-          <View style={styles.companyInfoRow2}>
-            <View style={styles.phone}><Text style={iOSUIKit.title3}>{ticket.store.phone}</Text></View>
-            <View style={styles.companyId}><Text style={iOSUIKit.title3}>{ticket.store.id}</Text></View>
-          </View>
-        </View>
-        <View style={styles.infoTicket}><Text>{ticket.datetime.toISOString()}</Text></View>
+        <Grid style={{ paddingHorizontal: 20, alignItems: 'center' }}>
+          <Row size={35} style={styles.companyName}><Text style={iOSUIKit.largeTitleEmphasized}>{ticket.store.company}</Text></Row>
+          <Row size={50}>
+            <Grid style={styles.companyInfo}>
+              <Row style={styles.location}><Text style={iOSUIKit.title3}>{ticket.store.address}</Text></Row>
+              <Row style={styles.companyInfoRow2}>
+                <Col style={styles.phone}><Text style={iOSUIKit.title3}>{ticket.store.phone}</Text></Col>
+                <Col style={styles.companyId}><Text style={iOSUIKit.title3}>{ticket.store.id}</Text></Col>
+              </Row>
+            </Grid>
+          </Row>
+          <Row size={15} style={styles.infoTicket}><Text>{ticket.datetime.toISOString()}</Text></Row>
+        </Grid>
       </View>
       <FlatList
         style={styles.list}
@@ -174,9 +177,9 @@ const styles = StyleSheet.create({
   },
   header: {
     ...styleDebug('blue'),
-    height: 120,
-    alignItems: 'center',
-    alignContent: 'stretch',
+    height: 150,
+    // alignItems: 'center',
+    // alignContent: 'stretch',
   },
   list: {
     ...styleDebug('darkgreen'),
@@ -190,12 +193,12 @@ const styles = StyleSheet.create({
   },
   companyInfo: {
     ...styleDebug('red'),
-    alignItems: 'center',
+    // alignItems: 'center',
   },
   companyInfoRow2: {
     ...styleDebug('blue'),
-    flexDirection: 'row',
-    paddingHorizontal: 10,
+    // flexDirection: 'row',
+    // paddingHorizontal: 10,
   }
 });
 
