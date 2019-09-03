@@ -4,11 +4,13 @@ import { StyleSheet, View, Alert, Text, FlatList } from 'react-native';
 import { Button, ListItem } from 'react-native-elements';
 // import { Animated } from 'react-native-reanimated';
 import { iOSUIKit } from 'react-native-typography';
-import { Col, Row, Grid } from 'react-native-easy-grid';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import Entypo from 'react-native-vector-icons/Entypo';
 import { styleDebug, mockupTicket } from '../helpers';
 import Ticket from '../model/Ticket';
 import Store from '../model/Store';
 import TicketLine from '../model/TicketLine';
+import CardComponent from '../components/CardComponent';
 
 
 async function retrieveTicket(id) {
@@ -124,20 +126,23 @@ export default function TicketViewContainer(props) {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Grid style={{ paddingHorizontal: 20, alignItems: 'center' }}>
-          <Row size={35} style={styles.companyName}><Text style={iOSUIKit.largeTitleEmphasized}>{ticket.store.company}</Text></Row>
-          <Row size={50}>
-            <Grid style={styles.companyInfo}>
-              <Row style={styles.location}><Text style={iOSUIKit.title3}>{ticket.store.address}</Text></Row>
-              <Row style={styles.companyInfoRow2}>
-                <Col style={styles.phone}><Text style={iOSUIKit.title3}>{ticket.store.phone}</Text></Col>
-                <Col style={styles.companyId}><Text style={iOSUIKit.title3}>{ticket.store.id}</Text></Col>
-              </Row>
-            </Grid>
-          </Row>
-          <Row size={15} style={styles.infoTicket}><Text>{ticket.datetime.toISOString()}</Text></Row>
-        </Grid>
+        <View style={styles.companyName}><Text style={iOSUIKit.largeTitleEmphasized}>{ticket.store.company}</Text></View>
+        <View style={styles.companyInfo}>
+          <View style={styles.companyInfoRow1}>
+            <CardComponent
+              title={<Text style={iOSUIKit.title3}>{ticket.store.address}</Text>}
+              icon={<Entypo name="shop" size={30} />}
+            />
+            {/* <View style={styles.location}><Text style={iOSUIKit.title3}>{ticket.store.address}</Text></View> */}
+          </View>
+          <View style={styles.companyInfoRow2}>
+            <View style={styles.phone}><Text style={iOSUIKit.title3}>{ticket.store.phone}</Text></View>
+            <View style={styles.companyId}><Text style={iOSUIKit.title3}>{ticket.store.id}</Text></View>
+          </View>
+        </View>
+        <View style={styles.infoTicket}><Text>{ticket.datetime.toISOString()}</Text></View>
       </View>
+
       <FlatList
         style={styles.list}
         data={ticket.lines}
