@@ -36,14 +36,19 @@ export const ScannerStackNavigator = createStackNavigator(
   }
 );
 
-export const TicketListStackNavigator = createStackNavigator({
-  TicketList: {
-    screen: TicketListViewContainer,
+export const TicketListStackNavigator = createStackNavigator(
+  {
+    TicketList: {
+      screen: TicketListViewContainer,
+    },
+    TicketView: {
+      screen: TicketViewContainer,
+    },
   },
-  TicketView: {
-    screen: TicketViewContainer,
-  },
-});
+  {
+    initialRouteName: 'TicketView',
+  }
+);
 
 export const SettingsStackNavigator = createStackNavigator({
   Settings: {

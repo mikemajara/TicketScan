@@ -4,10 +4,13 @@ import { StyleSheet, View, Alert, Text, FlatList } from 'react-native';
 import { Button, ListItem } from 'react-native-elements';
 // import { Animated } from 'react-native-reanimated';
 import { iOSUIKit } from 'react-native-typography';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import Entypo from 'react-native-vector-icons/Entypo';
 import { styleDebug, mockupTicket } from '../helpers';
 import Ticket from '../model/Ticket';
 import Store from '../model/Store';
 import TicketLine from '../model/TicketLine';
+import CardComponent from '../components/CardComponent';
 
 
 async function retrieveTicket(id) {
@@ -126,7 +129,11 @@ export default function TicketViewContainer(props) {
         <View style={styles.companyName}><Text style={iOSUIKit.largeTitleEmphasized}>{ticket.store.company}</Text></View>
         <View style={styles.companyInfo}>
           <View style={styles.companyInfoRow1}>
-            <View style={styles.location}><Text style={iOSUIKit.title3}>{ticket.store.address}</Text></View>
+            <CardComponent
+              title={<Text style={iOSUIKit.title3}>{ticket.store.address}</Text>}
+              icon={<Entypo name="shop" size={30} />}
+            />
+            {/* <View style={styles.location}><Text style={iOSUIKit.title3}>{ticket.store.address}</Text></View> */}
           </View>
           <View style={styles.companyInfoRow2}>
             <View style={styles.phone}><Text style={iOSUIKit.title3}>{ticket.store.phone}</Text></View>
@@ -135,6 +142,7 @@ export default function TicketViewContainer(props) {
         </View>
         <View style={styles.infoTicket}><Text>{ticket.datetime.toISOString()}</Text></View>
       </View>
+
       <FlatList
         style={styles.list}
         data={ticket.lines}
@@ -174,9 +182,9 @@ const styles = StyleSheet.create({
   },
   header: {
     ...styleDebug('blue'),
-    height: 120,
-    alignItems: 'center',
-    alignContent: 'stretch',
+    height: 150,
+    // alignItems: 'center',
+    // alignContent: 'stretch',
   },
   list: {
     ...styleDebug('darkgreen'),
@@ -190,12 +198,12 @@ const styles = StyleSheet.create({
   },
   companyInfo: {
     ...styleDebug('red'),
-    alignItems: 'center',
+    // alignItems: 'center',
   },
   companyInfoRow2: {
     ...styleDebug('blue'),
-    flexDirection: 'row',
-    paddingHorizontal: 10,
+    // flexDirection: 'row',
+    // paddingHorizontal: 10,
   }
 });
 
