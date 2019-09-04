@@ -41,7 +41,7 @@ export default function TicketViewContainer(props) {
     'Murcia',
     'Floridablanca, 4',
     '+34 968227166',
-    'A-00001111'
+    'A-46103834'
   );
   const lines = [
     new TicketLine('1', null, '1,37', 'MELON PARTIDO', 'Melon partido', null, []),
@@ -184,8 +184,16 @@ export default function TicketViewContainer(props) {
         keyExtractor={(item, index) => index.toString()}
       />
       <View style={styles.footer}>
-        <View style={styles.paymentMethod}><Text>PAYMENT METHOD: {ticket.paymentMethod}</Text></View>
-        <View style={styles.total}><Text>TOTAL: {ticket.total}</Text></View>
+        <CardComponent
+          title={`Payment Method: ${ticket.paymentMethod}`}
+          icon={<Icon reverse raised iconStyle={{ fontSize: 18 }} type="material-community" name="cash-register" color={iOSColors.lightGray2} size={13} />}
+        />
+        <CardComponent
+          title={`Total: ${ticket.total}`}
+          icon={<Icon reverse raised iconStyle={{ fontSize: 26 }} type="foundation" name="euro" color='mediumseagreen' size={13} />}
+        />
+        {/* <View style={styles.paymentMethod}><Text>PAYMENT METHOD: {ticket.paymentMethod}</Text></View> */}
+        {/* <View style={styles.total}><Text>TOTAL: {ticket.total}</Text></View> */}
       </View>
       {/* <Button title="Save" style={styles.button} onPress={handleConfirmPress} /> */}
     </View>
@@ -198,17 +206,19 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    ...styleDebug('blue'),
+    // ...styleDebug('blue'),
+    marginVertical: 5,
   },
   list: {
     ...styleDebug('darkgreen'),
   },
   footer: {
-    ...styleDebug('purple'),
-    height: 80,
+    // ...styleDebug('purple'),
+    marginVertical: 5,
+    marginHorizontal: 10,
   },
   companyName: {
-    ...styleDebug('orange'),
+    // ...styleDebug('orange'),
     alignSelf: 'center',
   },
   companyInfo: {
