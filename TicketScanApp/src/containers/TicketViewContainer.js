@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View, Alert, Text, FlatList } from 'react-native';
 import { Button, ListItem } from 'react-native-elements';
 // import { Animated } from 'react-native-reanimated';
-import { iOSUIKit } from 'react-native-typography';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import { iOSUIKit, iOSColors } from 'react-native-typography';
+import { Icon } from 'react-native-elements';
 import Entypo from 'react-native-vector-icons/Entypo';
 import { styleDebug, mockupTicket } from '../helpers';
 import Ticket from '../model/Ticket';
@@ -32,10 +32,17 @@ async function retrieveTicket(id) {
 export default function TicketViewContainer(props) {
   const [ticketId, setTicketId] = useState(props.navigation.getParam('_id', null));
   const [elements, setElements] = useState([]);
-  // Store constructor(company, address, phone, id) {
+  // Store constructor(company, country, city, address, phone, id) {
   // TicketLine constructor(quantity, weight, price, name, readableName, id, altCodes) {
   // Ticket constructor(store, datetime, proprietaryCodes, paymentMethod, total, returned, ticketLines) {
-  const store = new Store('Mercadona', 'Floridablanca, 4', '968227166', 'A-00001111');
+  const store = new Store(
+    'Mercadona',
+    'Spain',
+    'Murcia',
+    'Floridablanca, 4',
+    '+34 968227166',
+    'A-00001111'
+  );
   const lines = [
     new TicketLine('1', null, '1,37', 'MELON PARTIDO', 'Melon partido', null, []),
     new TicketLine('1', null, '2,15', 'COCKTAIL TOST', 'Cocktail tostado', null, []),
@@ -126,21 +133,31 @@ export default function TicketViewContainer(props) {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <View style={styles.companyName}><Text style={iOSUIKit.largeTitleEmphasized}>{ticket.store.company}</Text></View>
+        <View style={styles.companyName}>
+          <Text style={iOSUIKit.largeTitleEmphasized}>{ticket.store.company}</Text>
+        </View>
         <View style={styles.companyInfo}>
           <View style={styles.companyInfoRow1}>
             <CardComponent
-              title={<Text style={iOSUIKit.title3}>{ticket.store.address}</Text>}
-              icon={<Entypo name="shop" size={30} />}
+              title={`${ticket.store.city}, ${ticket.store.address}`}
+              icon={<Icon reverse raised iconStyle={{ fontSize: 18 }} type="entypo" name="shop" color={iOSColors.orange} size={13} />}
             />
-            {/* <View style={styles.location}><Text style={iOSUIKit.title3}>{ticket.store.address}</Text></View> */}
           </View>
           <View style={styles.companyInfoRow2}>
-            <View style={styles.phone}><Text style={iOSUIKit.title3}>{ticket.store.phone}</Text></View>
-            <View style={styles.companyId}><Text style={iOSUIKit.title3}>{ticket.store.id}</Text></View>
+            <CardComponent
+              title={ticket.store.phone}
+              icon={<Icon reverse raised iconStyle={{ fontSize: 18 }} type="entypo" name="phone" color={iOSColors.green} size={13} />}
+            />
+            <CardComponent
+              title={ticket.store.id}
+              icon={<Icon reverse raised iconStyle={{ fontSize: 18 }} type="entypo" name="info" color={iOSColors.blue} size={13} />}
+            />
           </View>
+          <CardComponent
+            title={ticket.datetime.toISOString()}
+            icon={<Icon reverse raised iconStyle={{ fontSize: 18 }} type="entypo" name="calendar" color={iOSColors.red} size={13} />}
+          />
         </View>
-        <View style={styles.infoTicket}><Text>{ticket.datetime.toISOString()}</Text></View>
       </View>
 
       <FlatList
@@ -182,9 +199,6 @@ const styles = StyleSheet.create({
   },
   header: {
     ...styleDebug('blue'),
-    height: 150,
-    // alignItems: 'center',
-    // alignContent: 'stretch',
   },
   list: {
     ...styleDebug('darkgreen'),
@@ -195,15 +209,20 @@ const styles = StyleSheet.create({
   },
   companyName: {
     ...styleDebug('orange'),
+    alignSelf: 'center',
   },
   companyInfo: {
-    ...styleDebug('red'),
-    // alignItems: 'center',
+    // ...styleDebug('red'),
+    marginHorizontal: 10,
+  },
+  companyInfoRow1: {
+    // ...styleDebug('blue'),
+    flexDirection: 'row',
   },
   companyInfoRow2: {
-    ...styleDebug('blue'),
-    // flexDirection: 'row',
-    // paddingHorizontal: 10,
+    // ...styleDebug('blue'),
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   }
 });
 
