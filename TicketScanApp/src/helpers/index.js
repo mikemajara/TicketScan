@@ -1,4 +1,4 @@
-export const STYLE_DEBUG = !false;
+export const STYLE_DEBUG = false;
 export const styleDebug = color => (STYLE_DEBUG ? { borderWidth: 1, borderColor: color } : {});
 
 export const mockupTicket = {

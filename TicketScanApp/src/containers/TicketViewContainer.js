@@ -11,6 +11,8 @@ import Ticket from '../model/Ticket';
 import Store from '../model/Store';
 import TicketLine from '../model/TicketLine';
 import CardComponent from '../components/CardComponent';
+import AppleStyleSwipeableRow from './AppleStyleSwipeableRow';
+import ProductListItemComponent from '../components/ProductListItemComponent';
 
 
 async function retrieveTicket(id) {
@@ -33,7 +35,7 @@ export default function TicketViewContainer(props) {
   const [ticketId, setTicketId] = useState(props.navigation.getParam('_id', null));
   const [elements, setElements] = useState([]);
   // Store constructor(company, country, city, address, phone, id) {
-  // TicketLine constructor(quantity, weight, price, name, readableName, id, altCodes) {
+  // TicketLine constructor(units, name, price, weight, weightPrice, readableName, id, altCodes) {
   // Ticket constructor(store, datetime, proprietaryCodes, paymentMethod, total, returned, ticketLines) {
   const store = new Store(
     'Mercadona',
@@ -44,17 +46,25 @@ export default function TicketViewContainer(props) {
     'A-46103834'
   );
   const lines = [
-    new TicketLine('1', null, '1,37', 'MELON PARTIDO', 'Melon partido', null, []),
-    new TicketLine('1', null, '2,15', 'COCKTAIL TOST', 'Cocktail tostado', null, []),
-    new TicketLine('2', null, '0,90', 'STAR II PLUS', 'Estrella de la muerte 2.0', null, []),
+    new TicketLine('1', 'B, ALMENDRA S/A', '8,40', null, null, 'readableName', null, []),
+    new TicketLine('4', 'L SEMI S/LACTO', '18,00', null, null, 'readableName', null, []),
+    new TicketLine('3', 'GALLETA RELIEV', '3,66', null, null, 'readableName', null, []),
+    new TicketLine('1', 'COPOS AVENA', '0,81', null, null, 'readableName', null, []),
+    new TicketLine('1', 'COSTILLA BARB', '3,99', null, null, 'readableName', null, []),
+    new TicketLine('1', 'ZANAHORIA BOLS', '0,69', null, null, 'readableName', null, []),
+    new TicketLine('2', 'VENTRESCA ATUN', '4,30', null, null, 'readableName', null, []),
+    new TicketLine('1', 'PAPEL HIGIENIC', '2,70', null, null, 'readableName', null, []),
+    new TicketLine('1', 'HIGIENICO DOBL', '207', null, null, 'readableName', null, []),
+    new TicketLine('1', 'PEPINO', '0,90', "0,478 kg", "1,89 €/kg", 'readableName', null, []),
+    new TicketLine('1', 'PLATANO', '1,41', "0,616 kg", "2,29 €/kg", 'readableName', null, []),
   ]
   const proprietaryCodes = [{ OP: '068391' }, { 'FACTURA SIMPLIFICADA': '2707-022-142004' }];
   const dummyTicket = new Ticket(
     store,
-    new Date('2019-08-20T10:38'),
+    new Date('2019-03-07T19:51'),
     proprietaryCodes,
     'CARD',
-    '4,42',
+    '46,93',
     null,
     lines
   );
@@ -164,21 +174,56 @@ export default function TicketViewContainer(props) {
         style={styles.list}
         data={ticket.lines}
         renderItem={({ item, index }) => {
-          console.log(item)
+          console.log(item, ticket.lines.length, index)
           return (
-            <ListItem
-              title={
-                item.quantity +
-                item.weight +
-                item.price +
-                item.name +
-                item.readableName +
-                item.id +
-                item.altCodes
-              }
-              containerStyle={{ padding: 5 }}
-              onPress={() => handlePressedLine(index)}
-            />
+            <AppleStyleSwipeableRow
+              deleteContent={<Icon type="ionicon" name="ios-trash" color="white" size={35} />}
+              // onPressDelete={() => {
+              //   LayoutAnimation.configureNext(CustomLayoutLinear);
+              //   this.props.deleteOp(item.id);
+              // }}
+              flagContent={<Icon type="ionicon" name="ios-star" color="white" size={35} />}
+            // onPressFlag={() => {
+            //   this.props.toggleFavorite(item.id);
+            //   this.closeOpenRows();
+            // }}
+            // onSwipeableWillOpen={swipeable => this.closeOpenRows()}
+            // onSwipeableOpen={swipeable => this.setOpenRow(swipeable)}
+            // ref={ref => {
+            //   this.swipeables[item.id] = ref;
+            // }}
+            >
+              <ProductListItemComponent
+                units={item.units}
+                name={item.name}
+                price={item.price}
+                weight={item.weight}
+                weightPrice={item.weightPrice}
+                subtitle=""
+                bottomDivider={Boolean(ticket.lines.length - index - 1)}
+                leftIcon={
+                  <Icon
+                    type="ionicon"
+                    name="ios-star"
+                    color={index % 2 ? iOSColors.yellow : 'transparent'}
+                    size={15}
+                  />
+                }
+              />
+              {/* <ListItem
+                title={
+                  item.units +
+                  item.weight +
+                  item.price +
+                  item.name +
+                  item.readableName +
+                  item.id +
+                  item.altCodes
+                }
+                containerStyle={{ padding: 5 }}
+                onPress={() => handlePressedLine(index)}
+              /> */}
+            </AppleStyleSwipeableRow>
           );
         }}
         keyExtractor={(item, index) => index.toString()}
@@ -207,6 +252,8 @@ const styles = StyleSheet.create({
   },
   header: {
     // ...styleDebug('blue'),
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: iOSColors.midgray,
     marginVertical: 5,
   },
   list: {
@@ -214,8 +261,10 @@ const styles = StyleSheet.create({
   },
   footer: {
     // ...styleDebug('purple'),
-    marginVertical: 5,
-    marginHorizontal: 10,
+    borderTopWidth: StyleSheet.hairlineWidth,
+    borderTopColor: iOSColors.midgray,
+    paddingVertical: 5,
+    paddingHorizontal: 10,
   },
   companyName: {
     // ...styleDebug('orange'),

@@ -7,11 +7,12 @@
 //  otherInformation: "Very unhealthy. can be deadly"
 // }
 class TicketLine {
-  constructor(quantity, weight, price, name, readableName, id, altCodes) {
-    this.quantity = quantity;
-    this.weight = weight;
-    this.price = price;
+  constructor(units, name, price, weight, weightPrice, readableName, id, altCodes) {
+    this.units = units;
     this.name = name;
+    this.price = price;
+    this.weight = weight;
+    this.weightPrice = weightPrice;
     this.readableName = readableName;
     this.id = id;
     this.altCodes = altCodes;
