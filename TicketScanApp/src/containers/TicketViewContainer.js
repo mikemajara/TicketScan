@@ -6,6 +6,7 @@ import { Button, ListItem } from 'react-native-elements';
 import { iOSUIKit, iOSColors } from 'react-native-typography';
 import { Icon } from 'react-native-elements';
 import Entypo from 'react-native-vector-icons/Entypo';
+import moment from 'moment/min/moment-with-locales';
 import { styleDebug, mockupTicket } from '../helpers';
 import Ticket from '../model/Ticket';
 import Store from '../model/Store';
@@ -14,6 +15,7 @@ import CardComponent from '../components/CardComponent';
 import AppleStyleSwipeableRow from './AppleStyleSwipeableRow';
 import ProductListItemComponent from '../components/ProductListItemComponent';
 
+moment.locale('es');
 
 async function retrieveTicket(id) {
   let responseJson = null;
@@ -41,7 +43,7 @@ export default function TicketViewContainer(props) {
     'Mercadona',
     'Spain',
     'Murcia',
-    'Floridablanca, 4',
+    'AVDA. CICLISTA MARIANO ROJAS-AV',
     '+34 968227166',
     'A-46103834'
   );
@@ -61,7 +63,7 @@ export default function TicketViewContainer(props) {
   const proprietaryCodes = [{ OP: '068391' }, { 'FACTURA SIMPLIFICADA': '2707-022-142004' }];
   const dummyTicket = new Ticket(
     store,
-    new Date('2019-03-07T19:51'),
+    new Date('2019-03-04T19:51'),
     proprietaryCodes,
     'CARD',
     '46,93',
@@ -164,7 +166,7 @@ export default function TicketViewContainer(props) {
             />
           </View>
           <CardComponent
-            title={ticket.datetime.toISOString()}
+            title={moment(ticket.datetime).format('llll')}
             icon={<Icon reverse raised iconStyle={{ fontSize: 18 }} type="entypo" name="calendar" color={iOSColors.red} size={13} />}
           />
         </View>
@@ -253,8 +255,8 @@ const styles = StyleSheet.create({
   header: {
     // ...styleDebug('blue'),
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: iOSColors.midgray,
-    marginVertical: 5,
+    borderBottomColor: iOSColors.lightGray2,
+    paddingVertical: 5,
   },
   list: {
     ...styleDebug('darkgreen'),
@@ -262,7 +264,7 @@ const styles = StyleSheet.create({
   footer: {
     // ...styleDebug('purple'),
     borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: iOSColors.midgray,
+    borderTopColor: iOSColors.lightGray2,
     paddingVertical: 5,
     paddingHorizontal: 10,
   },
