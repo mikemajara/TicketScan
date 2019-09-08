@@ -37,9 +37,9 @@ const ScannerViewContainer = props => {
         setTicket(response);
         console.log(`${new Date().toISOString()} - ScannerViewContainer:handleUploadPhoto:response`);
         console.log(response);
-        props.navigation.navigate('TicketView', { elements: response })
-        setPhoto(null);
-        setTicket({});
+        // props.navigation.navigate('TicketView', { elements: response })
+        // setPhoto(null);
+        // setTicket({});
       })
       .catch(error => {
         console.log('upload error', error);
