@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Button, Text, Image, Platform } from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
