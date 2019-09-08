@@ -1,20 +1,29 @@
 import Store from './Store';
+import ProprietaryTicketCode from './ProprietaryTicketCode';
 import TicketLine from './TicketLine';
 
 class Ticket {
 
   store: Store;
-  datetime: string;
-  proprietaryCodes: string;
+  datetime: Date;
+  proprietaryTicketCodes: Array<ProprietaryTicketCode>;
   paymentMethod: string;
-  total: string;
-  returned: string;
-  lines: string;
+  total: number;
+  returned: number;
+  lines: Array<TicketLine>;
 
-  constructor(store, datetime, proprietaryCodes, paymentMethod, total, returned, lines) {
+  constructor(
+    store: Store,
+    datetime: Date,
+    proprietaryTicketCodes: Array<ProprietaryTicketCode>,
+    paymentMethod: string,
+    total: number,
+    returned: number,
+    lines: Array<TicketLine>
+  ) {
     this.store = store;
     this.datetime = datetime;
-    this.proprietaryCodes = proprietaryCodes;
+    this.proprietaryTicketCodes = proprietaryTicketCodes;
     this.paymentMethod = paymentMethod;
     this.total = total;
     this.returned = returned;

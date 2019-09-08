@@ -1,11 +1,11 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Alert, Text, FlatList } from 'react-native';
-import { Button, ListItem } from 'react-native-elements';
+import { Button, ListItem, Icon } from 'react-native-elements';
 // import { Animated } from 'react-native-reanimated';
 import { iOSUIKit, iOSColors } from 'react-native-typography';
-import { Icon } from 'react-native-elements';
 import Entypo from 'react-native-vector-icons/Entypo';
 import moment from 'moment/min/moment-with-locales';
 import { styleDebug, mockupTicket } from '../helpers';
@@ -35,8 +35,6 @@ async function retrieveTicket(id) {
 }
 
 export default function TicketViewContainer(props) {
-  const [ticketId, setTicketId] = useState(props.navigation.getParam('_id', null));
-  const [elements, setElements] = useState([]);
   // Store constructor(company, country, city, address, phone, id) {
   // TicketLine constructor(units, name, price, weight, weightPrice, readableName, id, altCodes) {
   // Ticket constructor(store, datetime, proprietaryCodes, paymentMethod, total, returned, ticketLines) {
@@ -57,10 +55,10 @@ export default function TicketViewContainer(props) {
     new TicketLine('1', 'ZANAHORIA BOLS', '0,69', null, null, 'readableName', null, []),
     new TicketLine('2', 'VENTRESCA ATUN', '4,30', null, null, 'readableName', null, []),
     new TicketLine('1', 'PAPEL HIGIENIC', '2,70', null, null, 'readableName', null, []),
-    new TicketLine('1', 'HIGIENICO DOBL', '207', null, null, 'readableName', null, []),
-    new TicketLine('1', 'PEPINO', '0,90', "0,478 kg", "1,89 €/kg", 'readableName', null, []),
-    new TicketLine('1', 'PLATANO', '1,41', "0,616 kg", "2,29 €/kg", 'readableName', null, []),
-  ]
+    new TicketLine('1', 'HIGIENICO DOBL', '2,07', null, null, 'readableName', null, []),
+    new TicketLine('1', 'PEPINO', '0,90', '0,478 kg', '1,89 €/kg', 'readableName', null, []),
+    new TicketLine('1', 'PLATANO', '1,41', '0,616 kg', '2,29 €/kg', 'readableName', null, []),
+  ];
   const proprietaryCodes = [{ OP: '068391' }, { 'FACTURA SIMPLIFICADA': '2707-022-142004' }];
   const dummyTicket = new Ticket(
     store,
@@ -71,7 +69,11 @@ export default function TicketViewContainer(props) {
     null,
     lines
   );
+
+  const [ticketId, setTicketId] = useState(props.navigation.getParam('_id', null));
+  const [elements, setElements] = useState([]);
   const [ticket, setTicket] = useState(dummyTicket);
+
   useEffect(() => {
     const fetchData = async () => {
       console.log('fetching data...');
@@ -153,22 +155,62 @@ export default function TicketViewContainer(props) {
           <View style={styles.companyInfoRow1}>
             <CardComponent
               title={`${ticket.store.city}, ${ticket.store.address}`}
-              icon={<Icon reverse raised iconStyle={{ fontSize: 18 }} type="entypo" name="shop" color={iOSColors.orange} size={13} />}
+              icon={
+                <Icon
+                  reverse
+                  raised
+                  iconStyle={{ fontSize: 18 }}
+                  type="entypo"
+                  name="shop"
+                  color={iOSColors.orange}
+                  size={13}
+                />
+              }
             />
           </View>
           <View style={styles.companyInfoRow2}>
             <CardComponent
               title={ticket.store.phone}
-              icon={<Icon reverse raised iconStyle={{ fontSize: 18 }} type="entypo" name="phone" color={iOSColors.green} size={13} />}
+              icon={
+                <Icon
+                  reverse
+                  raised
+                  iconStyle={{ fontSize: 18 }}
+                  type="entypo"
+                  name="phone"
+                  color={iOSColors.green}
+                  size={13}
+                />
+              }
             />
             <CardComponent
               title={ticket.store.id}
-              icon={<Icon reverse raised iconStyle={{ fontSize: 18 }} type="entypo" name="info" color={iOSColors.blue} size={13} />}
+              icon={
+                <Icon
+                  reverse
+                  raised
+                  iconStyle={{ fontSize: 18 }}
+                  type="entypo"
+                  name="info"
+                  color={iOSColors.blue}
+                  size={13}
+                />
+              }
             />
           </View>
           <CardComponent
             title={moment(ticket.datetime).format('llll')}
-            icon={<Icon reverse raised iconStyle={{ fontSize: 18 }} type="entypo" name="calendar" color={iOSColors.red} size={13} />}
+            icon={
+              <Icon
+                reverse
+                raised
+                iconStyle={{ fontSize: 18 }}
+                type="entypo"
+                name="calendar"
+                color={iOSColors.red}
+                size={13}
+              />
+            }
           />
         </View>
       </View>
@@ -177,7 +219,7 @@ export default function TicketViewContainer(props) {
         style={styles.list}
         data={ticket.lines}
         renderItem={({ item, index }) => {
-          console.log(item, ticket.lines.length, index)
+          console.log(item, ticket.lines.length, index);
           return (
             <AppleStyleSwipeableRow
               deleteContent={<Icon type="ionicon" name="ios-trash" color="white" size={35} />}
@@ -234,11 +276,31 @@ export default function TicketViewContainer(props) {
       <View style={styles.footer}>
         <CardComponent
           title={`Payment Method: ${ticket.paymentMethod}`}
-          icon={<Icon reverse raised iconStyle={{ fontSize: 18 }} type="material-community" name="cash-register" color={iOSColors.lightGray2} size={13} />}
+          icon={
+            <Icon
+              reverse
+              raised
+              iconStyle={{ fontSize: 18 }}
+              type="material-community"
+              name="cash-register"
+              color={iOSColors.lightGray2}
+              size={13}
+            />
+          }
         />
         <CardComponent
           title={`Total: ${ticket.total}`}
-          icon={<Icon reverse raised iconStyle={{ fontSize: 26 }} type="foundation" name="euro" color='mediumseagreen' size={13} />}
+          icon={
+            <Icon
+              reverse
+              raised
+              iconStyle={{ fontSize: 26 }}
+              type="foundation"
+              name="euro"
+              color="mediumseagreen"
+              size={13}
+            />
+          }
         />
         {/* <View style={styles.paymentMethod}><Text>PAYMENT METHOD: {ticket.paymentMethod}</Text></View> */}
         {/* <View style={styles.total}><Text>TOTAL: {ticket.total}</Text></View> */}
@@ -285,7 +347,7 @@ const styles = StyleSheet.create({
     // ...styleDebug('blue'),
     flexDirection: 'row',
     justifyContent: 'space-between',
-  }
+  },
 });
 
 TicketViewContainer.propTypes = {};

@@ -1,5 +1,20 @@
 class Store {
-  constructor(company, country, city, address, phone, id) {
+
+  public company: string;
+  public country: string;
+  public city: string;
+  public address: string;
+  public phone: string;
+  public id: string;
+
+  constructor(
+    company: string,
+    country: string,
+    city: string,
+    address: string,
+    phone: string,
+    id: string
+  ) {
     this.company = company;
     this.country = country;
     this.city = city;
