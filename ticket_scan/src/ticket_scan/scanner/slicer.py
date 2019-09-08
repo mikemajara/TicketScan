@@ -3,7 +3,7 @@ import cv2
 import argparse
 import numpy as np
 from datetime import datetime
-from .helpers import show_image_normal_window, wait_for_input, get_path_base_and_ext
+from helpers import show_image_normal_window, wait_for_input, get_path_base_and_ext
 
 
 PATH_WORKDIR = os.getcwd()
@@ -68,8 +68,14 @@ def pair_lower_upper_bounds(lowers, uppers):
             return lowers, uppers[:-1]
     return lowers, uppers
 
+def get_crop(img, upper_bound, lower_bound):
+    H, W = img.shape[:2]
+    return img[upper_bound:lower_bound, 0:W]
 
-def slice(path_image, interactive=False, threshold_pxl_density=5.5, line_padding=7):
+def slice_image_with_parameters():
+    pass
+
+def slice(path_image: str, interactive=False, save_cropped=False, threshold_pxl_density=5.5, line_padding=7):
 
     filename_image = path_image
     image = cv2.imread(path_image)
@@ -83,6 +89,8 @@ def slice(path_image, interactive=False, threshold_pxl_density=5.5, line_padding
         working_image)
 
     blurred = get_blurred_image(image=working_image, kernel_size=100)
+
+    #slice image with parameters
 
     while True:
 
@@ -154,19 +162,26 @@ def slice(path_image, interactive=False, threshold_pxl_density=5.5, line_padding
     path_output = path + '/output_cropped/' + basename + "_" + parameters_str
     os.makedirs(path_output, exist_ok=True)
 
+    cropped_arr = [];
+
     for lower, upper in zip(lowers, uppers):
+
         if lower_th_pxl_cut < lower - upper < upper_th_pxl_cut:
             pt_upper = max(upper - line_padding, 0)
             pt_lower = min(lower + line_padding, H)
 
-            crop_img = orig[pt_upper:pt_lower, 0:W]
-            fname = "cropped_" + str(lower) + "_" + str(upper) + ".png"
-            cv2.imwrite(path_output + "/" + fname, crop_img)
+            crop_img = get_crop(orig, pt_upper, pt_lower)
+            cropped_arr.append(crop_img.copy())
+
+
+            if save_cropped:
+                fname = "cropped_" + str(lower) + "_" + str(upper) + ".png"
+                cv2.imwrite(path_output + "/" + fname, crop_img)
 
     now_timestamp = datetime.now().strftime("%Y%m%d_%H%M")
     cv2.imwrite(path_output + "/original_" + now_timestamp + ext, orig)
 
-    return path_output
+    return path_output if save_cropped else cropped_arr
 
 
 # construct the argument parser and parse the arguments
@@ -185,6 +200,10 @@ ap.add_argument("-v", "--interactive",
                 action="store_true",
                 default=False,
                 help="Slice interactively showing image to modify variables with [ ` . + - ] characters")
+ap.add_argument("-S", "--save-cropped",
+                action="store_true",
+                default=False,
+                help="Save cropped images")
 
 
 if __name__ == "__main__":
