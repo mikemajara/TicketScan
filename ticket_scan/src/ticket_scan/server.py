@@ -21,8 +21,8 @@ class Server(Resource):
             filext = file.content_type.split("/")[1]
             filepath = '../../uploaded_images/' + timestamp + "." + filext
             file.save(filepath)
-            path_output = slicer.slice(filepath, interactive=False)
-            result = ocr_batch.extract_lines_of_text(path_output)
+            #path_output = slicer.slice(filepath, interactive=False)
+            result = ocr_batch.extract_lines_of_text(image=filepath)
         else:
             raise Exception("file is None")
 

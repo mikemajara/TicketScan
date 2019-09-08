@@ -3,14 +3,19 @@ import os
 import cv2
 import json
 import natsort
-from ocr import extract_text
 import slicer
+import time
+import logging
+from ocr import extract_text
+from helpers import setup_logging
 
 
 DEFAULT_OEM = 1
 DEFAULT_PSM = 7
 DEFAULT_SIDE_MARGIN = 5
 DEFAULT_FULL_BOX_IMAGE = True
+
+logger = logging.getLogger(__name__)
 
 def get_sorted_file_list_for_path(path, prefix=""):
     file_list = os.listdir(path)
@@ -57,7 +62,12 @@ def extract_lines_of_text(path=None,
         f.close()
 
     if image is not None:
+        start = time.time()
         slices = slicer.slice(image)
+        end = time.time()
+        logger.info("sliced image in " + str(end - start) + "s")
+
+        start = time.time()
         for idx, slice in enumerate(slices):
             text_recognised = extract_text(img=slice,
                                            oem=oem,
@@ -66,6 +76,8 @@ def extract_lines_of_text(path=None,
                                            full_box_image=full_box_image,
                                            side_margin=side_margin)
             text_recognition_dict[idx] = text_recognised
+        end = time.time()
+        logger.info("read slices in " + str(end - start) + "s")
 
         image_path = os.path.dirname(image)
         result_path = os.path.join(image_path, 'text_recognition_result.json')
@@ -123,9 +135,24 @@ ap.add_argument("-psm", "--psm", type=int, default=DEFAULT_PSM,
                      "      bypassing hacks that are Tesseract-specific."
                      "(default " + str(DEFAULT_PSM) + ")"
                 )
+ap.add_argument(
+        '-v',
+        '--verbose',
+        dest="loglevel",
+        help="set loglevel to INFO",
+        action='store_const',
+        const=logging.INFO)
+ap.add_argument(
+        '-vv',
+        '--very-verbose',
+        dest="loglevel",
+        help="set loglevel to DEBUG",
+        action='store_const',
+        const=logging.DEBUG)
 
 if __name__ == "__main__":
     args = vars(ap.parse_args())
+    setup_logging(args["loglevel"])
 
     assert args["path"] is None or os.path.isdir(args["path"])
     assert args["image"] is None or os.path.isfile(args["image"])

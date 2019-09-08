@@ -1,6 +1,7 @@
 import os
-
+import sys
 import cv2
+import logging
 
 KEY_PLUS = 43
 KEY_MINUS = 45
@@ -9,6 +10,16 @@ KEY_DOT = 46
 KEY_ENTER = 13
 KEY_ESC = 27
 
+
+def setup_logging(loglevel):
+    """Setup basic logging
+
+    Args:
+      loglevel (int): minimum loglevel for emitting messages
+    """
+    logformat = "[%(asctime)s] %(levelname)s:%(name)s:%(message)s"
+    logging.basicConfig(level=loglevel, stream=sys.stdout,
+                        format=logformat, datefmt="%Y-%m-%d %H:%M:%S")
 
 def wait_for_input():
     return cv2.waitKeyEx(0)
