@@ -1,9 +1,10 @@
 import os
 import cv2
+import logging
 import argparse
 import numpy as np
 from datetime import datetime
-from helpers import show_image_normal_window, wait_for_input, get_path_base_and_ext
+from helpers import show_image_normal_window, wait_for_input, get_path_base_and_ext, setup_logging
 
 
 PATH_WORKDIR = os.getcwd()
@@ -27,9 +28,11 @@ KEY_DOT = 46
 KEY_ENTER = 13
 KEY_ESC = 27
 
-DEFAULT_THRESHOLD_PIXEL_DENSITY = 5.5
+DEFAULT_TH_PIXEL_DENSITY = 5.5
 DEFAULT_LINE_PADDING = 7
+DEFAULT_KERNEL_SIZE = 100
 
+logger = logging.getLogger(__name__)
 
 def get_image_path(name: str):
     return os.path.join(PATH_IMAGES, name)
@@ -68,14 +71,86 @@ def pair_lower_upper_bounds(lowers, uppers):
             return lowers, uppers[:-1]
     return lowers, uppers
 
-def get_crop(img, upper_bound, lower_bound):
+
+def get_image_cropped(img, upper_bound, lower_bound):
     H, W = img.shape[:2]
+
     return img[upper_bound:lower_bound, 0:W]
 
-def slice_image_with_parameters():
-    pass
 
-def slice(path_image: str, interactive=False, save_cropped=False, threshold_pxl_density=5.5, line_padding=7):
+def draw_slices_on_image(img, uppers, lowers, line_padding=DEFAULT_LINE_PADDING):
+    display_image = img.copy()
+
+    H, W = img.shape[:2]
+
+    color_count = 0
+    for y in uppers:
+        pt_y = max(y - line_padding, 0)
+        cv2.line(display_image, (0, pt_y), (W, pt_y),
+                 BGR_UPPER[color_count % 2], 1, cv2.LINE_8)
+        color_count += 1
+
+    color_count = 0
+    for y in lowers:
+        pt_y = min(y + line_padding, H)
+        cv2.line(display_image, (0, pt_y), (W, pt_y),
+                 BGR_LOWER[color_count % 2], 1, cv2.LINE_8)
+        color_count += 1
+
+    return display_image
+
+
+def get_slices(image,
+               th_pxl_density=DEFAULT_TH_PIXEL_DENSITY,
+               kernel_size=DEFAULT_KERNEL_SIZE):
+    working_image = image.copy()
+
+    blurred = get_blurred_image(image=working_image, kernel_size=kernel_size)
+
+    H, W = working_image.shape[:2]
+
+    # (miguel) Obtain reduced 1-dimension array of average
+    # of pixels to check the density of ink on lines
+    hist2d = cv2.reduce(blurred, 1, cv2.REDUCE_AVG)
+    hist = hist2d.reshape(-1)
+
+    lowers = [
+        y + 1 for y in range(H - 1) if hist[y] > th_pxl_density >= hist[y + 1]]
+    uppers = [
+        y - 1 for y in range(H - 1) if hist[y] <= th_pxl_density < hist[y + 1]]
+
+    return lowers, uppers
+
+
+def handle_interactive_key_input(th_pxl_density, line_padding):
+    flat_interactive = True
+
+    key = wait_for_input()
+
+    logger.info("key pressed: " + str(key))
+
+    if key == KEY_PLUS:
+        th_pxl_density += .5
+    elif key == KEY_MINUS:
+        th_pxl_density -= .5
+    elif key == KEY_RIGHT_ACCENT:
+        line_padding += 1
+    elif key == KEY_DOT:
+        line_padding -= 1
+    elif key == KEY_ENTER or key == KEY_ESC:
+        flag_interactive = False
+
+    return th_pxl_density, line_padding, flag_interactive
+
+def get_cutting_margin_lower_upper(height, factor):
+    lower_margin = height - height * factor
+    upper_margin = height + height * factor
+
+def slice(path_image: str,
+          interactive=False,
+          save_cropped=False,
+          th_pxl_density=DEFAULT_TH_PIXEL_DENSITY,
+          line_padding=7):
 
     filename_image = path_image
     image = cv2.imread(path_image)
@@ -88,93 +163,55 @@ def slice(path_image: str, interactive=False, save_cropped=False, threshold_pxl_
     computed_threshold, working_image = get_inverted_thresholded_image(
         working_image)
 
-    blurred = get_blurred_image(image=working_image, kernel_size=100)
+    lowers, uppers = get_slices(working_image, th_pxl_density)
 
-    #slice image with parameters
-
-    while True:
-
-        H, W = working_image.shape[:2]
-
-        # (miguel) Obtain reduced 1-dimension array of average
-        # of pixels to check the density of ink on lines
-        hist2d = cv2.reduce(blurred, 1, cv2.REDUCE_AVG)
-        hist = hist2d.reshape(-1)
-
-        uppers = [
-            y - 1 for y in range(H - 1) if hist[y] <= threshold_pxl_density < hist[y + 1]]
-        lowers = [
-            y + 1 for y in range(H - 1) if hist[y] > threshold_pxl_density >= hist[y + 1]]
+    while interactive:
 
         # (miguel) change again to color so we can appreciate
         # the lines we will draw on the image
         display_image = working_image.copy()
         display_image = cv2.cvtColor(display_image, cv2.COLOR_GRAY2BGR)
 
-        color_count = 0
-        for y in uppers:
-            pt_y = max(y - line_padding, 0)
-            cv2.line(display_image, (0, pt_y), (W, pt_y),
-                     BGR_UPPER[color_count % 2], 1, cv2.LINE_8)
-            color_count += 1
+        display_image = draw_slices_on_image(display_image, uppers, lowers, line_padding=line_padding)
 
-        color_count = 0
-        for y in lowers:
-            pt_y = min(y + line_padding, H)
-            cv2.line(display_image, (0, pt_y), (W, pt_y),
-                     BGR_LOWER[color_count % 2], 1, cv2.LINE_8)
-            color_count += 1
+        logger.info("Current threshold_pxl_density: " + str(th_pxl_density))
+        logger.info("Current threshold_pxl_line: " + str(line_padding) + "\n")
 
-        if interactive:
-            print("Result for threshold_pxl_density: " +
-                  str(threshold_pxl_density))
-            print("Result for threshold_pxl_line: " + str(line_padding) + "\n")
-            show_image_normal_window("Lines result", display_image)
-            key = wait_for_input()
+        show_image_normal_window("Lines result", display_image)
 
-            print("key pressed: " + str(key))
-            if key == KEY_PLUS:
-                threshold_pxl_density += .5
-            elif key == KEY_MINUS:
-                threshold_pxl_density -= .5
-            elif key == KEY_RIGHT_ACCENT:
-                line_padding += 1
-            elif key == KEY_DOT:
-                line_padding -= 1
-            elif key == KEY_ENTER or key == KEY_ESC:
-                break
-        else:
-            break
+        th_pxl_density, line_padding, interactive = handle_interactive_key_input(th_pxl_density, line_padding)
+
+        lowers, uppers = get_slices(working_image, th_pxl_density)
 
     cv2.destroyAllWindows()
 
     # #### (6) Crop and write images to output #### #
     lowers, uppers = pair_lower_upper_bounds(lowers, uppers)
+
     line_mean_hight = np.mean(
         np.array(list(map(lambda x: x[0] - x[1], zip(lowers, uppers)))))
 
-    lower_th_pxl_cut = line_mean_hight / 2
-    upper_th_pxl_cut = line_mean_hight * 2
+    lower_th_pxl_cut, upper_th_pxl_cut = get_cutting_margin_lower_upper(line_mean_hight, factor=0.5)
 
-    parameters_str = str(threshold_pxl_density) + "_" + \
-        str(line_padding)  # + "_" + str(threshold_pxl_cut)
-    path, basename, ext = get_path_base_and_ext(filename_image)
-    path_output = path + '/output_cropped/' + basename + "_" + parameters_str
-    os.makedirs(path_output, exist_ok=True)
+    if save_cropped: # FIXME <- Join save_cropped conditions into one
+        parameters_str = str(th_pxl_density) + "_" + str(line_padding)
+        path, basename, ext = get_path_base_and_ext(filename_image)
+        path_output = path + '/output_cropped/' + basename + "_" + parameters_str
+        os.makedirs(path_output, exist_ok=True)
 
     cropped_arr = [];
 
     for lower, upper in zip(lowers, uppers):
 
         if lower_th_pxl_cut < lower - upper < upper_th_pxl_cut:
+            # TODO get_upper_cut_point() ? or overengineering?
             pt_upper = max(upper - line_padding, 0)
-            pt_lower = min(lower + line_padding, H)
+            pt_lower = min(lower + line_padding, H) # FIXME <- H
 
-            crop_img = get_crop(orig, pt_upper, pt_lower)
+            crop_img = get_image_cropped(orig, pt_upper, pt_lower)
             cropped_arr.append(crop_img.copy())
 
-
-            if save_cropped:
+            if save_cropped: # FIXME <- Join save_cropped conditions into one
                 fname = "cropped_" + str(lower) + "_" + str(upper) + ".png"
                 cv2.imwrite(path_output + "/" + fname, crop_img)
 
@@ -190,13 +227,13 @@ ap.add_argument("-i", "--image", required=True,
                 help="Path to the image to be scanned")
 ap.add_argument("-d", "--threshold-pxl-density",
                 type=float,
-                default=DEFAULT_THRESHOLD_PIXEL_DENSITY,
+                default=DEFAULT_TH_PIXEL_DENSITY,
                 help="Path to the image to be scanned")
 ap.add_argument("-p", "--line-padding",
                 default=DEFAULT_LINE_PADDING,
                 type=int,
                 help="Path to the image to be scanned")
-ap.add_argument("-v", "--interactive",
+ap.add_argument("-I", "--interactive",
                 action="store_true",
                 default=False,
                 help="Slice interactively showing image to modify variables with [ ` . + - ] characters")
@@ -204,10 +241,21 @@ ap.add_argument("-S", "--save-cropped",
                 action="store_true",
                 default=False,
                 help="Save cropped images")
+ap.add_argument('-v', '--verbose',
+                dest="loglevel",
+                help="set loglevel to INFO",
+                action='store_const',
+                const=logging.INFO)
+ap.add_argument('-vv', '--very-verbose',
+                dest="loglevel",
+                help="set loglevel to DEBUG",
+                action='store_const',
+                const=logging.DEBUG)
 
 
 if __name__ == "__main__":
     args = vars(ap.parse_args())
+    setup_logging(args["loglevel"])
 
     slice(path_image=args["image"],
           interactive=args["interactive"],
