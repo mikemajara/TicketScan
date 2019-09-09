@@ -24,3 +24,5 @@ pytesseract
 flask
 flask-restful
 
+dateparser
+jsonpickle

@@ -102,6 +102,20 @@ def main(args):
         def health():
             return "ok"
 
+        ### Companies/Stores ###
+
+        @app.route("/get_all_companies", methods=['GET'])
+        def get_all_companies():
+            companies = mongo.db.companies.find({})
+            return { 'companies': json.loads(json.dumps([company for company in companies], default=str))}
+
+        @app.route("/get_all_stores", methods=['GET'])
+        def get_all_stores():
+            stores = mongo.db.stores.find({})
+            return { 'stores': json.loads(json.dumps([store for store in stores], default=str))}
+
+        ### Ticket ###
+
         @app.route("/add_ticket", methods=['POST'])
         def add_ticket():
             j = request.get_json()
