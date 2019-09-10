@@ -12,13 +12,13 @@ class Ticket(object):
                  total: float,
                  returned: float,
                  lines: List[TicketLine]):
-        self.store = store;
-        self.datetime = datetime;
-        self.proprietaryTicketCodes = proprietaryTicketCodes;
-        self.paymentMethod = paymentMethod;
-        self.total = total;
-        self.returned = returned;
-        self.lines = lines;
+        self.store = store
+        self.datetime = datetime
+        self.proprietaryTicketCodes = proprietaryTicketCodes
+        self.paymentMethod = paymentMethod
+        self.total = total
+        self.returned = returned
+        self.lines = lines
 
     @classmethod
     def from_json(cls, data):
