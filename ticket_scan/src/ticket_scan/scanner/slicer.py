@@ -184,9 +184,11 @@ def get_slices_as_img_list(img, upper_bounds, lower_bounds, line_padding, margin
 
 def slice(path_image: str,
           interactive=False,
-          save_cropped=False,
           th_pxl_density=DEFAULT_TH_PIXEL_DENSITY,
-          line_padding=7):
+          line_padding=7,
+          save_cropped=False,
+          output_path=''
+          ):
 
     filename_image = path_image
     image = cv2.imread(path_image)
@@ -232,7 +234,10 @@ def slice(path_image: str,
     if save_cropped:
         parameters_str = str(th_pxl_density) + "_" + str(line_padding)
         path, basename, ext = get_path_base_and_ext(filename_image)
-        path_output = path + '/output_cropped/' + basename + "_" + parameters_str
+        if len(output_path):
+            path_output = os.path.join(os.path.expanduser(output_path), basename + "_" + parameters_str)
+        else:
+            path_output = os.path.join(path, 'output_cropped', basename + "_" + parameters_str)
         os.makedirs(path_output, exist_ok=True)
 
         for slice, upper, lower in zip(slices, uppers, lowers):
@@ -241,8 +246,9 @@ def slice(path_image: str,
 
         now_timestamp = datetime.now().strftime("%Y%m%d_%H%M")
         cv2.imwrite(path_output + "/original_" + now_timestamp + ext, orig)
+        logger.info('Output can be found in ' + path_output)
 
-    return path_output if save_cropped else slices
+    return slices
 
 
 # construct the argument parser and parse the arguments
@@ -265,6 +271,10 @@ ap.add_argument("-S", "--save-cropped",
                 action="store_true",
                 default=False,
                 help="Save cropped images")
+ap.add_argument("-o", "--output-path",
+                default='',
+                type=str,
+                help="Path for the results to be saved")
 ap.add_argument('-v', '--verbose',
                 dest="loglevel",
                 help="set loglevel to INFO",
@@ -283,7 +293,8 @@ if __name__ == "__main__":
 
     slice(path_image=args["image"],
           interactive=args["interactive"],
-          save_cropped=args["save_cropped"],
           th_pxl_density=args["threshold_pxl_density"],
-          line_padding=args["line_padding"]
+          line_padding=args["line_padding"],
+          save_cropped=args["save_cropped"],
+          output_path=args["output_path"]
     )

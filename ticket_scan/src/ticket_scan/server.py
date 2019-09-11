@@ -22,7 +22,7 @@ class Server(Resource):
             filepath = '../../uploaded_images/' + timestamp + "." + filext
             file.save(filepath)
             #path_output = slicer.slice(filepath, interactive=False)
-            result = ocr_batch.extract_lines_of_text(image=filepath)
+            result = ocr_batch.extract_text_lines_from_image(image=filepath)
         else:
             raise Exception("file is None")
 

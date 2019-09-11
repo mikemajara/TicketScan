@@ -25,12 +25,14 @@ def get_sorted_file_list_for_path(path, prefix=""):
     return file_list
 
 
-def extract_lines_of_text(path=None,
-                          image=None,
-                          oem=DEFAULT_OEM,
-                          psm=DEFAULT_PSM,
-                          side_margin=DEFAULT_SIDE_MARGIN,
-                          full_box_image=DEFAULT_FULL_BOX_IMAGE):
+def extract_text_lines_from_image(path=None,
+                                  image=None,
+                                  oem=DEFAULT_OEM,
+                                  psm=DEFAULT_PSM,
+                                  side_margin=DEFAULT_SIDE_MARGIN,
+                                  full_box_image=DEFAULT_FULL_BOX_IMAGE,
+                                  *args, **kwargs
+                                  ):
     text_recognition_dict = {}
 
     if path is not None:
@@ -63,7 +65,7 @@ def extract_lines_of_text(path=None,
 
     if image is not None:
         start = time.time()
-        slices = slicer.slice(image)
+        slices = slicer.slice(image, *args, **kwargs)
         end = time.time()
         logger.info("sliced image in " + str(end - start) + "s")
 
@@ -98,6 +100,14 @@ ap.add_argument("-i", "--image",
                 default=None,
                 type=str,
                 help="Path to the image to be scanned")
+ap.add_argument("-S", "--save-cropped",
+                action="store_true",
+                default=False,
+                help="Save cropped images")
+ap.add_argument("-o", "--output-path",
+                default='',
+                type=str,
+                help="Path for the results to be saved")
 ap.add_argument("-f", "--full-box-image",
                 action="store_true",
                 default=DEFAULT_FULL_BOX_IMAGE,
@@ -157,10 +167,12 @@ if __name__ == "__main__":
     assert args["path"] is None or os.path.isdir(args["path"])
     assert args["image"] is None or os.path.isfile(args["image"])
 
-    extract_lines_of_text(path=args["path"],
-                          image=args["image"],
-                          oem=args["oem"],
-                          psm=args["psm"],
-                          full_box_image=args["full_box_image"],
-                          side_margin=args["side_margin"]
-                          )
+    extract_text_lines_from_image(path=args["path"],
+                                  image=args["image"],
+                                  oem=args["oem"],
+                                  psm=args["psm"],
+                                  full_box_image=args["full_box_image"],
+                                  side_margin=args["side_margin"],
+                                  save_cropped=args["save_cropped"],
+                                  output_path=args["output_path"]
+                                  )

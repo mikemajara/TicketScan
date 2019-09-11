@@ -113,7 +113,7 @@ def main(args):
         app.run(debug=True)
     elif args.image:
         #path_output = slicer.slice(path_image, interactive=False)
-        ocr_batch.extract_lines_of_text(image=args.image)
+        ocr_batch.extract_text_lines_from_image(image=args.image)
 
 
 def run():
