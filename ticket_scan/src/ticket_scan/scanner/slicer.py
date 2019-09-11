@@ -1,11 +1,15 @@
 import os
-import cv2
+# import cv2
 import logging
 import argparse
 import numpy as np
 from datetime import datetime
 from helpers import show_image_normal_window, wait_for_input, get_path_base_and_ext, setup_logging
 
+try:
+    from cv2 import cv2
+except ImportError:
+    pass
 
 PATH_WORKDIR = os.getcwd()
 PATH_IMAGES = 'images'
@@ -31,6 +35,7 @@ KEY_ESC = 27
 DEFAULT_TH_PIXEL_DENSITY = 5.5
 DEFAULT_LINE_PADDING = 7
 DEFAULT_KERNEL_SIZE = 100
+DEFAULT_CUT_MARGIN_FACTOR = 0.5
 
 logger = logging.getLogger(__name__)
 
@@ -63,39 +68,42 @@ def get_blurred_image(image, kernel_size=15):
     return cv2.filter2D(image, -1, kernel_horiz)
 
 
-def pair_lower_upper_bounds(lowers, uppers):
-    if len(lowers) != len(uppers):
-        if lowers[0] < uppers[0]:
-            return lowers[1:], uppers
+def pair_upper_lower_bounds(uppers, lowers):
+    if len(uppers) != len(lowers):
+        # an upper border should not have
+        # a higher value than a lower border
+        # (in images [0,0] is the top left corner)
+        if uppers[0] > lowers[0]:
+            return uppers, lowers[1:]
         else:
-            return lowers, uppers[:-1]
-    return lowers, uppers
+            return uppers[:-1], lowers
+    return uppers, lowers
 
 
 def get_image_cropped(img, upper_bound, lower_bound):
     H, W = img.shape[:2]
 
-    return img[upper_bound:lower_bound, 0:W]
+    return img.copy()[upper_bound:lower_bound, 0:W]
 
 
-def draw_slices_on_image(img, uppers, lowers, line_padding=DEFAULT_LINE_PADDING):
+def draw_slices_on_image(img, uppers, lowers, line_padding=DEFAULT_LINE_PADDING, num_colors=1):
     display_image = img.copy()
 
     H, W = img.shape[:2]
 
-    color_count = 0
+    color_idx = 0
     for y in uppers:
         pt_y = max(y - line_padding, 0)
         cv2.line(display_image, (0, pt_y), (W, pt_y),
-                 BGR_UPPER[color_count % 2], 1, cv2.LINE_8)
-        color_count += 1
+                 BGR_UPPER[color_idx], 1, cv2.LINE_8)
+        color_idx = (color_idx + 1) % num_colors
 
-    color_count = 0
+    color_idx = 0
     for y in lowers:
         pt_y = min(y + line_padding, H)
         cv2.line(display_image, (0, pt_y), (W, pt_y),
-                 BGR_LOWER[color_count % 2], 1, cv2.LINE_8)
-        color_count += 1
+                 BGR_LOWER[color_idx], 1, cv2.LINE_8)
+        color_idx = (color_idx + 1) % num_colors
 
     return display_image
 
@@ -114,16 +122,16 @@ def get_slices(image,
     hist2d = cv2.reduce(blurred, 1, cv2.REDUCE_AVG)
     hist = hist2d.reshape(-1)
 
-    lowers = [
-        y + 1 for y in range(H - 1) if hist[y] > th_pxl_density >= hist[y + 1]]
     uppers = [
         y - 1 for y in range(H - 1) if hist[y] <= th_pxl_density < hist[y + 1]]
+    lowers = [
+        y + 1 for y in range(H - 1) if hist[y] > th_pxl_density >= hist[y + 1]]
 
-    return lowers, uppers
+    return uppers, lowers
 
 
 def handle_interactive_key_input(th_pxl_density, line_padding):
-    flat_interactive = True
+    flag_interactive = True
 
     key = wait_for_input()
 
@@ -142,9 +150,37 @@ def handle_interactive_key_input(th_pxl_density, line_padding):
 
     return th_pxl_density, line_padding, flag_interactive
 
-def get_cutting_margin_lower_upper(height, factor):
-    lower_margin = height - height * factor
-    upper_margin = height + height * factor
+
+def get_line_mean_hight(uppers, lowers):
+    return np.mean(
+        np.array(list(map(lambda x: x[1] - x[0], zip(uppers, lowers))))
+    )
+
+
+def is_height_cut_margin_valid(x, average, margin_factor=0.5):
+    # valid height = average +/- (average * factor)
+    return abs(average - x) < average * margin_factor
+
+
+def get_slices_as_img_list(img, upper_bounds, lower_bounds, line_padding, margin_factor):
+    slices = []
+
+    H, W = img.shape[:2]
+
+    line_mean_hight = get_line_mean_hight(upper_bounds, lower_bounds)
+
+    for upper, lower in zip(upper_bounds, lower_bounds):
+        slice_height = lower - upper
+
+        if is_height_cut_margin_valid(slice_height, line_mean_hight, margin_factor=margin_factor):
+            pt_upper_cut = max(upper - line_padding, 0)
+            pt_lower_cut = min(lower + line_padding, H)
+
+            crop_img = get_image_cropped(img, pt_upper_cut, pt_lower_cut)
+            slices.append(crop_img.copy())
+
+    return slices
+
 
 def slice(path_image: str,
           interactive=False,
@@ -157,20 +193,18 @@ def slice(path_image: str,
 
     orig = image.copy()
     working_image = image.copy()
+    H, W = image.shape[:2]
 
     working_image = cv2.cvtColor(working_image, cv2.COLOR_BGR2GRAY)
 
     computed_threshold, working_image = get_inverted_thresholded_image(
         working_image)
 
-    lowers, uppers = get_slices(working_image, th_pxl_density)
+    uppers, lowers = get_slices(working_image, th_pxl_density)
 
     while interactive:
 
-        # (miguel) change again to color so we can appreciate
-        # the lines we will draw on the image
-        display_image = working_image.copy()
-        display_image = cv2.cvtColor(display_image, cv2.COLOR_GRAY2BGR)
+        display_image = orig.copy()
 
         display_image = draw_slices_on_image(display_image, uppers, lowers, line_padding=line_padding)
 
@@ -181,44 +215,34 @@ def slice(path_image: str,
 
         th_pxl_density, line_padding, interactive = handle_interactive_key_input(th_pxl_density, line_padding)
 
-        lowers, uppers = get_slices(working_image, th_pxl_density)
+        uppers, lowers = get_slices(working_image, th_pxl_density)
 
     cv2.destroyAllWindows()
 
-    # #### (6) Crop and write images to output #### #
-    lowers, uppers = pair_lower_upper_bounds(lowers, uppers)
+    # Pairing is here after (possible) image display to
+    # keep interactive mode transparent.
+    uppers, lowers = pair_upper_lower_bounds(uppers, lowers)
 
-    line_mean_hight = np.mean(
-        np.array(list(map(lambda x: x[0] - x[1], zip(lowers, uppers)))))
+    slices = get_slices_as_img_list(orig,
+                                upper_bounds=uppers,
+                                lower_bounds=lowers,
+                                line_padding=line_padding,
+                                margin_factor=DEFAULT_CUT_MARGIN_FACTOR)
 
-    lower_th_pxl_cut, upper_th_pxl_cut = get_cutting_margin_lower_upper(line_mean_hight, factor=0.5)
-
-    if save_cropped: # FIXME <- Join save_cropped conditions into one
+    if save_cropped:
         parameters_str = str(th_pxl_density) + "_" + str(line_padding)
         path, basename, ext = get_path_base_and_ext(filename_image)
         path_output = path + '/output_cropped/' + basename + "_" + parameters_str
         os.makedirs(path_output, exist_ok=True)
 
-    cropped_arr = [];
+        for slice, upper, lower in zip(slices, uppers, lowers):
+            fname = "cropped_" + str(lower) + "_" + str(upper) + ".png"
+            cv2.imwrite(path_output + "/" + fname, slice)
 
-    for lower, upper in zip(lowers, uppers):
+        now_timestamp = datetime.now().strftime("%Y%m%d_%H%M")
+        cv2.imwrite(path_output + "/original_" + now_timestamp + ext, orig)
 
-        if lower_th_pxl_cut < lower - upper < upper_th_pxl_cut:
-            # TODO get_upper_cut_point() ? or overengineering?
-            pt_upper = max(upper - line_padding, 0)
-            pt_lower = min(lower + line_padding, H) # FIXME <- H
-
-            crop_img = get_image_cropped(orig, pt_upper, pt_lower)
-            cropped_arr.append(crop_img.copy())
-
-            if save_cropped: # FIXME <- Join save_cropped conditions into one
-                fname = "cropped_" + str(lower) + "_" + str(upper) + ".png"
-                cv2.imwrite(path_output + "/" + fname, crop_img)
-
-    now_timestamp = datetime.now().strftime("%Y%m%d_%H%M")
-    cv2.imwrite(path_output + "/original_" + now_timestamp + ext, orig)
-
-    return path_output if save_cropped else cropped_arr
+    return path_output if save_cropped else slices
 
 
 # construct the argument parser and parse the arguments
@@ -259,6 +283,7 @@ if __name__ == "__main__":
 
     slice(path_image=args["image"],
           interactive=args["interactive"],
-          threshold_pxl_density=args["threshold_pxl_density"],
+          save_cropped=args["save_cropped"],
+          th_pxl_density=args["threshold_pxl_density"],
           line_padding=args["line_padding"]
-          )
+    )
