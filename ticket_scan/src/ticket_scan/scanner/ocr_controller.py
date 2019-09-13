@@ -16,12 +16,14 @@ def aux_func():
 
 def scan_ticket(image, *args, **kwargs):
     results = {}
-    for line_padding in [1, 3, 5, 7]:
-        results[str(line_padding)] = ocr_batch.extract_text_lines_from_image(
-            image=image,
-            line_padding=line_padding,
-            *args, **kwargs
-        )
+    for line_padding in [3, 5, 7]:
+        for th_pxl_density in [4.5, 5.5, 6.5]:
+            results[str(line_padding)] = ocr_batch.extract_text_lines_from_image(
+                image=image,
+                line_padding=line_padding,
+                th_pxl_density=th_pxl_density,
+                *args, **kwargs
+            )
     return results
 
 
