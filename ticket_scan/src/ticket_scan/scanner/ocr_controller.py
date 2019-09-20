@@ -1,4 +1,4 @@
-import os
+import time
 import logging
 import argparse
 from helpers import setup_logging
@@ -15,15 +15,19 @@ def aux_func():
 
 
 def scan_ticket(image, *args, **kwargs):
+    start = time.time()
+
     results = {}
-    for line_padding in [3, 5, 7]:
-        for th_pxl_density in [4.5, 5.5, 6.5]:
-            results[str(line_padding)] = ocr_batch.extract_text_lines_from_image(
+    for th_pxl_density in [4.5, 5.5, 6.5]:
+        for line_padding in [3, 5, 7]:
+            results[str(th_pxl_density) + "_" + str(line_padding)] = ocr_batch.extract_text_lines_from_image(
                 image=image,
                 line_padding=line_padding,
                 th_pxl_density=th_pxl_density,
                 *args, **kwargs
             )
+    end = time.time()
+    logger.info("Processed image in controller in a total of " + str(end - start) + "s")
     return results
 
 
