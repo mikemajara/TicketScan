@@ -1,9 +1,11 @@
+import os
 import time
 import logging
 import argparse
 from helpers import setup_logging
 import ocr_batch
-
+import numpy as np
+import json
 
 CONSTANT = 'CONSTANT'
 
@@ -18,8 +20,8 @@ def scan_ticket(image, *args, **kwargs):
     start = time.time()
 
     results = {}
-    for th_pxl_density in [4.5, 5.5, 6.5]:
-        for line_padding in [3, 5, 7]:
+    for th_pxl_density in np.arange(3,7,.5):
+        for line_padding in range(2, 8):
             results[str(th_pxl_density) + "_" + str(line_padding)] = ocr_batch.extract_text_lines_from_image(
                 image=image,
                 line_padding=line_padding,
@@ -28,6 +30,8 @@ def scan_ticket(image, *args, **kwargs):
             )
     end = time.time()
     logger.info("Processed image in controller in a total of " + str(end - start) + "s")
+    json.dump(results, open("results.json", "w"), indent=2)
+    print("results in " + os.getcwd() + "/results.json")
     return results
 
 

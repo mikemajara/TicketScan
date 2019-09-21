@@ -1,0 +1,6 @@
+regex
+jupyter
+jupyter_contrib_nbextensions
+jupyter_nbextensions_configurator
+numpy
+pandas
