@@ -1,11 +1,12 @@
 import os
+import json
 import numpy as np
 import logging
 import requests
 from fuzzywuzzy import fuzz
 from helpers import setup_logging
 
-DEFAULT_SIMILARITY_TH = 75
+DEFAULT_SIMILARITY_TH = 70
 URL_TICKET_STORE = "http://localhost:5001"
 END_POINT_COMPANIES = "get_companies"
 END_POINT_STORES = "get_stores"
@@ -15,42 +16,44 @@ setup_logging(logging.DEBUG)
 
 # Dummy variables
 example_ticket = {
-    '0': 'MERCADONA S.A.',
-    '1': 'C/ MAYOR, 7 - ESPINARLO',
-    '2': 'o MURCIA',
-    '3': 'TELEFONO; 9568307114',
-    '4': 'NIF: A-46103834',
-    '5': '17/63/2019 19:51 OP: 1059346',
-    '6': 'HACTURA SIMPLIFICADA: 2308-011-643UT6',
-    '7': 'Preciu Importe',
-    '8': 'Vescripción unidad (€)',
-    '9': '1 B,ALMENDRA S/A 8,40',
-    '10': '4 L SEMI S/LACTO 4,50 16,00',
-    '11': '3 GALLETA RELTEV 1,22 3,66',
-    '12': '1 COPOS AVENA 0,81',
-    '13': '1 COSTILLA BARB 3,99',
-    '14': '1 ZANAHORIA BOLS 0,69',
-    '15': '2 VENTRESCA ATUN 2,15 4,30',
-    '16': '1 PAPEL HIGIENIC 2,70',
-    '17': '1 HIGIÉNICO DOBL 2,07',
-    '18': '1 PEPINO y o',
-    '19': '0,418 kg 1,89 €/kg ug',
-    '20': '1 PLATANO o',
-    '21': '0,616 kg 2,29 e/ky 1,41',
-    '22': 'TOTAL 49',
-    '23': 'LILTALLE (€)',
-    '24': '1YA BASE IMPONIBLE CUOTA',
-    '25': '4% 20,19 0,81',
-    '26': '10% 19,24 1,92',
-    '27': '2% 3,94 0,83',
-    '28': 'DUTAL 43,97 3,56',
-    '29': 'A',
-    '30': 'AUT: 307029',
-    '31': 'uz 44101236',
-    '32': '+ PAGO TARJETA BANCARIA +',
-    '33': '- YUYODO3 101',
-    '34': '«13A CLASICA',
-    '35': 'SE ADMLIEN DEVOLUCIONES CON TiCkEf'
+    "0": "MERCADONA S.A.",
+    "1": "C/ MAYOR, 7 - ESPINARLO",
+    "2": ". MURCIA",
+    "3": "TELEFONO: 968307114",
+    "4": "NIF. A-46103834",
+    "5": "7/03/2019 19:51 OP: 1059346",
+    "6": "FACTURA SIMPLIFICADA: 2308-011-v43UTO",
+    "7": "Preciu Importe",
+    "8": "Vescr ipción unidad (€)",
+    "9": "1 B,ALMENDRA S/A 8,40",
+    "10": "4 L SEMI S/LACTO 4,50 16,00",
+    "11": "3 GALLETA RELTEV 1,22 3,06",
+    "12": "1 COPOS AVENA 0,81",
+    "13": "1 COSTILLA BARB 3,99",
+    "14": "1 ZANAHORIA BOLS 0,69",
+    "15": "2 VENTRESCA ATUN 2,15 4,30",
+    "16": "1 PAPEL HIGIENIC 2,70",
+    "17": "1 HIGIENICO DOBL 2,01",
+    "18": "1 PEPINO o",
+    "19": "U,478 ky 1,89 €/kg u,9uU",
+    "20": "1 PLATANO",
+    "21": "0,616 kg 2,29 €e/kg 1,41",
+    "22": "TOTAL 463%",
+    "23": "TARJETA. BANCARIA 46%",
+    "24": "LLTALLE (€)",
+    "25": "IA BASE IMPONIBLE CUOTA",
+    "26": "4% 20,19 0,81",
+    "27": "10% 19,24 1,92",
+    "28": "2 3,94 0,83",
+    "29": "HITAL 43,9 3,56",
+    "30": "LARJ: 9016",
+    "31": "AUT: 307029",
+    "32": "“ul: 44101236",
+    "33": "+ PALO TARJETA BANCARIA +",
+    "34": "- 4490000031010",
+    "35": "«IVA CLÁSICA",
+    "36": "30",
+    "37": "SE ADMIIEN DEVOLUCIONES CON TICKEf"
 }
 available_stores = ["Mercadona", "Lidl"]
 
@@ -65,6 +68,9 @@ line_city = "o MURCIA"
 line_telephone = "TELEFONO; 9568307114"
 line_store_id = "NIF: A-46103834"
 line_fra = "HACTURA SIMPLIFICADA: 2308-011-643UT6"
+line_cash = "ENTREGA...EFECTIVO "
+line_returned = "DEVOLUCIÓN "
+line_card = "TARJETA..BANCARIA "
 # ...
 
 date_upper_limit = "" # In this case nif string...
@@ -166,6 +172,22 @@ def find_store(lines: list, available_stores: list, similarity_th=DEFAULT_SIMILA
     return max(found_stores, key=lambda x: x["ratio"])
 
 
+def find_payment_method(lines: list):
+    found_payment_lines = find_lines_with_limit(lines, limit=list_lower_limit, amount_lines=2, limit_type="upper")
+    found_cash = find_line_with_similarity(lines, line_cash)
+    if found_cash:
+        found_returned = find_line_with_similarity(lines, line_returned)
+        return {
+            "method": "cash",
+            "returned": found_returned
+        }
+    else:
+        found_card = find_line_with_similarity(lines, line_card)
+        return {
+            "method": "card"
+        }
+
+
 def find_line_address(lines: list, company: dict):
     # Mercadona proprietary
     return find_lines_with_limit(lines, company["name"], amount_lines=2, limit_type="upper")
@@ -197,17 +219,27 @@ def parse(ticket: dict):
 
     # 4.- Lineas de compra
     found_product_lines = find_lines_with_limits(lines, list_upper_limit, list_lower_limit)
-    print(found_product_lines)
 
-    # 5.- Build ticket
+    # 5.- Total y método de pago
+    found_total_line = find_line_with_similarity(lines, list_lower_limit)
+    found_payment_method = find_payment_method(lines)
+    payment = {
+        "total": found_total_line["value_found"],
+        **found_payment_method,
+    }
+
+
+    # 6.- Build ticket
     ticket_response["company"] = company
     ticket_response["store"] = store
     ticket_response["date"] = found_date
     ticket_response["lines"] = found_product_lines
+    ticket_response["payment"] = payment
+    print(json.dumps(ticket_response, indent=2, default=str, ensure_ascii=False))
     return ticket_response
 
 
-# parse_ticket(example_ticket)
+parse(example_ticket)
 # lines = list(example_ticket.values())
 # print(find_lines_with_limits(lines, list_upper_limit, list_lower_limit))
 # print(find_store(lines, available_stores))

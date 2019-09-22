@@ -4,6 +4,7 @@ import datetime as dt
 from flask_restful import Resource, reqparse
 from werkzeug.datastructures import FileStorage
 from ticket_scan.scanner import slicer, ocr_batch
+from flask import jsonify
 
 
 class Server(Resource):
@@ -28,4 +29,4 @@ class Server(Resource):
         else:
             raise Exception("file is None")
 
-        return result if result else {'msg': 'ok'}
+        return jsonify(result) if result else {'msg': 'ok'}
