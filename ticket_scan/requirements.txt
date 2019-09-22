@@ -23,6 +23,7 @@ pillow
 pytesseract
 flask
 flask-restful
-
 dateparser
-jsonpickle
+regex
+fuzzywuzzy[speedup]
+requests

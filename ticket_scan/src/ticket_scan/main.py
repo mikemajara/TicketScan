@@ -21,11 +21,11 @@ import argparse
 import sys
 import logging
 
-from server import Server
+from ticket_scan.server import Server
 from flask import Flask
 from flask_restful import Api
 
-from scanner import slicer, ocr_batch
+from ticket_scan.scanner import slicer, ocr_batch
 
 
 DEFAULT_LISTEN = False
