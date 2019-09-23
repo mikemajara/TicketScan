@@ -1,10 +1,12 @@
 import os
 import json
+import copy
+from typing import List, Type
 import numpy as np
 import logging
 import requests
 from fuzzywuzzy import fuzz
-from helpers import setup_logging
+from ticket_scan.scanner.helpers import setup_logging
 
 DEFAULT_SIMILARITY_TH = 70
 URL_TICKET_STORE = "http://localhost:5001"
@@ -56,6 +58,20 @@ example_ticket = {
     "37": "SE ADMIIEN DEVOLUCIONES CON TICKEf"
 }
 available_stores = ["Mercadona", "Lidl"]
+available_companies = [
+    {
+        "_id": "5d76824c1855750cd80a8037",
+        "name": "MERCADONA S.A.",
+        "taxId": "A-46103834",
+        "web": None
+    },
+    {
+        "_id": "5d7682a11855750cd80a8040",
+        "name": "LIDL",
+        "taxId": "A60195278",
+        "web": "www.lidl.es"
+    }
+]
 
 store_name = "MERCADONA S.A."
 list_upper_limit = "Descripción unidad (€)"
@@ -76,6 +92,47 @@ line_card = "TARJETA..BANCARIA "
 date_upper_limit = "" # In this case nif string...
 
 
+class ResultObject:
+    def __init__(self,
+                 index: List[int] = [None],
+                 value_search: List[str] = [],
+                 value_found: List[str] = [None],
+                 value_requested: List[str] = [],
+                 ratio: List[int] = [None],
+                 is_found: List[bool] = [False],
+                 ):
+        self.index = index
+        self.value_search = value_search
+        self.value_found = value_found
+        self.value_requested = value_requested
+        self.ratio = ratio
+        self.is_found = is_found
+
+    @classmethod
+    def combine_results(cls, args: List['ResultObject']):
+        results = args.copy()
+        first = results.pop(0)
+        result_object = ResultObject(
+            index=first.index,
+            value_search=first.value_search,
+            value_found=first.value_found,
+            value_requested=first.value_requested,
+            ratio=first.ratio,
+            is_found=first.is_found,
+        )
+        for result in results:
+            result_object.index = [*result_object.index, *result.index]
+            result_object.value_search = [*result_object.value_search, *result.value_search]
+            result_object.value_found = [*result_object.value_found, *result.value_found]
+            result_object.value_requested = [*result_object.value_requested, *result.value_requested]
+            result_object.ratio = [*result_object.ratio, *result.ratio]
+            result_object.is_found = [*result_object.is_found, *result.is_found]
+        return result_object
+
+    def to_json(self):
+        return self.__dict__
+
+
 def find_line_with_similarity(lines: list, string: str, similarity_th=DEFAULT_SIMILARITY_TH):
     """
     Returns the most similar line found in the ticket using Levenshtein distance.
@@ -85,41 +142,36 @@ def find_line_with_similarity(lines: list, string: str, similarity_th=DEFAULT_SI
     :param similarity_th:
     :return:
     """
-    found_lines = []
+    best_found_line = ResultObject(value_search=[string])
+    best_ratio = 0
     for idx, line in enumerate(lines):
         ratio = fuzz.ratio(line.lower(), string.lower())
-        if ratio > similarity_th:
-            found_lines.append(
-                {
-                    "index": idx,
-                    "value_search": string,
-                    "value_found": line,
-                    "ratio": ratio
-                }
+        if best_ratio < ratio > similarity_th:
+            best_found_line = ResultObject(
+                index=[idx],
+                value_search=[string],
+                value_found=[line],
+                value_requested=[line],
+                ratio=[ratio],
+                is_found=[True],
             )
-    if len(found_lines) <= 0:
-        return {}
-    return max(found_lines, key=lambda x: x["ratio"])
+            best_ratio = ratio
+    return best_found_line
 
 
 def find_lines_with_limits(lines: list, upper_limit: str, lower_limit: str, similarity_th=DEFAULT_SIMILARITY_TH):
     upper_limit_line_found = find_line_with_similarity(lines, upper_limit, similarity_th)
     lower_limit_line_found = find_line_with_similarity(lines, lower_limit, similarity_th)
-    if upper_limit_line_found and lower_limit_line_found:
-        upper_idx = int(upper_limit_line_found["index"])
-        lower_idx = int(lower_limit_line_found["index"])
-        return lines[upper_idx+1:lower_idx]
-    else:
-        if len(upper_limit_line_found) <= 0:
-            logger.debug("upper limit line not found")
-        if len(lower_limit_line_found) <= 0:
-            logger.debug("lower limit line not found")
-        return []
+    result_object = ResultObject.combine_results([upper_limit_line_found, lower_limit_line_found])
+    result_object.value_requested = []
+    if upper_limit_line_found.is_found[0] and lower_limit_line_found.is_found[0]:
+        result_object.value_requested = lines[upper_limit_line_found.index[0]+1:lower_limit_line_found.index[0]]
+    return result_object
 
 
 def find_lines_with_limit(lines: list,
                           limit: str,
-                          amount_lines: int=1,
+                          amount_lines: int = 1,
                           limit_type="upper",
                           similarity_th=DEFAULT_SIMILARITY_TH):
     """
@@ -131,26 +183,42 @@ def find_lines_with_limit(lines: list,
     :param similarity_th:
     :return:
     """
+    if amount_lines < 1:
+        raise ValueError("amount lines must be greater than 1")
     limit_line_found = find_line_with_similarity(lines, limit, similarity_th)
-    if limit_line_found:
-        index_found = limit_line_found["index"]
+    result_lines = copy.copy(limit_line_found)
+    result_lines.value_requested = []
+    if limit_line_found.is_found[0]:
         if limit_type == "upper":
-            return lines[index_found+1:index_found+1+amount_lines]
+            result_lines.value_requested = lines[
+                limit_line_found.index[0]+1:
+                limit_line_found.index[0]+1+amount_lines
+            ]
         elif limit_type == "lower":
-            return lines[index_found-amount_lines:index_found]
+            result_lines.value_requested = lines[
+                limit_line_found.index[0]-amount_lines:
+                limit_line_found.index[0]
+            ]
         else:
             raise ValueError("limit_type argument must be one of ['upper', 'lower']")
+    return result_lines
 
 
 def find_company(lines: list, available_companies: list, similarity_th=DEFAULT_SIMILARITY_TH):
-    found_companies = []
-    for store in available_companies:
-        found_line_company = find_line_with_similarity(lines, store, similarity_th)
-        if found_line_company and found_line_company["ratio"] > similarity_th:
-            found_companies.append(found_line_company)
-    return max(found_companies, key=lambda x: x["ratio"])
+    result_object = ResultObject()
+    values_searched = []
+    best_ratio = 0
+    for company in available_companies:
+        found_company = find_line_with_similarity(lines, company["name"], similarity_th)
+        values_searched.append(found_company.value_search[0])
+        if found_company.is_found[0] and best_ratio < found_company.ratio[0] > similarity_th:
+            result_found = copy.copy(found_company)
+            result_object = result_found
+            result_object.value_search = values_searched
+            best_ratio = result_found.ratio[0]
+    return result_object
 
-
+# TODO refactor
 def find_store(lines: list, available_stores: list, similarity_th=DEFAULT_SIMILARITY_TH):
     found_stores = []
 
@@ -171,7 +239,7 @@ def find_store(lines: list, available_stores: list, similarity_th=DEFAULT_SIMILA
         return []
     return max(found_stores, key=lambda x: x["ratio"])
 
-
+# TODO refactor
 def find_payment_method(lines: list):
     found_payment_lines = find_lines_with_limit(lines, limit=list_lower_limit, amount_lines=2, limit_type="upper")
     found_cash = find_line_with_similarity(lines, line_cash)
@@ -187,11 +255,13 @@ def find_payment_method(lines: list):
             "method": "card"
         }
 
-
+# TODO refactor
 def find_line_address(lines: list, company: dict):
     # Mercadona proprietary
     return find_lines_with_limit(lines, company["name"], amount_lines=2, limit_type="upper")
 
+
+# TODO refactor
 def parse(ticket: dict):
     ticket_response = {}
     company = None
@@ -238,10 +308,16 @@ def parse(ticket: dict):
     print(json.dumps(ticket_response, indent=2, default=str, ensure_ascii=False))
     return ticket_response
 
-
-parse(example_ticket)
-# lines = list(example_ticket.values())
-# print(find_lines_with_limits(lines, list_upper_limit, list_lower_limit))
+def print_json(string):
+    print(json.dumps(string, indent=2, ensure_ascii=False))
+# parse(example_ticket)
+lines = list(example_ticket.values())
+# print_json(find_lines_with_limits(lines, "list_upper_limit", list_lower_limit).to_json())
+# print_json(find_lines_with_limit(lines, line_store_id, amount_lines=1, limit_type="upper").to_json())
+# print_json(find_lines_with_limit(lines, line_fra, amount_lines=1, limit_type="lower").to_json())
+print_json(find_company(lines, available_companies=available_companies).to_json())
 # print(find_store(lines, available_stores))
-# print(find_lines_with_limit(lines, line_store_id, amount_lines=1, limit_type="upper"))
-# print(find_lines_with_limit(lines, line_fra, amount_lines=1, limit_type="lower"))
+# FIXME
+# print(find_payment_method(lines))
+# FIXME
+# print(find_line_address(lines, company=None))
