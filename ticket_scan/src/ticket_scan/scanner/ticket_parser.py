@@ -13,12 +13,15 @@ URL_TICKET_STORE = "http://localhost:5001"
 END_POINT_COMPANIES = "get_companies"
 END_POINT_STORES = "get_stores"
 
+METHOD_CARD_STRING = "CARD"
+METHOD_CASH_STRING = "CASH"
+
 logger = logging.getLogger(__name__)
 setup_logging(logging.DEBUG)
 
 # Dummy variables
 example_ticket = {
-    "0": "MERCADONA S.A.",
+    "0": "MERCADONA S.",
     "1": "C/ MAYOR, 7 - ESPINARLO",
     "2": ". MURCIA",
     "3": "TELEFONO: 968307114",
@@ -41,7 +44,9 @@ example_ticket = {
     "20": "1 PLATANO",
     "21": "0,616 kg 2,29 €e/kg 1,41",
     "22": "TOTAL 463%",
-    "23": "TARJETA. BANCARIA 46%",
+    "222": "ENTREGA...EFECTIVO 50,00",
+    "2222": "DEVOLUCIÓN 0,05",
+    # "23": "TARJETA. BANCARIA 46%",
     "24": "LLTALLE (€)",
     "25": "IA BASE IMPONIBLE CUOTA",
     "26": "4% 20,19 0,81",
@@ -51,13 +56,38 @@ example_ticket = {
     "30": "LARJ: 9016",
     "31": "AUT: 307029",
     "32": "“ul: 44101236",
-    "33": "+ PALO TARJETA BANCARIA +",
+    # "33": "+ PALO TARJETA BANCARIA +",
     "34": "- 4490000031010",
     "35": "«IVA CLÁSICA",
     "36": "30",
     "37": "SE ADMIIEN DEVOLUCIONES CON TICKEf"
 }
-available_stores = ["Mercadona", "Lidl"]
+available_stores = [
+    {
+        "_id": "5d7683401855750cd80a8057",
+        "address": "AVDA. CICLISTA MARIANO ROJAS-AV",
+        "city": "Murcia",
+        "company_id": "5d76824c1855750cd80a8037",
+        "country": "Spain",
+        "phone": "968392509"
+    },
+    {
+        "_id": "5d8742d3dcad30c5cc30624d",
+        "address": "C/ MAYOR, 7 - ESPINARDO",
+        "city": "Murcia",
+        "company_id": "5d76824c1855750cd80a8037",
+        "country": "Spain",
+        "phone": "968392509"
+    },
+    {
+        "_id": "5d87822cdcad30c5cc30740a",
+        "address": "Paseo Floridablanca, 4",
+        "city": "Murcia",
+        "company_id": "5d76824c1855750cd80a8037",
+        "country": "Spain",
+        "phone": "968392509"
+    }
+]
 available_companies = [
     {
         "_id": "5d76824c1855750cd80a8037",
@@ -215,48 +245,62 @@ def find_company(lines: list, available_companies: list, similarity_th=DEFAULT_S
             result_found = copy.copy(found_company)
             result_object = result_found
             result_object.value_search = values_searched
+            result_object.value_requested = [company["name"]]
             best_ratio = result_found.ratio[0]
     return result_object
 
-# TODO refactor
+
 def find_store(lines: list, available_stores: list, similarity_th=DEFAULT_SIMILARITY_TH):
-    found_stores = []
+    result_object = ResultObject()
+    values_searched = []
+    best_ratio_address = 0
+    best_ratio_city = 0
 
-    for idx, store in enumerate(available_stores):
-        found_line_address = find_line_with_similarity(lines, store["address"])
-        found_line_city = find_line_with_similarity(lines, store["city"])
-        if found_line_address and found_line_city and \
-            found_line_address["ratio"] > similarity_th and found_line_city["ratio"] > similarity_th:
-            found_stores.append(
-                {
-                    "index": idx,
-                    "values_search": lines,
-                    "values_found": [found_line_address, found_line_city],
-                    "ratio": np.average([found_line_address["ratio"], found_line_city["ratio"]])
-                }
-            )
-    if len(found_stores) <= 0:
-        return []
-    return max(found_stores, key=lambda x: x["ratio"])
+    for store in available_stores:
+        found_address = find_line_with_similarity(lines, store["address"])
+        found_city = find_line_with_similarity(lines, store["city"])
 
-# TODO refactor
+        values_searched.append(found_address.value_search[0])
+        values_searched.append(found_city.value_search[0])
+
+        if found_address.is_found[0] and found_city.is_found[0] and \
+                best_ratio_address < found_address.ratio[0] > similarity_th and \
+                best_ratio_city < found_city.ratio[0] > similarity_th:
+            result_found = copy.copy(ResultObject.combine_results([found_address, found_city]))
+
+            result_object = result_found
+            result_object.value_search = values_searched
+            result_object.value_requested = [store["address"], store["city"]]
+
+            best_ratio_address = found_address.ratio[0]
+            best_ratio_city = found_city.ratio[0]
+    return result_object
+
+
 def find_payment_method(lines: list):
-    found_payment_lines = find_lines_with_limit(lines, limit=list_lower_limit, amount_lines=2, limit_type="upper")
-    found_cash = find_line_with_similarity(lines, line_cash)
-    if found_cash:
-        found_returned = find_line_with_similarity(lines, line_returned)
-        return {
-            "method": "cash",
-            "returned": found_returned
-        }
-    else:
+    found_method = find_lines_with_limit(lines, limit=list_lower_limit, amount_lines=1, limit_type="upper")
+    if found_method.is_found[0]:
         found_card = find_line_with_similarity(lines, line_card)
-        return {
-            "method": "card"
-        }
+        found_cash = find_line_with_similarity(lines, line_cash)
+        if found_card.is_found[0]:
+            found_method.value_requested = [METHOD_CARD_STRING]
+            return ResultObject.combine_results([found_method, found_card])
+        elif found_cash.is_found[0]:
+            found_method.value_requested = [METHOD_CASH_STRING]
+            found_returned = find_lines_with_limit(
+                lines,
+                limit=found_cash.value_found[0],
+                amount_lines=1,
+                limit_type="upper"
+            )
+            return ResultObject.combine_results([found_method, found_cash, found_returned])
+        else:
+            return ResultObject(value_search=[list_lower_limit])
+    else:
+        return ResultObject(value_search=[list_lower_limit])
 
-# TODO refactor
-def find_line_address(lines: list, company: dict):
+
+def find_lines_address(lines: list, company: dict):
     # Mercadona proprietary
     return find_lines_with_limit(lines, company["name"], amount_lines=2, limit_type="upper")
 
@@ -280,7 +324,7 @@ def parse(ticket: dict):
     # 2.- Find store
     r = requests.get(os.path.join(URL_TICKET_STORE,END_POINT_STORES,company["_id"]))
     available_stores = r.json()
-    ticket_address_lines = find_line_address(lines, company)
+    ticket_address_lines = find_lines_address(lines, company)
     found_store = find_store(ticket_address_lines, available_stores)
     store = available_stores[found_store["index"]] if found_store else None
 
@@ -315,9 +359,7 @@ lines = list(example_ticket.values())
 # print_json(find_lines_with_limits(lines, "list_upper_limit", list_lower_limit).to_json())
 # print_json(find_lines_with_limit(lines, line_store_id, amount_lines=1, limit_type="upper").to_json())
 # print_json(find_lines_with_limit(lines, line_fra, amount_lines=1, limit_type="lower").to_json())
-print_json(find_company(lines, available_companies=available_companies).to_json())
-# print(find_store(lines, available_stores))
-# FIXME
-# print(find_payment_method(lines))
-# FIXME
-# print(find_line_address(lines, company=None))
+# print_json(find_company(lines, available_companies=available_companies).to_json())
+# print_json(find_store(lines, available_stores).to_json())
+# print_json(find_payment_method(lines).to_json())
+# print_json(find_lines_address(lines, company=available_companies[0]).to_json())
