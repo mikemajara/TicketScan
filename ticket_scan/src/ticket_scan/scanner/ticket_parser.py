@@ -122,6 +122,10 @@ line_card = "TARJETA..BANCARIA "
 date_upper_limit = "" # In this case nif string...
 
 
+def print_json(string):
+    print(json.dumps(string, indent=2, ensure_ascii=False))
+
+
 class ResultObject:
     def __init__(self,
                  index: List[int] = [None],
@@ -313,7 +317,6 @@ def find_lines_address(lines: list, company: dict):
     return find_lines_with_limit(lines, company["name"], amount_lines=2, limit_type="upper")
 
 
-# TODO refactor
 def parse(ticket: dict):
     ticket_response = {}
     company = None
@@ -368,8 +371,6 @@ def parse(ticket: dict):
     print(json.dumps(ticket_response, indent=2, default=str, ensure_ascii=False))
     return ticket_response
 
-def print_json(string):
-    print(json.dumps(string, indent=2, ensure_ascii=False))
 
 # parse(example_ticket)
 # lines = list(example_ticket.values())
