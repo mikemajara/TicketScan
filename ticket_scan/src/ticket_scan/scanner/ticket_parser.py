@@ -21,7 +21,7 @@ setup_logging(logging.DEBUG)
 
 # Dummy variables
 example_ticket = {
-    "0": "MERCADONA S.",
+    "0": "MERCADONA S.A.",
     "1": "C/ MAYOR, 7 - ESPINARLO",
     "2": ". MURCIA",
     "3": "TELEFONO: 968307114",
@@ -44,9 +44,9 @@ example_ticket = {
     "20": "1 PLATANO",
     "21": "0,616 kg 2,29 €e/kg 1,41",
     "22": "TOTAL 463%",
-    "222": "ENTREGA...EFECTIVO 50,00",
-    "2222": "DEVOLUCIÓN 0,05",
-    # "23": "TARJETA. BANCARIA 46%",
+    # "222": "ENTREGA...EFECTIVO 50,00",
+    # "2222": "DEVOLUCIÓN 0,05",
+    "23": "TARJETA. BANCARIA 46%",
     "24": "LLTALLE (€)",
     "25": "IA BASE IMPONIBLE CUOTA",
     "26": "4% 20,19 0,81",
@@ -56,7 +56,7 @@ example_ticket = {
     "30": "LARJ: 9016",
     "31": "AUT: 307029",
     "32": "“ul: 44101236",
-    # "33": "+ PALO TARJETA BANCARIA +",
+    "33": "+ PALO TARJETA BANCARIA +",
     "34": "- 4490000031010",
     "35": "«IVA CLÁSICA",
     "36": "30",
