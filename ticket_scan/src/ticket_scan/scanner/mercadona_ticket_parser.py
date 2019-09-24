@@ -1,5 +1,7 @@
 import copy
 import json
+from ticket_scan.model.company import Company, CompanySchema
+from ticket_scan.model.store import Store, StoreSchema
 from ticket_scan.scanner import line_finder as lf
 from line_finder import ResultObject
 from base_ticket_parser import BaseTicketParser
@@ -74,20 +76,19 @@ class MercadonaTicketParser(BaseTicketParser):
         return STR_COMPANY_TAX_ID
 
     def find_company(self, lines: list, available_companies: list, similarity_th=DEFAULT_SIMILARITY_TH):
-        result_object = ResultObject()
-        values_searched = []
+        result = None
         best_ratio = 0
         for company in available_companies:
             found_company = lf.find_line_with_similarity(lines, company["name"], similarity_th)
-            values_searched.append(found_company.value_search[0])
             if found_company.is_found[0] and best_ratio < found_company.ratio[0] > similarity_th:
-                result_found = copy.copy(found_company)
-                result_object = result_found
-                result_object.value_search = values_searched
-                result_object.value_requested = company
-                best_ratio = result_found.ratio[0]
-        return result_object
+                result = CompanySchema().load(company)
+                best_ratio = found_company.ratio[0]
+        return result
 
+
+    # TODO refactor
+    ## - [ ] Only return object store
+    ## - [ ] Make address a variable number of lines.
     def find_store(self, lines: list, available_stores: list, similarity_th=DEFAULT_SIMILARITY_TH):
         result_object = ResultObject()
         values_searched = []
@@ -141,9 +142,9 @@ class MercadonaTicketParser(BaseTicketParser):
         else:
             return ResultObject(value_search=[STR_PRODUCT_LIST_LOWER_LIMIT])
 
-    def find_lines_address(self, lines: list, company: dict):
+    def find_lines_address(self, lines: list, company: Company):
         # Mercadona proprietary
-        return lf.find_lines_with_limit(lines, company["name"], amount_lines=2, limit_type="upper")
+        return lf.find_lines_with_limit(lines, company.name, amount_lines=2, limit_type="upper")
 
     def parse(self, ticket: dict):
         ticket_response = {}
@@ -152,18 +153,18 @@ class MercadonaTicketParser(BaseTicketParser):
         lines = list(ticket.values())
 
         # 1.- Find company
-        found_company = self.find_company(
+        company = self.find_company(
             lines,
             self.get_available_companies()
         )
         # company = next(filter(lambda x: found_company.value_requested[0] == x["name"], available_companies), None)
-        company = found_company.value_requested if found_company.is_found[0] else None
+        #company = found_company.value_requested if found_company.is_found[0] else None
 
-        if company is None:
+        if company is None or not isinstance(company, Company):
             raise Exception("Company not found")
 
         # 2.- Find store
-        available_stores = self.get_available_stores(company["_id"])
+        available_stores = self.get_available_stores(company._id)
         found_address_lines = self.find_lines_address(lines, company)
         found_store = self.find_store(found_address_lines.value_requested, available_stores)
         # store = available_stores[found_store["index"]] if found_store else None
@@ -173,7 +174,7 @@ class MercadonaTicketParser(BaseTicketParser):
             raise Exception("Store not found")
 
         # 3.- Fecha
-        found_date = lf.find_lines_with_limit(lines, limit=company["taxId"], amount_lines=1, limit_type="upper")
+        found_date = lf.find_lines_with_limit(lines, limit=company.taxId, amount_lines=1, limit_type="upper")
 
         # 4.- Lineas de compra
         found_product_lines = lf.find_lines_with_limits(
@@ -192,8 +193,8 @@ class MercadonaTicketParser(BaseTicketParser):
         }
 
         # 6.- Build ticket
-        ticket_response["company"] = company
-        ticket_response["store"] = store
+        ticket_response["company"] = CompanySchema().dump(company)
+        ticket_response["store"] = StoreSchema().dump(store)
         ticket_response["date"] = found_date.value_requested[0]
         ticket_response["lines"] = found_product_lines.value_requested
         ticket_response["payment"] = payment
