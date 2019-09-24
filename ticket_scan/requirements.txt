@@ -27,3 +27,4 @@ dateparser
 regex
 fuzzywuzzy[speedup]
 requests
+marshmallow # <- Review

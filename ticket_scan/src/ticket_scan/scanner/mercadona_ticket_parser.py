@@ -18,6 +18,9 @@ STR_CARD = "TARJETA..BANCARIA "
 STR_CASH = "ENTREGA...EFECTIVO "
 STR_RETURNED = "DEVOLUCIÓN "
 
+# TODO
+## - [ ] Move this lines to a more suitable place
+##      Probably somewhere in a PaymentInformation class
 METHOD_CARD_STRING = "CARD"
 METHOD_CASH_STRING = "CASH"
 
@@ -87,9 +90,11 @@ class MercadonaTicketParser(BaseTicketParser):
 
 
     # TODO refactor
-    ## - [ ] Only return object store
+    ## - [x] Only return object store
+    ## - [ ] Clean remaining code after returning Store Object
     ## - [ ] Make address a variable number of lines.
     def find_store(self, lines: list, available_stores: list, similarity_th=DEFAULT_SIMILARITY_TH):
+        result = None
         result_object = ResultObject()
         values_searched = []
         best_ratio_address = 0
@@ -113,7 +118,8 @@ class MercadonaTicketParser(BaseTicketParser):
 
                 best_ratio_address = found_address.ratio[0]
                 best_ratio_city = found_city.ratio[0]
-        return result_object
+                result = StoreSchema().load(store)
+        return result
 
     def find_payment_method(self, lines: list):
         found_method = lf.find_lines_with_limit(
@@ -166,9 +172,7 @@ class MercadonaTicketParser(BaseTicketParser):
         # 2.- Find store
         available_stores = self.get_available_stores(company._id)
         found_address_lines = self.find_lines_address(lines, company)
-        found_store = self.find_store(found_address_lines.value_requested, available_stores)
-        # store = available_stores[found_store["index"]] if found_store else None
-        store = found_store.value_requested if found_store.is_found[0] else None
+        store = self.find_store(found_address_lines.value_requested, available_stores)
 
         if store is None:
             raise Exception("Store not found")
