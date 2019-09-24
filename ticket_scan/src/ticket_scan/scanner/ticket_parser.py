@@ -127,7 +127,7 @@ class ResultObject:
                  index: List[int] = [None],
                  value_search: List[str] = [],
                  value_found: List[str] = [None],
-                 value_requested: List[str] = [],
+                 value_requested: any = None,
                  ratio: List[int] = [None],
                  is_found: List[bool] = [False],
                  ):
@@ -161,6 +161,14 @@ class ResultObject:
 
     def to_json(self):
         return self.__dict__
+
+    def __eq__(self, other):
+        return self.index == other.index and \
+        self.value_search == other.value_search and \
+        self.value_found == other.value_found and \
+        self.value_requested == other.value_requested and \
+        self.ratio == other.ratio and \
+        self.is_found == other.is_found
 
 
 def find_line_with_similarity(lines: list, string: str, similarity_th=DEFAULT_SIMILARITY_TH):
@@ -245,7 +253,7 @@ def find_company(lines: list, available_companies: list, similarity_th=DEFAULT_S
             result_found = copy.copy(found_company)
             result_object = result_found
             result_object.value_search = values_searched
-            result_object.value_requested = [company["name"]]
+            result_object.value_requested = company
             best_ratio = result_found.ratio[0]
     return result_object
 
@@ -270,7 +278,7 @@ def find_store(lines: list, available_stores: list, similarity_th=DEFAULT_SIMILA
 
             result_object = result_found
             result_object.value_search = values_searched
-            result_object.value_requested = [store["address"], store["city"]]
+            result_object.value_requested = store
 
             best_ratio_address = found_address.ratio[0]
             best_ratio_city = found_city.ratio[0]
@@ -317,16 +325,24 @@ def parse(ticket: dict):
     available_companies = r.json()
     found_company = find_company(
         lines,
-        list(map(lambda x: x["name"], available_companies))
+        available_companies
     )
-    company = next(filter(lambda x: found_company["value_search"] == x["name"], available_companies), None)
+    # company = next(filter(lambda x: found_company.value_requested[0] == x["name"], available_companies), None)
+    company = found_company.value_requested if found_company.is_found[0] else None
+
+    if company is None:
+        raise Exception("Company not found")
 
     # 2.- Find store
-    r = requests.get(os.path.join(URL_TICKET_STORE,END_POINT_STORES,company["_id"]))
+    r = requests.get(os.path.join(URL_TICKET_STORE,END_POINT_STORES, company["_id"]))
     available_stores = r.json()
-    ticket_address_lines = find_lines_address(lines, company)
-    found_store = find_store(ticket_address_lines, available_stores)
-    store = available_stores[found_store["index"]] if found_store else None
+    found_address_lines = find_lines_address(lines, company)
+    found_store = find_store(found_address_lines.value_requested, available_stores)
+    # store = available_stores[found_store["index"]] if found_store else None
+    store = found_store.value_requested if found_store.is_found[0] else None
+
+    if store is None:
+        raise Exception("Store not found")
 
     # 3.- Fecha
     found_date = find_lines_with_limit(lines, limit=company["taxId"], amount_lines=1, limit_type="upper")
@@ -338,24 +354,25 @@ def parse(ticket: dict):
     found_total_line = find_line_with_similarity(lines, list_lower_limit)
     found_payment_method = find_payment_method(lines)
     payment = {
-        "total": found_total_line["value_found"],
-        **found_payment_method,
+        "total": found_total_line.value_requested[0],
+        "method": found_payment_method.value_requested[0],
+        # TODO add return
     }
-
 
     # 6.- Build ticket
     ticket_response["company"] = company
     ticket_response["store"] = store
-    ticket_response["date"] = found_date
-    ticket_response["lines"] = found_product_lines
+    ticket_response["date"] = found_date.value_requested[0]
+    ticket_response["lines"] = found_product_lines.value_requested
     ticket_response["payment"] = payment
     print(json.dumps(ticket_response, indent=2, default=str, ensure_ascii=False))
     return ticket_response
 
 def print_json(string):
     print(json.dumps(string, indent=2, ensure_ascii=False))
+
 # parse(example_ticket)
-lines = list(example_ticket.values())
+# lines = list(example_ticket.values())
 # print_json(find_lines_with_limits(lines, "list_upper_limit", list_lower_limit).to_json())
 # print_json(find_lines_with_limit(lines, line_store_id, amount_lines=1, limit_type="upper").to_json())
 # print_json(find_lines_with_limit(lines, line_fra, amount_lines=1, limit_type="lower").to_json())
