@@ -2,6 +2,9 @@ import os
 import requests
 from abc import ABC, abstractmethod
 
+from ticket_scan.model.company import CompanySchema
+from ticket_scan.model.store import StoreSchema
+
 DEFAULT_SIMILARITY_TH = 70
 
 URL_TICKET_STORE = "http://localhost:5001"
@@ -15,13 +18,13 @@ class BaseTicketParser(ABC):
     def get_available_companies():
         r = requests.get(os.path.join(URL_TICKET_STORE, END_POINT_COMPANIES))
         available_companies = r.json()
-        return available_companies
+        return CompanySchema().load(available_companies, many=True)
 
     @staticmethod
     def get_available_stores(company_id):
         r = requests.get(os.path.join(URL_TICKET_STORE, END_POINT_STORES, company_id))
         available_stores = r.json()
-        return available_stores
+        return StoreSchema().load(available_stores, many=True)
 
     @property
     @abstractmethod

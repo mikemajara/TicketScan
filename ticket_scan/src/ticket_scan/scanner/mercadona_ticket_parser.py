@@ -82,43 +82,33 @@ class MercadonaTicketParser(BaseTicketParser):
         result = None
         best_ratio = 0
         for company in available_companies:
-            found_company = lf.find_line_with_similarity(lines, company["name"], similarity_th)
+            found_company = lf.find_line_with_similarity(lines, company.name, similarity_th)
             if found_company.is_found[0] and best_ratio < found_company.ratio[0] > similarity_th:
-                result = CompanySchema().load(company)
+                result = company
                 best_ratio = found_company.ratio[0]
         return result
 
 
     # TODO refactor
     ## - [x] Only return object store
-    ## - [ ] Clean remaining code after returning Store Object
+    ## - [x] Clean remaining code after returning Store Object
     ## - [ ] Make address a variable number of lines.
     def find_store(self, lines: list, available_stores: list, similarity_th=DEFAULT_SIMILARITY_TH):
         result = None
-        result_object = ResultObject()
-        values_searched = []
         best_ratio_address = 0
         best_ratio_city = 0
 
         for store in available_stores:
-            found_address = lf.find_line_with_similarity(lines, store["address"])
-            found_city = lf.find_line_with_similarity(lines, store["city"])
-
-            values_searched.append(found_address.value_search[0])
-            values_searched.append(found_city.value_search[0])
+            found_address = lf.find_line_with_similarity(lines, store.address)
+            found_city = lf.find_line_with_similarity(lines, store.city)
 
             if found_address.is_found[0] and found_city.is_found[0] and \
                     best_ratio_address < found_address.ratio[0] > similarity_th and \
                     best_ratio_city < found_city.ratio[0] > similarity_th:
-                result_found = copy.copy(ResultObject.combine_results([found_address, found_city]))
-
-                result_object = result_found
-                result_object.value_search = values_searched
-                result_object.value_requested = store
 
                 best_ratio_address = found_address.ratio[0]
                 best_ratio_city = found_city.ratio[0]
-                result = StoreSchema().load(store)
+                result = store
         return result
 
     def find_payment_method(self, lines: list):

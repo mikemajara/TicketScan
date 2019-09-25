@@ -90,9 +90,12 @@ def find_lines_with_limits(lines: list, upper_limit: str, lower_limit: str, simi
     return result_object
 
 
+# TODO
+## - [ ] Test offset lines
 def find_lines_with_limit(lines: list,
                           limit: str,
                           amount_lines: int = 1,
+                          offset_lines: int = 0,
                           limit_type="upper",
                           similarity_th=DEFAULT_SIMILARITY_TH):
     """
@@ -100,6 +103,7 @@ def find_lines_with_limit(lines: list,
     :param lines:
     :param limit:
     :param amount_lines:
+    :param offset_lines:
     :param limit_type:
     :param similarity_th:
     :return:
@@ -112,12 +116,12 @@ def find_lines_with_limit(lines: list,
     if limit_line_found.is_found[0]:
         if limit_type == "upper":
             result_lines.value_requested = lines[
-                limit_line_found.index[0]+1:
-                limit_line_found.index[0]+1+amount_lines
+                limit_line_found.index[0]+1+offset_lines:
+                limit_line_found.index[0]+1+amount_lines+offset_lines
             ]
         elif limit_type == "lower":
             result_lines.value_requested = lines[
-                limit_line_found.index[0]-amount_lines:
+                limit_line_found.index[0]-amount_lines-offset_lines:
                 limit_line_found.index[0]
             ]
         else:
