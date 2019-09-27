@@ -105,22 +105,24 @@ class MercadonaTicketParser(BaseTicketParser):
     # TODO refactor
     ## - [x] Only return object store
     ## - [x] Clean remaining code after returning Store Object
-    ## - [ ] Make address a variable number of lines.
-    def find_store(self, lines: list, available_stores: list, similarity_th=DEFAULT_SIMILARITY_TH):
+    ## - [x] Make address a variable number of lines.
+    ## for the moment in list all must be equal or higher to choose
+    ## a another store.
+    ## Addresses must be also filled in for the stores in the database
+    ## - [ ] How should the method be tested? Test it!
+    def find_store(self, address_lines: list, available_stores: list, similarity_th=DEFAULT_SIMILARITY_TH):
         result = None
-        best_ratio_address = 0
-        best_ratio_city = 0
+        best_ratios = [0] * len(address_lines)
+        # best_ratio_address = 0
+        # best_ratio_city = 0
 
         for store in available_stores:
-            found_address = lf.find_line_with_similarity(lines, store.address)
-            found_city = lf.find_line_with_similarity(lines, store.city)
-
-            if found_address.is_found[0] and found_city.is_found[0] and \
-                    best_ratio_address < found_address.ratio[0] > similarity_th and \
-                    best_ratio_city < found_city.ratio[0] > similarity_th:
-
-                best_ratio_address = found_address.ratio[0]
-                best_ratio_city = found_city.ratio[0]
+            ratios = [0] * len(store.address_strings)
+            for idx, string in enumerate(store.address_strings):
+                found_string = lf.find_line_with_similarity(address_lines, string)
+                if found_string.is_found[0]:
+                    ratios[idx] = found_string.ratio[0]
+            if len(ratios) and all([r >= br for r, br in zip(ratios, best_ratios)]):
                 result = store
         return result
 
