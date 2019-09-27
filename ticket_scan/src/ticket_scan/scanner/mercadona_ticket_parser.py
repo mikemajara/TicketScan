@@ -27,6 +27,16 @@ STR_RETURNED = "DEVOLUCIÓN "
 # METHOD_CARD_STRING = "CARD"
 # METHOD_CASH_STRING = "CASH"
 
+# TODO
+## Notes offline to pass on to trello or a notebook:
+## Right now, this parser returns company and store
+## as proper objects which are guaranteed to exist
+## in the database.
+## At some point, either this class or another
+## should manage the types and checks of the other
+## parts of the ticket which are currently returned
+## as the strings recognized (for example, date is
+## not guaranteed to be a rightful value.
 
 example_ticket = {
     "0": "MERCADONA S.A.",
