@@ -2,7 +2,7 @@ from marshmallow import Schema, fields, post_load
 
 
 class StoreSchema(Schema):
-    id = fields.Str()
+    _id = fields.Str()
     address = fields.Str()
     city = fields.Str()
     company_id = fields.Str()

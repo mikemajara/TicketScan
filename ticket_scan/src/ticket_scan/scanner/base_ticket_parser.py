@@ -45,7 +45,7 @@ class BaseTicketParser(ABC):
         pass
 
     @abstractmethod
-    def find_payment_method(self, lines: list):
+    def find_payment_information(self, lines: list):
         pass
 
     @abstractmethod

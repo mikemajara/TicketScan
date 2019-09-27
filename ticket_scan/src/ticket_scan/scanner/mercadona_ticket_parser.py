@@ -1,7 +1,9 @@
 import copy
 import json
 from ticket_scan.model.company import Company, CompanySchema
-from ticket_scan.model.store import Store, StoreSchema
+from ticket_scan.model.store import StoreSchema
+from ticket_scan.model.payment_information import PaymentInformation, METHOD_CARD, METHOD_CASH, PaymentInformationSchema
+
 from ticket_scan.scanner import line_finder as lf
 from line_finder import ResultObject
 from base_ticket_parser import BaseTicketParser
@@ -16,13 +18,14 @@ STR_PRODUCT_LIST_LOWER_LIMIT = "TOTAL "
 STR_TOTAL = "TOTAL "
 STR_CARD = "TARJETA..BANCARIA "
 STR_CASH = "ENTREGA...EFECTIVO "
+
 STR_RETURNED = "DEVOLUCIÓN "
 
 # TODO
-## - [ ] Move this lines to a more suitable place
+## - [x] Move this lines to a more suitable place
 ##      Probably somewhere in a PaymentInformation class
-METHOD_CARD_STRING = "CARD"
-METHOD_CASH_STRING = "CASH"
+# METHOD_CARD_STRING = "CARD"
+# METHOD_CASH_STRING = "CASH"
 
 
 example_ticket = {
@@ -111,7 +114,13 @@ class MercadonaTicketParser(BaseTicketParser):
                 result = store
         return result
 
-    def find_payment_method(self, lines: list):
+    def find_payment_information(self, lines: list):
+        result = PaymentInformation()
+
+        found_total = lf.find_line_with_similarity(lines, STR_TOTAL)
+        if found_total.is_found[0]:
+            result.total = found_total.value_requested[0]
+
         found_method = lf.find_lines_with_limit(
             lines,
             limit=STR_PRODUCT_LIST_LOWER_LIMIT,
@@ -122,21 +131,19 @@ class MercadonaTicketParser(BaseTicketParser):
             found_card = lf.find_line_with_similarity(lines, STR_CARD)
             found_cash = lf.find_line_with_similarity(lines, STR_CASH)
             if found_card.is_found[0]:
-                found_method.value_requested = [METHOD_CARD_STRING]
-                return ResultObject.combine_results([found_method, found_card])
+                result.method = METHOD_CARD
             elif found_cash.is_found[0]:
-                found_method.value_requested = [METHOD_CASH_STRING]
+                result.method = METHOD_CASH
                 found_returned = lf.find_lines_with_limit(
                     lines,
                     limit=found_cash.value_found[0],
                     amount_lines=1,
                     limit_type="upper"
                 )
-                return ResultObject.combine_results([found_method, found_cash, found_returned])
-            else:
-                return ResultObject(value_search=[STR_PRODUCT_LIST_LOWER_LIMIT])
-        else:
-            return ResultObject(value_search=[STR_PRODUCT_LIST_LOWER_LIMIT])
+                if found_returned.is_found[0]:
+                    result.returned = found_returned.value_requested[0]
+        return result
+
 
     def find_lines_address(self, lines: list, company: Company):
         # Mercadona proprietary
@@ -179,19 +186,17 @@ class MercadonaTicketParser(BaseTicketParser):
 
         # 5.- Total y método de pago
         found_total_line = lf.find_line_with_similarity(lines, STR_PRODUCT_LIST_LOWER_LIMIT)
-        found_payment_method = self.find_payment_method(lines)
-        payment = {
-            "total": found_total_line.value_requested[0],
-            "method": found_payment_method.value_requested[0],
-            # TODO add return
-        }
+        payment = self.find_payment_information(lines)
+
+        if payment is None:
+            raise Exception("Store not found")
 
         # 6.- Build ticket
         ticket_response["company"] = CompanySchema().dump(company)
         ticket_response["store"] = StoreSchema().dump(store)
         ticket_response["date"] = found_date.value_requested[0]
         ticket_response["lines"] = found_product_lines.value_requested
-        ticket_response["payment"] = payment
+        ticket_response["payment"] = PaymentInformationSchema().dump(payment)
         print(json.dumps(ticket_response, indent=2, default=str, ensure_ascii=False))
         return ticket_response
 
