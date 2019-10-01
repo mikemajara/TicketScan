@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Button, Text, Image, Platform } from 'react-native';
+import { StyleSheet, ScrollView, View, Button, Text, Image, Platform } from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 
 
@@ -27,16 +27,18 @@ const ScannerViewContainer = props => {
   const [photo, setPhoto] = useState(null);
 
   const handleUploadPhoto = () => {
-    fetch('http://127.0.0.1:5000/api', {
+    fetch('http://127.0.0.1:5000/parse_ticket', {
       method: 'POST',
       body: createFormData(photo, { userId: '123' }),
     })
       .then(response => response.json())
       .then(response => {
         console.log('upload succes', response);
-        console.log(response)
+        console.log(response);
         setTicket(response);
-        console.log(`${new Date().toISOString()} - ScannerViewContainer:handleUploadPhoto:response`);
+        console.log(
+          `${new Date().toISOString()} - ScannerViewContainer:handleUploadPhoto:response`
+        );
         console.log(response);
         // props.navigation.navigate('TicketView', { elements: response })
         // setPhoto(null);
@@ -50,25 +52,24 @@ const ScannerViewContainer = props => {
 
   return (
     <View style={styles.container}>
-      {photo && (
-        <Image
-          source={{ uri: photo.path }}
-          style={{ width: 500, height: 500 }}
-        />
-      )}
+      {photo && <Image source={{ uri: photo.path }} style={{ width: '50%', height: '50%' }} />}
       <Button
         title="Select image"
         onPress={() => {
-          ImagePicker.openPicker({
-          }).then(image => {
+          ImagePicker.openPicker({}).then(image => {
             setPhoto(image);
           });
         }}
       />
       <Button title="Upload photo" onPress={handleUploadPhoto} />
-      <Button title="Go to Ticket" onPress={() => props.navigation.navigate('TicketView')} />
-      <Text>{JSON.stringify(ticket, null, 2)}</Text>
-    </View >
+      <Button
+        title="Go to Ticket"
+        onPress={() => props.navigation.navigate('TicketView', { ticket })}
+      />
+      <ScrollView>
+        <Text>{JSON.stringify(ticket, null, 2)}</Text>
+      </ScrollView>
+    </View>
   );
 };
 

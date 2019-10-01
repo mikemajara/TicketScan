@@ -12,6 +12,7 @@ import { styleDebug, mockupTicket } from '../helpers';
 import Ticket from '../model/Ticket';
 import Store from '../model/Store';
 import TicketLine from '../model/TicketLine';
+import Company from '../model/Company';
 import CardComponent from '../components/CardComponent';
 import AppleStyleSwipeableRow from './AppleStyleSwipeableRow';
 import ProductListItemComponent from '../components/ProductListItemComponent';
@@ -38,14 +39,25 @@ export default function TicketViewContainer(props) {
   // Store constructor(company, country, city, address, phone, id) {
   // TicketLine constructor(units, name, price, weight, weightPrice, readableName, id, altCodes) {
   // Ticket constructor(store, datetime, proprietaryCodes, paymentMethod, total, returned, ticketLines) {
-  const store = new Store(
-    'Mercadona',
-    'Spain',
-    'Murcia',
-    'AVDA. CICLISTA MARIANO ROJAS-AV',
-    '+34 968227166',
-    'A-46103834'
-  );
+
+  const [ticketId, setTicketId] = useState(props.navigation.getParam('_id', null));
+  const [elements, setElements] = useState([]);
+  const [ticket, setTicket] = useState(props.navigation.getParam('ticket', null));
+
+  const company = Object.assign(new Company, ticket.company)
+  const store = Object.assign(new Store, ticket.store)
+  console.log(`${new Date().toISOString()} - TicketViewContainer:default:company`);
+  console.log(company);
+  console.log(`${new Date().toISOString()} - TicketViewContainer:default:store`);
+  console.log(store);
+  // const store = new Store(
+  //   'Mercadona',
+  //   'Spain',
+  //   'Murcia',
+  //   'AVDA. CICLISTA MARIANO ROJAS-AV',
+  //   '+34 968227166',
+  //   'A-46103834'
+  // );
   const lines = [
     new TicketLine('1', 'B, ALMENDRA S/A', '8,40', null, null, 'readableName', null, []),
     new TicketLine('4', 'L SEMI S/LACTO', '18,00', null, null, 'readableName', null, []),
@@ -59,20 +71,17 @@ export default function TicketViewContainer(props) {
     new TicketLine('1', 'PEPINO', '0,90', '0,478 kg', '1,89 €/kg', 'readableName', null, []),
     new TicketLine('1', 'PLATANO', '1,41', '0,616 kg', '2,29 €/kg', 'readableName', null, []),
   ];
-  const proprietaryCodes = [{ OP: '068391' }, { 'FACTURA SIMPLIFICADA': '2707-022-142004' }];
+  // const proprietaryCodes = [{ OP: '068391' }, { 'FACTURA SIMPLIFICADA': '2707-022-142004' }];
   const dummyTicket = new Ticket(
+    company,
     store,
     new Date('2019-03-04T19:51'),
-    proprietaryCodes,
+    null,
     'CARD',
     '46,93',
     null,
     lines
   );
-
-  const [ticketId, setTicketId] = useState(props.navigation.getParam('_id', null));
-  const [elements, setElements] = useState([]);
-  const [ticket, setTicket] = useState(dummyTicket);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -149,7 +158,7 @@ export default function TicketViewContainer(props) {
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.companyName}>
-          <Text style={iOSUIKit.largeTitleEmphasized}>{ticket.store.company}</Text>
+          <Text style={iOSUIKit.largeTitleEmphasized}>{ticket.company.name}</Text>
         </View>
         <View style={styles.companyInfo}>
           <View style={styles.companyInfoRow1}>
