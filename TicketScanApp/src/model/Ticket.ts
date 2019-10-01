@@ -1,9 +1,11 @@
 import Store from './Store';
 import ProprietaryTicketCode from './ProprietaryTicketCode';
 import TicketLine from './TicketLine';
+import Company from './Company';
 
 class Ticket {
 
+  company: Company;
   store: Store;
   datetime: Date;
   proprietaryTicketCodes: Array<ProprietaryTicketCode>;
@@ -13,6 +15,7 @@ class Ticket {
   lines: Array<TicketLine>;
 
   constructor(
+    company: Company,
     store: Store,
     datetime: Date,
     proprietaryTicketCodes: Array<ProprietaryTicketCode>,
@@ -21,6 +24,7 @@ class Ticket {
     returned: number,
     lines: Array<TicketLine>
   ) {
+    this.company = company;
     this.store = store;
     this.datetime = datetime;
     this.proprietaryTicketCodes = proprietaryTicketCodes;
