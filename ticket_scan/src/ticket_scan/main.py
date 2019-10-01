@@ -92,7 +92,7 @@ def setup_logging(loglevel):
 def create_app():
     app = Flask(__name__)
     api = Api(app)
-    api.add_resource(Server, '/api')
+    api.add_resource(Server, '/parse_ticket')
     return app
 
 

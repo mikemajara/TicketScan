@@ -8,6 +8,8 @@ from ticket_scan.scanner import line_finder as lf
 from line_finder import ResultObject
 from base_ticket_parser import BaseTicketParser
 
+import logging
+
 DEFAULT_SIMILARITY_TH = 70
 
 # TICKET LINE REFERENCES
@@ -36,7 +38,7 @@ STR_RETURNED = "DEVOLUCIÓN "
 ## should manage the types and checks of the other
 ## parts of the ticket which are currently returned
 ## as the strings recognized (for example, date is
-## not guaranteed to be a rightful value.
+## not guaranteed to be a rightful value).
 
 example_ticket = {
     "0": "MERCADONA S.A.",
@@ -82,6 +84,9 @@ example_ticket = {
 }
 
 
+logger = logging.getLogger(__name__)
+
+
 class MercadonaTicketParser(BaseTicketParser):
     @property
     def company_name(self):
@@ -113,8 +118,6 @@ class MercadonaTicketParser(BaseTicketParser):
     def find_store(self, address_lines: list, available_stores: list, similarity_th=DEFAULT_SIMILARITY_TH):
         result = None
         best_ratios = [0] * len(address_lines)
-        # best_ratio_address = 0
-        # best_ratio_city = 0
 
         for store in available_stores:
             ratios = [0] * len(store.address_strings)
@@ -122,7 +125,7 @@ class MercadonaTicketParser(BaseTicketParser):
                 found_string = lf.find_line_with_similarity(address_lines, string)
                 if found_string.is_found[0]:
                     ratios[idx] = found_string.ratio[0]
-            if len(ratios) and all([r >= br for r, br in zip(ratios, best_ratios)]):
+            if len(ratios) and all([r > br for r, br in zip(ratios, best_ratios)]):
                 result = store
         return result
 
@@ -166,6 +169,7 @@ class MercadonaTicketParser(BaseTicketParser):
         company = None
         store = None
         lines = list(ticket.values())
+        logger.info(json.dumps(lines, indent=2, default=str, ensure_ascii=False))
 
         # 1.- Find company
         company = self.find_company(
@@ -209,8 +213,8 @@ class MercadonaTicketParser(BaseTicketParser):
         ticket_response["date"] = found_date.value_requested[0]
         ticket_response["lines"] = found_product_lines.value_requested
         ticket_response["payment"] = PaymentInformationSchema().dump(payment)
-        print(json.dumps(ticket_response, indent=2, default=str, ensure_ascii=False))
+        logger.info(json.dumps(ticket_response, indent=2, default=str, ensure_ascii=False))
         return ticket_response
 
-mercadona_ticket_parser = MercadonaTicketParser()
-mercadona_ticket_parser.parse(example_ticket)
+# mercadona_ticket_parser = MercadonaTicketParser()
+# mercadona_ticket_parser.parse(example_ticket)

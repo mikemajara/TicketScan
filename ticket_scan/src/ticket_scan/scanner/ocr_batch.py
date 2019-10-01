@@ -104,6 +104,10 @@ ap.add_argument("-S", "--save-cropped",
                 action="store_true",
                 default=False,
                 help="Save cropped images")
+ap.add_argument("-I", "--interactive",
+                action="store_true",
+                default=False,
+                help="Slice interactively showing image to modify variables with [ ` . + - ] characters")
 ap.add_argument("-o", "--output-path",
                 default='',
                 type=str,
@@ -174,5 +178,6 @@ if __name__ == "__main__":
                                   full_box_image=args["full_box_image"],
                                   side_margin=args["side_margin"],
                                   save_cropped=args["save_cropped"],
-                                  output_path=args["output_path"]
+                                  output_path=args["output_path"],
+                                  interactive=args["interactive"]
                                   )

@@ -1,5 +1,6 @@
 import os
-import ticket_parser
+from base_ticket_parser import BaseTicketParser
+from mercadona_ticket_parser import MercadonaTicketParser
 import datetime as dt
 from flask_restful import Resource, reqparse
 from werkzeug.datastructures import FileStorage
@@ -25,6 +26,7 @@ class Server(Resource):
             file.save(filepath)
             #path_output = slicer.slice(filepath, interactive=False)
             result = ocr_batch.extract_text_lines_from_image(image=filepath)
+            ticket_parser = MercadonaTicketParser()
             result = ticket_parser.parse(result)
         else:
             raise Exception("file is None")

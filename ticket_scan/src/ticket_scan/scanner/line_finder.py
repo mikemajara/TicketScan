@@ -3,7 +3,7 @@ from typing import List
 
 from fuzzywuzzy import fuzz
 
-DEFAULT_SIMILARITY_TH = 70
+DEFAULT_SIMILARITY_TH = 60
 
 class ResultObject:
     def __init__(self,
