@@ -27,7 +27,7 @@ __license__ = "proprietary"
 
 _logger = logging.getLogger(__name__)
 
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask_pymongo import PyMongo, ObjectId
 import json
 
@@ -101,6 +101,20 @@ def main(args):
         @app.route("/health", methods=['GET'])
         def health():
             return "ok"
+
+        ### Companies/Stores ###
+
+        @app.route("/get_companies", methods=['GET'])
+        def get_companies():
+            companies = mongo.db.companies.find({})
+            return jsonify(json.loads(json.dumps([company for company in companies], default=str)))
+
+        @app.route("/get_stores/<company_id>", methods=['GET'])
+        def get_stores(company_id):
+            stores = mongo.db.stores.find({"company_id": ObjectId(company_id)})
+            return jsonify(json.loads(json.dumps([store for store in stores], default=str)))
+
+        ### Ticket ###
 
         @app.route("/add_ticket", methods=['POST'])
         def add_ticket():

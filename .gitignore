@@ -11,3 +11,4 @@ ticket_scan_draft/basura/*
 ticket_scan_draft/images/*
 ticket_scan_draft/pdf/*
 ticket_scan_draft/__pycache__
+ticket_scan_draft/frozen_east_text_detection.pb

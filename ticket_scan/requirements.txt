@@ -23,4 +23,8 @@ pillow
 pytesseract
 flask
 flask-restful
-
+dateparser
+regex
+fuzzywuzzy[speedup]
+requests
+marshmallow # <- Review

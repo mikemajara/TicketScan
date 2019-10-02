@@ -1,2 +1,6 @@
 pylint
 autopep8
+pytest
+tox
+flake8
+pytest-cov

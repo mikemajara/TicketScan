@@ -1,8 +1,11 @@
 import os
+from base_ticket_parser import BaseTicketParser
+from mercadona_ticket_parser import MercadonaTicketParser
 import datetime as dt
 from flask_restful import Resource, reqparse
 from werkzeug.datastructures import FileStorage
-from scanner import slicer, ocr_batch
+from ticket_scan.scanner import slicer, ocr_batch
+from flask import jsonify
 
 
 class Server(Resource):
@@ -21,9 +24,11 @@ class Server(Resource):
             filext = file.content_type.split("/")[1]
             filepath = '../../uploaded_images/' + timestamp + "." + filext
             file.save(filepath)
-            path_output = slicer.slice(filepath, interactive=False)
-            result = ocr_batch.extract_lines_of_text(path_output)
+            #path_output = slicer.slice(filepath, interactive=False)
+            result = ocr_batch.extract_text_lines_from_image(image=filepath)
+            ticket_parser = MercadonaTicketParser()
+            result = ticket_parser.parse(result)
         else:
             raise Exception("file is None")
 
-        return result if result else { 'msg': 'ok'}
+        return jsonify(result) if result else {'msg': 'ok'}

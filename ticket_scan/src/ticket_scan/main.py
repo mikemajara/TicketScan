@@ -21,11 +21,11 @@ import argparse
 import sys
 import logging
 
-from server import Server
+from ticket_scan.server import Server
 from flask import Flask
 from flask_restful import Api
 
-from scanner import slicer, ocr_batch
+from ticket_scan.scanner import slicer, ocr_batch
 
 
 DEFAULT_LISTEN = False
@@ -92,7 +92,7 @@ def setup_logging(loglevel):
 def create_app():
     app = Flask(__name__)
     api = Api(app)
-    api.add_resource(Server, '/api')
+    api.add_resource(Server, '/parse_ticket')
     return app
 
 
@@ -112,8 +112,8 @@ def main(args):
         app = create_app()
         app.run(debug=True)
     elif args.image:
-        path_output = slicer.slice(path_image, interactive=False)
-        ocr_batch.extract_lines_of_text(path_output)
+        #path_output = slicer.slice(path_image, interactive=False)
+        ocr_batch.extract_text_lines_from_image(image=args.image)
 
 
 def run():
