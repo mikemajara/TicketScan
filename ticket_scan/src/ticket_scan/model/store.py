@@ -1,6 +1,7 @@
 from marshmallow import Schema, fields, post_load
 from typing import List
 
+
 class StoreSchema(Schema):
     _id = fields.Str()
     company_id = fields.Str()
@@ -15,7 +16,7 @@ class StoreSchema(Schema):
         return Store(**data)
 
 
-class Store():
+class Store(object):
     def __init__(self,
                  _id: str,
                  company_id: str,

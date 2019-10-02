@@ -4,7 +4,7 @@ from marshmallow import Schema, fields, post_load
 class CompanySchema(Schema):
     _id = fields.Str()
     name = fields.Str()
-    taxId = fields.Str()
+    tax_id = fields.Str()
     web = fields.Str(allow_none=True)
 
     @post_load
@@ -12,7 +12,7 @@ class CompanySchema(Schema):
         return Company(**data)
 
 
-class Company():
+class Company(object):
     _id = fields.Str()
     name = fields.Str()
     taxId = fields.Str()
@@ -21,11 +21,11 @@ class Company():
     def __init__(self,
                  _id: str,
                  name: str,
-                 taxId: str,
+                 tax_id: str,
                  web: str = None
                  ):
         self._id = _id
         self.name = name
-        self.taxId = taxId
+        self.tax_id = tax_id
         self.web = web
 

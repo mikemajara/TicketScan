@@ -1,5 +1,8 @@
 import copy
 import json
+
+from ticket import TicketSchema
+from ticket_scan.model import Ticket
 from ticket_scan.model.company import Company, CompanySchema
 from ticket_scan.model.store import StoreSchema
 from ticket_scan.model.payment_information import PaymentInformation, METHOD_CARD, METHOD_CASH, PaymentInformationSchema
@@ -177,7 +180,7 @@ class MercadonaTicketParser(BaseTicketParser):
             self.get_available_companies()
         )
         # company = next(filter(lambda x: found_company.value_requested[0] == x["name"], available_companies), None)
-        #company = found_company.value_requested if found_company.is_found[0] else None
+        # company = found_company.value_requested if found_company.is_found[0] else None
 
         if company is None or not isinstance(company, Company):
             raise Exception("Company not found")
@@ -191,7 +194,7 @@ class MercadonaTicketParser(BaseTicketParser):
             raise Exception("Store not found")
 
         # 3.- Fecha
-        found_date = lf.find_lines_with_limit(lines, limit=company.taxId, amount_lines=1, limit_type="upper")
+        found_date = lf.find_lines_with_limit(lines, limit=company.tax_id, amount_lines=1, limit_type="upper")
 
         # 4.- Lineas de compra
         found_product_lines = lf.find_lines_with_limits(
@@ -208,13 +211,20 @@ class MercadonaTicketParser(BaseTicketParser):
             raise Exception("Store not found")
 
         # 6.- Build ticket
+        ticket_object = Ticket(
+            company=company,
+            store=store,
+        )
         ticket_response["company"] = CompanySchema().dump(company)
         ticket_response["store"] = StoreSchema().dump(store)
         ticket_response["date"] = found_date.value_requested[0]
         ticket_response["lines"] = found_product_lines.value_requested
         ticket_response["payment"] = PaymentInformationSchema().dump(payment)
-        logger.info(json.dumps(ticket_response, indent=2, default=str, ensure_ascii=False))
+        logger.info(json.dumps(TicketSchema().dump(ticket), indent=2, default=str, ensure_ascii=False))
+        # print(json.dumps(TicketSchema().dump(ticket_object), indent=2, default=str, ensure_ascii=False))
+        # logger.info(json.dumps(ticket_response, indent=2, default=str, ensure_ascii=False))
         return ticket_response
+
 
 # mercadona_ticket_parser = MercadonaTicketParser()
 # mercadona_ticket_parser.parse(example_ticket)
