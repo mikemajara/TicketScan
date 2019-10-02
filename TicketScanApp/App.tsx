@@ -69,7 +69,7 @@ export const TabNavigator = createBottomTabNavigator(
     },
   },
   {
-    initialRouteName: 'TicketList',
+    initialRouteName: 'Scanner',
   },
 );
 
