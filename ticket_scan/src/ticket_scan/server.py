@@ -6,6 +6,7 @@ from scanner.mercadona_ticket_parser import MercadonaTicketParser
 from werkzeug.datastructures import FileStorage
 
 from ticket_scan.scanner import ocr_batch
+from ticket_scan.scanner.lidl_ticket_parser import LidlTicketParser
 
 
 class Server(Resource):
@@ -25,8 +26,10 @@ class Server(Resource):
             filepath = '../../uploaded_images/' + timestamp + "." + filext
             file.save(filepath)
             #path_output = slicer.slice(filepath, interactive=False)
-            result = ocr_batch.extract_text_lines_from_image(image=filepath)
+            # TODO: Implemente a dynamic way to instantiate the parser.
+            #ticket_parser = LidlTicketParser()
             ticket_parser = MercadonaTicketParser()
+            result = ocr_batch.extract_text_lines_from_image(image=filepath, slicer_options=ticket_parser.slicer_options)
             result = ticket_parser.parse(result)
         else:
             raise Exception("file is None")
