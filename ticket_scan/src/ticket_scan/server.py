@@ -1,11 +1,11 @@
-import os
-from base_ticket_parser import BaseTicketParser
-from mercadona_ticket_parser import MercadonaTicketParser
 import datetime as dt
-from flask_restful import Resource, reqparse
-from werkzeug.datastructures import FileStorage
-from ticket_scan.scanner import slicer, ocr_batch
+
 from flask import jsonify
+from flask_restful import Resource, reqparse
+from scanner.mercadona_ticket_parser import MercadonaTicketParser
+from werkzeug.datastructures import FileStorage
+
+from ticket_scan.scanner import ocr_batch
 
 
 class Server(Resource):
