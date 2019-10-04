@@ -1,10 +1,10 @@
 import os
-# import cv2
+
 import logging
 import argparse
 import numpy as np
 from datetime import datetime
-from helpers import show_image_normal_window, wait_for_input, get_path_base_and_ext, setup_logging
+from ticket_scan.scanner.helpers import show_image_normal_window, wait_for_input, get_path_base_and_ext, setup_logging
 
 try:
     from cv2 import cv2

@@ -1,15 +1,13 @@
-import copy
 import json
 
-from ticket import TicketSchema
+from ticket_scan.model.ticket import TicketSchema
 from ticket_scan.model import Ticket
 from ticket_scan.model.company import Company, CompanySchema
 from ticket_scan.model.store import StoreSchema
 from ticket_scan.model.payment_information import PaymentInformation, METHOD_CARD, METHOD_CASH, PaymentInformationSchema
 
 from ticket_scan.scanner import line_finder as lf
-from line_finder import ResultObject
-from base_ticket_parser import BaseTicketParser
+from ticket_scan.scanner.base_ticket_parser import BaseTicketParser
 
 import logging
 

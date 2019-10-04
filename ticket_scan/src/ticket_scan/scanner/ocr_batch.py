@@ -3,11 +3,11 @@ import os
 import cv2
 import json
 import natsort
-import slicer
 import time
 import logging
-from ocr import extract_text
-from helpers import setup_logging
+from ticket_scan.scanner import slicer
+from ticket_scan.scanner.ocr import extract_text
+from ticket_scan.scanner.helpers import setup_logging
 
 
 DEFAULT_OEM = 1
