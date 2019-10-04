@@ -18,7 +18,7 @@ Scans and parses tickets
 ### Links 🔗
 
 - Referenced tutorials for image recognition
-    - [OpenCV OCR and text recognition with Tesseract](OpenCV OCR and text recognition with Tesseract)
+    - [OpenCV OCR and text recognition with Tesseract](https://www.pyimagesearch.com/2018/09/17/opencv-ocr-and-text-recognition-with-tesseract/)
     - [OpenCV Text Detection (EAST text detector)](https://www.pyimagesearch.com/2018/08/20/opencv-text-detection-east-text-detector/)
     - [Using Tesseract OCR with Python](https://www.pyimagesearch.com/2017/07/10/using-tesseract-ocr-python/)
     - [Basic Operations on Images](https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_core/py_basic_ops/py_basic_ops.html)
