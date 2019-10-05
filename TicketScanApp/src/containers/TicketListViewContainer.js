@@ -1,10 +1,14 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Alert, Text, FlatList } from 'react-native';
+import { StyleSheet, View, Alert, Text, FlatList, ActivityIndicator, Modal } from 'react-native';
 import { Button, ListItem } from 'react-native-elements';
 // import { Animated } from 'react-native-reanimated';
+import { iOSColors } from 'react-native-typography';
+
+
 import { styleDebug, mockupTicket } from '../helpers';
+import LoadingComponent from '../components/LoadingComponent';
 
 export default function TicketViewContainer(props) {
   const [elements, setElements] = useState([]);
@@ -19,10 +23,8 @@ export default function TicketViewContainer(props) {
         console.log(
           `${new Date().toISOString()} - TicketViewContainer:handleConfirmPress:responseJson`
         );
-        console.log(responseJson);
-        alert(`Success: ${response.status} ${response.statusText || ''}`);
       }
-      alert(`Error: ${response.status} ${response.statusText || ''}`);
+      // alert(`Result: ${response.status} ${response.statusText || ''}`);
       return responseJson;
     } catch (error) {
       alert(error);
@@ -49,12 +51,15 @@ export default function TicketViewContainer(props) {
     return obj;
   };
 
-  if (loading) {
-    return <View><Text>Loading</Text></View>
-  }
-
   return (
+
     <View style={styles.container}>
+      {loading && (
+        <LoadingComponent
+          isLoading={loading}
+          loadingText="Getting your tickets from the archive..."
+        />)
+      }
       <FlatList
         style={styles.list}
         data={elements ? elements.tickets : []}
