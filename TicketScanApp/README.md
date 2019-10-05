@@ -20,7 +20,6 @@ Prefer to set parents as containers, the rest as views (or pure components)
 
 - 🖼 Pictures
   - [ascoders/react-native-image-viewer](https://github.com/ascoders/react-native-image-viewer#readme) <- considering.
-    - Considering
     - Dependance on [ascoders/react-native-image-zoom](https://github.com/ascoders/react-native-image-zoom)
     - Try frist this one^^^ asuming its the base for the one above.
   - [ascoders/react-native-image-zoom](https://github.com/ascoders/react-native-image-zoom)
@@ -38,12 +37,18 @@ Prefer to set parents as containers, the rest as views (or pure components)
         - When image's props specified swipe does not work
         - Somehow specifying different values... (those of device instead of pixels?) it works better.
       - To disable close button in controls, `close` must take `null` value instead of `false` (as `next` and `prev` do), which is counterintuitive.
+- 🔋 Loaders
+  - [danilowoz/react-content-loader](https://github.com/danilowoz/react-content-loader). Contetn Loader for ticket list in future.
+  - [joinspontaneous/react-native-loading-spinner-overlay](https://github.com/joinspontaneous/react-native-loading-spinner-overlay)
+    - Too bad that they have to recommend an [implementation](https://github.com/joinspontaneous/react-native-loading-spinner-overlay#recommended-implementation) Probably buggy. Discarded
+  - This [code snippet](https://medium.com/@kelleyannerose/react-native-activityindicator-for-a-quick-easy-loading-animation-593c06c044dc) did the trick. [Kelly Rose](https://medium.com/@kelleyannerose) might have some more stuff to show 😏. For the moment taking a basic component as loader in the project (as of Saturday, 05 Oct 2019 18:18)
+  - [oblador/react-native-progress](https://github.com/oblador/react-native-progress) **Not checked** but might be useful for the future.
 
-### 🧩 Components
+### 🧩 Used Components
 
-- [React Native Elements](https://github.com/react-native-training/react-native-elements) _Included_
-- [react-native-typography](https://github.com/hectahertz/react-native-typography) _Included_
-- [react-native-elements](https://react-native-training.github.io/react-native-elements/) _Included_
+- [react-native-typography](https://github.com/hectahertz/react-native-typography)
+- [react-native-elements](https://react-native-training.github.io/react-native-elements/)
+- [antonKalinin/react-native-image-view](https://github.com/antonKalinin/react-native-image-view)
 
 ## Troubleshooting & Known issues
 
