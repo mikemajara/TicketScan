@@ -36,12 +36,6 @@ export const ScannerStackNavigator = createStackNavigator(
   },
   {
     initialRouteName: 'ScannerView',
-    // where is the border comming from? 
-    cardStyle: {
-      // backgroundColor: iOSColors.lightGray,
-      // margin: 10
-      // borderBottomWidth: 0,
-    }
   }
 );
 
@@ -55,7 +49,7 @@ export const TicketListStackNavigator = createStackNavigator(
     },
   },
   {
-    initialRouteName: 'TicketView',
+    initialRouteName: 'TicketList',
   }
 );
 
@@ -78,7 +72,7 @@ export const TabNavigator = createBottomTabNavigator(
     },
   },
   {
-    initialRouteName: 'Scanner',
+    initialRouteName: 'TicketList',
     defaultNavigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused, horizontal, tintColor }) => {
         const { routeName } = navigation.state;
