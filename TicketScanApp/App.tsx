@@ -36,6 +36,12 @@ export const ScannerStackNavigator = createStackNavigator(
   },
   {
     initialRouteName: 'ScannerView',
+    // where is the border comming from? 
+    cardStyle: {
+      // backgroundColor: iOSColors.lightGray,
+      // margin: 10
+      // borderBottomWidth: 0,
+    }
   }
 );
 
@@ -103,12 +109,6 @@ export const TabNavigator = createBottomTabNavigator(
           />
         );
       },
-      header: {
-        style: {
-          color: iOSColors.black,
-          borderTopColor: 'transparent',
-        }
-      },
       headerTintColor: '#fff',
       headerTitleStyle: {
         fontWeight: 'bold',
@@ -118,6 +118,9 @@ export const TabNavigator = createBottomTabNavigator(
       activeTintColor: iOSColors.blue,
       inactiveTintColor: iOSColors.gray,
       keyboardHidesTabBar: true,
+      style: {
+        borderTopWidth: 0,
+      }
     },
   },
 );

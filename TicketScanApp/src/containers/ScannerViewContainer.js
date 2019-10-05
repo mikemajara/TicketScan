@@ -169,23 +169,24 @@ const styles = StyleSheet.create({
   },
   shutterButton: {
     ...styleDebug('purple'),
-    padding: 9,
+    padding: 8,
   },
   bottomRow: {
     borderTopColor: iOSColors.black,
-    borderWidth: StyleSheet.hairlineWidth,
-    flex: 1,
+    borderTopWidth: StyleSheet.hairlineWidth,
+    flex: 2,
     justifyContent: 'center',
     paddingHorizontal: 10,
   },
   buttonContainer: {
     ...styleDebug('blue'),
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
   },
   buttonStyle: {
     ...styleDebug('red'),
     marginVertical: 10,
+    width: 150,
   }
 });
 
