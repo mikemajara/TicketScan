@@ -27,26 +27,9 @@ const createFormData = (photo, body) => {
 };
 
 const ScannerViewContainer = props => {
-  const dummyPhoto = {
-    exif: null,
-    localIdentifier: 'D4A4EBEF-F4AE-48BA-B6E6-CA75FB4B0B3D/L0/001',
-    filename: 'IMG_0020.JPG',
-    width: 497,
-    modificationDate: '1570028013',
-    mime: 'image/jpeg',
-    path:
-      '/Users/miguel/Library/Developer/CoreSimulator/Devices/F842241C-B2DF-40EA-B5C4-A396535A6B88/data/Containers/Data/Application/FF35854C-C8AA-4649-93B6-D4E0C7A4520A/tmp/react-native-image-crop-picker/43EC9DF5-DA12-4328-A488-DC68E319DFE3.jpg',
-    size: 136755,
-    cropRect: null,
-    data: null,
-    sourceURL:
-      'file:///Users/miguel/Library/Developer/CoreSimulator/Devices/F842241C-B2DF-40EA-B5C4-A396535A6B88/data/Media/DCIM/100APPLE/IMG_0020.JPG',
-    height: 1544,
-    creationDate: '1561211027',
-  };
 
   const [ticket, setTicket] = useState({});
-  const [photo, setPhoto] = useState(dummyPhoto);
+  const [photo, setPhoto] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
 
   const handleUploadPhoto = () => {
@@ -56,13 +39,8 @@ const ScannerViewContainer = props => {
     })
       .then(response => response.json())
       .then(response => {
-        console.log('upload succes', response);
-        console.log(response);
         setTicket(response);
-        console.log(
-          `${new Date().toISOString()} - ScannerViewContainer:handleUploadPhoto:response`
-        );
-        console.log(response);
+        // Navigate to ticket with correct response
         // props.navigation.navigate('TicketView', { elements: response })
         // setPhoto(null);
         // setTicket({});
@@ -116,8 +94,6 @@ const ScannerViewContainer = props => {
             onPress={() => {
               ImagePicker.openPicker({})
                 .then(image => {
-                  console.log(`${new Date().toISOString()} - ScannerViewContainer:openPicker:image`);
-                  console.log(JSON.stringify(image));
                   setPhoto(image);
                 })
                 .catch(err => {
@@ -126,10 +102,10 @@ const ScannerViewContainer = props => {
             }}
           />
           <Icon
-            iconStyle={[styles.shutterButton, { fontSize: 50 }]}
+            iconStyle={[styles.shutterButton, { opacity: 0.75, fontSize: 50 }]}
             type="ionicon"
             name="ios-radio-button-on"
-            color={iOSColors.black}
+            color={iOSColors.blue}
             size={13}
           />
           <Button
