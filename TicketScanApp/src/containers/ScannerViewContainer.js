@@ -65,25 +65,27 @@ const ScannerViewContainer = props => {
             />
           </TouchableOpacity>
         )}
-        <ImageView
-          images={[
-            {
-              source: {
-                uri: photo.path,
+        {photo && (
+          <ImageView
+            images={[
+              {
+                source: {
+                  uri: photo.path,
+                },
+                title: 'Mi ticket',
+                width: photo.width / 2.5, // Don't know why it works better like this.
+                height: photo.height / 2.5, // Maybe should be calculated dinamically
               },
-              title: 'Mi ticket',
-              width: photo.width / 2.5, // Don't know why it works better like this.
-              height: photo.height / 2.5, // Maybe should be calculated dinamically
-            },
-          ]}
-          controls={{ close: null }}
-          onClose={() => {
-            setModalVisible(false);
-          }}
-          animationType="fade"
-          imageIndex={0}
-          isVisible={modalVisible}
-        />
+            ]}
+            controls={{ close: null }}
+            onClose={() => {
+              setModalVisible(false);
+            }}
+            animationType="fade"
+            imageIndex={0}
+            isVisible={modalVisible}
+          />
+        )}
       </View>
       <View style={styles.bottomRow}>
         <View style={styles.buttonContainer}>
@@ -132,7 +134,8 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     ...styleDebug('orange'),
-    margin: 10,
+    backgroundColor: iOSColors.customGray,
+    padding: 10,
     flex: 8,
     flexDirection: 'row',
     justifyContent: 'center',
