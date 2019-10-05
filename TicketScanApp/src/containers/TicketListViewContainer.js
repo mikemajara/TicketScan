@@ -57,7 +57,7 @@ export default function TicketViewContainer(props) {
     <View style={styles.container}>
       <FlatList
         style={styles.list}
-        data={elements.tickets}
+        data={elements ? elements.tickets : []}
         renderItem={({ item, index }) => {
           return (
             <ListItem
