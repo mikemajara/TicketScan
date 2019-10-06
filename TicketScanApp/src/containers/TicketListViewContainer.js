@@ -20,13 +20,15 @@ export default function TicketViewContainer(props) {
       setLoading(true);
       let responseJson = null;
       try {
-        const response = await fetch('http://127.0.0.1:5001/get_all_tickets');
-        if (response.status === 200) {
-          responseJson = await response.json();
-          console.log(
-            `${new Date().toISOString()} - TicketViewContainer:handleConfirmPress:responseJson`
-          );
-        }
+        // TODO: Call disabled for design.
+        // const response = await fetch('http://127.0.0.1:5001/get_all_tickets');
+        // if (response.status === 200) {
+        //   responseJson = await response.json();
+        //   console.log(
+        //     `${new Date().toISOString()} - TicketViewContainer:handleConfirmPress:responseJson`
+        //   );
+        // }
+
         // alert(`Result: ${response.status} ${response.statusText || ''}`);
         // setElements(responseJson);
         setElements(
@@ -49,7 +51,7 @@ export default function TicketViewContainer(props) {
 
   const handlePressedLine = _id => {
     // TODO: Ticket pressed disabled.
-    // props.navigation.navigate('TicketView', { _id })
+    // props.navigation.navigate('TicketView', { _id });
     // TODO: get ticket pressed
     // props.navigation.navigate('TicketView', { elements: response })
   };
@@ -84,7 +86,8 @@ export default function TicketViewContainer(props) {
               flagContent={<Icon type="ionicon" name="ios-star" color="white" size={35} />}>
               <TicketListItemComponent
                 // units={item.units}
-                name={`${item.company.name} - ${item._id}`}
+                companyName={`${item.company.name}`}
+                date={item.datetime}
                 bottomDivider={shouldHaveBottomDivider(index, elements.length)}
                 topDivider={shouldHaveTopDivider(index, elements.length)}
                 leftIcon={
@@ -95,6 +98,10 @@ export default function TicketViewContainer(props) {
                     size={15}
                   />
                 }
+                onPress={() => {
+                  console.log('handling press')
+                  handlePressedLine(item._id)
+                }}
               />
             </AppleStyleSwipeableRow>
           );
