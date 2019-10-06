@@ -18,9 +18,9 @@ DEFAULT_SIMILARITY_TH = 70
 # TICKET LINE REFERENCES
 STR_COMPANY_NAME = "LIDL SUPERMERCADOS S.A.U."
 STR_COMPANY_TAX_ID = "NIF: A60195278"
-STR_PRODUCT_LIST_UPPER_LIMIT = "Un"
-STR_PRODUCT_LIST_LOWER_LIMIT = "—.—.————"
-STR_TOTAL = "Total "
+STR_PRODUCT_LIST_UPPER_LIMIT = "EURO"
+STR_PRODUCT_LIST_LOWER_LIMIT = "------------"
+STR_TOTAL = "TOTAL "
 STR_CARD = "??? " # TODO: No info about how a card payment looks like
 STR_CASH = "Entregado "
 
@@ -45,33 +45,36 @@ STR_RETURNED = "DEVOLUCIÓN "
 
 example_ticket = {
     "0": "LIDL SUPERMERCADOS S.A.U.",
-    "1": "Avenida 'iiguel de Cervantes N9 110",
+    "1": "Avenida 'Miguel de Cervantes Nº 110",
     "2": "30100 Murcia",
     "3": "NIF A60195278",
-    "4": "www, lidl.es",
-    "5": "Yogur griego 1,258",
-    "6": "Danone activia 1,898",
-    "7": "Gullón digestive 1,298",
-    "8": "Yogur griego miel 0,49 B",
-    "9": "Tortilla cebolla 0,79",
-    "10": "III:",
-    "11": "Entregado 20,21",
-    "12": "Cambio -14,50",
-    "13": "IVAX IVA + Preto = PV",
-    "14": "B 10% 0,52 5,19 5,71",
-    "15": ".—e—————— ——— o —————————— —); — —— — ————i—]]—]—",
-    "16": "Suma 0,52 5,19 5,71",
-    "17": "| Registrate en Lid! Plus y ahorra 1",
-    "18": "1 en tus próximas compras 1",
-    "19": "3508 214740/05 02.09.19 20:21",
-    "20": "Devoluciones artículos de bazar con",
-    "21": "ticket de compra y embalaje original",
-    "22": "en un plazo máximo de 30 días sin",
-    "23": "perjuicio de la ley de garantías.",
-    "24": "Horario Tienda Lu a Sa 09:00 a 22:00",
-    "25": "Atención al cliente",
-    "26": "www. lid].es/contacto Tel,900958311",
-    "27": "GRACIAS POR SU VISITA"
+    "4": "www.lidl.es",
+    "5": "EUR",
+    "6": "Yogur griego 1,258 B",
+    "7": "Danone activia 1,89 B",
+    "8": "Gullón digestive 1,29 B",
+    "9": "Yogur griego miel 0,49 B",
+    "10": "Tortilla cebolla 0,79",
+    "11": "------------",
+    "12": "TOTAL 5,71",
+    "13": "=============",
+    "14": "Entregado 20,21",
+    "15": "Cambio -14,50",
+    "16": "IVA% IVA + P Neto = PVP",
+    "17": "B 10% 0,52 5,19 5,71",
+    "18": "—-————————————————————-———————————————————",
+    "19": "Suma 0,52 5,19 5,71",
+    "20": "| Registrate en Lid! Plus y ahorra |",
+    "21": "| en tus próximas compras |",
+    "22": "3508 214740/05 02.09.19 20:21",
+    "23": "Devoluciones artículos de bazar con",
+    "24": "ticket de compra y embalaje original",
+    "25": "en un plazo máximo de 30 días sin",
+    "26": "perjuicio de la ley de garantías.",
+    "27": "Horario Tienda Lu a Sa 09:00 a 22:00",
+    "28": "Atención al cliente",
+    "29": "www. lidl.es/contacto Tel.900958311",
+    "30": "GRACIAS POR SU VISITA"
 }
 
 logger = logging.getLogger(__name__)
