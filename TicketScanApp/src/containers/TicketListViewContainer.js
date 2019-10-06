@@ -12,29 +12,33 @@ import LoadingComponent from '../components/LoadingComponent';
 
 export default function TicketViewContainer(props) {
   const [elements, setElements] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
-  async function getTickets() {
-    let responseJson = null;
-    try {
-      const response = await fetch('http://127.0.0.1:5001/get_all_tickets');
-      if (response.status === 200) {
-        responseJson = await response.json();
-        console.log(
-          `${new Date().toISOString()} - TicketViewContainer:handleConfirmPress:responseJson`
-        );
+  useEffect(() => {
+    const fetchTickets = async () => {
+      setLoading(true);
+      let responseJson = null;
+      try {
+        const response = await fetch('http://127.0.0.1:5001/get_all_tickets');
+        if (response.status === 200) {
+          responseJson = await response.json();
+          console.log(
+            `${new Date().toISOString()} - TicketViewContainer:handleConfirmPress:responseJson`
+          );
+        }
+        // alert(`Result: ${response.status} ${response.statusText || ''}`);
+        setElements(responseJson);
+        return responseJson;
+      } catch (error) {
+        return responseJson;
+      } finally {
+        setLoading(false);
       }
-      // alert(`Result: ${response.status} ${response.statusText || ''}`);
-      return responseJson;
-    } catch (error) {
-      alert(error);
-      return responseJson;
-    }
-  }
+    };
 
-  useEffect(async () => {
-    setElements(await getTickets());
-    setLoading(false);
+    fetchTickets();
+
+
   }, []);
 
   const handlePressedLine = _id => {
