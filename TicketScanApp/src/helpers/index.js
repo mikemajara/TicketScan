@@ -1,32 +1,57 @@
+import Company from '../model/Company';
+import Store from '../model/Store';
+import TicketLine from '../model/TicketLine';
+import Ticket from '../model/Ticket';
+
+
 export const STYLE_DEBUG = false;
 export const styleDebug = color => (STYLE_DEBUG ? { borderWidth: 1, borderColor: color } : {});
 
-export const mockupTicket = {
-  'cropped_144_116.png': 'MERCADONA S.A.',
-  'cropped_213_186.png': 'C/ CISNE s/n',
-  'cropped_247_227.png': 'Murcia',
-  'cropped_282_256.png': 'Teléfono 968281283',
-  'cropped_316_291.png': 'NIF: A-46103834',
-  // 'cropped_350_325.png': 'P.V.P. I.V.A. INCLUIDO',
-  'cropped_386_359.png': '26/03/2019 20:54 0P; 11/2496',
-  // 'cropped_423_395.png': 'F. SIMPLIFICADA: 2919-011-837802',
-  'cropped_496_469.png': '1 1 PAPEL HIGIENIC 2,70',
-  'cropped_533_507.png': '2 1 SOJA VAINILLA 1,79',
-  'cropped_570_544.png': '3 16 HUEV, CAMPER 1,28',
-  'cropped_606_581.png': '4 1 PICOS PACK-2 1,08',
-  'cropped_643_617.png': '5 1 ROSQ.PIPAS P-2 1,34',
-  'cropped_679_652.png': '6 1 MIGAS BACALAO 3,83',
-  'cropped_714_689.png': '7 1 BOLSA PLASTICO 0,10',
-  'cropped_749_724.png': '8 ¡ MIGAS BACALAO 3,42',
-  'cropped_784_759.png': '9 1 MANZANA FUJI 2,20',
-  'cropped_856_828.png': 'TOTAL.......EUROS 17,74',
-  'cropped_891_863.png': 'EFECTIVO... EUROS 18,00',
-  'cropped_961_933.png': 'DEVOLUCIÓN. . EUROS 0,26',
-  'cropped_1032_1006.png': 'DETALLE',
-  'cropped_1099_1070.png': 'IVA Base Imponible Cuota |',
-  'cropped_1133_1104.png': '4% 3,35 0,13',
-  'cropped_1167_1137.png': '10 % 10,42 1,04',
-  'cropped_1202_1171.png': '21% 2,31 9,49 |',
-  'cropped_1238_1206.png': 'TOTAL: 16,08 1,66',
-  'cropped_1380_1350.png': 'LE ATENDIÓ: JOSE |',
-};
+const company = new Company('id: string', 'Mercadona S.A.', 'A-1324122', '');
+const store = new Store(
+  'Mercadona',
+  'Spain',
+  'Murcia',
+  'AVDA. CICLISTA MARIANO ROJAS-AV',
+  '+34 968227166',
+  'A-46103834'
+);
+const lines = [
+  new TicketLine('1', 'B, ALMENDRA S/A', '8,40', null, null, 'readableName', null, []),
+  new TicketLine('4', 'L SEMI S/LACTO', '18,00', null, null, 'readableName', null, []),
+  new TicketLine('3', 'GALLETA RELIEV', '3,66', null, null, 'readableName', null, []),
+  new TicketLine('1', 'COPOS AVENA', '0,81', null, null, 'readableName', null, []),
+  new TicketLine('1', 'COSTILLA BARB', '3,99', null, null, 'readableName', null, []),
+  new TicketLine('1', 'ZANAHORIA BOLS', '0,69', null, null, 'readableName', null, []),
+  new TicketLine('2', 'VENTRESCA ATUN', '4,30', null, null, 'readableName', null, []),
+  new TicketLine('1', 'PAPEL HIGIENIC', '2,70', null, null, 'readableName', null, []),
+  new TicketLine('1', 'HIGIENICO DOBL', '2,07', null, null, 'readableName', null, []),
+  new TicketLine('1', 'PEPINO', '0,90', '0,478 kg', '1,89 €/kg', 'readableName', null, []),
+  new TicketLine('1', 'PLATANO', '1,41', '0,616 kg', '2,29 €/kg', 'readableName', null, []),
+];
+// const proprietaryCodes = [{ OP: '068391' }, { 'FACTURA SIMPLIFICADA': '2707-022-142004' }];
+const dummyTicket = new Ticket(
+  '00000',
+  company,
+  store,
+  new Date('2019-03-04T19:51'),
+  null,
+  'CARD',
+  '46,93',
+  null,
+  lines
+);
+export const getMockupTicket = () =>
+  new Ticket(
+    Math.floor(Math.random() * 10000000),
+    company,
+    store,
+    new Date('2019-03-04T19:51'),
+    null,
+    'CARD',
+    '46,93',
+    null,
+    lines
+  );
+
+export const mockupTicket = dummyTicket;
