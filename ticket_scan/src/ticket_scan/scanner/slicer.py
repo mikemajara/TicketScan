@@ -39,6 +39,20 @@ DEFAULT_CUT_MARGIN_FACTOR = 0.7
 
 logger = logging.getLogger(__name__)
 
+
+class SlicerOptions:
+    def __init__(self, th_pixel_density = DEFAULT_TH_PIXEL_DENSITY,
+                       line_padding = DEFAULT_LINE_PADDING,
+                       kernel_size = DEFAULT_KERNEL_SIZE,
+                       cut_margin_factor = DEFAULT_CUT_MARGIN_FACTOR):
+        self.th_pixel_density = th_pixel_density
+        self.line_padding = line_padding
+        self.kernel_size = kernel_size
+        self.cut_margin_factor = cut_margin_factor
+
+
+DEFAULT_SLICER_OPTIONS = SlicerOptions()
+
 def get_image_path(name: str):
     return os.path.join(PATH_IMAGES, name)
 
@@ -184,9 +198,8 @@ def get_slices_as_img_list(img, upper_bounds, lower_bounds, line_padding, margin
 
 def slice(path_image: str,
           interactive=False,
-          th_pxl_density=DEFAULT_TH_PIXEL_DENSITY,
-          line_padding=7,
           save_cropped=False,
+          slicer_options=DEFAULT_SLICER_OPTIONS,
           output_path=''
           ):
 
@@ -202,22 +215,22 @@ def slice(path_image: str,
     computed_threshold, working_image = get_inverted_thresholded_image(
         working_image)
 
-    uppers, lowers = get_slices(working_image, th_pxl_density)
+    uppers, lowers = get_slices(working_image, slicer_options.th_pixel_density)
 
     while interactive:
 
         display_image = orig.copy()
 
-        display_image = draw_slices_on_image(display_image, uppers, lowers, line_padding=line_padding)
+        display_image = draw_slices_on_image(display_image, uppers, lowers, line_padding=slicer_options.line_padding)
 
-        logger.info("Current threshold_pxl_density: " + str(th_pxl_density))
-        logger.info("Current threshold_pxl_line: " + str(line_padding) + "\n")
+        logger.info("Current threshold_pxl_density: " + str(slicer_options.th_pixel_density))
+        logger.info("Current threshold_pxl_line: " + str(slicer_options.line_padding) + "\n")
 
         show_image_normal_window("Lines result", display_image)
 
-        th_pxl_density, line_padding, interactive = handle_interactive_key_input(th_pxl_density, line_padding)
+        slicer_options.th_pixel_density, slicer_options.line_padding, interactive = handle_interactive_key_input(slicer_options.th_pixel_density, slicer_options.line_padding)
 
-        uppers, lowers = get_slices(working_image, th_pxl_density)
+        uppers, lowers = get_slices(working_image, slicer_options.th_pixel_density)
 
     cv2.destroyAllWindows()
 
@@ -228,11 +241,11 @@ def slice(path_image: str,
     slices = get_slices_as_img_list(orig,
                                 upper_bounds=uppers,
                                 lower_bounds=lowers,
-                                line_padding=line_padding,
-                                margin_factor=DEFAULT_CUT_MARGIN_FACTOR)
+                                line_padding=slicer_options.line_padding,
+                                margin_factor=slicer_options.cut_margin_factor)
 
     if save_cropped:
-        parameters_str = str(th_pxl_density) + "_" + str(line_padding)
+        parameters_str = str(slicer_options.th_pixel_density) + "_" + str(slicer_options.line_padding)
         path, basename, ext = get_path_base_and_ext(filename_image)
         if len(output_path):
             path_output = os.path.join(os.path.expanduser(output_path), basename + "_" + parameters_str)
@@ -293,8 +306,7 @@ if __name__ == "__main__":
 
     slice(path_image=args["image"],
           interactive=args["interactive"],
-          th_pxl_density=args["threshold_pxl_density"],
-          line_padding=args["line_padding"],
+          slicer_options=args["slicer_options"],
           save_cropped=args["save_cropped"],
           output_path=args["output_path"]
     )

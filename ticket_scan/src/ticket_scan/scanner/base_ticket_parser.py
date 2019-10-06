@@ -4,6 +4,7 @@ from abc import ABC, abstractmethod
 
 from ticket_scan.model.company import CompanySchema
 from ticket_scan.model.store import StoreSchema
+from ticket_scan.scanner.slicer import SlicerOptions
 
 DEFAULT_SIMILARITY_TH = 70
 
@@ -35,6 +36,10 @@ class BaseTicketParser(ABC):
     @abstractmethod
     def company_tax_id(self):
         pass
+
+    @property
+    def slicer_options(self):
+        return SlicerOptions()
 
     @abstractmethod
     def find_company(self, lines: list, available_companies: list, similarity_th=DEFAULT_SIMILARITY_TH):

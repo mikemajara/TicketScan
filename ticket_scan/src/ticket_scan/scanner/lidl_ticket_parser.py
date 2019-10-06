@@ -16,13 +16,13 @@ from ticket_scan.scanner.slicer import SlicerOptions
 DEFAULT_SIMILARITY_TH = 70
 
 # TICKET LINE REFERENCES
-STR_COMPANY_NAME = "MERCADONA S.A."
-STR_COMPANY_TAX_ID = "NIF: A-46103834"
-STR_PRODUCT_LIST_UPPER_LIMIT = "Descripción unidad (€)"
-STR_PRODUCT_LIST_LOWER_LIMIT = "TOTAL "
+STR_COMPANY_NAME = "LIDL SUPERMERCADOS S.A.U."
+STR_COMPANY_TAX_ID = "NIF: A60195278"
+STR_PRODUCT_LIST_UPPER_LIMIT = "EURO"
+STR_PRODUCT_LIST_LOWER_LIMIT = "------------"
 STR_TOTAL = "TOTAL "
-STR_CARD = "TARJETA..BANCARIA "
-STR_CASH = "ENTREGA...EFECTIVO "
+STR_CARD = "??? " # TODO: No info about how a card payment looks like
+STR_CASH = "Entregado "
 
 STR_RETURNED = "DEVOLUCIÓN "
 
@@ -44,53 +44,43 @@ STR_RETURNED = "DEVOLUCIÓN "
 ## not guaranteed to be a rightful value).
 
 example_ticket = {
-    "0": "MERCADONA S.A.",
-    "1": "C/ MAYOR, 7 - ESPINARLO",
-    "2": ". MURCIA",
-    "3": "TELEFONO: 968307114",
-    "4": "NIF. A-46103834",
-    "5": "7/03/2019 19:51 OP: 1059346",
-    "6": "FACTURA SIMPLIFICADA: 2308-011-v43UTO",
-    "7": "Preciu Importe",
-    "8": "Vescr ipción unidad (€)",
-    "9": "1 B,ALMENDRA S/A 8,40",
-    "10": "4 L SEMI S/LACTO 4,50 16,00",
-    "11": "3 GALLETA RELTEV 1,22 3,06",
-    "12": "1 COPOS AVENA 0,81",
-    "13": "1 COSTILLA BARB 3,99",
-    "14": "1 ZANAHORIA BOLS 0,69",
-    "15": "2 VENTRESCA ATUN 2,15 4,30",
-    "16": "1 PAPEL HIGIENIC 2,70",
-    "17": "1 HIGIENICO DOBL 2,01",
-    "18": "1 PEPINO o",
-    "19": "U,478 ky 1,89 €/kg u,9uU",
-    "20": "1 PLATANO",
-    "21": "0,616 kg 2,29 €e/kg 1,41",
-    "22": "TOTAL 463%",
-    # "222": "ENTREGA...EFECTIVO 50,00",
-    # "2222": "DEVOLUCIÓN 0,05",
-    "23": "TARJETA. BANCARIA 46%",
-    "24": "LLTALLE (€)",
-    "25": "IA BASE IMPONIBLE CUOTA",
-    "26": "4% 20,19 0,81",
-    "27": "10% 19,24 1,92",
-    "28": "2 3,94 0,83",
-    "29": "HITAL 43,9 3,56",
-    "30": "LARJ: 9016",
-    "31": "AUT: 307029",
-    "32": "“ul: 44101236",
-    "33": "+ PALO TARJETA BANCARIA +",
-    "34": "- 4490000031010",
-    "35": "«IVA CLÁSICA",
-    "36": "30",
-    "37": "SE ADMIIEN DEVOLUCIONES CON TICKEf"
+    "0": "LIDL SUPERMERCADOS S.A.U.",
+    "1": "Avenida 'Miguel de Cervantes Nº 110",
+    "2": "30100 Murcia",
+    "3": "NIF A60195278",
+    "4": "www.lidl.es",
+    "5": "EUR",
+    "6": "Yogur griego 1,258 B",
+    "7": "Danone activia 1,89 B",
+    "8": "Gullón digestive 1,29 B",
+    "9": "Yogur griego miel 0,49 B",
+    "10": "Tortilla cebolla 0,79",
+    "11": "------------",
+    "12": "TOTAL 5,71",
+    "13": "=============",
+    "14": "Entregado 20,21",
+    "15": "Cambio -14,50",
+    "16": "IVA% IVA + P Neto = PVP",
+    "17": "B 10% 0,52 5,19 5,71",
+    "18": "—-————————————————————-———————————————————",
+    "19": "Suma 0,52 5,19 5,71",
+    "20": "| Registrate en Lid! Plus y ahorra |",
+    "21": "| en tus próximas compras |",
+    "22": "3508 214740/05 02.09.19 20:21",
+    "23": "Devoluciones artículos de bazar con",
+    "24": "ticket de compra y embalaje original",
+    "25": "en un plazo máximo de 30 días sin",
+    "26": "perjuicio de la ley de garantías.",
+    "27": "Horario Tienda Lu a Sa 09:00 a 22:00",
+    "28": "Atención al cliente",
+    "29": "www. lidl.es/contacto Tel.900958311",
+    "30": "GRACIAS POR SU VISITA"
 }
-
 
 logger = logging.getLogger(__name__)
 
 
-class MercadonaTicketParser(BaseTicketParser):
+class LidlTicketParser(BaseTicketParser):
     @property
     def company_name(self):
         return STR_COMPANY_NAME
@@ -98,6 +88,10 @@ class MercadonaTicketParser(BaseTicketParser):
     @property
     def company_tax_id(self):
         return STR_COMPANY_TAX_ID
+
+    @property
+    def slicer_options(self):
+        return SlicerOptions(cut_margin_factor=1.2)
 
     def find_company(self, lines: list, available_companies: list, similarity_th=DEFAULT_SIMILARITY_TH):
         result = None
@@ -109,9 +103,6 @@ class MercadonaTicketParser(BaseTicketParser):
                 best_ratio = found_company.ratio[0]
         return result
 
-    @property
-    def slicer_options(self):
-        return SlicerOptions(cut_margin_factor=0.7)
 
     # TODO refactor
     ## - [x] Only return object store
@@ -140,7 +131,7 @@ class MercadonaTicketParser(BaseTicketParser):
 
         found_total = lf.find_line_with_similarity(lines, STR_TOTAL)
         if found_total.is_found[0]:
-            result.total = found_total.value_requested[0]
+            result.total = found_total.value_requested[0].split(" ")[-1]
 
         found_method = lf.find_lines_with_limit(
             lines,
@@ -167,8 +158,17 @@ class MercadonaTicketParser(BaseTicketParser):
 
 
     def find_lines_address(self, lines: list, company: Company):
-        # Mercadona proprietary
+        # Lidl proprietary
         return lf.find_lines_with_limit(lines, company.name, amount_lines=2, limit_type="upper")
+
+    def find_date(self, lines: list):
+        date = None
+        STR_LAST_LINE = "GRACIAS POR SU VISITA"
+        NUM_LINES_UPWARD = 8
+        found_timestamp = lf.find_lines_with_limit(lines, limit=STR_LAST_LINE, amount_lines=NUM_LINES_UPWARD, limit_type="lower")
+        if found_timestamp.is_found:
+            _, _, date, hour = found_timestamp.value_requested[0].split(" ")
+        return date
 
     def parse(self, ticket: dict):
         ticket_response = {}
@@ -197,7 +197,7 @@ class MercadonaTicketParser(BaseTicketParser):
             raise Exception("Store not found")
 
         # 3.- Fecha
-        found_date = lf.find_lines_with_limit(lines, limit=company.tax_id, amount_lines=1, limit_type="upper")
+        found_date = self.find_date(lines)
 
         # 4.- Lineas de compra
         found_product_lines = lf.find_lines_with_limits(
@@ -220,12 +220,10 @@ class MercadonaTicketParser(BaseTicketParser):
         )
         ticket_response["company"] = CompanySchema().dump(company)
         ticket_response["store"] = StoreSchema().dump(store)
-        ticket_response["date"] = found_date.value_requested[0]
+        ticket_response["date"] = found_date
         ticket_response["lines"] = found_product_lines.value_requested
         ticket_response["payment"] = PaymentInformationSchema().dump(payment)
         logger.info(json.dumps(TicketSchema().dump(ticket), indent=2, default=str, ensure_ascii=False))
-        # print(json.dumps(TicketSchema().dump(ticket_object), indent=2, default=str, ensure_ascii=False))
-        # logger.info(json.dumps(ticket_response, indent=2, default=str, ensure_ascii=False))
         return ticket_response
 
 
