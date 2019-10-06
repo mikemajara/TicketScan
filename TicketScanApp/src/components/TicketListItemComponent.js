@@ -45,10 +45,6 @@ export default function ProductListItemComponent(props) {
       title={
         <View style={[styles.titleContainerStyle, { ...styleDebug('red') }]}>
           <Text style={[styles.companyName, styles.titleTextStyle]}>{props.companyName}</Text>
-          <View style={{ flexDirection: 'row' }}>
-            <Icon iconStyle={{ marginHorizontal: 10 }} type="ionicon" name="ios-star" color={iOSColors.yellow} size={15} />
-            <Icon iconStyle={{ marginHorizontal: 10 }} type="ionicon" name="ios-flag" color={iOSColors.orange} size={15} />
-          </View>
         </View>
       }
       // titleStyle={[styles.titleStyle, { ...styleDebug('red') }]}
@@ -84,9 +80,8 @@ const styles = StyleSheet.create({
     // backgroundColor: 'transparent',
     ...styleDebug('blue'),
     justifyContent: 'space-between',
-    marginLeft: 0,
-    paddingVertical: 10,
-    paddingRight: 10,
+    marginLeft: -10,
+    padding: 10,
     height: 60,
   },
   leftIconContainer: {
@@ -104,7 +99,6 @@ const styles = StyleSheet.create({
   },
   titleContainerStyle: {
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'space-between',
   },
   titleTextStyle: {
