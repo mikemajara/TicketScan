@@ -16,6 +16,9 @@ import {
 import ScannerViewContainer from './src/containers/ScannerViewContainer';
 import TicketViewContainer from './src/containers/TicketViewContainer';
 import TicketListViewContainer from './src/containers/TicketListViewContainer';
+import { iOSColors } from 'react-native-typography';
+import { Icon } from 'react-native-elements';
+
 // import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const dummyComponent = () => {
@@ -33,6 +36,12 @@ export const ScannerStackNavigator = createStackNavigator(
   },
   {
     initialRouteName: 'ScannerView',
+    // where is the border comming from? 
+    cardStyle: {
+      // backgroundColor: iOSColors.lightGray,
+      // margin: 10
+      // borderBottomWidth: 0,
+    }
   }
 );
 
@@ -70,6 +79,49 @@ export const TabNavigator = createBottomTabNavigator(
   },
   {
     initialRouteName: 'Scanner',
+    defaultNavigationOptions: ({ navigation }) => ({
+      tabBarIcon: ({ focused, horizontal, tintColor }) => {
+        const { routeName } = navigation.state;
+        let iconName, type;
+        switch (routeName) {
+          case 'Scanner':
+            type = 'ionicon'
+            iconName = 'ios-qr-scanner';
+            break;
+          case 'TicketList':
+            type = 'font-awesome5'
+            iconName = 'receipt';
+            break;
+          case 'Settings':
+            type = 'ionicon'
+            iconName = 'ios-cog';
+            break;
+          default:
+            break;
+        }
+        return (
+          <Icon
+            iconStyle={{ fontSize: 25 }}
+            type={type}
+            name={iconName}
+            color={focused ? iOSColors.blue : iOSColors.lightGray2}
+            size={13}
+          />
+        );
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+    }),
+    tabBarOptions: {
+      activeTintColor: iOSColors.blue,
+      inactiveTintColor: iOSColors.gray,
+      keyboardHidesTabBar: true,
+      style: {
+        borderTopWidth: 0,
+      }
+    },
   },
 );
 
