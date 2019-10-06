@@ -83,7 +83,7 @@ export const TabNavigator = createBottomTabNavigator(
             iconName = 'ios-qr-scanner';
             break;
           case 'TicketList':
-            type = 'font-awesome5'
+            type = 'material-community'
             iconName = 'receipt';
             break;
           case 'Settings':
