@@ -7,11 +7,13 @@ import { Button, ListItem, Icon } from 'react-native-elements';
 import { iOSColors } from 'react-native-typography';
 import AppleStyleSwipeableRow from './AppleStyleSwipeableRow';
 import TicketListItemComponent from '../components/TicketListItemComponent';
+import CompanyRepository from '../repository/CompanyRepository';
 
 import { styleDebug, mockupTicket, getMockupTicket } from '../helpers';
 import LoadingComponent from '../components/LoadingComponent';
 
 export default function TicketViewContainer(props) {
+
   const [elements, setElements] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -49,7 +51,12 @@ export default function TicketViewContainer(props) {
     fetchTickets();
   }, []);
 
-  const handlePressedLine = _id => {
+  const handlePressedLine = async _id => {
+    const myVar = await new CompanyRepository().getEntity('5d76824c1855750cd80a8037');
+    // TODO: REMOVE TRACE
+    console.log(`${new Date().toISOString()} - TicketListViewContainer:56:myVar`);
+    console.log(myVar);
+
     // TODO: Ticket pressed disabled.
     // props.navigation.navigate('TicketView', { _id });
     // TODO: get ticket pressed
@@ -99,8 +106,8 @@ export default function TicketViewContainer(props) {
                   />
                 }
                 onPress={() => {
-                  console.log('handling press')
-                  handlePressedLine(item._id)
+                  console.log('handling press');
+                  handlePressedLine(item._id);
                 }}
               />
             </AppleStyleSwipeableRow>
