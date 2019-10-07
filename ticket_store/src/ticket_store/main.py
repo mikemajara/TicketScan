@@ -109,10 +109,25 @@ def main(args):
             companies = mongo.db.companies.find({})
             return jsonify(json.loads(json.dumps([company for company in companies], default=str)))
 
+        @app.route("/get_company/<company_id>", methods=['GET'])
+        def get_company(company_id):
+            company = mongo.db.companies.find_one(ObjectId(company_id))
+            if company is None:
+                return {}
+            return json.loads(json.dumps(company, default=str))
+
         @app.route("/get_stores/<company_id>", methods=['GET'])
         def get_stores(company_id):
             stores = mongo.db.stores.find({"company_id": ObjectId(company_id)})
             return jsonify(json.loads(json.dumps([store for store in stores], default=str)))
+
+        @app.route("/get_store/<store_id>", methods=['GET'])
+        def get_store(id):
+            store = mongo.db.stores.find_one(ObjectId(store_id))
+            if store is None:
+                return {}
+            return json.loads(json.dumps(store, default=str))
+
 
         ### Ticket ###
 
@@ -138,15 +153,15 @@ def main(args):
             tickets = mongo.db.tickets.find({})
             return { 'tickets': json.loads(json.dumps([ticket for ticket in tickets], default=str))}
 
-        @app.route("/get_ticket/<id>", methods=['GET'])
-        def get_ticket(id):
-            ticket = mongo.db.tickets.find_one(ObjectId(id))
+        @app.route("/get_ticket/<_id>", methods=['GET'])
+        def get_ticket(_id):
+            ticket = mongo.db.tickets.find_one(ObjectId(_id))
             if ticket is None:
                 return {}
             return json.loads(json.dumps(ticket, default=str))
 
-        @app.route("/delete_ticket/<id>", methods=['GET'])
-        def delete_ticket(id):
+        @app.route("/delete_ticket/<_id>", methods=['GET'])
+        def delete_ticket(_id):
             _id = mongo.db.tickets.delete_one({"_id": ObjectId(id)})
             return str(_id)
 
