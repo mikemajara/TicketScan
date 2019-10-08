@@ -34,16 +34,16 @@ class Server(Resource):
         # convert the difference image to a hash
         return sum([2 ** i for (i, v) in enumerate(diff.flatten()) if v])
 
-    def _get_hash(self, file):
-        # file is read as an image through numpy to avoid saving it to disk
-        # read image file string data
+    def _read_file_as_numpy_array(self, file):
         filestr = file.read()
         # file object’s position needs to point to the 0th byte, otherwise it cannot be saved later on
         file.seek(0)
-        # convert string data to numpy array
         npimg = np.fromstring(filestr, np.uint8)
-        # convert numpy array to image
         image = cv2.imdecode(npimg, cv2.IMREAD_COLOR)
+        return image
+
+    def _hash_from_file(self, file):
+        image = self._read_file_as_numpy_array(file)
         if image is None:
             raise Exception("Non existing file: ", file)
 
@@ -53,7 +53,7 @@ class Server(Resource):
 
     def _get_filepath(self, file):
         file_extension = file.content_type.split("/")[1]
-        filehash = self._get_hash(file)
+        filehash = self._hash_from_file(file)
         filepath = Server.FILEPATH_FORMAT.format(hash=filehash, file_extension=file_extension)
         return os.path.abspath(filepath)
 
