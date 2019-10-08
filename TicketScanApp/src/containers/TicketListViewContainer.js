@@ -52,7 +52,7 @@ export default function TicketViewContainer(props) {
   }, []);
 
   const handlePressedLine = async _id => {
-    const myVar = await new CompanyRepository().getEntity('5d76824c1855750cd80a8037');
+    const myVar = await new CompanyRepository().findAll();
     // TODO: REMOVE TRACE
     console.log(`${new Date().toISOString()} - TicketListViewContainer:56:myVar`);
     console.log(myVar);
