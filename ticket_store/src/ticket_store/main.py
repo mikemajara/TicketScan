@@ -122,7 +122,7 @@ def main(args):
             return jsonify(json.loads(json.dumps([store for store in stores], default=str)))
 
         @app.route("/get_store/<store_id>", methods=['GET'])
-        def get_store(id):
+        def get_store(store_id):
             store = mongo.db.stores.find_one(ObjectId(store_id))
             if store is None:
                 return {}
