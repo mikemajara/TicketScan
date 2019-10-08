@@ -7,7 +7,6 @@ export default abstract class BaseRepository<T> implements IWrite<T>, IRead<T> {
   apiUrl: string = 'http://127.0.0.1:5001/';
 
   abstract updatePath: string;
-  abstract deletePath: string;
   abstract findAllPath: string;
   abstract findOnePath: string;
 
@@ -17,15 +16,24 @@ export default abstract class BaseRepository<T> implements IWrite<T>, IRead<T> {
   abstract fromJson(item: object): T;
   abstract fromJsonArray(items: object[]): T[];
 
-  update(id: string, item: T): Promise<boolean> {
-    throw new Error('Method not implemented.');
+  async update(item: T): Promise<boolean> {
+    try {
+      const response = await fetch(`${this.apiUrl}${this.updatePath}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(item),
+      });
+      return response.ok;
+    } catch (error) {
+      throw new Error('Exception handling not implemented');
+    }
   }
-  delete(id: string): Promise<boolean> {
-    throw new Error('Method not implemented.');
-  }
+
   async findAll(): Promise<T[]> {
     try {
-      const response = await fetch(this.apiUrl + this.findAllPath);
+      const response = await fetch(`${this.apiUrl}${this.findAllPath}`);
       const responseJson = await response.json();
       const obj = this.fromJsonArray(responseJson);
       return obj;
@@ -33,7 +41,15 @@ export default abstract class BaseRepository<T> implements IWrite<T>, IRead<T> {
       throw new Error('Exception handling not implemented');
     }
   }
-  findOne(id: string): Promise<T> {
-    throw new Error('Method not implemented.');
+
+  async findOne(id: string): Promise<T> {
+    try {
+      const response = await fetch(`${this.apiUrl}${this.findAllPath}/${id}`);
+      const responseJson = await response.json();
+      const obj = this.fromJson(responseJson);
+      return obj;
+    } catch (error) {
+      throw new Error('Exception handling not implemented');
+    }
   }
 }

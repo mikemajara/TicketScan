@@ -3,10 +3,9 @@ import Company from '../model/Company';
 
 export default class CompanyRepository extends BaseRepository<Company> {
 
-  updatePath = "";
-  deletePath = "";
+  updatePath = '';
   findAllPath = 'get_companies';
-  findOnePath = "";
+  findOnePath = '';
 
   fromJson(item: object): Company {
     return Object.assign(new Company, item);
