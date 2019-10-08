@@ -10,13 +10,13 @@
 
 class TicketLine {
   constructor(
+    private _id?: string,
     private units?: number,
     private name?: string,
+    private total?: number,
     private price?: number,
     private weight?: string,
     private weightPrice?: number,
-    private readableName?: string,
-    private id?: string,
   ) { }
 }
 

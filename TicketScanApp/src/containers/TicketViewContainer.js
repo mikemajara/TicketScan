@@ -16,6 +16,7 @@ import Company from '../model/Company';
 import CardComponent from '../components/CardComponent';
 import AppleStyleSwipeableRow from './AppleStyleSwipeableRow';
 import ProductListItemComponent from '../components/ProductListItemComponent';
+import TicketRepository from '../repository/TicketRepository';
 
 moment.locale('es');
 
@@ -34,6 +35,8 @@ async function retrieveTicket(id) {
     return responseJson;
   }
 }
+
+const ticketRepository = new TicketRepository();
 
 export default function TicketViewContainer(props) {
 
@@ -85,26 +88,31 @@ export default function TicketViewContainer(props) {
 
   const [ticketId, setTicketId] = useState(props.navigation.getParam('_id', null));
   const [elements, setElements] = useState([]);
-  const [ticket, setTicket] = useState(props.navigation.getParam('ticket', dummyTicket));
-
+  const [ticket, setTicket] = useState(null);
 
   useEffect(() => {
+    // const fetchData = async () => {
+    //   console.log('fetching data...');
+    //   let elems = {};
+    //   if (ticketId) {
+    //     elems = await retrieveTicket(ticketId);
+    //   } else {
+    //     elems = props.navigation.getParam('elements', {});
+    //   }
+    //   elems = Object.values(elems);
+    //   if (elems) {
+    //     setElements(elems);
+    //   }
+    // };
+
     const fetchData = async () => {
-      console.log('fetching data...');
-      let elems = {};
-      if (ticketId) {
-        elems = await retrieveTicket(ticketId);
-      } else {
-        elems = props.navigation.getParam('elements', {});
-      }
-      elems = Object.values(elems);
-      if (elems) {
-        setElements(elems);
-      }
+      const t = await ticketRepository.findOne('5d9ccfaa8473b4c0f4622d9e');
+      setTicket(t);
     };
 
     fetchData();
-    console.log(`${new Date().toISOString()} - TicketViewContainer:useEffect:ticket`);
+
+    console.log(`${new Date().toISOString()} - TicketViewContainer:113:ticket`);
     console.log(ticket);
   }, []);
 
@@ -113,12 +121,12 @@ export default function TicketViewContainer(props) {
       'Edit',
       'Correct the line as you see fit',
       itemValue => {
-        const arr = [...elements];
-        arr[index] = itemValue;
-        setElements(arr);
+        const arr = [...ticket.lines];
+        arr[index] = JSON.parse(itemValue);
+        setTicket({ ...ticket, lines: arr });
       },
       'plain-text',
-      elements[index],
+      ticket.lines[index],
       'numeric'
     );
   };
@@ -159,6 +167,14 @@ export default function TicketViewContainer(props) {
     }
   }
 
+
+  if (ticket === null) {
+    return (
+      <View>
+        <Text>Loading...</Text>
+      </View>
+    )
+  }
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -256,10 +272,12 @@ export default function TicketViewContainer(props) {
                 units={item.units}
                 name={item.name}
                 price={item.price}
+                total={item.total}
                 weight={item.weight}
                 weightPrice={item.weightPrice}
                 subtitle=""
                 bottomDivider={Boolean(ticket.lines.length - index - 1)}
+                onPress={() => handlePressedLine(index)}
                 leftIcon={
                   <Icon
                     type="ionicon"

@@ -44,7 +44,7 @@ export default abstract class BaseRepository<T> implements IWrite<T>, IRead<T> {
 
   async findOne(id: string): Promise<T> {
     try {
-      const response = await fetch(`${this.apiUrl}${this.findAllPath}/${id}`);
+      const response = await fetch(`${this.apiUrl}${this.findOnePath}/${id}`);
       const responseJson = await response.json();
       const obj = this.fromJson(responseJson);
       return obj;

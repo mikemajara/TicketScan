@@ -52,13 +52,8 @@ export default function TicketViewContainer(props) {
   }, []);
 
   const handlePressedLine = async _id => {
-    const myVar = await new CompanyRepository().findAll();
-    // TODO: REMOVE TRACE
-    console.log(`${new Date().toISOString()} - TicketListViewContainer:56:myVar`);
-    console.log(myVar);
-
     // TODO: Ticket pressed disabled.
-    // props.navigation.navigate('TicketView', { _id });
+    props.navigation.navigate('TicketView', { _id });
     // TODO: get ticket pressed
     // props.navigation.navigate('TicketView', { elements: response })
   };
@@ -86,7 +81,7 @@ export default function TicketViewContainer(props) {
         style={styles.list}
         data={elements || []}
         renderItem={({ item, index }) => {
-          console.log(item, index);
+          // console.log(item, index);
           return (
             <AppleStyleSwipeableRow
               deleteContent={<Icon type="ionicon" name="ios-trash" color="white" size={35} />}
