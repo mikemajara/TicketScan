@@ -17,39 +17,16 @@ import CardComponent from '../components/CardComponent';
 import AppleStyleSwipeableRow from './AppleStyleSwipeableRow';
 import ProductListItemComponent from '../components/ProductListItemComponent';
 import TicketRepository from '../repository/TicketRepository';
+import LoadingComponent from '../components/LoadingComponent';
+
 
 moment.locale('es');
 
-async function retrieveTicket(id) {
-  let responseJson = null;
-  try {
-    const response = await fetch(`http://127.0.0.1:5001/get_ticket/${id}`);
-    if (response.status === 200) {
-      responseJson = await response.json();
-      alert(`Success: ${response.status} ${response.statusText || ''}`);
-    }
-    alert(`Error: ${response.status} ${response.statusText || ''}`);
-    return responseJson;
-  } catch (error) {
-    alert(error);
-    return responseJson;
-  }
-}
-
-const ticketRepository = new TicketRepository();
-
 export default function TicketViewContainer(props) {
+  const ticketRepository = new TicketRepository();
 
-  let company;// = Object.assign(new Company, ticket.company)
-  let store;// = Object.assign(new Store, ticket.store)
-
-  company = new Company(
-    'id: string',
-    'Mercadona S.A.',
-    'A-1324122',
-    '',
-  );
-  store = new Store(
+  const company = new Company('id: string', 'Mercadona S.A.', 'A-1324122', '');
+  const store = new Store(
     'Mercadona',
     'Spain',
     'Murcia',
@@ -85,35 +62,26 @@ export default function TicketViewContainer(props) {
   // Store constructor(company, country, city, address, phone, id) {
   // TicketLine constructor(units, name, price, weight, weightPrice, readableName, id, altCodes) {
   // Ticket constructor(store, datetime, proprietaryCodes, paymentMethod, total, returned, ticketLines) {
-
+  const emptyLoading = { isLoading: false, message: '' };
   const [ticketId, setTicketId] = useState(props.navigation.getParam('_id', null));
   const [elements, setElements] = useState([]);
   const [ticket, setTicket] = useState(null);
+  const [loading, setLoading] = useState(emptyLoading);
 
   useEffect(() => {
-    // const fetchData = async () => {
-    //   console.log('fetching data...');
-    //   let elems = {};
-    //   if (ticketId) {
-    //     elems = await retrieveTicket(ticketId);
-    //   } else {
-    //     elems = props.navigation.getParam('elements', {});
-    //   }
-    //   elems = Object.values(elems);
-    //   if (elems) {
-    //     setElements(elems);
-    //   }
-    // };
-
     const fetchData = async () => {
-      const t = await ticketRepository.findOne('5d9ccfaa8473b4c0f4622d9e');
-      setTicket(t);
+      setLoading({ isLoading: true, message: 'Reading the ticket in detail...' });
+      try {
+        const t = await ticketRepository.findOne('5d9ccfaa8473b4c0f4622d9e');
+        setTicket(t);
+        setLoading({ isLoading: false, message: '' });
+      } catch (error) {
+        setLoading({ isLoading: false, message: '' });
+        throw new Error('Exception handling not implemented');
+      }
     };
 
     fetchData();
-
-    console.log(`${new Date().toISOString()} - TicketViewContainer:113:ticket`);
-    console.log(ticket);
   }, []);
 
   const handlePressedLine = index => {
@@ -121,13 +89,16 @@ export default function TicketViewContainer(props) {
       'Edit',
       'Correct the line as you see fit',
       async itemValue => {
+        setLoading({ isLoading: true, message: 'Applying some changes on your ticket...' })
         const arr = [...ticket.lines];
         arr[index] = JSON.parse(itemValue);
         const newTicket = { ...ticket, lines: arr };
         try {
           await ticketRepository.update(newTicket);
           setTicket(newTicket);
+          setLoading({ isLoading: false, message: '' });
         } catch (error) {
+          setLoading({ isLoading: false, message: '' });
           throw new Error('Exception handling not implemented');
         }
       },
@@ -177,12 +148,18 @@ export default function TicketViewContainer(props) {
   if (ticket === null) {
     return (
       <View>
-        <Text>Loading...</Text>
+        <LoadingComponent
+          isLoading={loading.isLoading}
+          loadingText={loading.message}
+        />
       </View>
     )
   }
   return (
     <View style={styles.container}>
+      {loading.isLoading && (
+        <LoadingComponent isLoading={loading.isLoading} loadingText={loading.message} />
+      )}
       <View style={styles.header}>
         <View style={styles.companyName}>
           <Text style={iOSUIKit.largeTitleEmphasized}>{ticket.company.name}</Text>
@@ -255,7 +232,6 @@ export default function TicketViewContainer(props) {
         style={styles.list}
         data={ticket.lines}
         renderItem={({ item, index }) => {
-          console.log(item, ticket.lines.length, index);
           return (
             <AppleStyleSwipeableRow
               deleteContent={<Icon type="ionicon" name="ios-trash" color="white" size={35} />}

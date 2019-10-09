@@ -15,6 +15,7 @@ export default function ProductListItemComponent(props) {
         <View style={[styles.titleStyle, { ...styleDebug('red') }]}>
           <Text style={[styles.units, styles.titleTextStyle]}>{props.units}</Text>
           <Text style={[styles.name, styles.titleTextStyle]}>{props.name}</Text>
+          {props.units > 1 && (<Text style={[styles.name, styles.titleTextStyle]}>{props.price}</Text>)}
           <Text style={[styles.price, styles.titleTextStyle]}>{props.total}</Text>
         </View>
       }
@@ -83,7 +84,7 @@ const styles = StyleSheet.create({
 });
 
 ProductListItemComponent.propTypes = {
-  units: PropTypes.string.isRequired,
+  units: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   total: PropTypes.number.isRequired,
   price: PropTypes.number.isRequired,
