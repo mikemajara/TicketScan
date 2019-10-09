@@ -27,7 +27,7 @@ __license__ = "proprietary"
 
 _logger = logging.getLogger(__name__)
 
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, abort
 from flask_pymongo import PyMongo, ObjectId
 import json
 
@@ -139,14 +139,19 @@ def main(args):
 
         @app.route("/update_ticket", methods=['POST'])
         def update_ticket():
-            j = request.get_json()
-            # _id = j['ticket']['_id']
-            # del
-            ack = mongo.db.tickets.update_one(
-                {"_id": ObjectId(j.get('_id'))},
-                {"$set": j.get('ticket')}
-            ).acknowledged
-            return {'msg': ack}
+            try:
+                j = request.get_json()
+                # _id = j['ticket']['_id']
+                # del
+                _id = j.pop("_id")
+                ack = mongo.db.tickets.update_one(
+                    {"_id": ObjectId(_id)},
+                    {"$set": j}
+                ).acknowledged
+                return {'msg': ack}
+            except Exception as e:
+                _logger.error(e)
+                return abort(500)
 
         @app.route("/get_all_tickets", methods=['GET'])
         def get_all_tickets():

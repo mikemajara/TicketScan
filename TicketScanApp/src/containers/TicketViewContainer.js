@@ -120,13 +120,19 @@ export default function TicketViewContainer(props) {
     Alert.prompt(
       'Edit',
       'Correct the line as you see fit',
-      itemValue => {
+      async itemValue => {
         const arr = [...ticket.lines];
         arr[index] = JSON.parse(itemValue);
-        setTicket({ ...ticket, lines: arr });
+        const newTicket = { ...ticket, lines: arr };
+        try {
+          await ticketRepository.update(newTicket);
+          setTicket(newTicket);
+        } catch (error) {
+          throw new Error('Exception handling not implemented');
+        }
       },
       'plain-text',
-      ticket.lines[index],
+      JSON.stringify(ticket.lines[index]),
       'numeric'
     );
   };
@@ -307,7 +313,7 @@ export default function TicketViewContainer(props) {
       />
       <View style={styles.footer}>
         <CardComponent
-          title={`Payment Method: ${ticket.paymentMethod}`}
+          title={`${ticket.paymentInformation.method}`}
           icon={
             <Icon
               reverse
@@ -321,7 +327,7 @@ export default function TicketViewContainer(props) {
           }
         />
         <CardComponent
-          title={`Total: ${ticket.total}`}
+          title={`${ticket.paymentInformation.total}`}
           icon={
             <Icon
               reverse
@@ -358,6 +364,8 @@ const styles = StyleSheet.create({
   },
   footer: {
     // ...styleDebug('purple'),
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     borderTopWidth: StyleSheet.hairlineWidth,
     borderTopColor: iOSColors.lightGray2,
     paddingVertical: 5,
