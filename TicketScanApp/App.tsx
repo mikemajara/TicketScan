@@ -49,7 +49,7 @@ export const TicketListStackNavigator = createStackNavigator(
     },
   },
   {
-    initialRouteName: 'TicketView',
+    initialRouteName: 'TicketList',
   }
 );
 
