@@ -8,11 +8,11 @@ from marshmallow import Schema, fields, post_load
 
 
 class TicketSchema(Schema):
-    id = fields.Str(allow_none=True)
+    id = fields.Integer(allow_none=True)
     store = fields.Nested(StoreSchema, allow_none=True)
-    company = fields.Nested(CompanySchema, allow_none=True)
-    payment_information = fields.Nested(PaymentInformationSchema, allow_none=True)
-    date = fields.DateTime(allow_none=True)
+    company = fields.Nested(CompanySchema, allow_none=False)
+    payment_information = fields.Nested(PaymentInformationSchema, allow_none=False)
+    date = fields.DateTime(allow_none=False)
     lines = fields.List(fields.Nested(TicketLineSchema))
 
     @post_load
@@ -22,7 +22,7 @@ class TicketSchema(Schema):
 
 class Ticket(object):
     def __init__(self,
-                 _id: str = None,
+                 _id: int = None,
                  store: Store = None,
                  company: Company = None,
                  payment_information: PaymentInformation = None,

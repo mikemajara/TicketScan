@@ -2,7 +2,7 @@ from marshmallow import Schema, fields, post_load
 
 
 class TicketLineSchema(Schema):
-    _id = fields.Str()
+    _id = fields.Integer()
     units = fields.Float()
     name = fields.Str()
     price = fields.Float()
@@ -17,7 +17,7 @@ class TicketLineSchema(Schema):
 
 class TicketLine(object):
     def __init__(self,
-                 _id: str,
+                 _id: int,
                  units: float,
                  name: str,
                  price: float,

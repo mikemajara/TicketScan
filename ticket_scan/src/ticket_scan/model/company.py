@@ -1,11 +1,23 @@
-from marshmallow import Schema, fields, post_load
+from marshmallow import Schema, fields, post_load, validate, ValidationError
 
+# ^ Should start with
+# (www.)? may or may not have www.
+# [a-z0-9]+(.[a-z]+) url and domain and also subdomain if any upto 2 levels
+# (/[a-zA-Z0-9#]+/?)*/? can contain path to files but not necessary. last may contain a /
+# $ should end there
+VALID_URL_REGEX = "^(www.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#]+\/?)*$"
 
 class CompanySchema(Schema):
-    _id = fields.Str()
-    name = fields.Str()
-    tax_id = fields.Str()
-    web = fields.Str(allow_none=True)
+    _id = fields.Integer(required=True)
+    name = fields.Str(required=True)
+    tax_id = fields.Str(allow_none=True)
+    web = fields.Str(allow_none=True,
+                     validate=validate.Regexp(VALID_URL_REGEX)
+
+    @validate("_id")
+    def validate_id(self, value):
+        if value < 0:
+            raise ValidateError("_id must be positive")
 
     @post_load
     def from_json(self, data, **kwargs):
@@ -13,13 +25,8 @@ class CompanySchema(Schema):
 
 
 class Company(object):
-    _id = fields.Str()
-    name = fields.Str()
-    taxId = fields.Str()
-    web = fields.Str(allow_none=True)
-
     def __init__(self,
-                 _id: str,
+                 _id: int,
                  name: str,
                  tax_id: str,
                  web: str = None
