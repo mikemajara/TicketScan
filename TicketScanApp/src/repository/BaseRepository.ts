@@ -27,6 +27,7 @@ export default abstract class BaseRepository<T> implements IWrite<T>, IRead<T> {
       });
       return response.ok;
     } catch (error) {
+      console.log(error)
       throw new Error('Exception handling not implemented');
     }
   }
@@ -38,6 +39,7 @@ export default abstract class BaseRepository<T> implements IWrite<T>, IRead<T> {
       const obj = this.fromJsonArray(responseJson);
       return obj;
     } catch (error) {
+      console.log(error)
       throw new Error('Exception handling not implemented');
     }
   }
@@ -49,6 +51,7 @@ export default abstract class BaseRepository<T> implements IWrite<T>, IRead<T> {
       const obj = this.fromJson(responseJson);
       return obj;
     } catch (error) {
+      console.log(error)
       throw new Error('Exception handling not implemented');
     }
   }
