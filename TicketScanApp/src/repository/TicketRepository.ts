@@ -1,5 +1,7 @@
 import BaseRepository from './BaseRepository';
 import Ticket from '../model/Ticket';
+import CompanyRepository from '../repository/CompanyRepository';
+import moment from 'moment/min/moment-with-locales';
 
 export default class TicketRepository extends BaseRepository<Ticket> {
 
@@ -8,7 +10,10 @@ export default class TicketRepository extends BaseRepository<Ticket> {
   findOnePath = 'get_ticket';
 
   fromJson(item: object): Ticket {
-    return Object.assign(new Ticket, item);
+    let { _id, company, store, date, lines, paymentInformation } = item;
+    company = new CompanyRepository().fromJson(company);
+    date = moment(date, 'DD/MM/YYYY HH:mm').toDate();
+    return new Ticket(_id, company, store, date, paymentInformation, lines)
   }
   fromJsonArray(items: object[]): Ticket[] {
     return items.map(item => this.fromJson(item));

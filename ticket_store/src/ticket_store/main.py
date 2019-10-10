@@ -156,7 +156,7 @@ def main(args):
         @app.route("/get_all_tickets", methods=['GET'])
         def get_all_tickets():
             tickets = mongo.db.tickets.find({})
-            return { 'tickets': json.loads(json.dumps([ticket for ticket in tickets], default=str))}
+            return jsonify(json.loads(json.dumps([ticket for ticket in tickets], default=str)))
 
         @app.route("/get_ticket/<_id>", methods=['GET'])
         def get_ticket(_id):

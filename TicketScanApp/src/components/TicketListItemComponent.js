@@ -52,7 +52,7 @@ export default function ProductListItemComponent(props) {
             {moment(props.date).format('L')}
           </Text>
           <View style={styles.paymentInfoContainer}>
-            <Text style={[styles.subTitleTextStyle, styles.paymentTextStyle]}>30,59</Text>
+            <Text style={[styles.subTitleTextStyle, styles.paymentTextStyle]}>{props.ticket.paymentInformation.total}</Text>
             {getPaymentMethodIcon('CASH')}
           </View>
         </View>
