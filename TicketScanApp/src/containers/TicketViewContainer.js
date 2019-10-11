@@ -25,64 +25,9 @@ moment.locale('es');
 export default function TicketViewContainer(props) {
   const ticketRepository = new TicketRepository();
 
-  const company = new Company('id: string', 'Mercadona S.A.', 'A-1324122', '');
-  const store = new Store(
-    'Mercadona',
-    'Spain',
-    'Murcia',
-    'AVDA. CICLISTA MARIANO ROJAS-AV',
-    '+34 968227166',
-    'A-46103834'
-  );
-  const lines = [
-    new TicketLine('1', 'B, ALMENDRA S/A', '8,40', null, null, 'readableName', null, []),
-    new TicketLine('4', 'L SEMI S/LACTO', '18,00', null, null, 'readableName', null, []),
-    new TicketLine('3', 'GALLETA RELIEV', '3,66', null, null, 'readableName', null, []),
-    new TicketLine('1', 'COPOS AVENA', '0,81', null, null, 'readableName', null, []),
-    new TicketLine('1', 'COSTILLA BARB', '3,99', null, null, 'readableName', null, []),
-    new TicketLine('1', 'ZANAHORIA BOLS', '0,69', null, null, 'readableName', null, []),
-    new TicketLine('2', 'VENTRESCA ATUN', '4,30', null, null, 'readableName', null, []),
-    new TicketLine('1', 'PAPEL HIGIENIC', '2,70', null, null, 'readableName', null, []),
-    new TicketLine('1', 'HIGIENICO DOBL', '2,07', null, null, 'readableName', null, []),
-    new TicketLine('1', 'PEPINO', '0,90', '0,478 kg', '1,89 €/kg', 'readableName', null, []),
-    new TicketLine('1', 'PLATANO', '1,41', '0,616 kg', '2,29 €/kg', 'readableName', null, []),
-  ];
-  // const proprietaryCodes = [{ OP: '068391' }, { 'FACTURA SIMPLIFICADA': '2707-022-142004' }];
-  const dummyTicket = new Ticket(
-    company,
-    store,
-    new Date('2019-03-04T19:51'),
-    null,
-    'CARD',
-    '46,93',
-    null,
-    lines
-  );
-
-  // Store constructor(company, country, city, address, phone, id) {
-  // TicketLine constructor(units, name, price, weight, weightPrice, readableName, id, altCodes) {
-  // Ticket constructor(store, datetime, proprietaryCodes, paymentMethod, total, returned, ticketLines) {
   const emptyLoading = { isLoading: false, message: '' };
-  const [ticketId, setTicketId] = useState(props.navigation.getParam('_id', null));
-  const [elements, setElements] = useState([]);
-  const [ticket, setTicket] = useState(null);
+  const [ticket, setTicket] = useState(props.navigation.getParam('ticket', null));
   const [loading, setLoading] = useState(emptyLoading);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading({ isLoading: true, message: 'Reading the ticket in detail...' });
-      try {
-        const t = await ticketRepository.findOne('5d9ccfaa8473b4c0f4622d9e');
-        setTicket(t);
-        setLoading({ isLoading: false, message: '' });
-      } catch (error) {
-        setLoading({ isLoading: false, message: '' });
-        throw new Error('Exception handling not implemented');
-      }
-    };
-
-    fetchData();
-  }, []);
 
   const handlePressedLine = index => {
     Alert.prompt(
@@ -116,44 +61,12 @@ export default function TicketViewContainer(props) {
     return obj;
   };
 
-  async function handleConfirmPress() {
-    let responseJson = null;
-    const url = ticketId
-      ? 'http://127.0.0.1:5001/update_ticket'
-      : 'http://127.0.0.1:5001/add_ticket';
-    const body = ticketId
-      ? { _id: ticketId, ticket: arr2obj(elements) }
-      : { ticket: arr2obj(elements) };
-    try {
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(body),
-      });
-      if (response.status === 200) {
-        responseJson = await response.json();
-        alert(`Success: ${response.status} ${response.statusText || ''}`);
-      }
-      alert(`Error: ${response.status} ${response.statusText || ''}`);
-      return responseJson;
-    } catch (error) {
-      alert(error);
-      return responseJson;
-    }
-  }
-
-
   if (ticket === null) {
     return (
       <View>
-        <LoadingComponent
-          isLoading={loading.isLoading}
-          loadingText={loading.message}
-        />
+        <LoadingComponent isLoading={loading.isLoading} loadingText={loading.message} />
       </View>
-    )
+    );
   }
   return (
     <View style={styles.container}>
@@ -196,20 +109,6 @@ export default function TicketViewContainer(props) {
                 />
               }
             />
-            <CardComponent
-              title={ticket.store.id}
-              icon={
-                <Icon
-                  reverse
-                  raised
-                  iconStyle={{ fontSize: 18 }}
-                  type="entypo"
-                  name="info"
-                  color={iOSColors.blue}
-                  size={13}
-                />
-              }
-            />
           </View>
           <CardComponent
             title={moment(ticket.datetime).format('llll')}
@@ -235,21 +134,7 @@ export default function TicketViewContainer(props) {
           return (
             <AppleStyleSwipeableRow
               deleteContent={<Icon type="ionicon" name="ios-trash" color="white" size={35} />}
-              // onPressDelete={() => {
-              //   LayoutAnimation.configureNext(CustomLayoutLinear);
-              //   this.props.deleteOp(item.id);
-              // }}
-              flagContent={<Icon type="ionicon" name="ios-star" color="white" size={35} />}
-            // onPressFlag={() => {
-            //   this.props.toggleFavorite(item.id);
-            //   this.closeOpenRows();
-            // }}
-            // onSwipeableWillOpen={swipeable => this.closeOpenRows()}
-            // onSwipeableOpen={swipeable => this.setOpenRow(swipeable)}
-            // ref={ref => {
-            //   this.swipeables[item.id] = ref;
-            // }}
-            >
+              flagContent={<Icon type="ionicon" name="ios-star" color="white" size={35} />}>
               <ProductListItemComponent
                 units={item.units}
                 name={item.name}
@@ -269,19 +154,6 @@ export default function TicketViewContainer(props) {
                   />
                 }
               />
-              {/* <ListItem
-                title={
-                  item.units +
-                  item.weight +
-                  item.price +
-                  item.name +
-                  item.readableName +
-                  item.id +
-                  item.altCodes
-                }
-                containerStyle={{ padding: 5 }}
-                onPress={() => handlePressedLine(index)}
-              /> */}
             </AppleStyleSwipeableRow>
           );
         }}
@@ -316,10 +188,7 @@ export default function TicketViewContainer(props) {
             />
           }
         />
-        {/* <View style={styles.paymentMethod}><Text>PAYMENT METHOD: {ticket.paymentMethod}</Text></View> */}
-        {/* <View style={styles.total}><Text>TOTAL: {ticket.total}</Text></View> */}
       </View>
-      {/* <Button title="Save" style={styles.button} onPress={handleConfirmPress} /> */}
     </View>
   );
 }

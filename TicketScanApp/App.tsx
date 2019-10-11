@@ -43,6 +43,12 @@ export const TicketListStackNavigator = createStackNavigator(
   {
     TicketList: {
       screen: TicketListViewContainer,
+      navigationOptions: {
+        title: 'Tickets',
+        headerStyle: {
+          borderBottomWidth: 0,
+        },
+      }
     },
     TicketView: {
       screen: TicketViewContainer,
