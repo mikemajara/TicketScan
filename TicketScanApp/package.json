@@ -13,6 +13,8 @@
     "prop-types": "^15.7.2",
     "react": "16.8.6",
     "react-native": "0.60.5",
+    "react-native-camera": "^3.7.1",
+    "react-native-document-scanner": "^1.4.2",
     "react-native-elements": "^1.1.0",
     "react-native-gesture-handler": "^1.4.1",
     "react-native-image-crop-picker": "^0.25.0",

@@ -48,8 +48,8 @@ Prefer to set parents as containers, the rest as views (or pure components)
   - ♻️ Generics in Typescript
     - [ErickWendel/generic-repository-nodejs-typescript-article](https://github.com/ErickWendel/generic-repository-nodejs-typescript-article)
   - [Stop Manually Assigning TypeScript Constructor Parameters](https://www.stevefenton.co.uk/2013/04/stop-manually-assigning-typescript-constructor-parameters/)
-  - [Constructor overload in Typescript](https://stackoverflow.com/questions/12702548/constructor-overload-in-typescript)
-
+  - [Constructor overload in Typescript](https://stackoverflow.com/questions/12702548/constructor-overload-in-typescript
+)
 ### 🧩 Used Components
 
 - [react-native-typography](https://github.com/hectahertz/react-native-typography)

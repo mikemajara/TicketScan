@@ -7,6 +7,7 @@ import ImagePicker from 'react-native-image-crop-picker';
 import { iOSColors } from 'react-native-typography';
 import ImageView from 'react-native-image-view';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import DocumentScanner from 'react-native-document-scanner';
 import { styleDebug } from '../helpers';
 import LoadingComponent from '../components/LoadingComponent';
 
@@ -32,6 +33,7 @@ const ScannerViewContainer = props => {
   const [photo, setPhoto] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [image, setImage] = useState(null)
 
   const handleUploadPhoto = () => {
     setLoading(true);
@@ -59,6 +61,33 @@ const ScannerViewContainer = props => {
 
   return (
     <View style={styles.container}>
+      <DocumentScanner
+        useBase64
+        saveInAppDocument={false}
+        onPictureTaken={data =>
+          setImage({
+            image: data.croppedImage,
+            initialImage: data.initialImage,
+            rectangleCoordinates: data.rectangleCoordinates
+          })
+        }
+        overlayColor="rgba(255,130,0, 0.7)"
+        enableTorch={false}
+        brightness={0.3}
+        saturation={1}
+        contrast={1.1}
+        quality={0.5}
+        onRectangleDetect={({ stableCounter, lastDetectionType }) =>
+          this.setState({ stableCounter, lastDetectionType })
+        }
+        detectionCountBeforeCapture={5}
+        detectionRefreshRateInMS={50}
+        onPermissionsDenied={() => console.log("Permissions Denied")}
+      />
+      {image && (<Image
+        source={{ uri: `data:image/jpeg;base64,${image}` }}
+        resizeMode="contain"
+      />)}
       {loading && (
         <LoadingComponent
           isLoading={loading}
