@@ -4,28 +4,35 @@ import Modal from 'react-native-modal';
 import { View, Text, TouchableHighlight, Alert, StyleSheet, TextInput } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { iOSColors, iOSUIKit, systemWeights } from 'react-native-typography';
+import { PropTypes } from 'prop-types';
 
 import { styleDebug } from '../helpers';
 
 export default function TicketLineDetailModal(props) {
   // const { ticketLine } = props.ticketLine;
-  const [name, setName] = useState('PAN BIMBO');
-  const [units, setUnits] = useState(1);
-  const [price, setPrice] = useState(1.0);
+  const _price = "1.01";
+  const [name, setName] = useState(props.line.name);
+  const [units, setUnits] = useState(props.line.units.toString());
+  const [price, setPrice] = useState(_price);
 
-  const updateUnits = newValue => {
-    if (Number.isNaN(newValue) || newValue < 0) {
-      setUnits(0);
-    } else {
-      setUnits(newValue);
-    }
-  }
+  useEffect(() => {
+    props.onUnitsUpdate(units);
 
-  const updatePrice = newValue => {
-    if (Number.isNaN(newValue) || newValue < 0) {
-      setPrice(0);
+    // TODO: REMOVE TRACE
+    console.log(`${new Date().toISOString()} - TicketDetailModalComponent:20:units`);
+    console.log(units);
+    // ^^^^^ REMOVE TRACE
+
+  }, [units]);
+
+  const sumUnits = value => {
+    const oldValue = parseInt(units, 10);
+    const sumValue = parseInt(value, 10);
+    const result = oldValue + sumValue;
+    if (result < 1) {
+      setUnits('1');
     } else {
-      setPrice(newValue);
+      setUnits(result.toString());
     }
   }
 
@@ -66,13 +73,19 @@ export default function TicketLineDetailModal(props) {
             color={iOSColors.red}
             iconStyle={styles.icon}
             size={13}
-            onPress={() => updateUnits(units <= 1 ? 1 : units - 1)}
+            onPress={() => sumUnits(units < 1 ? 0 : -1)}
           />
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
             <TextInput
               style={[styles.textInputUnits, { borderWidth: StyleSheet.hairlineWidth, padding: 5, borderRadius: 7 }]}
-              onChangeText={text => updateUnits(parseInt(text, 10))}
-              value={units.toString()}
+              onChangeText={text => setUnits(text)}
+              value={units}
+              keyboardType="number-pad"
+              onBlur={() => {
+                if (Number.isNaN(units) || units < 1) {
+                  setUnits('1');
+                }
+              }}
             />
             <Text style={styles.textLabel}>Unidades</Text>
           </View>
@@ -83,10 +96,10 @@ export default function TicketLineDetailModal(props) {
             color={iOSColors.green}
             iconStyle={styles.icon}
             size={13}
-            onPress={() => updateUnits(units + 1)}
+            onPress={() => sumUnits(1)}
           />
         </View>
-        <View style={styles.textInputPriceContainer}>
+        {/* <View style={styles.textInputPriceContainer}>
           <Icon
             reverse
             type='ionicon'
@@ -100,7 +113,12 @@ export default function TicketLineDetailModal(props) {
             <TextInput
               style={[styles.textInputPrice, { borderWidth: StyleSheet.hairlineWidth, padding: 5, borderRadius: 7 }]}
               onChangeText={text => updatePrice(parseFloat(text, 10))}
-              value={price.toString()}
+              onBlur={() => {
+                updatePrice(parseInt(priceString, 10));
+                // props.onUnitsChange(units)
+              }}
+              value={priceString}
+              keyboardType="numeric"
             />
             <Text style={styles.textLabel}> € Unidad</Text>
           </View>
@@ -113,7 +131,7 @@ export default function TicketLineDetailModal(props) {
             size={13}
             onPress={() => updatePrice(price + 0.01)}
           />
-        </View>
+        </View> */}
       </View>
     </Modal>
   )
@@ -179,3 +197,14 @@ const styles = StyleSheet.create({
     ...systemWeights.light,
   },
 });
+
+TicketLineDetailModal.propTypes = {
+  line: PropTypes.object,
+  onUnitsUpdate: PropTypes.func.isRequired,
+};
+TicketLineDetailModal.defaultProps = {
+  line: {
+    units: '0',
+    name: '',
+  },
+};

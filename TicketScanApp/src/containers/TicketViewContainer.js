@@ -30,14 +30,11 @@ export default function TicketViewContainer(props) {
   const [ticket, setTicket] = useState(props.navigation.getParam('ticket', null));
   const [loading, setLoading] = useState(emptyLoading);
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [selectedIndexLine, setSelectedIndexLine] = useState(null);
 
   const handlePressedLine = index => {
+    setSelectedIndexLine(index);
     setIsModalVisible(true);
-
-    // TODO: REMOVE TRACE
-    console.log(`${new Date().toISOString()} - TicketViewContainer:63:isModalVisible`);
-    console.log(isModalVisible);
-    // ^^^^^ REMOVE TRACE
 
     // Alert.prompt(
     //   'Edit',
@@ -79,7 +76,19 @@ export default function TicketViewContainer(props) {
   }
   return (
     <View style={styles.container}>
-      <TicketLineDetailModal visible={isModalVisible} onPressClose={() => setIsModalVisible(false)} />
+      {selectedIndexLine != null && (
+        <TicketLineDetailModal
+          line={ticket.lines[selectedIndexLine]}
+          visible={isModalVisible}
+          onPressClose={() => {
+            setIsModalVisible(false);
+            setSelectedIndexLine(null);
+          }}
+          onUnitsUpdate={units => {
+            ticket.lines[selectedIndexLine].units = units;
+          }}
+        />
+      )}
       {loading.isLoading && (
         <LoadingComponent isLoading={loading.isLoading} loadingText={loading.message} />
       )}
@@ -155,13 +164,7 @@ export default function TicketViewContainer(props) {
                 subtitle=""
                 bottomDivider={Boolean(ticket.lines.length - index - 1)}
                 onPress={() => {
-                  handlePressedLine(index)
-
-                  // TODO: REMOVE TRACE
-                  console.log(`${new Date().toISOString()} - TicketViewContainer:186:index`);
-                  console.log(index);
-                  // ^^^^^ REMOVE TRACE
-
+                  handlePressedLine(index);
                 }}
                 leftIcon={
                   <Icon
