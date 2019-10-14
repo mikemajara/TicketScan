@@ -1,0 +1,101 @@
+{
+	"_id": {
+		"$oid": "5d9ccfaa8473b4c0f4622d9e"
+	},
+	"company": {
+		"_id": "5d76824c1855750cd80a8037",
+		"name": "MERCADONA S.A.",
+		"tax_id": "A-46103834",
+		"web": null
+	},
+	"date": "17/03/2019 19:51",
+	"lines": [
+		{
+			"name": "CHORIZO ALMENDRALEJO",
+			"price": 8.4,
+			"total": 8.4,
+			"units": 1
+		},
+		{
+			"name": "L SEMI S/LACTOSO",
+			"price": 4.5,
+			"total": 16,
+			"units": 4
+		},
+		{
+			"name": "GALLETA RELTEV",
+			"price": 1.22,
+			"total": 3.66,
+			"units": 3
+		},
+		{
+			"name": "COPOS AVENA",
+			"price": 0.81,
+			"total": 0.81,
+			"units": 1
+		},
+		{
+			"name": "COSTILLA BARB",
+			"price": 3.99,
+			"total": 3.99,
+			"units": 1
+		},
+		{
+			"name": "ZANAHORIA BOLS",
+			"price": 0.69,
+			"total": 0.69,
+			"units": 1
+		},
+		{
+			"name": "VENTRESCA ATUN",
+			"price": 2.15,
+			"total": 4.3,
+			"units": 2
+		},
+		{
+			"name": "PAPEL HIGIENIC",
+			"price": 2.7,
+			"total": 2.7,
+			"units": 1
+		},
+		{
+			"name": "HIGIÉNICO DOBL",
+			"price": 2.07,
+			"total": 2.07,
+			"units": 1
+		},
+		{
+			"name": "PEPINO y o",
+			"price": 0.9,
+			"total": 0.9,
+			"units": 1,
+			"weight": "0.418 kg",
+			"weightPrice": "1.89 €/kg"
+		},
+		{
+			"name": "PLATANO o",
+			"price": 1.41,
+			"total": 1.41,
+			"units": 1,
+			"weight": "0,616 kg",
+			"weightPrice": "1,89 €/kg"
+		}
+	],
+	"paymentInformation": {
+		"method": "CARD",
+		"returned": null,
+		"total": 49.93
+	},
+	"store": {
+		"_id": "5d8742d3dcad30c5cc30624d",
+		"address": "C/ MAYOR, 7 - ESPINARDO",
+		"address_strings": [
+			"C/ MAYOR, 7 - ESPINARDO",
+			"Murcia"
+		],
+		"city": "Murcia",
+		"company_id": "5d76824c1855750cd80a8037",
+		"country": "Spain",
+		"phone": "968392509"
+	}
+}
