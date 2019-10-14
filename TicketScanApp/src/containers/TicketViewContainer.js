@@ -30,10 +30,10 @@ export default function TicketViewContainer(props) {
   const [ticket, setTicket] = useState(props.navigation.getParam('ticket', null));
   const [loading, setLoading] = useState(emptyLoading);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [selectedIndexLine, setSelectedIndexLine] = useState(null);
+  const [line, setLine] = useState(null);
 
   const handlePressedLine = index => {
-    setSelectedIndexLine(index);
+    setLine(ticket.lines[index]);
     setIsModalVisible(true);
 
     // Alert.prompt(
@@ -76,16 +76,18 @@ export default function TicketViewContainer(props) {
   }
   return (
     <View style={styles.container}>
-      {selectedIndexLine != null && (
+      {line != null && (
         <TicketLineDetailModal
-          line={ticket.lines[selectedIndexLine]}
+          line={line}
           visible={isModalVisible}
           onPressClose={() => {
             setIsModalVisible(false);
-            setSelectedIndexLine(null);
+            setLine(null);
           }}
-          onUnitsUpdate={units => {
-            ticket.lines[selectedIndexLine].units = units;
+          lineUpdate={({ name, units, price }) => {
+            line.units = units;
+            line.name = name;
+            line.price = price;
           }}
         />
       )}
