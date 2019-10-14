@@ -9,16 +9,35 @@ import { styleDebug } from '../helpers';
 
 export default function TicketLineDetailModal(props) {
   // const { ticketLine } = props.ticketLine;
-  const [units, setUnits] = useState(1);
   const [name, setName] = useState('PAN BIMBO');
+  const [units, setUnits] = useState(1);
+  const [price, setPrice] = useState(1.0);
+
+  const updateUnits = newValue => {
+    if (Number.isNaN(newValue) || newValue < 0) {
+      setUnits(0);
+    } else {
+      setUnits(newValue);
+    }
+  }
+
+  const updatePrice = newValue => {
+    if (Number.isNaN(newValue) || newValue < 0) {
+      setPrice(0);
+    } else {
+      setPrice(newValue);
+    }
+  }
 
   return (
     <Modal
       style={styles.modal}
-      backdropColor="#00000040"
+      backdropOpacity={0.4}
       onSwipeComplete={props.onPressClose}
       swipeDirection={['down']}
       isVisible={props.visible}
+      avoidKeyboard
+      coverScreen
     >
       <View style={styles.container}>
         <View style={styles.iconCloseContainer}>
@@ -32,38 +51,67 @@ export default function TicketLineDetailModal(props) {
             onPress={props.onPressClose}
           />
         </View>
+        <View style={{ flexDirection: 'row', justifyContent: 'center', alignSelf: 'center', borderWidth: StyleSheet.hairlineWidth, padding: 5, borderRadius: 7 }}>
+          <TextInput
+            style={styles.textInputName}
+            onChangeText={text => setName(text)}
+            value={name}
+          />
+        </View>
         <View style={styles.textInputUnitsContainer}>
-          <Text style={styles.textLabel}>Unidades</Text>
           <Icon
             reverse
             type='ionicon'
             name='ios-remove'
             color={iOSColors.red}
             iconStyle={styles.icon}
-            size={7}
-            onPress={() => setUnits(units + 1)}
+            size={13}
+            onPress={() => updateUnits(units <= 1 ? 1 : units - 1)}
           />
-          <TextInput
-            style={styles.textInputUnits}
-            onChangeText={text => setUnits(parseInt(text, 10))}
-            value={units.toString()}
-          />
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <TextInput
+              style={[styles.textInputUnits, { borderWidth: StyleSheet.hairlineWidth, padding: 5, borderRadius: 7 }]}
+              onChangeText={text => updateUnits(parseInt(text, 10))}
+              value={units.toString()}
+            />
+            <Text style={styles.textLabel}>Unidades</Text>
+          </View>
           <Icon
             reverse
             type='ionicon'
             name='ios-add'
             color={iOSColors.green}
             iconStyle={styles.icon}
-            size={7}
-            onPress={() => setUnits(units <= 1 ? 1 : units - 1)}
+            size={13}
+            onPress={() => updateUnits(units + 1)}
           />
         </View>
-        <View style={styles.textInputNameContainer}>
-          <Text style={styles.textLabel}>Nombre</Text>
-          <TextInput
-            style={styles.textInputName}
-            onChangeText={text => setName(text)}
-            value={name}
+        <View style={styles.textInputPriceContainer}>
+          <Icon
+            reverse
+            type='ionicon'
+            name='ios-remove'
+            color={iOSColors.red}
+            iconStyle={styles.icon}
+            size={13}
+            onPress={() => updatePrice(price <= 0.01 ? 0.01 : price - 0.01)}
+          />
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <TextInput
+              style={[styles.textInputPrice, { borderWidth: StyleSheet.hairlineWidth, padding: 5, borderRadius: 7 }]}
+              onChangeText={text => updatePrice(parseFloat(text, 10))}
+              value={price.toString()}
+            />
+            <Text style={styles.textLabel}> € Unidad</Text>
+          </View>
+          <Icon
+            reverse
+            type='ionicon'
+            name='ios-add'
+            color={iOSColors.green}
+            iconStyle={styles.icon}
+            size={13}
+            onPress={() => updatePrice(price + 0.01)}
           />
         </View>
       </View>
@@ -73,17 +121,17 @@ export default function TicketLineDetailModal(props) {
 
 const styles = StyleSheet.create({
   modal: {
-    marginHorizontal: 0,
+    justifyContent: 'flex-end',
     marginBottom: 0,
+    marginHorizontal: 0,
   },
   container: {
     ...styleDebug('red'),
     backgroundColor: 'white',
-    flex: 1,
+    height: 300,
     justifyContent: 'space-between',
     padding: 20,
-    paddingBottom: 100,
-    marginTop: 400,
+    paddingBottom: 50,
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
   },
@@ -97,25 +145,37 @@ const styles = StyleSheet.create({
   textLabel: {
     ...iOSUIKit.title3,
     ...systemWeights.light,
-    marginRight: 10,
+    marginLeft: 5,
+  },
+  textInputNameContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
+  textInputName: {
+    ...iOSUIKit.body,
+    ...systemWeights.light,
   },
   textInputUnitsContainer: {
     ...styleDebug('purple'),
     flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'baseline',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   textInputUnits: {
     ...styleDebug('green'),
     ...iOSUIKit.title3,
     ...systemWeights.light,
   },
-  textInputNameContainer: {
-    alignItems: 'baseline',
+  textInputPriceContainer: {
+    ...styleDebug('purple'),
     flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
-  textInputName: {
-    ...iOSUIKit.body,
+  textInputPrice: {
+    ...styleDebug('green'),
+    ...iOSUIKit.title3,
     ...systemWeights.light,
   },
 });
