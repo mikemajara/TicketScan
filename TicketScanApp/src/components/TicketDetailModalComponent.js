@@ -14,10 +14,6 @@ export default function TicketLineDetailModal(props) {
   const [units, setUnits] = useState(line.units.toString());
   const [price, setPrice] = useState(line.price.toString());
 
-  useEffect(() => {
-    props.lineUpdate({ name, units, price });
-  }, [name, units, price]);
-
   const sumUnits = value => {
     const oldValue = parseInt(units, 10);
     const sumValue = parseInt(value, 10);
@@ -30,9 +26,9 @@ export default function TicketLineDetailModal(props) {
   }
 
   const sumPrice = value => {
-    const oldValue = parseFloat(units, 10);
+    const oldValue = parseFloat(price, 10);
     const sumValue = parseFloat(value, 10);
-    const result = oldValue + sumValue;
+    const result = (oldValue + sumValue).toFixed(2);
     if (result < 0.01) {
       setPrice('0.01');
     } else {
@@ -40,16 +36,28 @@ export default function TicketLineDetailModal(props) {
     }
   }
 
+  const handleClose = e => {
+    // TODO: REMOVE TRACE
+    console.log(`${new Date().toISOString()} - TicketDetailModalComponent:48:'HIDING'`);
+    console.log('HIDING');
+    // ^^^^^ REMOVE TRACE
+
+    props.lineUpdate({
+      name,
+      units: parseInt(units, 10),
+      price: parseFloat(price),
+    });
+    props.onPressClose(e);
+  }
+
   return (
     <Modal
       style={styles.modal}
       backdropOpacity={0.4}
-      onSwipeComplete={props.onPressClose}
+      onSwipeComplete={handleClose}
       swipeDirection={['down']}
       isVisible={props.visible}
-      avoidKeyboard
-      coverScreen
-    >
+      avoidKeyboard>
       <View style={styles.container}>
         <View style={styles.iconCloseContainer}>
           <Icon
@@ -59,7 +67,7 @@ export default function TicketLineDetailModal(props) {
             color={iOSColors.customGray}
             iconStyle={[styles.icon, { color: 'black' }]}
             size={13}
-            onPress={props.onPressClose}
+            onPress={handleClose}
           />
         </View>
         <View style={{ flexDirection: 'row', justifyContent: 'center', alignSelf: 'center', borderWidth: StyleSheet.hairlineWidth, padding: 5, borderRadius: 7 }}>
@@ -207,11 +215,12 @@ const styles = StyleSheet.create({
 TicketLineDetailModal.propTypes = {
   line: PropTypes.object,
   lineUpdate: PropTypes.func.isRequired,
+  onPressClose: PropTypes.func.isRequired,
 };
 TicketLineDetailModal.defaultProps = {
   line: {
     units: '0',
     name: '',
-    price: '0.00'
+    price: '0.00',
   },
 };
