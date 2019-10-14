@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text } from 'react-native';
 import { ListItem, Icon } from 'react-native-elements';
-import { iOSUIKit, iOSColors } from 'react-native-typography';
+import { iOSUIKit, iOSColors, systemWeights } from 'react-native-typography';
 import { styleDebug } from '../helpers';
 
 
@@ -62,7 +62,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   titleTextStyle: {
-    fontSize: 17,
+    ...iOSUIKit.body,
+    ...systemWeights.light,
   },
   units: {
   },
