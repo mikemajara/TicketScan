@@ -4,7 +4,10 @@ import { IRead } from './IRead';
 
 // that class only can be extended
 export default abstract class BaseRepository<T> implements IWrite<T>, IRead<T> {
+  // Use for development in local pc (with simulator)
   apiUrl: string = 'http://127.0.0.1:5001/';
+  // Use for development in local network (insert ip of local computer)
+  // apiUrl: string = 'http://172.20.10.4:5001/';
 
   abstract updatePath: string;
   abstract findAllPath: string;
