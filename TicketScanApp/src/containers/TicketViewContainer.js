@@ -30,41 +30,16 @@ export default function TicketViewContainer(props) {
   const [ticket, setTicket] = useState(props.navigation.getParam('ticket', null));
   const [loading, setLoading] = useState(emptyLoading);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [line, setLine] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState(null);
 
-  const handlePressedLine = index => {
-    setLine(ticket.lines[index]);
-    setIsModalVisible(true);
-
-    // Alert.prompt(
-    //   'Edit',
-    //   'Correct the line as you see fit',
-    //   async itemValue => {
-    //     setLoading({ isLoading: true, message: 'Applying some changes on your ticket...' })
-    //     const arr = [...ticket.lines];
-    //     arr[index] = JSON.parse(itemValue);
-    //     const newTicket = { ...ticket, lines: arr };
-    //     try {
-    //       await ticketRepository.update(newTicket);
-    //       setTicket(newTicket);
-    //       setLoading({ isLoading: false, message: '' });
-    //     } catch (error) {
-    //       setLoading({ isLoading: false, message: '' });
-    //       throw new Error('Exception handling not implemented');
-    //     }
-    //   },
-    //   'plain-text',
-    //   JSON.stringify(ticket.lines[index]),
-    //   'numeric'
-    // );
+  const handleModifiedLine = async modifiedLine => {
+    ticket.lines[selectedIndex] = { ...ticket.lines[selectedIndex], ...modifiedLine };
+    await ticketRepository.update(ticket);
   };
 
-  const arr2obj = arr => {
-    const obj = {};
-    arr.forEach((e, i) => {
-      obj[`line${i}`] = e;
-    });
-    return obj;
+  const handlePressedLine = index => {
+    setSelectedIndex(index);
+    setIsModalVisible(true);
   };
 
   if (ticket === null) {
@@ -76,19 +51,15 @@ export default function TicketViewContainer(props) {
   }
   return (
     <View style={styles.container}>
-      {line != null && (
+      {selectedIndex != null && (
         <TicketLineDetailModal
-          line={line}
+          line={ticket.lines[selectedIndex]}
           visible={isModalVisible}
           onPressClose={() => {
             setIsModalVisible(false);
-            setLine(null);
+            setSelectedIndex(null);
           }}
-          lineUpdate={({ name, units, price }) => {
-            line.units = units;
-            line.name = name;
-            line.price = price;
-          }}
+          lineUpdate={modifiedLine => handleModifiedLine(modifiedLine)}
         />
       )}
       {loading.isLoading && (
