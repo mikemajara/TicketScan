@@ -6,9 +6,10 @@ import { Image, Icon, Button } from 'react-native-elements';
 // FIXME: Crop picker not working after upgrade.
 // import ImagePicker from 'react-native-image-crop-picker';
 import { iOSColors } from 'react-native-typography';
-import ImageView from 'react-native-image-view';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import ImageView from 'react-native-image-view';
 import Scanner from 'react-native-document-scanner';
+
 import { styleDebug } from '../helpers';
 import LoadingComponent from '../components/LoadingComponent';
 
@@ -62,32 +63,6 @@ const ScannerViewContainer = props => {
 
   return (
     <View style={styles.container}>
-      {/* <View style={{ ...styleDebug('red'), borderWidth: 3 }}> */}
-      {/* <DocumentScanner
-          useBase64
-          saveInAppDocument={false}
-          onPictureTaken={data =>
-            setImage({
-              image: data.croppedImage,
-              initialImage: data.initialImage,
-              rectangleCoordinates: data.rectangleCoordinates
-            })
-          }
-          overlayColor="rgba(255,130,0, 0.7)"
-          enableTorch={false}
-          brightness={0.3}
-          saturation={1}
-          contrast={1.1}
-          quality={0.5}
-          onRectangleDetect={({ stableCounter, lastDetectionType }) =>
-            setDocumentInfo({ stableCounter, lastDetectionType })
-          }
-          detectionCountBeforeCapture={5}
-          detectionRefreshRateInMS={50}
-          onPermissionsDenied={() => console.log('Permissions Denied')}
-        />
-        {image && <Image source={{ uri: `data:image/jpeg;base64,${image}` }} resizeMode="contain" />} */}
-      {/* </View> */}
       {loading && (
         <LoadingComponent
           isLoading={loading}
@@ -98,11 +73,6 @@ const ScannerViewContainer = props => {
         {
           image ?
             <View>
-              {/* <Image
-                style={{ width: 400, height: 400 }}
-                source={{ uri: `data:image/jpeg;base64,${image}` }}
-                resizeMode="contain"
-              /> */}
               <TouchableOpacity onPress={() => setModalVisible(true)}>
                 <Image
                   style={[styles.image, { width: 400, height: 400 }]}
