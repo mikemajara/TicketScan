@@ -9,21 +9,14 @@ import { PropTypes } from 'prop-types';
 import { styleDebug } from '../helpers';
 
 export default function TicketLineDetailModal(props) {
-  // const { ticketLine } = props.ticketLine;
-  const _price = "1.01";
-  const [name, setName] = useState(props.line.name);
-  const [units, setUnits] = useState(props.line.units.toString());
-  const [price, setPrice] = useState(_price);
+  const { line } = props;
+  const [name, setName] = useState(line.name);
+  const [units, setUnits] = useState(line.units.toString());
+  const [price, setPrice] = useState(line.price.toString());
 
   useEffect(() => {
-    props.onUnitsUpdate(units);
-
-    // TODO: REMOVE TRACE
-    console.log(`${new Date().toISOString()} - TicketDetailModalComponent:20:units`);
-    console.log(units);
-    // ^^^^^ REMOVE TRACE
-
-  }, [units]);
+    props.lineUpdate({ name, units, price });
+  }, [name, units, price]);
 
   const sumUnits = value => {
     const oldValue = parseInt(units, 10);
@@ -33,6 +26,17 @@ export default function TicketLineDetailModal(props) {
       setUnits('1');
     } else {
       setUnits(result.toString());
+    }
+  }
+
+  const sumPrice = value => {
+    const oldValue = parseFloat(units, 10);
+    const sumValue = parseFloat(value, 10);
+    const result = oldValue + sumValue;
+    if (result < 0.01) {
+      setPrice('0.01');
+    } else {
+      setPrice(result.toString());
     }
   }
 
@@ -99,7 +103,8 @@ export default function TicketLineDetailModal(props) {
             onPress={() => sumUnits(1)}
           />
         </View>
-        {/* <View style={styles.textInputPriceContainer}>
+
+        <View style={styles.textInputPriceContainer}>
           <Icon
             reverse
             type='ionicon'
@@ -107,17 +112,18 @@ export default function TicketLineDetailModal(props) {
             color={iOSColors.red}
             iconStyle={styles.icon}
             size={13}
-            onPress={() => updatePrice(price <= 0.01 ? 0.01 : price - 0.01)}
+            onPress={() => sumPrice(price <= 0.01 ? 0.01 : -0.01)}
           />
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
             <TextInput
               style={[styles.textInputPrice, { borderWidth: StyleSheet.hairlineWidth, padding: 5, borderRadius: 7 }]}
-              onChangeText={text => updatePrice(parseFloat(text, 10))}
+              onChangeText={text => setPrice(text)}
+              value={price}
               onBlur={() => {
-                updatePrice(parseInt(priceString, 10));
-                // props.onUnitsChange(units)
+                if (Number.isNaN(price) || price < 0.01) {
+                  setPrice('0.01');
+                }
               }}
-              value={priceString}
               keyboardType="numeric"
             />
             <Text style={styles.textLabel}> € Unidad</Text>
@@ -129,9 +135,9 @@ export default function TicketLineDetailModal(props) {
             color={iOSColors.green}
             iconStyle={styles.icon}
             size={13}
-            onPress={() => updatePrice(price + 0.01)}
+            onPress={() => sumPrice(0.01)}
           />
-        </View> */}
+        </View>
       </View>
     </Modal>
   )
@@ -200,11 +206,12 @@ const styles = StyleSheet.create({
 
 TicketLineDetailModal.propTypes = {
   line: PropTypes.object,
-  onUnitsUpdate: PropTypes.func.isRequired,
+  lineUpdate: PropTypes.func.isRequired,
 };
 TicketLineDetailModal.defaultProps = {
   line: {
     units: '0',
     name: '',
+    price: '0.00'
   },
 };
