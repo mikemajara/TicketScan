@@ -1,0 +1,1932 @@
+{
+	"company": {
+		"_id": "5d76824c1855750cd80a8037",
+		"name": "MERCADONA S.A.",
+		"tax_id": "A-46103834",
+		"web": null
+	},
+	"store": {
+		"_id": "5d8742d3dcad30c5cc30624d",
+		"address": "C/ MAYOR, 7 - ESPINARDO",
+		"address_strings": [
+			"C/ MAYOR, 7 - ESPINARDO",
+			"Murcia"
+		],
+		"city": "Murcia",
+		"company_id": "5d76824c1855750cd80a8037",
+		"country": "Spain",
+		"phone": "968392509"
+	},
+	"date": "10/09/2019 21:39",
+	"lines": [
+		{
+			"name": "PAN BIMBO",
+			"price": 0.95,
+			"total": 0.95,
+			"units": 1
+		},
+		{
+			"name": "CEBOLLA",
+			"price": 2.59,
+			"total": 2.59,
+			"units": 1
+		},
+		{
+			"name": "PAPEL HIGI\u00c9NICO",
+			"price": 0.66,
+			"total": 1.98,
+			"units": 3
+		},
+		{
+			"name": "AJOS",
+			"price": 1.74,
+			"total": 1.74,
+			"units": 1
+		},
+		{
+			"name": "GAZPACHO",
+			"price": 0.75,
+			"total": 0.75,
+			"units": 1
+		},
+		{
+			"name": "LECHE",
+			"price": 0.38,
+			"total": 1.14,
+			"units": 3
+		},
+		{
+			"name": "TOMATES",
+			"price": 6.58,
+			"total": 6.58,
+			"units": 1
+		}
+	],
+	"paymentInformation": {
+		"method": "CASH",
+		"total": 15.73,
+		"returned": 4.27
+	}
+}
+{
+	"company": {
+		"_id": "5d76824c1855750cd80a8037",
+		"name": "MERCADONA S.A.",
+		"tax_id": "A-46103834",
+		"web": null
+	},
+	"store": {
+		"_id": "5d8742d3dcad30c5cc30624d",
+		"address": "C/ MAYOR, 7 - ESPINARDO",
+		"address_strings": [
+			"C/ MAYOR, 7 - ESPINARDO",
+			"Murcia"
+		],
+		"city": "Murcia",
+		"company_id": "5d76824c1855750cd80a8037",
+		"country": "Spain",
+		"phone": "968392509"
+	},
+	"date": "06/07/2019 21:09",
+	"lines": [
+		{
+			"name": "ACEITE TOSTADAS",
+			"price": 0.96,
+			"total": 0.96,
+			"units": 1
+		},
+		{
+			"name": "ACEITE COCINA",
+			"price": 0.81,
+			"total": 3.24,
+			"units": 4
+		},
+		{
+			"name": "QUESO GRATINADO",
+			"price": 8.29,
+			"total": 8.29,
+			"units": 1
+		},
+		{
+			"name": "GAZPACHO",
+			"price": 0.2,
+			"total": 0.4,
+			"units": 2
+		},
+		{
+			"name": "CEBOLLA",
+			"price": 0.51,
+			"total": 2.04,
+			"units": 4
+		},
+		{
+			"name": "QUESO GRATINADO",
+			"price": 0.08,
+			"total": 0.24,
+			"units": 3
+		},
+		{
+			"name": "PAPEL HIGI\u00c9NICO",
+			"price": 2.59,
+			"total": 2.59,
+			"units": 1
+		},
+		{
+			"name": "PAN BIMBO",
+			"price": 0.24,
+			"total": 0.24,
+			"units": 1
+		}
+	],
+	"paymentInformation": {
+		"method": "CASH",
+		"total": 18.0,
+		"returned": 2.0
+	}
+}
+{
+	"company": {
+		"_id": "5d76824c1855750cd80a8037",
+		"name": "MERCADONA S.A.",
+		"tax_id": "A-46103834",
+		"web": null
+	},
+	"store": {
+		"_id": "5d8742d3dcad30c5cc30624d",
+		"address": "C/ MAYOR, 7 - ESPINARDO",
+		"address_strings": [
+			"C/ MAYOR, 7 - ESPINARDO",
+			"Murcia"
+		],
+		"city": "Murcia",
+		"company_id": "5d76824c1855750cd80a8037",
+		"country": "Spain",
+		"phone": "968392509"
+	},
+	"date": "15/07/2019 16:27",
+	"lines": [
+		{
+			"name": "FRUTA",
+			"price": 0.05,
+			"total": 0.05,
+			"units": 1
+		},
+		{
+			"name": "HUEVOS",
+			"price": 0.99,
+			"total": 0.99,
+			"units": 1
+		},
+		{
+			"name": "CEBOLLA",
+			"price": 0.91,
+			"total": 0.91,
+			"units": 1
+		},
+		{
+			"name": "PAPEL HIGI\u00c9NICO",
+			"price": 6.25,
+			"total": 6.25,
+			"units": 1
+		},
+		{
+			"name": "ACEITE TOSTADAS",
+			"price": 1.65,
+			"total": 1.65,
+			"units": 1
+		},
+		{
+			"name": "GAZPACHO",
+			"price": 3.22,
+			"total": 6.44,
+			"units": 2
+		}
+	],
+	"paymentInformation": {
+		"method": "CARD",
+		"total": 16.29,
+		"returned": null
+	}
+}
+{
+	"company": {
+		"_id": "5d76824c1855750cd80a8037",
+		"name": "MERCADONA S.A.",
+		"tax_id": "A-46103834",
+		"web": null
+	},
+	"store": {
+		"_id": "5d8742d3dcad30c5cc30624d",
+		"address": "C/ MAYOR, 7 - ESPINARDO",
+		"address_strings": [
+			"C/ MAYOR, 7 - ESPINARDO",
+			"Murcia"
+		],
+		"city": "Murcia",
+		"company_id": "5d76824c1855750cd80a8037",
+		"country": "Spain",
+		"phone": "968392509"
+	},
+	"date": "19/09/2019 16:00",
+	"lines": [
+		{
+			"name": "GAZPACHO",
+			"price": 0.91,
+			"total": 2.73,
+			"units": 3
+		},
+		{
+			"name": "TOMATES",
+			"price": 0.21,
+			"total": 0.21,
+			"units": 1
+		},
+		{
+			"name": "PAPEL HIGI\u00c9NICO",
+			"price": 0.98,
+			"total": 0.98,
+			"units": 1
+		},
+		{
+			"name": "CHOCOLATE",
+			"price": 3.62,
+			"total": 10.86,
+			"units": 3
+		},
+		{
+			"name": "CEBOLLA",
+			"price": 1.0,
+			"total": 2.0,
+			"units": 2
+		},
+		{
+			"name": "TOMATES",
+			"price": 0.06,
+			"total": 0.12,
+			"units": 2
+		},
+		{
+			"name": "ACEITE TOSTADAS",
+			"price": 5.82,
+			"total": 5.82,
+			"units": 1
+		},
+		{
+			"name": "ZANAHORIAS",
+			"price": 8.54,
+			"total": 8.54,
+			"units": 1
+		}
+	],
+	"paymentInformation": {
+		"method": "CASH",
+		"total": 31.26,
+		"returned": 18.74
+	}
+}
+{
+	"company": {
+		"_id": "5d76824c1855750cd80a8037",
+		"name": "MERCADONA S.A.",
+		"tax_id": "A-46103834",
+		"web": null
+	},
+	"store": {
+		"_id": "5d8742d3dcad30c5cc30624d",
+		"address": "C/ MAYOR, 7 - ESPINARDO",
+		"address_strings": [
+			"C/ MAYOR, 7 - ESPINARDO",
+			"Murcia"
+		],
+		"city": "Murcia",
+		"company_id": "5d76824c1855750cd80a8037",
+		"country": "Spain",
+		"phone": "968392509"
+	},
+	"date": "17/07/2019 23:45",
+	"lines": [
+		{
+			"name": "GAZPACHO",
+			"price": 0.78,
+			"total": 0.78,
+			"units": 1
+		},
+		{
+			"name": "GAZPACHO",
+			"price": 0.9,
+			"total": 0.9,
+			"units": 1
+		},
+		{
+			"name": "TOMATES",
+			"price": 0.69,
+			"total": 0.69,
+			"units": 1
+		},
+		{
+			"name": "PAPEL HIGI\u00c9NICO",
+			"price": 0.98,
+			"total": 3.92,
+			"units": 4
+		},
+		{
+			"name": "PAPEL HIGI\u00c9NICO",
+			"price": 0.86,
+			"total": 1.72,
+			"units": 2
+		},
+		{
+			"name": "AJOS",
+			"price": 0.49,
+			"total": 0.49,
+			"units": 1
+		}
+	],
+	"paymentInformation": {
+		"method": "CARD",
+		"total": 8.5,
+		"returned": null
+	}
+}
+{
+	"company": {
+		"_id": "5d76824c1855750cd80a8037",
+		"name": "MERCADONA S.A.",
+		"tax_id": "A-46103834",
+		"web": null
+	},
+	"store": {
+		"_id": "5d8742d3dcad30c5cc30624d",
+		"address": "C/ MAYOR, 7 - ESPINARDO",
+		"address_strings": [
+			"C/ MAYOR, 7 - ESPINARDO",
+			"Murcia"
+		],
+		"city": "Murcia",
+		"company_id": "5d76824c1855750cd80a8037",
+		"country": "Spain",
+		"phone": "968392509"
+	},
+	"date": "13/09/2019 22:16",
+	"lines": [
+		{
+			"name": "PAPEL HIGI\u00c9NICO",
+			"price": 6.24,
+			"total": 18.72,
+			"units": 3
+		},
+		{
+			"name": "PAN BIMBO",
+			"price": 0.04,
+			"total": 0.04,
+			"units": 1
+		},
+		{
+			"name": "TOMATES",
+			"price": 9.35,
+			"total": 28.05,
+			"units": 3
+		}
+	],
+	"paymentInformation": {
+		"method": "CASH",
+		"total": 46.81,
+		"returned": 3.19
+	}
+}
+{
+	"company": {
+		"_id": "5d76824c1855750cd80a8037",
+		"name": "MERCADONA S.A.",
+		"tax_id": "A-46103834",
+		"web": null
+	},
+	"store": {
+		"_id": "5d8742d3dcad30c5cc30624d",
+		"address": "C/ MAYOR, 7 - ESPINARDO",
+		"address_strings": [
+			"C/ MAYOR, 7 - ESPINARDO",
+			"Murcia"
+		],
+		"city": "Murcia",
+		"company_id": "5d76824c1855750cd80a8037",
+		"country": "Spain",
+		"phone": "968392509"
+	},
+	"date": "29/09/2019 11:19",
+	"lines": [
+		{
+			"name": "GAZPACHO",
+			"price": 0.64,
+			"total": 1.92,
+			"units": 3
+		},
+		{
+			"name": "ACEITE COCINA",
+			"price": 0.7,
+			"total": 1.4,
+			"units": 2
+		}
+	],
+	"paymentInformation": {
+		"method": "CASH",
+		"total": 3.32,
+		"returned": 1.68
+	}
+}
+{
+	"company": {
+		"_id": "5d76824c1855750cd80a8037",
+		"name": "MERCADONA S.A.",
+		"tax_id": "A-46103834",
+		"web": null
+	},
+	"store": {
+		"_id": "5d8742d3dcad30c5cc30624d",
+		"address": "C/ MAYOR, 7 - ESPINARDO",
+		"address_strings": [
+			"C/ MAYOR, 7 - ESPINARDO",
+			"Murcia"
+		],
+		"city": "Murcia",
+		"company_id": "5d76824c1855750cd80a8037",
+		"country": "Spain",
+		"phone": "968392509"
+	},
+	"date": "04/07/2019 23:42",
+	"lines": [
+		{
+			"name": "AGUA",
+			"price": 7.9,
+			"total": 7.9,
+			"units": 1
+		},
+		{
+			"name": "CHOCOLATE",
+			"price": 2.5,
+			"total": 2.5,
+			"units": 1
+		},
+		{
+			"name": "DESHODORANTE",
+			"price": 0.87,
+			"total": 0.87,
+			"units": 1
+		},
+		{
+			"name": "DESHODORANTE",
+			"price": 0.68,
+			"total": 0.68,
+			"units": 1
+		},
+		{
+			"name": "CHOCOLATE",
+			"price": 4.6,
+			"total": 9.2,
+			"units": 2
+		},
+		{
+			"name": "ACEITE COCINA",
+			"price": 5.81,
+			"total": 5.81,
+			"units": 1
+		}
+	],
+	"paymentInformation": {
+		"method": "CASH",
+		"total": 26.96,
+		"returned": 23.04
+	}
+}
+{
+	"company": {
+		"_id": "5d76824c1855750cd80a8037",
+		"name": "MERCADONA S.A.",
+		"tax_id": "A-46103834",
+		"web": null
+	},
+	"store": {
+		"_id": "5d8742d3dcad30c5cc30624d",
+		"address": "C/ MAYOR, 7 - ESPINARDO",
+		"address_strings": [
+			"C/ MAYOR, 7 - ESPINARDO",
+			"Murcia"
+		],
+		"city": "Murcia",
+		"company_id": "5d76824c1855750cd80a8037",
+		"country": "Spain",
+		"phone": "968392509"
+	},
+	"date": "14/07/2019 19:19",
+	"lines": [
+		{
+			"name": "ZANAHORIAS",
+			"price": 0.61,
+			"total": 1.22,
+			"units": 2
+		},
+		{
+			"name": "TOMATES",
+			"price": 0.76,
+			"total": 0.76,
+			"units": 1
+		},
+		{
+			"name": "PAN BIMBO",
+			"price": 0.89,
+			"total": 0.89,
+			"units": 1
+		},
+		{
+			"name": "QUESO GRATINADO",
+			"price": 6.98,
+			"total": 13.96,
+			"units": 2
+		},
+		{
+			"name": "PIZZA",
+			"price": 0.64,
+			"total": 0.64,
+			"units": 1
+		},
+		{
+			"name": "HUEVOS",
+			"price": 2.33,
+			"total": 9.32,
+			"units": 4
+		},
+		{
+			"name": "QUESO NORMAL",
+			"price": 0.48,
+			"total": 0.48,
+			"units": 1
+		},
+		{
+			"name": "AGUA",
+			"price": 0.34,
+			"total": 0.68,
+			"units": 2
+		},
+		{
+			"name": "FRUTA",
+			"price": 6.48,
+			"total": 25.92,
+			"units": 4
+		}
+	],
+	"paymentInformation": {
+		"method": "CARD",
+		"total": 53.87,
+		"returned": null
+	}
+}
+{
+	"company": {
+		"_id": "5d76824c1855750cd80a8037",
+		"name": "MERCADONA S.A.",
+		"tax_id": "A-46103834",
+		"web": null
+	},
+	"store": {
+		"_id": "5d8742d3dcad30c5cc30624d",
+		"address": "C/ MAYOR, 7 - ESPINARDO",
+		"address_strings": [
+			"C/ MAYOR, 7 - ESPINARDO",
+			"Murcia"
+		],
+		"city": "Murcia",
+		"company_id": "5d76824c1855750cd80a8037",
+		"country": "Spain",
+		"phone": "968392509"
+	},
+	"date": "27/08/2019 16:22",
+	"lines": [
+		{
+			"name": "PAPEL HIGI\u00c9NICO",
+			"price": 0.7,
+			"total": 0.7,
+			"units": 1
+		},
+		{
+			"name": "LECHE",
+			"price": 0.83,
+			"total": 0.83,
+			"units": 1
+		},
+		{
+			"name": "FRUTA",
+			"price": 6.79,
+			"total": 6.79,
+			"units": 1
+		}
+	],
+	"paymentInformation": {
+		"method": "CARD",
+		"total": 8.32,
+		"returned": null
+	}
+}
+{
+	"company": {
+		"_id": "5d76824c1855750cd80a8037",
+		"name": "MERCADONA S.A.",
+		"tax_id": "A-46103834",
+		"web": null
+	},
+	"store": {
+		"_id": "5d8742d3dcad30c5cc30624d",
+		"address": "C/ MAYOR, 7 - ESPINARDO",
+		"address_strings": [
+			"C/ MAYOR, 7 - ESPINARDO",
+			"Murcia"
+		],
+		"city": "Murcia",
+		"company_id": "5d76824c1855750cd80a8037",
+		"country": "Spain",
+		"phone": "968392509"
+	},
+	"date": "25/08/2019 20:37",
+	"lines": [
+		{
+			"name": "QUESO GRATINADO",
+			"price": 0.82,
+			"total": 1.64,
+			"units": 2
+		},
+		{
+			"name": "PAPEL HIGI\u00c9NICO",
+			"price": 0.78,
+			"total": 3.12,
+			"units": 4
+		}
+	],
+	"paymentInformation": {
+		"method": "CASH",
+		"total": 4.76,
+		"returned": 0.24
+	}
+}
+{
+	"company": {
+		"_id": "5d76824c1855750cd80a8037",
+		"name": "MERCADONA S.A.",
+		"tax_id": "A-46103834",
+		"web": null
+	},
+	"store": {
+		"_id": "5d8742d3dcad30c5cc30624d",
+		"address": "C/ MAYOR, 7 - ESPINARDO",
+		"address_strings": [
+			"C/ MAYOR, 7 - ESPINARDO",
+			"Murcia"
+		],
+		"city": "Murcia",
+		"company_id": "5d76824c1855750cd80a8037",
+		"country": "Spain",
+		"phone": "968392509"
+	},
+	"date": "30/08/2019 20:35",
+	"lines": [
+		{
+			"name": "TOMATES",
+			"price": 8.36,
+			"total": 16.72,
+			"units": 2
+		},
+		{
+			"name": "LECHE",
+			"price": 0.56,
+			"total": 0.56,
+			"units": 1
+		},
+		{
+			"name": "TOMATES",
+			"price": 0.12,
+			"total": 0.24,
+			"units": 2
+		},
+		{
+			"name": "TOMATES",
+			"price": 5.05,
+			"total": 5.05,
+			"units": 1
+		},
+		{
+			"name": "QUESO GRATINADO",
+			"price": 0.32,
+			"total": 0.32,
+			"units": 1
+		},
+		{
+			"name": "HUEVOS",
+			"price": 4.67,
+			"total": 14.01,
+			"units": 3
+		},
+		{
+			"name": "LECHE",
+			"price": 0.64,
+			"total": 0.64,
+			"units": 1
+		}
+	],
+	"paymentInformation": {
+		"method": "CARD",
+		"total": 37.54,
+		"returned": null
+	}
+}
+{
+	"company": {
+		"_id": "5d76824c1855750cd80a8037",
+		"name": "MERCADONA S.A.",
+		"tax_id": "A-46103834",
+		"web": null
+	},
+	"store": {
+		"_id": "5d8742d3dcad30c5cc30624d",
+		"address": "C/ MAYOR, 7 - ESPINARDO",
+		"address_strings": [
+			"C/ MAYOR, 7 - ESPINARDO",
+			"Murcia"
+		],
+		"city": "Murcia",
+		"company_id": "5d76824c1855750cd80a8037",
+		"country": "Spain",
+		"phone": "968392509"
+	},
+	"date": "15/07/2019 07:37",
+	"lines": [
+		{
+			"name": "PAPEL HIGI\u00c9NICO",
+			"price": 0.8,
+			"total": 0.8,
+			"units": 1
+		},
+		{
+			"name": "CEBOLLA",
+			"price": 0.25,
+			"total": 0.25,
+			"units": 1
+		},
+		{
+			"name": "DESHODORANTE",
+			"price": 9.4,
+			"total": 18.8,
+			"units": 2
+		},
+		{
+			"name": "LECHE",
+			"price": 7.26,
+			"total": 7.26,
+			"units": 1
+		},
+		{
+			"name": "PAPEL HIGI\u00c9NICO",
+			"price": 5.59,
+			"total": 5.59,
+			"units": 1
+		},
+		{
+			"name": "QUESO GRATINADO",
+			"price": 6.51,
+			"total": 6.51,
+			"units": 1
+		},
+		{
+			"name": "LECHE",
+			"price": 0.57,
+			"total": 1.71,
+			"units": 3
+		},
+		{
+			"name": "PAN BIMBO",
+			"price": 3.47,
+			"total": 3.47,
+			"units": 1
+		},
+		{
+			"name": "QUESO NORMAL",
+			"price": 5.47,
+			"total": 10.94,
+			"units": 2
+		},
+		{
+			"name": "PAPEL HIGI\u00c9NICO",
+			"price": 6.5,
+			"total": 6.5,
+			"units": 1
+		}
+	],
+	"paymentInformation": {
+		"method": "CARD",
+		"total": 61.83,
+		"returned": null
+	}
+}
+{
+	"company": {
+		"_id": "5d76824c1855750cd80a8037",
+		"name": "MERCADONA S.A.",
+		"tax_id": "A-46103834",
+		"web": null
+	},
+	"store": {
+		"_id": "5d8742d3dcad30c5cc30624d",
+		"address": "C/ MAYOR, 7 - ESPINARDO",
+		"address_strings": [
+			"C/ MAYOR, 7 - ESPINARDO",
+			"Murcia"
+		],
+		"city": "Murcia",
+		"company_id": "5d76824c1855750cd80a8037",
+		"country": "Spain",
+		"phone": "968392509"
+	},
+	"date": "13/09/2019 17:37",
+	"lines": [
+		{
+			"name": "AJOS",
+			"price": 0.55,
+			"total": 0.55,
+			"units": 1
+		},
+		{
+			"name": "QUESO NORMAL",
+			"price": 0.46,
+			"total": 0.92,
+			"units": 2
+		},
+		{
+			"name": "QUESO NORMAL",
+			"price": 1.09,
+			"total": 1.09,
+			"units": 1
+		},
+		{
+			"name": "CEBOLLA",
+			"price": 5.61,
+			"total": 22.44,
+			"units": 4
+		},
+		{
+			"name": "PAPEL HIGI\u00c9NICO",
+			"price": 2.02,
+			"total": 4.04,
+			"units": 2
+		}
+	],
+	"paymentInformation": {
+		"method": "CARD",
+		"total": 29.04,
+		"returned": null
+	}
+}
+{
+	"company": {
+		"_id": "5d76824c1855750cd80a8037",
+		"name": "MERCADONA S.A.",
+		"tax_id": "A-46103834",
+		"web": null
+	},
+	"store": {
+		"_id": "5d8742d3dcad30c5cc30624d",
+		"address": "C/ MAYOR, 7 - ESPINARDO",
+		"address_strings": [
+			"C/ MAYOR, 7 - ESPINARDO",
+			"Murcia"
+		],
+		"city": "Murcia",
+		"company_id": "5d76824c1855750cd80a8037",
+		"country": "Spain",
+		"phone": "968392509"
+	},
+	"date": "01/07/2019 19:26",
+	"lines": [
+		{
+			"name": "PAN BIMBO",
+			"price": 0.2,
+			"total": 0.2,
+			"units": 1
+		},
+		{
+			"name": "ACEITE COCINA",
+			"price": 0.55,
+			"total": 0.55,
+			"units": 1
+		},
+		{
+			"name": "HUEVOS",
+			"price": 0.95,
+			"total": 1.9,
+			"units": 2
+		},
+		{
+			"name": "FRUTA",
+			"price": 0.31,
+			"total": 0.62,
+			"units": 2
+		},
+		{
+			"name": "QUESO NORMAL",
+			"price": 8.21,
+			"total": 8.21,
+			"units": 1
+		},
+		{
+			"name": "PIZZA",
+			"price": 6.02,
+			"total": 6.02,
+			"units": 1
+		},
+		{
+			"name": "CHOCOLATE",
+			"price": 3.16,
+			"total": 6.32,
+			"units": 2
+		},
+		{
+			"name": "CEBOLLA",
+			"price": 0.19,
+			"total": 0.38,
+			"units": 2
+		},
+		{
+			"name": "CHOCOLATE",
+			"price": 0.89,
+			"total": 1.78,
+			"units": 2
+		}
+	],
+	"paymentInformation": {
+		"method": "CASH",
+		"total": 25.98,
+		"returned": 24.02
+	}
+}
+{
+	"company": {
+		"_id": "5d76824c1855750cd80a8037",
+		"name": "MERCADONA S.A.",
+		"tax_id": "A-46103834",
+		"web": null
+	},
+	"store": {
+		"_id": "5d8742d3dcad30c5cc30624d",
+		"address": "C/ MAYOR, 7 - ESPINARDO",
+		"address_strings": [
+			"C/ MAYOR, 7 - ESPINARDO",
+			"Murcia"
+		],
+		"city": "Murcia",
+		"company_id": "5d76824c1855750cd80a8037",
+		"country": "Spain",
+		"phone": "968392509"
+	},
+	"date": "02/08/2019 06:05",
+	"lines": [
+		{
+			"name": "GAZPACHO",
+			"price": 8.7,
+			"total": 8.7,
+			"units": 1
+		},
+		{
+			"name": "QUESO GRATINADO",
+			"price": 1.93,
+			"total": 1.93,
+			"units": 1
+		},
+		{
+			"name": "ZANAHORIAS",
+			"price": 0.94,
+			"total": 1.88,
+			"units": 2
+		},
+		{
+			"name": "CEBOLLA",
+			"price": 7.44,
+			"total": 14.88,
+			"units": 2
+		},
+		{
+			"name": "HUEVOS",
+			"price": 3.91,
+			"total": 3.91,
+			"units": 1
+		},
+		{
+			"name": "ZANAHORIAS",
+			"price": 0.56,
+			"total": 1.68,
+			"units": 3
+		},
+		{
+			"name": "PAN BIMBO",
+			"price": 8.11,
+			"total": 16.22,
+			"units": 2
+		},
+		{
+			"name": "ACEITE TOSTADAS",
+			"price": 4.62,
+			"total": 4.62,
+			"units": 1
+		}
+	],
+	"paymentInformation": {
+		"method": "CASH",
+		"total": 53.82,
+		"returned": 46.18
+	}
+}
+{
+	"company": {
+		"_id": "5d76824c1855750cd80a8037",
+		"name": "MERCADONA S.A.",
+		"tax_id": "A-46103834",
+		"web": null
+	},
+	"store": {
+		"_id": "5d8742d3dcad30c5cc30624d",
+		"address": "C/ MAYOR, 7 - ESPINARDO",
+		"address_strings": [
+			"C/ MAYOR, 7 - ESPINARDO",
+			"Murcia"
+		],
+		"city": "Murcia",
+		"company_id": "5d76824c1855750cd80a8037",
+		"country": "Spain",
+		"phone": "968392509"
+	},
+	"date": "21/08/2019 04:30",
+	"lines": [
+		{
+			"name": "PAN BIMBO",
+			"price": 0.26,
+			"total": 0.26,
+			"units": 1
+		},
+		{
+			"name": "ACEITE TOSTADAS",
+			"price": 1.26,
+			"total": 2.52,
+			"units": 2
+		},
+		{
+			"name": "ACEITE COCINA",
+			"price": 0.86,
+			"total": 0.86,
+			"units": 1
+		}
+	],
+	"paymentInformation": {
+		"method": "CARD",
+		"total": 3.64,
+		"returned": null
+	}
+}
+{
+	"company": {
+		"_id": "5d76824c1855750cd80a8037",
+		"name": "MERCADONA S.A.",
+		"tax_id": "A-46103834",
+		"web": null
+	},
+	"store": {
+		"_id": "5d8742d3dcad30c5cc30624d",
+		"address": "C/ MAYOR, 7 - ESPINARDO",
+		"address_strings": [
+			"C/ MAYOR, 7 - ESPINARDO",
+			"Murcia"
+		],
+		"city": "Murcia",
+		"company_id": "5d76824c1855750cd80a8037",
+		"country": "Spain",
+		"phone": "968392509"
+	},
+	"date": "06/09/2019 22:23",
+	"lines": [
+		{
+			"name": "GAZPACHO",
+			"price": 0.59,
+			"total": 1.18,
+			"units": 2
+		},
+		{
+			"name": "CEBOLLA",
+			"price": 5.92,
+			"total": 5.92,
+			"units": 1
+		},
+		{
+			"name": "TOMATES",
+			"price": 0.99,
+			"total": 3.96,
+			"units": 4
+		},
+		{
+			"name": "PIZZA",
+			"price": 7.62,
+			"total": 22.86,
+			"units": 3
+		},
+		{
+			"name": "ACEITE TOSTADAS",
+			"price": 0.61,
+			"total": 0.61,
+			"units": 1
+		},
+		{
+			"name": "FRUTA",
+			"price": 5.08,
+			"total": 10.16,
+			"units": 2
+		},
+		{
+			"name": "QUESO GRATINADO",
+			"price": 0.64,
+			"total": 0.64,
+			"units": 1
+		},
+		{
+			"name": "LECHE",
+			"price": 5.87,
+			"total": 5.87,
+			"units": 1
+		}
+	],
+	"paymentInformation": {
+		"method": "CARD",
+		"total": 51.2,
+		"returned": null
+	}
+}
+{
+	"company": {
+		"_id": "5d76824c1855750cd80a8037",
+		"name": "MERCADONA S.A.",
+		"tax_id": "A-46103834",
+		"web": null
+	},
+	"store": {
+		"_id": "5d8742d3dcad30c5cc30624d",
+		"address": "C/ MAYOR, 7 - ESPINARDO",
+		"address_strings": [
+			"C/ MAYOR, 7 - ESPINARDO",
+			"Murcia"
+		],
+		"city": "Murcia",
+		"company_id": "5d76824c1855750cd80a8037",
+		"country": "Spain",
+		"phone": "968392509"
+	},
+	"date": "18/08/2019 01:33",
+	"lines": [
+		{
+			"name": "PAN BIMBO",
+			"price": 0.6,
+			"total": 1.2,
+			"units": 2
+		},
+		{
+			"name": "AGUA",
+			"price": 0.16,
+			"total": 0.32,
+			"units": 2
+		},
+		{
+			"name": "LECHE",
+			"price": 0.07,
+			"total": 0.07,
+			"units": 1
+		},
+		{
+			"name": "AJOS",
+			"price": 0.9,
+			"total": 2.7,
+			"units": 3
+		},
+		{
+			"name": "ACEITE TOSTADAS",
+			"price": 7.23,
+			"total": 7.23,
+			"units": 1
+		},
+		{
+			"name": "DESHODORANTE",
+			"price": 0.54,
+			"total": 0.54,
+			"units": 1
+		},
+		{
+			"name": "CHOCOLATE",
+			"price": 0.4,
+			"total": 1.2,
+			"units": 3
+		},
+		{
+			"name": "QUESO GRATINADO",
+			"price": 0.24,
+			"total": 0.48,
+			"units": 2
+		},
+		{
+			"name": "PAPEL HIGI\u00c9NICO",
+			"price": 0.32,
+			"total": 0.32,
+			"units": 1
+		},
+		{
+			"name": "FRUTA",
+			"price": 5.27,
+			"total": 5.27,
+			"units": 1
+		}
+	],
+	"paymentInformation": {
+		"method": "CASH",
+		"total": 19.33,
+		"returned": 0.67
+	}
+}
+{
+	"company": {
+		"_id": "5d76824c1855750cd80a8037",
+		"name": "MERCADONA S.A.",
+		"tax_id": "A-46103834",
+		"web": null
+	},
+	"store": {
+		"_id": "5d8742d3dcad30c5cc30624d",
+		"address": "C/ MAYOR, 7 - ESPINARDO",
+		"address_strings": [
+			"C/ MAYOR, 7 - ESPINARDO",
+			"Murcia"
+		],
+		"city": "Murcia",
+		"company_id": "5d76824c1855750cd80a8037",
+		"country": "Spain",
+		"phone": "968392509"
+	},
+	"date": "23/08/2019 17:28",
+	"lines": [
+		{
+			"name": "PAN BIMBO",
+			"price": 4.77,
+			"total": 4.77,
+			"units": 1
+		},
+		{
+			"name": "TOMATES",
+			"price": 0.89,
+			"total": 0.89,
+			"units": 1
+		},
+		{
+			"name": "PAN BIMBO",
+			"price": 0.96,
+			"total": 2.88,
+			"units": 3
+		},
+		{
+			"name": "CEBOLLA",
+			"price": 2.84,
+			"total": 2.84,
+			"units": 1
+		}
+	],
+	"paymentInformation": {
+		"method": "CASH",
+		"total": 11.38,
+		"returned": 8.62
+	}
+}
+{
+	"company": {
+		"_id": "5d76824c1855750cd80a8037",
+		"name": "MERCADONA S.A.",
+		"tax_id": "A-46103834",
+		"web": null
+	},
+	"store": {
+		"_id": "5d8742d3dcad30c5cc30624d",
+		"address": "C/ MAYOR, 7 - ESPINARDO",
+		"address_strings": [
+			"C/ MAYOR, 7 - ESPINARDO",
+			"Murcia"
+		],
+		"city": "Murcia",
+		"company_id": "5d76824c1855750cd80a8037",
+		"country": "Spain",
+		"phone": "968392509"
+	},
+	"date": "10/07/2019 15:54",
+	"lines": [
+		{
+			"name": "PIZZA",
+			"price": 8.69,
+			"total": 26.07,
+			"units": 3
+		},
+		{
+			"name": "GAZPACHO",
+			"price": 6.77,
+			"total": 6.77,
+			"units": 1
+		},
+		{
+			"name": "CHOCOLATE",
+			"price": 0.26,
+			"total": 0.26,
+			"units": 1
+		},
+		{
+			"name": "QUESO NORMAL",
+			"price": 0.11,
+			"total": 0.11,
+			"units": 1
+		},
+		{
+			"name": "LECHE",
+			"price": 9.9,
+			"total": 9.9,
+			"units": 1
+		},
+		{
+			"name": "FRUTA",
+			"price": 3.87,
+			"total": 7.74,
+			"units": 2
+		},
+		{
+			"name": "GAZPACHO",
+			"price": 0.63,
+			"total": 1.89,
+			"units": 3
+		},
+		{
+			"name": "HUEVOS",
+			"price": 0.88,
+			"total": 1.76,
+			"units": 2
+		}
+	],
+	"paymentInformation": {
+		"method": "CASH",
+		"total": 54.5,
+		"returned": 45.5
+	}
+}
+{
+	"company": {
+		"_id": "5d76824c1855750cd80a8037",
+		"name": "MERCADONA S.A.",
+		"tax_id": "A-46103834",
+		"web": null
+	},
+	"store": {
+		"_id": "5d8742d3dcad30c5cc30624d",
+		"address": "C/ MAYOR, 7 - ESPINARDO",
+		"address_strings": [
+			"C/ MAYOR, 7 - ESPINARDO",
+			"Murcia"
+		],
+		"city": "Murcia",
+		"company_id": "5d76824c1855750cd80a8037",
+		"country": "Spain",
+		"phone": "968392509"
+	},
+	"date": "01/07/2019 19:01",
+	"lines": [
+		{
+			"name": "ACEITE TOSTADAS",
+			"price": 8.18,
+			"total": 8.18,
+			"units": 1
+		},
+		{
+			"name": "GAZPACHO",
+			"price": 0.57,
+			"total": 1.14,
+			"units": 2
+		},
+		{
+			"name": "ACEITE TOSTADAS",
+			"price": 2.73,
+			"total": 8.19,
+			"units": 3
+		},
+		{
+			"name": "DESHODORANTE",
+			"price": 9.38,
+			"total": 37.52,
+			"units": 4
+		},
+		{
+			"name": "QUESO GRATINADO",
+			"price": 4.25,
+			"total": 4.25,
+			"units": 1
+		}
+	],
+	"paymentInformation": {
+		"method": "CASH",
+		"total": 59.28,
+		"returned": 40.72
+	}
+}
+{
+	"company": {
+		"_id": "5d76824c1855750cd80a8037",
+		"name": "MERCADONA S.A.",
+		"tax_id": "A-46103834",
+		"web": null
+	},
+	"store": {
+		"_id": "5d8742d3dcad30c5cc30624d",
+		"address": "C/ MAYOR, 7 - ESPINARDO",
+		"address_strings": [
+			"C/ MAYOR, 7 - ESPINARDO",
+			"Murcia"
+		],
+		"city": "Murcia",
+		"company_id": "5d76824c1855750cd80a8037",
+		"country": "Spain",
+		"phone": "968392509"
+	},
+	"date": "07/09/2019 08:20",
+	"lines": [
+		{
+			"name": "LECHE",
+			"price": 0.5,
+			"total": 0.5,
+			"units": 1
+		},
+		{
+			"name": "QUESO NORMAL",
+			"price": 0.72,
+			"total": 1.44,
+			"units": 2
+		},
+		{
+			"name": "HUEVOS",
+			"price": 4.99,
+			"total": 4.99,
+			"units": 1
+		},
+		{
+			"name": "LECHE",
+			"price": 6.85,
+			"total": 6.85,
+			"units": 1
+		},
+		{
+			"name": "FRUTA",
+			"price": 0.89,
+			"total": 0.89,
+			"units": 1
+		},
+		{
+			"name": "HUEVOS",
+			"price": 9.12,
+			"total": 18.24,
+			"units": 2
+		},
+		{
+			"name": "LECHE",
+			"price": 7.97,
+			"total": 7.97,
+			"units": 1
+		},
+		{
+			"name": "AJOS",
+			"price": 0.03,
+			"total": 0.09,
+			"units": 3
+		},
+		{
+			"name": "ACEITE TOSTADAS",
+			"price": 9.81,
+			"total": 29.43,
+			"units": 3
+		},
+		{
+			"name": "ACEITE COCINA",
+			"price": 0.87,
+			"total": 2.61,
+			"units": 3
+		}
+	],
+	"paymentInformation": {
+		"method": "CASH",
+		"total": 73.01,
+		"returned": 26.99
+	}
+}
+{
+	"company": {
+		"_id": "5d76824c1855750cd80a8037",
+		"name": "MERCADONA S.A.",
+		"tax_id": "A-46103834",
+		"web": null
+	},
+	"store": {
+		"_id": "5d8742d3dcad30c5cc30624d",
+		"address": "C/ MAYOR, 7 - ESPINARDO",
+		"address_strings": [
+			"C/ MAYOR, 7 - ESPINARDO",
+			"Murcia"
+		],
+		"city": "Murcia",
+		"company_id": "5d76824c1855750cd80a8037",
+		"country": "Spain",
+		"phone": "968392509"
+	},
+	"date": "26/08/2019 14:15",
+	"lines": [
+		{
+			"name": "ACEITE TOSTADAS",
+			"price": 4.47,
+			"total": 8.94,
+			"units": 2
+		},
+		{
+			"name": "AJOS",
+			"price": 0.05,
+			"total": 0.1,
+			"units": 2
+		},
+		{
+			"name": "CEBOLLA",
+			"price": 9.66,
+			"total": 9.66,
+			"units": 1
+		},
+		{
+			"name": "HUEVOS",
+			"price": 0.61,
+			"total": 0.61,
+			"units": 1
+		},
+		{
+			"name": "CEBOLLA",
+			"price": 6.76,
+			"total": 6.76,
+			"units": 1
+		},
+		{
+			"name": "GAZPACHO",
+			"price": 9.31,
+			"total": 18.62,
+			"units": 2
+		}
+	],
+	"paymentInformation": {
+		"method": "CARD",
+		"total": 44.69,
+		"returned": null
+	}
+}
+{
+	"company": {
+		"_id": "5d76824c1855750cd80a8037",
+		"name": "MERCADONA S.A.",
+		"tax_id": "A-46103834",
+		"web": null
+	},
+	"store": {
+		"_id": "5d8742d3dcad30c5cc30624d",
+		"address": "C/ MAYOR, 7 - ESPINARDO",
+		"address_strings": [
+			"C/ MAYOR, 7 - ESPINARDO",
+			"Murcia"
+		],
+		"city": "Murcia",
+		"company_id": "5d76824c1855750cd80a8037",
+		"country": "Spain",
+		"phone": "968392509"
+	},
+	"date": "27/09/2019 17:09",
+	"lines": [
+		{
+			"name": "TOMATES",
+			"price": 7.96,
+			"total": 15.92,
+			"units": 2
+		},
+		{
+			"name": "LECHE",
+			"price": 8.83,
+			"total": 35.32,
+			"units": 4
+		},
+		{
+			"name": "PAPEL HIGI\u00c9NICO",
+			"price": 0.81,
+			"total": 0.81,
+			"units": 1
+		},
+		{
+			"name": "CEBOLLA",
+			"price": 0.89,
+			"total": 1.78,
+			"units": 2
+		},
+		{
+			"name": "PAPEL HIGI\u00c9NICO",
+			"price": 0.2,
+			"total": 0.4,
+			"units": 2
+		}
+	],
+	"paymentInformation": {
+		"method": "CARD",
+		"total": 54.23,
+		"returned": null
+	}
+}
+{
+	"company": {
+		"_id": "5d76824c1855750cd80a8037",
+		"name": "MERCADONA S.A.",
+		"tax_id": "A-46103834",
+		"web": null
+	},
+	"store": {
+		"_id": "5d8742d3dcad30c5cc30624d",
+		"address": "C/ MAYOR, 7 - ESPINARDO",
+		"address_strings": [
+			"C/ MAYOR, 7 - ESPINARDO",
+			"Murcia"
+		],
+		"city": "Murcia",
+		"company_id": "5d76824c1855750cd80a8037",
+		"country": "Spain",
+		"phone": "968392509"
+	},
+	"date": "01/08/2019 07:43",
+	"lines": [
+		{
+			"name": "CHOCOLATE",
+			"price": 0.27,
+			"total": 0.27,
+			"units": 1
+		},
+		{
+			"name": "AJOS",
+			"price": 5.07,
+			"total": 15.21,
+			"units": 3
+		}
+	],
+	"paymentInformation": {
+		"method": "CASH",
+		"total": 15.48,
+		"returned": 4.52
+	}
+}
+{
+	"company": {
+		"_id": "5d76824c1855750cd80a8037",
+		"name": "MERCADONA S.A.",
+		"tax_id": "A-46103834",
+		"web": null
+	},
+	"store": {
+		"_id": "5d8742d3dcad30c5cc30624d",
+		"address": "C/ MAYOR, 7 - ESPINARDO",
+		"address_strings": [
+			"C/ MAYOR, 7 - ESPINARDO",
+			"Murcia"
+		],
+		"city": "Murcia",
+		"company_id": "5d76824c1855750cd80a8037",
+		"country": "Spain",
+		"phone": "968392509"
+	},
+	"date": "08/07/2019 04:43",
+	"lines": [
+		{
+			"name": "GAZPACHO",
+			"price": 5.97,
+			"total": 5.97,
+			"units": 1
+		},
+		{
+			"name": "AGUA",
+			"price": 9.01,
+			"total": 9.01,
+			"units": 1
+		},
+		{
+			"name": "DESHODORANTE",
+			"price": 1.7,
+			"total": 3.4,
+			"units": 2
+		},
+		{
+			"name": "PAN BIMBO",
+			"price": 0.24,
+			"total": 0.24,
+			"units": 1
+		},
+		{
+			"name": "LECHE",
+			"price": 0.04,
+			"total": 0.08,
+			"units": 2
+		},
+		{
+			"name": "PAN BIMBO",
+			"price": 4.93,
+			"total": 4.93,
+			"units": 1
+		},
+		{
+			"name": "PIZZA",
+			"price": 3.18,
+			"total": 12.72,
+			"units": 4
+		}
+	],
+	"paymentInformation": {
+		"method": "CARD",
+		"total": 36.35,
+		"returned": null
+	}
+}
+{
+	"company": {
+		"_id": "5d76824c1855750cd80a8037",
+		"name": "MERCADONA S.A.",
+		"tax_id": "A-46103834",
+		"web": null
+	},
+	"store": {
+		"_id": "5d8742d3dcad30c5cc30624d",
+		"address": "C/ MAYOR, 7 - ESPINARDO",
+		"address_strings": [
+			"C/ MAYOR, 7 - ESPINARDO",
+			"Murcia"
+		],
+		"city": "Murcia",
+		"company_id": "5d76824c1855750cd80a8037",
+		"country": "Spain",
+		"phone": "968392509"
+	},
+	"date": "05/09/2019 06:56",
+	"lines": [
+		{
+			"name": "TOMATES",
+			"price": 1.64,
+			"total": 1.64,
+			"units": 1
+		},
+		{
+			"name": "ACEITE COCINA",
+			"price": 5.88,
+			"total": 17.64,
+			"units": 3
+		}
+	],
+	"paymentInformation": {
+		"method": "CASH",
+		"total": 19.28,
+		"returned": 0.72
+	}
+}
+{
+	"company": {
+		"_id": "5d76824c1855750cd80a8037",
+		"name": "MERCADONA S.A.",
+		"tax_id": "A-46103834",
+		"web": null
+	},
+	"store": {
+		"_id": "5d8742d3dcad30c5cc30624d",
+		"address": "C/ MAYOR, 7 - ESPINARDO",
+		"address_strings": [
+			"C/ MAYOR, 7 - ESPINARDO",
+			"Murcia"
+		],
+		"city": "Murcia",
+		"company_id": "5d76824c1855750cd80a8037",
+		"country": "Spain",
+		"phone": "968392509"
+	},
+	"date": "25/08/2019 00:29",
+	"lines": [
+		{
+			"name": "LECHE",
+			"price": 3.35,
+			"total": 3.35,
+			"units": 1
+		},
+		{
+			"name": "ZANAHORIAS",
+			"price": 0.62,
+			"total": 1.24,
+			"units": 2
+		},
+		{
+			"name": "CEBOLLA",
+			"price": 0.16,
+			"total": 0.16,
+			"units": 1
+		},
+		{
+			"name": "LECHE",
+			"price": 0.04,
+			"total": 0.04,
+			"units": 1
+		},
+		{
+			"name": "ACEITE TOSTADAS",
+			"price": 0.42,
+			"total": 0.42,
+			"units": 1
+		}
+	],
+	"paymentInformation": {
+		"method": "CASH",
+		"total": 5.21,
+		"returned": 4.79
+	}
+}
+{
+	"company": {
+		"_id": "5d76824c1855750cd80a8037",
+		"name": "MERCADONA S.A.",
+		"tax_id": "A-46103834",
+		"web": null
+	},
+	"store": {
+		"_id": "5d8742d3dcad30c5cc30624d",
+		"address": "C/ MAYOR, 7 - ESPINARDO",
+		"address_strings": [
+			"C/ MAYOR, 7 - ESPINARDO",
+			"Murcia"
+		],
+		"city": "Murcia",
+		"company_id": "5d76824c1855750cd80a8037",
+		"country": "Spain",
+		"phone": "968392509"
+	},
+	"date": "01/08/2019 14:38",
+	"lines": [
+		{
+			"name": "HUEVOS",
+			"price": 4.59,
+			"total": 9.18,
+			"units": 2
+		},
+		{
+			"name": "AJOS",
+			"price": 0.43,
+			"total": 0.43,
+			"units": 1
+		},
+		{
+			"name": "PAN BIMBO",
+			"price": 0.93,
+			"total": 3.72,
+			"units": 4
+		},
+		{
+			"name": "TOMATES",
+			"price": 6.18,
+			"total": 6.18,
+			"units": 1
+		},
+		{
+			"name": "ZANAHORIAS",
+			"price": 2.44,
+			"total": 9.76,
+			"units": 4
+		},
+		{
+			"name": "AJOS",
+			"price": 2.25,
+			"total": 6.75,
+			"units": 3
+		},
+		{
+			"name": "PAPEL HIGI\u00c9NICO",
+			"price": 0.37,
+			"total": 1.11,
+			"units": 3
+		},
+		{
+			"name": "GAZPACHO",
+			"price": 0.08,
+			"total": 0.08,
+			"units": 1
+		}
+	],
+	"paymentInformation": {
+		"method": "CASH",
+		"total": 37.21,
+		"returned": 12.79
+	}
+}

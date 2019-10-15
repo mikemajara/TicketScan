@@ -48,8 +48,8 @@ Prefer to set parents as containers, the rest as views (or pure components)
   - ♻️ Generics in Typescript
     - [ErickWendel/generic-repository-nodejs-typescript-article](https://github.com/ErickWendel/generic-repository-nodejs-typescript-article)
   - [Stop Manually Assigning TypeScript Constructor Parameters](https://www.stevefenton.co.uk/2013/04/stop-manually-assigning-typescript-constructor-parameters/)
-  - [Constructor overload in Typescript](https://stackoverflow.com/questions/12702548/constructor-overload-in-typescript)
-
+  - [Constructor overload in Typescript](https://stackoverflow.com/questions/12702548/constructor-overload-in-typescript
+)
 ### 🧩 Used Components
 
 - [react-native-typography](https://github.com/hectahertz/react-native-typography)
@@ -58,4 +58,19 @@ Prefer to set parents as containers, the rest as views (or pure components)
 
 ## Troubleshooting & Known issues
 
+- After upgrade of react native (0.60.x -> 0.61.2) a lot of things went wrong.
+Some were fixed using parts of the new templates for a new project which can be found here (all under `<project-directory>/node_modules/react-native/template`)
+  - `_flowconfig`
+  - `_gitignore`
+  - `android/app/build.gradle`
+  - `android/app/src/main/java/com/helloworld/MainActivity.java`
+  - `android/app/src/main/java/com/helloworld/MainApplication.java`
+  - `android/build.gradle`
+  - `android/gradle/wrapper/gradle-wrapper.properties`
+  - `ios/HelloWorld/Images.xcassets/AppIcon.appiconset/Contents.json`
+  - `ios/HelloWorld/Info.plist`
+  - `ios/HelloWorld.xcodeproj/project.pbxproj`
+  - `ios/HelloWorldTests/HelloWorldTests.m`
+  - `ios/Podfile`
+  - `package.json`
 

@@ -170,7 +170,10 @@ def main(args):
             _id = mongo.db.tickets.delete_one({"_id": ObjectId(id)})
             return str(_id)
 
+        # Use for local development
         app.run(port=5001)
+        # Use for development in local network
+        # app.run('0.0.0.0', port=5001)
     else:
         _logger.info('App only meant to listen')
 

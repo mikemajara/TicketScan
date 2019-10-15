@@ -2,12 +2,13 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Alert, Text, FlatList } from 'react-native';
+import { StyleSheet, View, Alert, Text, FlatList, Modal, TouchableHighlight } from 'react-native';
 import { Button, ListItem, Icon } from 'react-native-elements';
 // import { Animated } from 'react-native-reanimated';
 import { iOSUIKit, iOSColors } from 'react-native-typography';
 import Entypo from 'react-native-vector-icons/Entypo';
 import moment from 'moment/min/moment-with-locales';
+
 import { styleDebug, mockupTicket } from '../helpers';
 import Ticket from '../model/Ticket';
 import Store from '../model/Store';
@@ -18,7 +19,7 @@ import AppleStyleSwipeableRow from './AppleStyleSwipeableRow';
 import ProductListItemComponent from '../components/ProductListItemComponent';
 import TicketRepository from '../repository/TicketRepository';
 import LoadingComponent from '../components/LoadingComponent';
-
+import TicketLineDetailModal from '../components/TicketDetailModalComponent';
 
 moment.locale('es');
 
@@ -28,37 +29,17 @@ export default function TicketViewContainer(props) {
   const emptyLoading = { isLoading: false, message: '' };
   const [ticket, setTicket] = useState(props.navigation.getParam('ticket', null));
   const [loading, setLoading] = useState(emptyLoading);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(null);
 
-  const handlePressedLine = index => {
-    Alert.prompt(
-      'Edit',
-      'Correct the line as you see fit',
-      async itemValue => {
-        setLoading({ isLoading: true, message: 'Applying some changes on your ticket...' })
-        const arr = [...ticket.lines];
-        arr[index] = JSON.parse(itemValue);
-        const newTicket = { ...ticket, lines: arr };
-        try {
-          await ticketRepository.update(newTicket);
-          setTicket(newTicket);
-          setLoading({ isLoading: false, message: '' });
-        } catch (error) {
-          setLoading({ isLoading: false, message: '' });
-          throw new Error('Exception handling not implemented');
-        }
-      },
-      'plain-text',
-      JSON.stringify(ticket.lines[index]),
-      'numeric'
-    );
+  const handleModifiedLine = async modifiedLine => {
+    ticket.lines[selectedIndex] = { ...ticket.lines[selectedIndex], ...modifiedLine };
+    await ticketRepository.update(ticket);
   };
 
-  const arr2obj = arr => {
-    const obj = {};
-    arr.forEach((e, i) => {
-      obj[`line${i}`] = e;
-    });
-    return obj;
+  const handlePressedLine = index => {
+    setSelectedIndex(index);
+    setIsModalVisible(true);
   };
 
   if (ticket === null) {
@@ -70,6 +51,17 @@ export default function TicketViewContainer(props) {
   }
   return (
     <View style={styles.container}>
+      {selectedIndex != null && (
+        <TicketLineDetailModal
+          line={ticket.lines[selectedIndex]}
+          visible={isModalVisible}
+          onPressClose={() => {
+            setIsModalVisible(false);
+            setSelectedIndex(null);
+          }}
+          lineUpdate={modifiedLine => handleModifiedLine(modifiedLine)}
+        />
+      )}
       {loading.isLoading && (
         <LoadingComponent isLoading={loading.isLoading} loadingText={loading.message} />
       )}
@@ -144,7 +136,9 @@ export default function TicketViewContainer(props) {
                 weightPrice={item.weightPrice}
                 subtitle=""
                 bottomDivider={Boolean(ticket.lines.length - index - 1)}
-                onPress={() => handlePressedLine(index)}
+                onPress={() => {
+                  handlePressedLine(index);
+                }}
                 leftIcon={
                   <Icon
                     type="ionicon"

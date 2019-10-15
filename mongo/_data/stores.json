@@ -1,0 +1,32 @@
+{
+	"_id": {
+		"$oid": "5d95c4043deb6a5c4efb9f16"
+	},
+	"company_id": {
+		"$oid": "5d95c3da3deb6a5c4efb9eff"
+	},
+	"country": "SPAIN",
+	"city": "MURCIA",
+	"address": "AVENIDA MIGUEL DE CERVANTES Nº 110",
+	"address_strings": [
+		"AVENIDA MIGUEL DE CERVANTES Nº 110",
+		"Murcia"
+	],
+	"phone": null
+}
+{
+	"_id": {
+		"$oid": "5d95d7953deb6a5c4efba134"
+	},
+	"company_id": {
+		"$oid": "5d95c3ae3deb6a5c4efb9ee7"
+	},
+	"country": "SPAIN",
+	"city": "MURCIA",
+	"address": "C/ MAYOR, 7 - ESPINARDO",
+	"address_strings": [
+		"C/ MAYOR, 7 - ESPINARDO",
+		"MURCIA"
+	],
+	"phone": "968392509"
+}

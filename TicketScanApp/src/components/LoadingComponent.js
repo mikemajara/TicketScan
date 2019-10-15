@@ -8,7 +8,7 @@ export default function LoadingComponent(props) {
     <View>
       <Modal visible={props.isLoading} transparent animationType="fade">
         <View style={styles.modalBackground}>
-          <View style={styles.activityIndicatorWrapper}>
+          <View style={styles.container}>
             {props.activityComponent}
             <Text style={styles.textLoading}>{props.loadingText}</Text>
           </View>
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     backgroundColor: '#00000040',
   },
-  activityIndicatorWrapper: {
+  container: {
     backgroundColor: '#FFFFFF',
     padding: 10,
     // height: 100,
