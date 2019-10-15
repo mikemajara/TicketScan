@@ -14,6 +14,27 @@ export default function TicketLineDetailModal(props) {
   const [units, setUnits] = useState(line.units.toString());
   const [price, setPrice] = useState(line.price.toString());
 
+  const saveLine = () => {
+    props.lineUpdate({
+      name,
+      units: parseInt(units, 10),
+      price: parseFloat(price),
+    });
+  };
+
+  useEffect(() => {
+    saveLine();
+  }, [units, price, name]);
+
+  const closeModal = e => {
+    props.onPressClose(e);
+  };
+
+  const saveAndCloseModal = e => {
+    saveLine(e);
+    closeModal(e);
+  };
+
   const sumUnits = value => {
     const oldValue = parseInt(units, 10);
     const sumValue = parseInt(value, 10);
@@ -23,7 +44,7 @@ export default function TicketLineDetailModal(props) {
     } else {
       setUnits(result.toString());
     }
-  }
+  };
 
   const sumPrice = value => {
     const oldValue = parseFloat(price, 10);
@@ -34,21 +55,7 @@ export default function TicketLineDetailModal(props) {
     } else {
       setPrice(result.toString());
     }
-  }
-
-  const saveAndCloseModal = e => {
-    // TODO: REMOVE TRACE
-    console.log(`${new Date().toISOString()} - TicketDetailModalComponent:48:'HIDING'`);
-    console.log('HIDING');
-    // ^^^^^ REMOVE TRACE
-
-    props.lineUpdate({
-      name,
-      units: parseInt(units, 10),
-      price: parseFloat(price),
-    });
-    props.onPressClose(e);
-  }
+  };
 
   return (
     <Modal
@@ -66,7 +73,7 @@ export default function TicketLineDetailModal(props) {
             color={iOSColors.customGray}
             iconStyle={[styles.icon, { color: 'black' }]}
             size={13}
-            onPress={props.onPressClose}
+            onPress={closeModal()}
           />
           <Icon
             type='ionicon'
@@ -154,7 +161,7 @@ export default function TicketLineDetailModal(props) {
           />
         </View>
       </View>
-    </Modal>
+    </Modal >
   )
 }
 
@@ -221,11 +228,13 @@ const styles = StyleSheet.create({
 });
 
 TicketLineDetailModal.propTypes = {
+  // isVisible: PropTypes.bool,
   line: PropTypes.object,
   lineUpdate: PropTypes.func.isRequired,
   onPressClose: PropTypes.func.isRequired,
 };
 TicketLineDetailModal.defaultProps = {
+  // isVisible: false,
   line: {
     units: '0',
     name: '',
