@@ -8,7 +8,7 @@ import { iOSColors } from 'react-native-typography';
 import ImageView from 'react-native-image-view';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { styleDebug } from '../helpers';
-
+import LoadingComponent from '../components/LoadingComponent';
 
 const createFormData = (photo, body) => {
   const data = new FormData();
@@ -28,31 +28,43 @@ const createFormData = (photo, body) => {
 
 const ScannerViewContainer = props => {
 
-  const [ticket, setTicket] = useState({});
+  // const [ticket, setTicket] = useState({});
   const [photo, setPhoto] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleUploadPhoto = () => {
+    setLoading(true);
+    console.log('uploading photo...')
     fetch('http://127.0.0.1:5000/parse_ticket', {
       method: 'POST',
       body: createFormData(photo, { userId: '123' }),
     })
-      .then(response => response.json())
+      // .then(response => response.json())
       .then(response => {
-        setTicket(response);
+        setLoading(false);
+        // setTicket(response);
         // Navigate to ticket with correct response
-        // props.navigation.navigate('TicketView', { elements: response })
+        props.navigation.navigate('TicketView', { elements: response })
         // setPhoto(null);
         // setTicket({});
       })
       .catch(error => {
+        setLoading(false);
         console.log('upload error', error);
         alert('Upload failed!');
-      });
+      })
+      .finally(() => setLoading(false));
   };
 
   return (
     <View style={styles.container}>
+      {loading && (
+        <LoadingComponent
+          isLoading={loading}
+          loadingText="Your ticket is being read by our staff..."
+        />)
+      }
       <View style={styles.imageContainer}>
         {photo && (
           <TouchableOpacity onPress={() => setModalVisible(true)}>

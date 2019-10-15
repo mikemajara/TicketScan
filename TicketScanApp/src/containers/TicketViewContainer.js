@@ -36,28 +36,24 @@ async function retrieveTicket(id) {
 }
 
 export default function TicketViewContainer(props) {
-  // Store constructor(company, country, city, address, phone, id) {
-  // TicketLine constructor(units, name, price, weight, weightPrice, readableName, id, altCodes) {
-  // Ticket constructor(store, datetime, proprietaryCodes, paymentMethod, total, returned, ticketLines) {
 
-  const [ticketId, setTicketId] = useState(props.navigation.getParam('_id', null));
-  const [elements, setElements] = useState([]);
-  const [ticket, setTicket] = useState(props.navigation.getParam('ticket', null));
+  let company;// = Object.assign(new Company, ticket.company)
+  let store;// = Object.assign(new Store, ticket.store)
 
-  const company = Object.assign(new Company, ticket.company)
-  const store = Object.assign(new Store, ticket.store)
-  console.log(`${new Date().toISOString()} - TicketViewContainer:default:company`);
-  console.log(company);
-  console.log(`${new Date().toISOString()} - TicketViewContainer:default:store`);
-  console.log(store);
-  // const store = new Store(
-  //   'Mercadona',
-  //   'Spain',
-  //   'Murcia',
-  //   'AVDA. CICLISTA MARIANO ROJAS-AV',
-  //   '+34 968227166',
-  //   'A-46103834'
-  // );
+  company = new Company(
+    'id: string',
+    'Mercadona S.A.',
+    'A-1324122',
+    '',
+  );
+  store = new Store(
+    'Mercadona',
+    'Spain',
+    'Murcia',
+    'AVDA. CICLISTA MARIANO ROJAS-AV',
+    '+34 968227166',
+    'A-46103834'
+  );
   const lines = [
     new TicketLine('1', 'B, ALMENDRA S/A', '8,40', null, null, 'readableName', null, []),
     new TicketLine('4', 'L SEMI S/LACTO', '18,00', null, null, 'readableName', null, []),
@@ -82,6 +78,15 @@ export default function TicketViewContainer(props) {
     null,
     lines
   );
+
+  // Store constructor(company, country, city, address, phone, id) {
+  // TicketLine constructor(units, name, price, weight, weightPrice, readableName, id, altCodes) {
+  // Ticket constructor(store, datetime, proprietaryCodes, paymentMethod, total, returned, ticketLines) {
+
+  const [ticketId, setTicketId] = useState(props.navigation.getParam('_id', null));
+  const [elements, setElements] = useState([]);
+  const [ticket, setTicket] = useState(props.navigation.getParam('ticket', dummyTicket));
+
 
   useEffect(() => {
     const fetchData = async () => {

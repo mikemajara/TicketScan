@@ -4,7 +4,7 @@ import TicketLine from './TicketLine';
 import Company from './Company';
 
 class Ticket {
-
+  _id: string;
   company: Company;
   store: Store;
   datetime: Date;
@@ -15,6 +15,7 @@ class Ticket {
   lines: Array<TicketLine>;
 
   constructor(
+    _id: string,
     company: Company,
     store: Store,
     datetime: Date,
@@ -24,6 +25,7 @@ class Ticket {
     returned: number,
     lines: Array<TicketLine>
   ) {
+    this._id = _id;
     this.company = company;
     this.store = store;
     this.datetime = datetime;

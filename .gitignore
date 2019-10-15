@@ -1,5 +1,6 @@
 # Specific files
 tmp.*
+*-ignore.*
 
 # ticket_scan
 
