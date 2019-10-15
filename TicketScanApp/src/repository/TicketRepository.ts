@@ -9,6 +9,16 @@ export default class TicketRepository extends BaseRepository<Ticket> {
   findAllPath = 'get_all_tickets';
   findOnePath = 'get_ticket';
 
+  private static instance: TicketRepository;
+
+  public static getInstance(): TicketRepository {
+    if (!TicketRepository.instance) {
+      TicketRepository.instance = new TicketRepository();
+    }
+    return TicketRepository.instance;
+  }
+
+
   fromJson(item: object): Ticket {
     let { _id, company, store, date, lines, paymentInformation } = item;
     company = new CompanyRepository().fromJson(company);
