@@ -66,23 +66,8 @@ export default function TicketLineDetailModal(props) {
       isVisible={props.visible}
       avoidKeyboard>
       <View style={styles.container}>
-        <View style={styles.iconsHeaderContainer}>
-          <Icon
-            type='ionicon'
-            name='md-close'
-            color={iOSColors.customGray}
-            iconStyle={[styles.icon, { color: 'black' }]}
-            size={13}
-            onPress={closeModal()}
-          />
-          <Icon
-            type='ionicon'
-            name='md-checkmark'
-            color={iOSColors.tealBlue}
-            iconStyle={[styles.icon, { color: 'black' }]}
-            size={13}
-            onPress={saveAndCloseModal}
-          />
+        <View style={{ position: 'absolute', top: -25, right: '47%' }}>
+          <Icon type="feather" name="minus" color={iOSColors.lightGray2} size={63} />
         </View>
         <View style={{ flexDirection: 'row', justifyContent: 'center', alignSelf: 'center', borderWidth: StyleSheet.hairlineWidth, padding: 5, borderRadius: 7 }}>
           <TextInput
@@ -176,14 +161,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     height: 300,
     justifyContent: 'space-between',
-    padding: 20,
-    paddingBottom: 50,
+    paddingHorizontal: 20,
+    paddingVertical: 60,
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
   },
   iconsHeaderContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end',
   },
   icon: {
     color: 'white',
