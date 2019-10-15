@@ -36,7 +36,7 @@ export default function TicketLineDetailModal(props) {
     }
   }
 
-  const handleClose = e => {
+  const saveAndCloseModal = e => {
     // TODO: REMOVE TRACE
     console.log(`${new Date().toISOString()} - TicketDetailModalComponent:48:'HIDING'`);
     console.log('HIDING');
@@ -54,20 +54,27 @@ export default function TicketLineDetailModal(props) {
     <Modal
       style={styles.modal}
       backdropOpacity={0.4}
-      onSwipeComplete={handleClose}
+      onSwipeComplete={props.onPressClose}
       swipeDirection={['down']}
       isVisible={props.visible}
       avoidKeyboard>
       <View style={styles.container}>
-        <View style={styles.iconCloseContainer}>
+        <View style={styles.iconsHeaderContainer}>
           <Icon
-            reverse
             type='ionicon'
             name='md-close'
             color={iOSColors.customGray}
             iconStyle={[styles.icon, { color: 'black' }]}
             size={13}
-            onPress={handleClose}
+            onPress={props.onPressClose}
+          />
+          <Icon
+            type='ionicon'
+            name='md-checkmark'
+            color={iOSColors.tealBlue}
+            iconStyle={[styles.icon, { color: 'black' }]}
+            size={13}
+            onPress={saveAndCloseModal}
           />
         </View>
         <View style={{ flexDirection: 'row', justifyContent: 'center', alignSelf: 'center', borderWidth: StyleSheet.hairlineWidth, padding: 5, borderRadius: 7 }}>
@@ -167,12 +174,13 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
   },
-  iconCloseContainer: {
-    alignSelf: 'flex-end',
+  iconsHeaderContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   icon: {
     color: 'white',
-    fontSize: 18,
+    fontSize: 24,
   },
   textLabel: {
     ...iOSUIKit.title3,
