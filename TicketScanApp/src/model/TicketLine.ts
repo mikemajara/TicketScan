@@ -1,3 +1,4 @@
+// - Temporarily deleted, keep this here for idea
 // altCodes should be objects
 // {
 //  procedence: "OpenFacts",
@@ -8,32 +9,15 @@
 // }
 
 class TicketLine {
-
-  public units: number;
-  public name: string;
-  public price: number;
-  public weight: string;
-  public weightPrice: number;
-  public readableName: string;
-  public id: string;
-
   constructor(
-    units: number,
-    name: string,
-    price: number,
-    weight: string,
-    weightPrice: number,
-    readableName: string,
-    id: string
-  ) {
-    this.units = units;
-    this.name = name;
-    this.price = price;
-    this.weight = weight;
-    this.weightPrice = weightPrice;
-    this.readableName = readableName;
-    this.id = id;
-  }
+    private _id?: string,
+    private units?: number,
+    private name?: string,
+    private total?: number,
+    private price?: number,
+    private weight?: string,
+    private weightPrice?: number,
+  ) { }
 }
 
 export default TicketLine;

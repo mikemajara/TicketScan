@@ -44,6 +44,12 @@ Prefer to set parents as containers, the rest as views (or pure components)
   - This [code snippet](https://medium.com/@kelleyannerose/react-native-activityindicator-for-a-quick-easy-loading-animation-593c06c044dc) did the trick. [Kelly Rose](https://medium.com/@kelleyannerose) might have some more stuff to show 😏. For the moment taking a basic component as loader in the project (as of Saturday, 05 Oct 2019 18:18)
   - [oblador/react-native-progress](https://github.com/oblador/react-native-progress) **Not checked** but might be useful for the future.
 
+- Typescript
+  - ♻️ Generics in Typescript
+    - [ErickWendel/generic-repository-nodejs-typescript-article](https://github.com/ErickWendel/generic-repository-nodejs-typescript-article)
+  - [Stop Manually Assigning TypeScript Constructor Parameters](https://www.stevefenton.co.uk/2013/04/stop-manually-assigning-typescript-constructor-parameters/)
+  - [Constructor overload in Typescript](https://stackoverflow.com/questions/12702548/constructor-overload-in-typescript)
+
 ### 🧩 Used Components
 
 - [react-native-typography](https://github.com/hectahertz/react-native-typography)

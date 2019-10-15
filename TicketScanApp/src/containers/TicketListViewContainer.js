@@ -1,47 +1,49 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Alert, Text, FlatList, ActivityIndicator, Modal } from 'react-native';
-import { Button, ListItem, Icon } from 'react-native-elements';
+import { StyleSheet, View, Alert, Text, SectionList, ActivityIndicator, Modal, FlatList } from 'react-native';
+import { Button, ListItem, Icon, SearchBar } from 'react-native-elements';
 // import { Animated } from 'react-native-reanimated';
-import { iOSColors } from 'react-native-typography';
+import { iOSColors, systemWeights, iOSUIKit } from 'react-native-typography';
+import moment from 'moment/min/moment-with-locales';
+import _ from 'lodash';
 import AppleStyleSwipeableRow from './AppleStyleSwipeableRow';
 import TicketListItemComponent from '../components/TicketListItemComponent';
+import CompanyRepository from '../repository/CompanyRepository';
+import TicketRepository from '../repository/TicketRepository';
 
 import { styleDebug, mockupTicket, getMockupTicket } from '../helpers';
 import LoadingComponent from '../components/LoadingComponent';
 
 export default function TicketViewContainer(props) {
-  const [elements, setElements] = useState([]);
+
+  const [elements, setElements] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [searchText, setSearchText] = useState('');
+  const ticketRepository = new TicketRepository();
+
+  const updateSearch = search => {
+    setSearchText(search);
+  };
 
   useEffect(() => {
     const fetchTickets = async () => {
       setLoading(true);
-      let responseJson = null;
       try {
-        // TODO: Call disabled for design.
-        // const response = await fetch('http://127.0.0.1:5001/get_all_tickets');
-        // if (response.status === 200) {
-        //   responseJson = await response.json();
-        //   console.log(
-        //     `${new Date().toISOString()} - TicketViewContainer:handleConfirmPress:responseJson`
-        //   );
-        // }
+        const response = await ticketRepository.findAll();
+        const grouped = _.groupBy(response, item => moment(item.datetime).format('MMMM, YYYY'));
+        const sections = Object.keys(grouped).map(key => ({
+          title: key,
+          data: grouped[key],
+        }));
+        // TODO: REMOVE TRACE
+        console.log(`${new Date().toISOString()} - TicketListViewContainer:36:elements`);
+        console.log(sections);
+        // ^^^^^ REMOVE TRACE
 
-        // alert(`Result: ${response.status} ${response.statusText || ''}`);
-        // setElements(responseJson);
-        setElements(
-          Array(10)
-            .fill(null)
-            .map(() => getMockupTicket())
-        );
-        console.log(`${new Date().toISOString()} - TicketListViewContainer:fetchTickets:elements`);
-        console.log(responseJson);
-        return responseJson;
+        setLoading(false);
+        setElements(sections);
       } catch (error) {
-        return responseJson;
-      } finally {
         setLoading(false);
       }
     };
@@ -49,9 +51,9 @@ export default function TicketViewContainer(props) {
     fetchTickets();
   }, []);
 
-  const handlePressedLine = _id => {
+  const handlePressedLine = async ticket => {
     // TODO: Ticket pressed disabled.
-    // props.navigation.navigate('TicketView', { _id });
+    props.navigation.navigate('TicketView', { ticket });
     // TODO: get ticket pressed
     // props.navigation.navigate('TicketView', { elements: response })
   };
@@ -75,32 +77,45 @@ export default function TicketViewContainer(props) {
           loadingText="Getting your tickets from the archive..."
         />
       )}
-      <FlatList
+      <SectionList
         style={styles.list}
-        data={elements || []}
+        sections={elements || []}
+        renderSectionHeader={({ section: { title, data } }) => (
+          <View style={styles.headerContainer}>
+            <Text style={styles.headerText}>{title}</Text>
+            <Text style={styles.headerText}>
+              {`${data
+                .map(e => e.paymentInformation.total)
+                .reduce((a, b) => a + b)
+                .toFixed(2)} €`}
+            </Text>
+          </View>
+        )}
+        contentOffset={{ y: 65 }}
+        ListHeaderComponent={
+          <View>
+            <SearchBar
+              platform="ios"
+              containerStyle={{ backgroundColor: 'white' }}
+              inputContainerStyle={{ backgroundColor: iOSColors.customGray }}
+              placeholder="Search"
+              onChangeText={updateSearch}
+              value={searchText}
+            />
+          </View>
+        }
         renderItem={({ item, index }) => {
-          console.log(item, index);
+          // console.log(item, index);
           return (
             <AppleStyleSwipeableRow
-              deleteContent={<Icon type="ionicon" name="ios-trash" color="white" size={35} />}
               flagContent={<Icon type="ionicon" name="ios-star" color="white" size={35} />}>
               <TicketListItemComponent
-                // units={item.units}
-                companyName={`${item.company.name}`}
-                date={item.datetime}
+                ticket={item}
                 bottomDivider={shouldHaveBottomDivider(index, elements.length)}
                 topDivider={shouldHaveTopDivider(index, elements.length)}
-                leftIcon={
-                  <Icon
-                    type="ionicon"
-                    name="ios-star"
-                    color={index % 2 ? iOSColors.yellow : 'transparent'}
-                    size={15}
-                  />
-                }
                 onPress={() => {
-                  console.log('handling press')
-                  handlePressedLine(item._id)
+                  console.log('handling press');
+                  handlePressedLine(item);
                 }}
               />
             </AppleStyleSwipeableRow>
@@ -120,6 +135,19 @@ const styles = StyleSheet.create({
   list: {
     ...styleDebug('lightgreen'),
   },
+  headerContainer: {
+    paddingRight: 15,
+    paddingLeft: 10,
+    paddingVertical: 5,
+    backgroundColor: iOSColors.customGray,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  headerText: {
+    ...styleDebug('red'),
+    ...iOSUIKit.title3,
+    ...systemWeights.thin,
+  }
 });
 
 TicketViewContainer.propTypes = {};

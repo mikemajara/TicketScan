@@ -1,21 +1,10 @@
 class Company {
-
-  public id: string;
-  public name: string;
-  public taxId: string;
-  public web: string;
-
   constructor(
-    id: string,
-    name: string,
-    taxId: string,
-    web: string,
-  ) {
-    this.id = id;
-    this.name = name;
-    this.taxId = taxId;
-    this.web = web;
-  }
+    private _id?: string,
+    private name?: string,
+    private tax_id?: string,
+    private web?: string,
+  ) { }
 }
 
 export default Company;
