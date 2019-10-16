@@ -3,7 +3,8 @@ import { IWrite } from './IWrite';
 import { IRead } from './IRead';
 
 // that class only can be extended
-export default abstract class BaseRepository<T> implements IWrite<T>, IRead<T> {
+export default abstract class BaseRepository<T> implements IWrite<T>, IRead<T>{
+
   // Use for development in local pc (with simulator)
   apiUrl: string = 'http://127.0.0.1:5001/';
   // Use for development in local network (insert ip of local computer)
@@ -12,9 +13,6 @@ export default abstract class BaseRepository<T> implements IWrite<T>, IRead<T> {
   abstract updatePath: string;
   abstract findAllPath: string;
   abstract findOnePath: string;
-
-  //we created constructor with arguments to manipulate mongodb operations
-  constructor() { }
 
   abstract fromJson(item: object): T;
   abstract fromJsonArray(items: object[]): T[];

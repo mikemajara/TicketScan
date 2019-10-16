@@ -14,6 +14,27 @@ export default function TicketLineDetailModal(props) {
   const [units, setUnits] = useState(line.units.toString());
   const [price, setPrice] = useState(line.price.toString());
 
+  const saveLine = () => {
+    props.lineUpdate({
+      name,
+      units: parseInt(units, 10),
+      price: parseFloat(price),
+    });
+  };
+
+  useEffect(() => {
+    saveLine();
+  }, [units, price, name]);
+
+  const closeModal = e => {
+    props.onPressClose(e);
+  };
+
+  const saveAndCloseModal = e => {
+    saveLine(e);
+    closeModal(e);
+  };
+
   const sumUnits = value => {
     const oldValue = parseInt(units, 10);
     const sumValue = parseInt(value, 10);
@@ -23,7 +44,7 @@ export default function TicketLineDetailModal(props) {
     } else {
       setUnits(result.toString());
     }
-  }
+  };
 
   const sumPrice = value => {
     const oldValue = parseFloat(price, 10);
@@ -34,21 +55,7 @@ export default function TicketLineDetailModal(props) {
     } else {
       setPrice(result.toString());
     }
-  }
-
-  const saveAndCloseModal = e => {
-    // TODO: REMOVE TRACE
-    console.log(`${new Date().toISOString()} - TicketDetailModalComponent:48:'HIDING'`);
-    console.log('HIDING');
-    // ^^^^^ REMOVE TRACE
-
-    props.lineUpdate({
-      name,
-      units: parseInt(units, 10),
-      price: parseFloat(price),
-    });
-    props.onPressClose(e);
-  }
+  };
 
   return (
     <Modal
@@ -59,23 +66,8 @@ export default function TicketLineDetailModal(props) {
       isVisible={props.visible}
       avoidKeyboard>
       <View style={styles.container}>
-        <View style={styles.iconsHeaderContainer}>
-          <Icon
-            type='ionicon'
-            name='md-close'
-            color={iOSColors.customGray}
-            iconStyle={[styles.icon, { color: 'black' }]}
-            size={13}
-            onPress={props.onPressClose}
-          />
-          <Icon
-            type='ionicon'
-            name='md-checkmark'
-            color={iOSColors.tealBlue}
-            iconStyle={[styles.icon, { color: 'black' }]}
-            size={13}
-            onPress={saveAndCloseModal}
-          />
+        <View style={{ position: 'absolute', top: -25, right: '47%' }}>
+          <Icon type="feather" name="minus" color={iOSColors.lightGray2} size={63} />
         </View>
         <View style={{ flexDirection: 'row', justifyContent: 'center', alignSelf: 'center', borderWidth: StyleSheet.hairlineWidth, padding: 5, borderRadius: 7 }}>
           <TextInput
@@ -154,7 +146,7 @@ export default function TicketLineDetailModal(props) {
           />
         </View>
       </View>
-    </Modal>
+    </Modal >
   )
 }
 
@@ -169,14 +161,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     height: 300,
     justifyContent: 'space-between',
-    padding: 20,
-    paddingBottom: 50,
+    paddingHorizontal: 20,
+    paddingVertical: 60,
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
   },
   iconsHeaderContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end',
   },
   icon: {
     color: 'white',
@@ -221,11 +213,13 @@ const styles = StyleSheet.create({
 });
 
 TicketLineDetailModal.propTypes = {
+  // isVisible: PropTypes.bool,
   line: PropTypes.object,
   lineUpdate: PropTypes.func.isRequired,
   onPressClose: PropTypes.func.isRequired,
 };
 TicketLineDetailModal.defaultProps = {
+  // isVisible: false,
   line: {
     units: '0',
     name: '',

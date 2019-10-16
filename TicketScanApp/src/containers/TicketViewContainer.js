@@ -34,6 +34,10 @@ export default function TicketViewContainer(props) {
 
   const handleModifiedLine = async modifiedLine => {
     ticket.lines[selectedIndex] = { ...ticket.lines[selectedIndex], ...modifiedLine };
+    setTicket({
+      ...ticket,
+      lines: [...ticket.lines],
+    });
     await ticketRepository.update(ticket);
   };
 

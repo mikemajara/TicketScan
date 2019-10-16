@@ -48,13 +48,23 @@ Prefer to set parents as containers, the rest as views (or pure components)
   - ♻️ Generics in Typescript
     - [ErickWendel/generic-repository-nodejs-typescript-article](https://github.com/ErickWendel/generic-repository-nodejs-typescript-article)
   - [Stop Manually Assigning TypeScript Constructor Parameters](https://www.stevefenton.co.uk/2013/04/stop-manually-assigning-typescript-constructor-parameters/)
-  - [Constructor overload in Typescript](https://stackoverflow.com/questions/12702548/constructor-overload-in-typescript
-)
+  - [Constructor overload in Typescript](https://stackoverflow.com/questions/12702548/constructor-overload-in-typescript)
+
+- Hooks
+  - `useState` is asynchronous, for callback use `useEffect`. Check [here](https://www.robinwieruch.de/react-usestate-callback) for an example.
+  - Re-rendering works better if we touch the least part of the code. So less frames are dropped if we use separate `useState` for two different parts of a same object. (No precise measure here, but could be benchmarked).
+  Find an example below:
+    ```
+    const [ticket, setTicket] = useState(props.navigation.getParam('ticket', null));
+    const [lines, setlines] = useState(ticket.lines);
+    ```
+
 ### 🧩 Used Components
 
 - [react-native-typography](https://github.com/hectahertz/react-native-typography)
 - [react-native-elements](https://react-native-training.github.io/react-native-elements/)
 - [antonKalinin/react-native-image-view](https://github.com/antonKalinin/react-native-image-view)
+  - Excluded. Broken from upgrade to 0.61.2
 
 ## Troubleshooting & Known issues
 

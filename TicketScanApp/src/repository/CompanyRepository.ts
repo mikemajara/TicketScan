@@ -7,6 +7,15 @@ export default class CompanyRepository extends BaseRepository<Company> {
   findAllPath = 'get_companies';
   findOnePath = '';
 
+  private static instance: CompanyRepository;
+
+  public static getInstance(): CompanyRepository {
+    if (!CompanyRepository.instance) {
+      CompanyRepository.instance = new CompanyRepository();
+    }
+    return CompanyRepository.instance;
+  }
+
   fromJson(item: object): Company {
     return Object.assign(new Company, item);
   }

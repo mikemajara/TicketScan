@@ -31,7 +31,8 @@ export default function TicketViewContainer(props) {
       setLoading(true);
       try {
         const response = await ticketRepository.findAll();
-        const grouped = _.groupBy(response, item => moment(item.datetime).format('MMMM, YYYY'));
+        const sorted = _.sortBy(response, item => moment(item.datetime)).reverse();
+        const grouped = _.groupBy(sorted, item => moment(item.datetime).format('MMMM, YYYY'));
         const sections = Object.keys(grouped).map(key => ({
           title: key,
           data: grouped[key],
