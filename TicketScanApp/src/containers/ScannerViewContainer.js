@@ -30,7 +30,6 @@ const createFormData = (image, body) => {
 
 const ScannerViewContainer = props => {
 
-  // const [ticket, setTicket] = useState({});
   const [modalVisible, setModalVisible] = useState(false);
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState(null);
@@ -46,16 +45,7 @@ const ScannerViewContainer = props => {
       .then(response => response.json())
       .then(response => {
         setLoading(false);
-
-        // TODO: REMOVE TRACE
-        console.log(`${new Date().toISOString()} - ScannerViewContainer:49:response`);
-        console.log(response);
-        // ^^^^^ REMOVE TRACE
-
-        // Navigate to ticket with correct response
         props.navigation.navigate('TicketView', { ticket: response });
-        // setImage(null);
-        // setTicket({});
       })
       .catch(error => {
         setLoading(false);
@@ -97,15 +87,6 @@ const ScannerViewContainer = props => {
     });
   };
 
-  useEffect(() => {
-
-    // TODO: REMOVE TRACE
-    console.log(`${new Date().toISOString()} - ScannerViewContainer:96:image`);
-    console.log(image);
-    // ^^^^^ REMOVE TRACE
-
-  });
-
   return (
     <View style={styles.container}>
       {loading && (
@@ -115,32 +96,31 @@ const ScannerViewContainer = props => {
         />)
       }
       <View style={[styles.imageContainer, { padding: image ? 10 : 0 }]}>
-        {
-          image ?
-            <Image
-              style={[styles.image, { width: 400, height: 500 }]}
-              source={{ uri: image.path || `data:image/jpeg;base64,${image}` }}
-              placeholderStyle={styles.imagePlaceholder}
-              resizeMode="contain"
-              imagePlaceholder={<ActivityIndicator />}
-            /> :
-            <Scanner
-              style={styles.scanner}
-              useBase64
-              onPictureTaken={data => {
-                setImage(data.croppedImage);
-              }}
-              overlayColor="rgba(255,130,0, 0.7)"
-              // enableTorch={this.state.flashEnabled}
-              // useFrontCam={this.state.useFrontCam}
-              brightness={0.2}
-              saturation={0}
-              quality={0.5}
-              contrast={1.2}
-              // onRectangleDetect={({ stableCounter, lastDetectionType }) => this.setState({ stableCounter, lastDetectionType })}
-              detectionCountBeforeCapture={10}
-              detectionRefreshRateInMS={50}
-            />
+        {image ?
+          <Image
+            style={[styles.image, { width: 400, height: 500 }]}
+            source={{ uri: image.path || `data:image/jpeg;base64,${image}` }}
+            placeholderStyle={styles.imagePlaceholder}
+            resizeMode="contain"
+            imagePlaceholder={<ActivityIndicator />}
+          /> :
+          <Scanner
+            style={styles.scanner}
+            useBase64
+            onPictureTaken={data => {
+              setImage(data.croppedImage);
+            }}
+            overlayColor="rgba(255,130,0, 0.7)"
+            // enableTorch={this.state.flashEnabled}
+            // useFrontCam={this.state.useFrontCam}
+            brightness={0.2}
+            saturation={0}
+            quality={0.5}
+            contrast={1.2}
+            // onRectangleDetect={({ stableCounter, lastDetectionType }) => this.setState({ stableCounter, lastDetectionType })}
+            detectionCountBeforeCapture={10}
+            detectionRefreshRateInMS={50}
+          />
         }
       </View>
       <View style={styles.bottomRow}>
