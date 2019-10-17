@@ -67,7 +67,7 @@ def extract_text_lines_from_image(path=None,
         start = time.time()
         slices = slicer.slice(image, *args, **kwargs)
         end = time.time()
-        logger.info("sliced image in " + str(end - start) + "s")
+        logger.info(f"sliced image in {str(end - start)}s")
 
         start = time.time()
         for idx, slice in enumerate(slices):
@@ -79,7 +79,7 @@ def extract_text_lines_from_image(path=None,
                                            side_margin=side_margin)
             text_recognition_dict[idx] = text_recognised
         end = time.time()
-        logger.info("read slices in " + str(end - start) + "s")
+        logger.info(f"read slices in {str(end - start)}s")
 
         image_path = os.path.dirname(image)
         result_path = os.path.join(image_path, 'text_recognition_result.json')

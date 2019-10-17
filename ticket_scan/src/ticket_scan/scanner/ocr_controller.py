@@ -29,9 +29,9 @@ def scan_ticket(image, *args, **kwargs):
                 *args, **kwargs
             )
     end = time.time()
-    logger.info("Processed image in controller in a total of " + str(end - start) + "s")
+    logger.info(f"Processed image in controller in a total of {str(end - start)}s")
     json.dump(results, open("results.json", "w"), indent=2, ensure_ascii=False)
-    print("results in " + os.getcwd() + "/results.json")
+    print(f"results in {os.getcwd()} /results.json")
     return results
 
 
