@@ -1,14 +1,14 @@
 from marshmallow import Schema, fields, post_load
-
+from typing import Optional
 
 class TicketLineSchema(Schema):
-    _id = fields.Integer()
-    units = fields.Float()
+    _id = fields.Str(allow_none=True)
+    units = fields.Integer()
     name = fields.Str()
     price = fields.Float()
     weight = fields.Float()
     weight_price = fields.Float()
-    readable_name = fields.Str()
+    readable_name = fields.Str(allow_none=True)
 
     @post_load
     def from_json(self, data, **kwargs):
@@ -17,13 +17,13 @@ class TicketLineSchema(Schema):
 
 class TicketLine(object):
     def __init__(self,
-                 _id: int,
-                 units: float,
-                 name: str,
-                 price: float,
-                 weight: float,
-                 weight_price: float,
-                 readable_name: str,
+                 _id: Optional[str] = None,
+                 units: int = None,
+                 name: str = None,
+                 price: Optional[float] = None,
+                 weight: Optional[float] = None,
+                 weight_price: Optional[float] = None,
+                 readable_name: Optional[str] = None,
                  ):
         self._id = _id
         self.units = units

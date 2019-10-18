@@ -1,15 +1,18 @@
 import json
 
-from ticket_scan.model.ticket import TicketSchema
+from ticket_scan.model.ticket import TicketSchema, format_ticket_date
 from ticket_scan.model import Ticket
 from ticket_scan.model.company import Company, CompanySchema
 from ticket_scan.model.store import StoreSchema
 from ticket_scan.model.payment_information import PaymentInformation, METHOD_CARD, METHOD_CASH, PaymentInformationSchema
+from ticket_scan.model.ticket_line import TicketLineSchema, TicketLine
 
 from ticket_scan.scanner import line_finder as lf
 from ticket_scan.scanner.base_ticket_parser import BaseTicketParser
 
+from datetime import datetime
 import logging
+import re
 
 from ticket_scan.scanner.slicer import SlicerOptions
 
@@ -91,6 +94,11 @@ logger = logging.getLogger(__name__)
 
 
 class MercadonaTicketParser(BaseTicketParser):
+
+    NORMAL_PRODUCT_REGEX = r"(\d*)[ ]*([a-zA-Z \/\-\.\;\,]*)(\d(,[\d]{2})?)"
+    WEIGHT_PRODUCT_FIRST_LINE_REGEX = r"(\d*)[ ]*([a-zA-Z \/\-\.\;]*)"
+    WEIGHT_PRODUCT_SECOND_LINE_REGEX = r"(\d+(?:,\d*))[ ]*kg (\d+(?:,\d*))[ ]*€/kg (\d+(?:,\d*))?"
+
     @property
     def company_name(self):
         return STR_COMPANY_NAME
@@ -135,12 +143,16 @@ class MercadonaTicketParser(BaseTicketParser):
                 result = store
         return result
 
+    def format_total_value(self, total_string):
+        _, total_value = total_string.split()
+        return total_value.replace(',', '.')
+
     def find_payment_information(self, lines: list):
         result = PaymentInformation()
 
         found_total = lf.find_line_with_similarity(lines, STR_TOTAL)
         if found_total.is_found[0]:
-            result.total = found_total.value_requested[0]
+            result.total = self.format_total_value(found_total.value_requested[0])
 
         found_method = lf.find_lines_with_limit(
             lines,
@@ -170,6 +182,45 @@ class MercadonaTicketParser(BaseTicketParser):
         # Mercadona proprietary
         return lf.find_lines_with_limit(lines, company.name, amount_lines=2, limit_type="upper")
 
+    def find_date(self, lines: list, company: Company):
+        found_date = lf.find_lines_with_limit(lines, limit=company.tax_id, amount_lines=1, limit_type="upper")
+        date, hour, _, _ = found_date.value_requested[0].split()
+        #TODO: How do we handle this kind of minor errors from the parser?
+        date = date.replace('//', '/')
+        return format_ticket_date(date, hour)
+
+    def str_to_float(self, str):
+        if str:
+            return float(str.replace(',', '.'))
+        return None
+
+    def process_ticketlines(self, lines):
+        MAX_NUMBER_OF_EMPTY_ELEMENTS_IN_REGEX = 2
+        ticketlines = []
+        lines = iter(lines)
+        for line in lines:
+            logger.debug(f"Processing line: {line}")
+            match = re.search(MercadonaTicketParser.NORMAL_PRODUCT_REGEX, line)
+            if match.groups().count('') < MAX_NUMBER_OF_EMPTY_ELEMENTS_IN_REGEX:
+                logger.debug(f"Regex for normal product: {match.groups()}")
+                units, name, price, _ = match.groups()
+                ticketlines.append(TicketLine(units=int(units), name=name, price=self.str_to_float(price)))
+            else:
+                match_weight_first_line = re.search(MercadonaTicketParser.WEIGHT_PRODUCT_FIRST_LINE_REGEX, line)
+                if match_weight_first_line:
+                    logger.debug(f"Regex for weighted product: {match_weight_first_line.groups()}")
+                    units, name = match_weight_first_line.groups()
+                    line = next(lines)
+                    match_weight_second_line = re.search(MercadonaTicketParser.WEIGHT_PRODUCT_SECOND_LINE_REGEX, line)
+                    if match_weight_second_line:
+                        logger.debug(f"Regex for weighted product (second line): {match_weight_second_line.groups()}")
+                        weight, weight_price, price = match_weight_second_line.groups()
+                    ticketlines.append(TicketLine(units=int(units), name=name,
+                                                  weight=self.str_to_float(weight),
+                                                  weight_price=self.str_to_float(weight_price),
+                                                  price=self.str_to_float(price)))
+        return ticketlines
+
     def parse(self, ticket: dict):
         ticket_response = {}
         company = None
@@ -197,7 +248,7 @@ class MercadonaTicketParser(BaseTicketParser):
             raise Exception("Store not found")
 
         # 3.- Fecha
-        found_date = lf.find_lines_with_limit(lines, limit=company.tax_id, amount_lines=1, limit_type="upper")
+        date = self.find_date(lines, company)
 
         # 4.- Lineas de compra
         found_product_lines = lf.find_lines_with_limits(
@@ -205,6 +256,7 @@ class MercadonaTicketParser(BaseTicketParser):
             STR_PRODUCT_LIST_UPPER_LIMIT,
             STR_PRODUCT_LIST_LOWER_LIMIT
         )
+        ticket_lines = self.process_ticketlines(found_product_lines.value_requested)
 
         # 5.- Total y método de pago
         found_total_line = lf.find_line_with_similarity(lines, STR_PRODUCT_LIST_LOWER_LIMIT)
@@ -220,13 +272,13 @@ class MercadonaTicketParser(BaseTicketParser):
         )
         ticket_response["company"] = CompanySchema().dump(company)
         ticket_response["store"] = StoreSchema().dump(store)
-        ticket_response["date"] = found_date.value_requested[0]
-        ticket_response["lines"] = found_product_lines.value_requested
+        ticket_response["date"] = date
+        ticket_response["lines"] = [TicketLineSchema().dump(line) for line in ticket_lines]
         ticket_response["payment"] = PaymentInformationSchema().dump(payment)
-        logger.info(json.dumps(TicketSchema().dump(ticket), indent=2, default=str, ensure_ascii=False))
+        logger.info(json.dumps(TicketSchema().dump(ticket_response), indent=2, default=str, ensure_ascii=False))
         # print(json.dumps(TicketSchema().dump(ticket_object), indent=2, default=str, ensure_ascii=False))
-        # logger.info(json.dumps(ticket_response, indent=2, default=str, ensure_ascii=False))
-        return ticket_response
+        #logger.info(json.dumps(ticket_response, indent=2, default=str, ensure_ascii=False))
+        return TicketSchema().dump(ticket_response)
 
 
 # mercadona_ticket_parser = MercadonaTicketParser()
