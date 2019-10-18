@@ -3,8 +3,8 @@ from typing import List
 
 
 class StoreSchema(Schema):
-    _id = fields.Integer()
-    company_id = fields.Integer()
+    _id = fields.Str(required=True)
+    company_id = fields.Str(required=True)
     country = fields.Str()
     city = fields.Str()
     address = fields.Str()
@@ -18,8 +18,8 @@ class StoreSchema(Schema):
 
 class Store(object):
     def __init__(self,
-                 _id: int,
-                 company_id: int,
+                 _id: str,
+                 company_id: str,
                  country: str,
                  city: str,
                  address: str,

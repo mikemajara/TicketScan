@@ -1,4 +1,4 @@
-from marshmallow import Schema, fields, post_load, validate, ValidationError
+from marshmallow import Schema, fields, post_load, validates, validate, ValidationError
 
 METHOD_CARD = "CARD"
 METHOD_CASH = "CASH"
@@ -11,7 +11,7 @@ class PaymentInformationSchema(Schema):
     # ToDo: Do we really need returned?
     returned = fields.Str(allow_none=True)
 
-    @validate("total")
+    @validates("total")
     def validate_total(self, value):
         if value < 0:
             raise ValidationError("Total amount must be greater than 0")
