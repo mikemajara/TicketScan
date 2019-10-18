@@ -3,6 +3,7 @@ import cv2
 import numpy as np
 import datetime as dt
 import logging
+from http import HTTPStatus
 
 from flask import jsonify
 from flask_restful import Resource, reqparse
@@ -88,4 +89,7 @@ class Server(Resource):
         else:
             raise Exception("file is None")
 
-        return jsonify(result) if result else {'msg': 'ok'}
+        if response.status_code == HTTPStatus.OK:
+            return jsonify(result)
+        else:
+            return response

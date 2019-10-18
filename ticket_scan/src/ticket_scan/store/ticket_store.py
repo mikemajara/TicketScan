@@ -25,7 +25,7 @@ class TicketStore(BaseStore):
         response = requests.post(
             os.path.join(self.store_url, URL_CREATE),
             None,
-            TicketSchema().dump(ticket),
+            ticket,
         )
         return response
 
