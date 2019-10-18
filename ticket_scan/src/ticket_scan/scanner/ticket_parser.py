@@ -119,6 +119,9 @@ line_returned = "DEVOLUCIÓN "
 line_card = "TARJETA..BANCARIA "
 # ...
 
+# TODO Delete this class it is not used any more,
+#  but right now examples on tests depend on it.
+
 date_upper_limit = "" # In this case nif string...
 
 

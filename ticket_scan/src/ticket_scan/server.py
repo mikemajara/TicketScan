@@ -6,11 +6,12 @@ import logging
 
 from flask import jsonify
 from flask_restful import Resource, reqparse
-from scanner.mercadona_ticket_parser import MercadonaTicketParser
+from ticket_scan.scanner.mercadona_ticket_parser import MercadonaTicketParser
 from werkzeug.datastructures import FileStorage
 
 from ticket_scan.scanner import ocr_batch
 from ticket_scan.scanner.lidl_ticket_parser import LidlTicketParser
+from ticket_scan.store.ticket_store import TicketStore
 
 logger = logging.getLogger(__name__)
 
@@ -21,6 +22,7 @@ class Server(Resource):
 
     def __init__(self):
         os.makedirs(Server.UPLOADED_IMAGES_PATH, exist_ok=True)
+        self.ticket_store = TicketStore()
 
     def _dhash(self, file, hash_size = 8):
         # resize the input image, adding a single column (width) so we
@@ -82,6 +84,7 @@ class Server(Resource):
             ticket_parser = MercadonaTicketParser()
             result = ocr_batch.extract_text_lines_from_image(image=filepath, slicer_options=ticket_parser.slicer_options)
             result = ticket_parser.parse(result)
+            response = self.ticket_store.create(result)
         else:
             raise Exception("file is None")
 

@@ -2,6 +2,8 @@ import os
 import requests
 from abc import ABC, abstractmethod
 
+from ticket_scan.store.company_store import CompanyStore
+from ticket_scan.store.store_store import StoreStore
 from ticket_scan.model.company import CompanySchema
 from ticket_scan.model.store import StoreSchema
 from ticket_scan.scanner.slicer import SlicerOptions
@@ -15,17 +17,14 @@ END_POINT_STORES = "get_stores"
 
 class BaseTicketParser(ABC):
 
-    @staticmethod
-    def get_available_companies():
-        r = requests.get(os.path.join(URL_TICKET_STORE, END_POINT_COMPANIES))
-        available_companies = r.json()
-        return CompanySchema().load(available_companies, many=True)
+    company_store = CompanyStore()
+    store_store = StoreStore()
 
-    @staticmethod
-    def get_available_stores(company_id):
-        r = requests.get(os.path.join(URL_TICKET_STORE, END_POINT_STORES, company_id))
-        available_stores = r.json()
-        return StoreSchema().load(available_stores, many=True)
+    def get_available_companies(self):
+        return self.company_store.find_all()
+
+    def get_available_stores(self, company_id=None):
+        return self.store_store.find_all_with_company_id(company_id)
 
     @property
     @abstractmethod

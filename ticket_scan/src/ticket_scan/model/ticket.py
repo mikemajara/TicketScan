@@ -12,7 +12,7 @@ class TicketSchema(Schema):
     store = fields.Nested(StoreSchema, allow_none=True)
     company = fields.Nested(CompanySchema, allow_none=True)
     payment_information = fields.Nested(PaymentInformationSchema, allow_none=True)
-    date = fields.DateTime(allow_none=True)
+    date = fields.Str(allow_none=True)
     lines = fields.List(fields.Nested(TicketLineSchema))
 
     @post_load
