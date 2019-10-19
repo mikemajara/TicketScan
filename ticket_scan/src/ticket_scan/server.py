@@ -3,16 +3,32 @@ import cv2
 import numpy as np
 import datetime as dt
 import logging
+import importlib
 
 from flask import jsonify
 from flask_restful import Resource, reqparse
 from scanner.mercadona_ticket_parser import MercadonaTicketParser
 from werkzeug.datastructures import FileStorage
 
-from ticket_scan.scanner import ocr_batch
+from ticket_scan.scanner import ocr_batch, ocr
 from ticket_scan.scanner.lidl_ticket_parser import LidlTicketParser
 
+import regex
+
 logger = logging.getLogger(__name__)
+
+COMPANY_CLASS = {
+    "MERCADONA": {
+        "module": "mercadona_ticket_parser",
+        "class" : "MercadonaTicketParser"
+    },
+    "LIDL" : {
+        "module": "lidl_ticket_parser",
+        "class" : "LidlTicketParser"
+    }
+}
+
+POSSIBLE_COMPANIES = ["MERCADONA", "LIDL"]
 
 class Server(Resource):
 
@@ -66,6 +82,25 @@ class Server(Resource):
             logger.info("Files already exists: {}".format(filepath))
         return filepath
 
+    def extract_company(self, text_lines):
+        match_companies_pattern = rf'(?b)\b(?:{"|".join(POSSIBLE_COMPANIES)})\b{{e<=2}}'
+        most_likely_company = regex.search(match_companies_pattern, text_lines.replace('\n',' '))
+        if not most_likely_company:
+            raise Exception("Could not extract company from ticket")
+        logger.info(f"Company found: {most_likely_company[0]}")
+        return most_likely_company[0]
+
+    def identify_parser_from_ticket(self, filepath):
+        image = cv2.imread(filepath)
+        orig = image.copy()
+        text_recognised = ocr.extract_text_from_file(orig)
+        company = self.extract_company(text_recognised)
+        class_name = COMPANY_CLASS.get(company)
+        module = f"ticket_scan.scanner.{class_name['module']}"
+        ParserClass = getattr(importlib.import_module(module), class_name['class'])
+        logger.info(f"Using parser: {ParserClass.__name__}")
+        return ParserClass
+
     def post(self):
         parse = reqparse.RequestParser()
         parse.add_argument('file', type=FileStorage,
@@ -77,9 +112,8 @@ class Server(Resource):
         result = None
         if file:
             filepath = self.save_file(file)
-            # TODO: Implemente a dynamic way to instantiate the parser.
-            #ticket_parser = LidlTicketParser()
-            ticket_parser = MercadonaTicketParser()
+            CompanyParser = self.identify_parser_from_ticket(filepath)
+            ticket_parser = CompanyParser()
             result = ocr_batch.extract_text_lines_from_image(image=filepath, slicer_options=ticket_parser.slicer_options)
             result = ticket_parser.parse(result)
         else:
