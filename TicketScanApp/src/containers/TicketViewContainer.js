@@ -159,7 +159,7 @@ export default function TicketViewContainer(props) {
       />
       <View style={styles.footer}>
         <CardComponent
-          title={`${ticket.paymentInformation.method}`}
+          title={`${ticket.payment_information.method}`}
           icon={
             <Icon
               reverse
@@ -173,7 +173,7 @@ export default function TicketViewContainer(props) {
           }
         />
         <CardComponent
-          title={`${ticket.paymentInformation.total}`}
+          title={`${ticket.payment_information.total}`}
           icon={
             <Icon
               reverse

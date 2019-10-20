@@ -222,7 +222,7 @@ class MercadonaTicketParser(BaseTicketParser):
         ticket_response["store"] = StoreSchema().dump(store)
         ticket_response["date"] = found_date.value_requested[0]
         ticket_response["lines"] = found_product_lines.value_requested
-        ticket_response["payment"] = PaymentInformationSchema().dump(payment)
+        ticket_response["payment_information"] = PaymentInformationSchema().dump(payment)
         logger.info(json.dumps(TicketSchema().dump(ticket), indent=2, default=str, ensure_ascii=False))
         # print(json.dumps(TicketSchema().dump(ticket_object), indent=2, default=str, ensure_ascii=False))
         # logger.info(json.dumps(ticket_response, indent=2, default=str, ensure_ascii=False))
