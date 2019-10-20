@@ -61,9 +61,9 @@ class Server(Resource):
         filepath = self._get_filepath(file)
         if not os.path.exists(filepath):
             file.save(filepath)
-            logger.info("New file saved: {}".format(filepath))
+            logger.info(f"New file saved: {filepath}")
         else:
-            logger.info("Files already exists: {}".format(filepath))
+            logger.info(f"Files already exists: {filepath}")
         return filepath
 
     def post(self):

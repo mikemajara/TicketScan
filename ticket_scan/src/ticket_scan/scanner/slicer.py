@@ -149,7 +149,7 @@ def handle_interactive_key_input(th_pxl_density, line_padding):
 
     key = wait_for_input()
 
-    logger.info("key pressed: " + str(key))
+    logger.info(f"key pressed: {str(key)}")
 
     if key == KEY_PLUS:
         th_pxl_density += .5
@@ -223,8 +223,8 @@ def slice(path_image: str,
 
         display_image = draw_slices_on_image(display_image, uppers, lowers, line_padding=slicer_options.line_padding)
 
-        logger.info("Current threshold_pxl_density: " + str(slicer_options.th_pixel_density))
-        logger.info("Current threshold_pxl_line: " + str(slicer_options.line_padding) + "\n")
+        logger.info(f"Current threshold_pxl_density: {str(slicer_options.th_pixel_density)}")
+        logger.info(f"Current threshold_pxl_line: {str(slicer_options.line_padding)}\n")
 
         show_image_normal_window("Lines result", display_image)
 
@@ -259,7 +259,7 @@ def slice(path_image: str,
 
         now_timestamp = datetime.now().strftime("%Y%m%d_%H%M")
         cv2.imwrite(path_output + "/original_" + now_timestamp + ext, orig)
-        logger.info('Output can be found in ' + path_output)
+        logger.info(f"Output can be found in {path_output}")
 
     return slices
 
