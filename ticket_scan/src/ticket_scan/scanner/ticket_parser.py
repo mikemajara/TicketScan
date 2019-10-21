@@ -8,6 +8,8 @@ import requests
 from fuzzywuzzy import fuzz
 from ticket_scan.scanner.helpers import setup_logging
 
+import importlib
+
 DEFAULT_SIMILARITY_TH = 70
 URL_TICKET_STORE = "http://localhost:5001"
 END_POINT_COMPANIES = "get_companies"
@@ -371,9 +373,34 @@ def parse(ticket: dict):
     print(json.dumps(ticket_response, indent=2, default=str, ensure_ascii=False))
     return ticket_response
 
+class TicketParserFactory:
 
-# parse(example_ticket)
+    def __init__(self):
+        self._creators = {
+            "mercadona": {
+                "module": "mercadona_ticket_parser",
+                "class": "MercadonaTicketParser"
+            },
+            "lidl": {
+                "module": "lidl_ticket_parser",
+                "class": "LidlTicketParser"
+            }
+        }
+
+    def get_parser_instance(self, company_name):
+        class_name = self._creators[company_name.lower()]
+        if not class_name:
+            raise ValueError(company_name)
+        module = f"ticket_scan.scanner.{class_name['module']}"
+        ParserClass = getattr(importlib.import_module(module), class_name['class'])
+        logger.info(f"Using parser: {ParserClass.__name__}")
+        return ParserClass()
+
+factory = TicketParserFactory()
+
+
 # lines = list(example_ticket.values())
+# parse(example_ticket)
 # print_json(find_lines_with_limits(lines, "list_upper_limit", list_lower_limit).to_json())
 # print_json(find_lines_with_limit(lines, line_store_id, amount_lines=1, limit_type="upper").to_json())
 # print_json(find_lines_with_limit(lines, line_fra, amount_lines=1, limit_type="lower").to_json())

@@ -7,26 +7,14 @@ import importlib
 
 from flask import jsonify
 from flask_restful import Resource, reqparse
-from scanner.mercadona_ticket_parser import MercadonaTicketParser
 from werkzeug.datastructures import FileStorage
 
 from ticket_scan.scanner import ocr_batch, ocr
-from ticket_scan.scanner.lidl_ticket_parser import LidlTicketParser
+from ticket_scan.scanner import ticket_parser
 
 import regex
 
 logger = logging.getLogger(__name__)
-
-COMPANY_CLASS = {
-    "MERCADONA": {
-        "module": "mercadona_ticket_parser",
-        "class" : "MercadonaTicketParser"
-    },
-    "LIDL" : {
-        "module": "lidl_ticket_parser",
-        "class" : "LidlTicketParser"
-    }
-}
 
 POSSIBLE_COMPANIES = ["MERCADONA", "LIDL"]
 
@@ -90,16 +78,11 @@ class Server(Resource):
         logger.info(f"Company found: {most_likely_company[0]}")
         return most_likely_company[0]
 
-    def identify_parser_from_ticket(self, filepath):
-        image = cv2.imread(filepath)
-        orig = image.copy()
-        text_recognised = ocr.extract_text_from_file(orig)
+    def get_parser_from_ticket(self, filepath):
+        text_recognised = ocr.extract_text_from_file(filepath)
         company = self.extract_company(text_recognised)
-        class_name = COMPANY_CLASS.get(company)
-        module = f"ticket_scan.scanner.{class_name['module']}"
-        ParserClass = getattr(importlib.import_module(module), class_name['class'])
-        logger.info(f"Using parser: {ParserClass.__name__}")
-        return ParserClass
+        parser = ticket_parser.factory.get_parser_instance(company)
+        return parser
 
     def post(self):
         parse = reqparse.RequestParser()
@@ -112,8 +95,7 @@ class Server(Resource):
         result = None
         if file:
             filepath = self.save_file(file)
-            CompanyParser = self.identify_parser_from_ticket(filepath)
-            ticket_parser = CompanyParser()
+            ticket_parser = self.get_parser_from_ticket(filepath)
             result = ocr_batch.extract_text_lines_from_image(image=filepath, slicer_options=ticket_parser.slicer_options)
             result = ticket_parser.parse(result)
         else:
