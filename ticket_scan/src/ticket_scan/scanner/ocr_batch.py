@@ -13,7 +13,6 @@ from ticket_scan.scanner.helpers import setup_logging
 DEFAULT_OEM = 1
 DEFAULT_PSM = 7
 DEFAULT_SIDE_MARGIN = 5
-DEFAULT_FULL_BOX_IMAGE = True
 
 logger = logging.getLogger(__name__)
 
@@ -30,7 +29,6 @@ def extract_text_lines_from_image(path=None,
                                   oem=DEFAULT_OEM,
                                   psm=DEFAULT_PSM,
                                   side_margin=DEFAULT_SIDE_MARGIN,
-                                  full_box_image=DEFAULT_FULL_BOX_IMAGE,
                                   *args, **kwargs
                                   ):
     text_recognition_dict = {}
@@ -50,7 +48,6 @@ def extract_text_lines_from_image(path=None,
                                                oem=oem,
                                                psm=psm,
                                                lang="spa",
-                                               full_box_image=full_box_image,
                                                side_margin=side_margin)
                 text_recognition_dict[file] = text_recognised
 
@@ -75,7 +72,6 @@ def extract_text_lines_from_image(path=None,
                                            oem=oem,
                                            psm=psm,
                                            lang="spa",
-                                           full_box_image=full_box_image,
                                            side_margin=side_margin)
             text_recognition_dict[idx] = text_recognised
         end = time.time()
@@ -112,10 +108,6 @@ ap.add_argument("-o", "--output-path",
                 default='',
                 type=str,
                 help="Path for the results to be saved")
-ap.add_argument("-f", "--full-box-image",
-                action="store_true",
-                default=DEFAULT_FULL_BOX_IMAGE,
-                help="Take full image as text (default " + str(DEFAULT_FULL_BOX_IMAGE) + ")")
 ap.add_argument("-m", "--side-margin",
                 default=DEFAULT_SIDE_MARGIN,
                 type=int,
@@ -175,7 +167,6 @@ if __name__ == "__main__":
                                   image=args["image"],
                                   oem=args["oem"],
                                   psm=args["psm"],
-                                  full_box_image=args["full_box_image"],
                                   side_margin=args["side_margin"],
                                   save_cropped=args["save_cropped"],
                                   output_path=args["output_path"],

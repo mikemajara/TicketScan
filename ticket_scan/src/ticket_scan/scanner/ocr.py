@@ -67,21 +67,21 @@ def decode_predictions(scores, geometry):
     # return a tuple of the bounding boxes and associated confidences
     return (rects, confidences)
 
+
 def extract_text_from_file(filepath):
     return pytesseract.image_to_string(filepath)
 
-def extract_text(img, startX=0, startY=0, endX=0, endY=0, lang="spa",
-                 oem=1, psm=7, full_box_image=False, side_margin=0):
+
+def extract_text(img, lang="spa",
+                 oem=1, psm=7, side_margin=0):
 
     (H, W) = img.shape[:2]
 
     blurred = cv2.GaussianBlur(img, (3, 3), 0)
 
     # extract the ROI
-    if full_box_image:
-        roi = blurred[0:H, 0+side_margin:W-side_margin]
-    else:
-        roi = blurred[startY:endY, startX+side_margin:endX-side_margin]
+    # Our ROI is currently all the image (except the side_margin)
+    roi = blurred[0:H, 0+side_margin:W-side_margin]
 
     # in order to apply Tesseract v4 to OCR text we must supply
     # (1) a language, (2) an OEM flag of 4, indicating that the we
