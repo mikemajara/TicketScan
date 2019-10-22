@@ -1,6 +1,6 @@
 import json
 
-from ticket_scan.model.ticket import TicketSchema, format_ticket_date
+from ticket_scan.model.ticket import TicketSchema, format_ticket_date, VALID_DATE_REGEX
 from ticket_scan.model import Ticket
 from ticket_scan.model.company import Company, CompanySchema
 from ticket_scan.model.store import StoreSchema
@@ -13,6 +13,7 @@ from ticket_scan.scanner.base_ticket_parser import BaseTicketParser
 from datetime import datetime
 import logging
 import re
+import regex
 
 from ticket_scan.scanner.slicer import SlicerOptions
 
@@ -184,8 +185,10 @@ class MercadonaTicketParser(BaseTicketParser):
 
     def find_date(self, lines: list, company: Company):
         found_date = lf.find_lines_with_limit(lines, limit=company.tax_id, amount_lines=1, limit_type="upper")
-        date, hour, _, _ = found_date.value_requested[0].split()
-        #TODO: How do we handle this kind of minor errors from the parser?
+        logger.debug(f"Date found: {found_date.value_requested[0]}")
+        date_pattern = rf'({VALID_DATE_REGEX}){{e<=3}}'
+        date_components = regex.search(date_pattern, found_date.value_requested[0])
+        _, date, hour = date_components.groups()
         date = date.replace('//', '/')
         return format_ticket_date(date, hour)
 

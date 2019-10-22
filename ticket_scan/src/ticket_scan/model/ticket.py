@@ -7,6 +7,7 @@ from typing import List
 from marshmallow import Schema, fields, post_load, validate
 
 VALID_DATE_FORMAT = "%d/%m/%Y %H:%M"
+VALID_DATE_REGEX = "(\d{2}/\d{2}/\d{4}) *(\d{2}:\d{2})"
 
 def format_ticket_date(date, hour):
     datetime_str = f"{date} {hour}"
