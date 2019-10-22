@@ -1,3 +1,6 @@
+# Mac specific files
+.DS*
+
 # Specific files
 tmp.*
 *-ignore.*
