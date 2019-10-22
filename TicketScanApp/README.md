@@ -28,6 +28,7 @@ Prefer to set parents as containers, the rest as views (or pure components)
     - Need to check for fading on close of modal...
     - Designed for an image carousel (we just need one picture for the moment)
   - [antonKalinin/react-native-image-view](https://github.com/antonKalinin/react-native-image-view)
+    - **broken after upgrade to RN 0.62.1** (changing to community)
     - Sticking to this one
     - Simple enough
     - No extra Modal needed
@@ -37,6 +38,8 @@ Prefer to set parents as containers, the rest as views (or pure components)
         - When image's props specified swipe does not work
         - Somehow specifying different values... (those of device instead of pixels?) it works better.
       - To disable close button in controls, `close` must take `null` value instead of `false` (as `next` and `prev` do), which is counterintuitive.
+  - [react-native-community/react-native-image-picker](https://github.com/react-native-community/react-native-image-picker)
+    - Using this one.
 - 🔋 Loaders
   - [danilowoz/react-content-loader](https://github.com/danilowoz/react-content-loader). Contetn Loader for ticket list in future.
   - [joinspontaneous/react-native-loading-spinner-overlay](https://github.com/joinspontaneous/react-native-loading-spinner-overlay)

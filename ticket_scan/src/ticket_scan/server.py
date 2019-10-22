@@ -3,13 +3,17 @@ import cv2
 import numpy as np
 import datetime as dt
 import logging
+
 import importlib
+from http import HTTPStatus
 
 from flask import jsonify
 from flask_restful import Resource, reqparse
+
 from werkzeug.datastructures import FileStorage
 
 from ticket_scan.scanner import ocr_batch, ocr
+from ticket_scan.store.ticket_store import TicketStore
 from ticket_scan.scanner import ticket_parser
 
 import regex
@@ -25,6 +29,7 @@ class Server(Resource):
 
     def __init__(self):
         os.makedirs(Server.UPLOADED_IMAGES_PATH, exist_ok=True)
+        self.ticket_store = TicketStore()
 
     def _dhash(self, file, hash_size = 8):
         # resize the input image, adding a single column (width) so we
@@ -65,9 +70,9 @@ class Server(Resource):
         filepath = self._get_filepath(file)
         if not os.path.exists(filepath):
             file.save(filepath)
-            logger.info("New file saved: {}".format(filepath))
+            logger.info(f"New file saved: {filepath}")
         else:
-            logger.info("Files already exists: {}".format(filepath))
+            logger.info(f"Files already exists: {filepath}")
         return filepath
 
     def extract_company(self, text_lines):
@@ -98,7 +103,11 @@ class Server(Resource):
             ticket_parser = self.get_parser_from_ticket(filepath)
             result = ocr_batch.extract_text_lines_from_image(image=filepath, slicer_options=ticket_parser.slicer_options)
             result = ticket_parser.parse(result)
+            response = self.ticket_store.create(result)
         else:
             raise Exception("file is None")
 
-        return jsonify(result) if result else {'msg': 'ok'}
+        if response.status_code == HTTPStatus.OK:
+            return jsonify(result)
+        else:
+            return response

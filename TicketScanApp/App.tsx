@@ -78,7 +78,7 @@ export const TabNavigator = createBottomTabNavigator(
     },
   },
   {
-    initialRouteName: 'TicketList',
+    initialRouteName: 'Scanner',
     defaultNavigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused, horizontal, tintColor }) => {
         const { routeName } = navigation.state;

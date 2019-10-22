@@ -116,9 +116,13 @@ def main(args):
                 return {}
             return json.loads(json.dumps(company, default=str))
 
+        @app.route("/get_stores", defaults={'company_id': None}, methods=['GET'])
         @app.route("/get_stores/<company_id>", methods=['GET'])
         def get_stores(company_id):
-            stores = mongo.db.stores.find({"company_id": ObjectId(company_id)})
+            if company_id is not None:
+                stores = mongo.db.stores.find({"company_id": ObjectId(company_id)})
+            else:
+                stores = mongo.db.stores.find({})
             return jsonify(json.loads(json.dumps([store for store in stores], default=str)))
 
         @app.route("/get_store/<store_id>", methods=['GET'])
@@ -134,7 +138,7 @@ def main(args):
         @app.route("/add_ticket", methods=['POST'])
         def add_ticket():
             j = request.get_json()
-            _id = mongo.db.tickets.insert_one(j.get('ticket')).inserted_id
+            _id = mongo.db.tickets.insert_one(j).inserted_id
             return {'msg':'ok','_id': str(_id)}
 
         @app.route("/update_ticket", methods=['POST'])

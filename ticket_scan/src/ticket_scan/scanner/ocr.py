@@ -223,7 +223,7 @@ if __name__ == "__main__":
         # display the text OCR'd by Tesseract
         print("OCR TEXT")
         print("========")
-        print("{}\n".format(text))
+        print(f"{text}\n")
 
         # strip out non-ASCII text so we can draw the text on the image
         # using OpenCV, then draw the text and a bounding box surrounding
