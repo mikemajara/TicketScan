@@ -67,6 +67,8 @@ def decode_predictions(scores, geometry):
     # return a tuple of the bounding boxes and associated confidences
     return (rects, confidences)
 
+def extract_text_from_file(filepath):
+    return pytesseract.image_to_string(filepath)
 
 def extract_text(img, startX=0, startY=0, endX=0, endY=0, lang="spa",
                  oem=1, psm=7, full_box_image=False, side_margin=0):

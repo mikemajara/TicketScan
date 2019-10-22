@@ -3,18 +3,24 @@ import cv2
 import numpy as np
 import datetime as dt
 import logging
+
+import importlib
 from http import HTTPStatus
 
 from flask import jsonify
 from flask_restful import Resource, reqparse
-from ticket_scan.scanner.mercadona_ticket_parser import MercadonaTicketParser
+
 from werkzeug.datastructures import FileStorage
 
-from ticket_scan.scanner import ocr_batch
-from ticket_scan.scanner.lidl_ticket_parser import LidlTicketParser
+from ticket_scan.scanner import ocr_batch, ocr
 from ticket_scan.store.ticket_store import TicketStore
+from ticket_scan.scanner import ticket_parser
+
+import regex
 
 logger = logging.getLogger(__name__)
+
+POSSIBLE_COMPANIES = ["MERCADONA", "LIDL"]
 
 class Server(Resource):
 
@@ -69,6 +75,20 @@ class Server(Resource):
             logger.info(f"Files already exists: {filepath}")
         return filepath
 
+    def extract_company(self, text_lines):
+        match_companies_pattern = rf'(?b)\b(?:{"|".join(POSSIBLE_COMPANIES)})\b{{e<=2}}'
+        most_likely_company = regex.search(match_companies_pattern, text_lines.replace('\n',' '))
+        if not most_likely_company:
+            raise Exception("Could not extract company from ticket")
+        logger.info(f"Company found: {most_likely_company[0]}")
+        return most_likely_company[0]
+
+    def get_parser_from_ticket(self, filepath):
+        text_recognised = ocr.extract_text_from_file(filepath)
+        company = self.extract_company(text_recognised)
+        parser = ticket_parser.factory.get_parser_instance(company)
+        return parser
+
     def post(self):
         parse = reqparse.RequestParser()
         parse.add_argument('file', type=FileStorage,
@@ -80,9 +100,7 @@ class Server(Resource):
         result = None
         if file:
             filepath = self.save_file(file)
-            # TODO: Implemente a dynamic way to instantiate the parser.
-            #ticket_parser = LidlTicketParser()
-            ticket_parser = MercadonaTicketParser()
+            ticket_parser = self.get_parser_from_ticket(filepath)
             result = ocr_batch.extract_text_lines_from_image(image=filepath, slicer_options=ticket_parser.slicer_options)
             result = ticket_parser.parse(result)
             response = self.ticket_store.create(result)
