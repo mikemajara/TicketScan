@@ -72,8 +72,7 @@ def extract_text_from_file(filepath):
     return pytesseract.image_to_string(filepath)
 
 
-def extract_text(img, lang="spa",
-                 oem=1, psm=7, side_margin=0):
+def extract_text_from_image(img, lang="spa", oem=1, psm=7, side_margin=0):
 
     (H, W) = img.shape[:2]
 
@@ -83,16 +82,11 @@ def extract_text(img, lang="spa",
     # Our ROI is currently all the image (except the side_margin)
     roi = blurred[0:H, 0+side_margin:W-side_margin]
 
-    # in order to apply Tesseract v4 to OCR text we must supply
-    # (1) a language, (2) an OEM flag of 4, indicating that the we
-    # wish to use the LSTM neural net model for OCR, and finally
-    # (3) an OEM value, in this case, 7 which implies that we are
-    # treating the ROI as a single line of text
+    # Read more at "OpenCV OCR and text recognition with Tesseract" in docs
     config = ("-l " + lang +
               " --oem " + str(oem) +
               " --psm " + str(psm))
-    text = pytesseract.image_to_string(roi, config=config)
-    return text
+    return pytesseract.image_to_string(roi, config=config)
 
 
 # construct the argument parser and parse the arguments
@@ -202,11 +196,11 @@ if __name__ == "__main__":
         endX = min(origW, endX + (dX * 2))
         endY = min(origH, endY + (dY * 2))
 
-        text = extract_text(orig, startX, startY, endX, endY,
-                            args["language"],
-                            str(args["oem"]),
-                            str(args["psm"]),
-                            side_margin=args["padding"])
+        text = extract_text_from_image(orig, startX, startY, endX, endY,
+                                       args["language"],
+                                       str(args["oem"]),
+                                       str(args["psm"]),
+                                       side_margin=args["padding"])
 
         startX += args["padding"]
         endX -= args["padding"]

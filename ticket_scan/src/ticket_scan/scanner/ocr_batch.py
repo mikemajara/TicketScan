@@ -6,7 +6,7 @@ import natsort
 import time
 import logging
 from ticket_scan.scanner import slicer
-from ticket_scan.scanner.ocr import extract_text
+from ticket_scan.scanner.ocr import extract_text_from_image
 from ticket_scan.scanner.helpers import setup_logging
 
 
@@ -44,11 +44,11 @@ def extract_text_lines_from_image(path=None,
                 image = cv2.imread(filepath)
                 orig = image.copy()
 
-                text_recognised = extract_text(img=orig,
-                                               oem=oem,
-                                               psm=psm,
-                                               lang="spa",
-                                               side_margin=side_margin)
+                text_recognised = extract_text_from_image(img=orig,
+                                                          oem=oem,
+                                                          psm=psm,
+                                                          lang="spa",
+                                                          side_margin=side_margin)
                 text_recognition_dict[file] = text_recognised
 
         f = open(os.path.join(path, "text_recognition_" +
@@ -68,11 +68,11 @@ def extract_text_lines_from_image(path=None,
 
         start = time.time()
         for idx, slice in enumerate(slices):
-            text_recognised = extract_text(img=slice,
-                                           oem=oem,
-                                           psm=psm,
-                                           lang="spa",
-                                           side_margin=side_margin)
+            text_recognised = extract_text_from_image(img=slice,
+                                                      oem=oem,
+                                                      psm=psm,
+                                                      lang="spa",
+                                                      side_margin=side_margin)
             text_recognition_dict[idx] = text_recognised
         end = time.time()
         logger.info(f"read slices in {str(end - start)}s")
