@@ -218,10 +218,10 @@ class MercadonaTicketParser(BaseTicketParser):
                     if match_weight_second_line:
                         logger.debug(f"Regex for weighted product (second line): {match_weight_second_line.groups()}")
                         weight, weight_price, price = match_weight_second_line.groups()
-                    ticketlines.append(TicketLine(units=int(units), name=name,
-                                                  weight=self.str_to_float(weight),
-                                                  weight_price=self.str_to_float(weight_price),
-                                                  price=self.str_to_float(price)))
+                        ticketlines.append(TicketLine(units=int(units), name=name,
+                                                      weight=self.str_to_float(weight),
+                                                      weight_price=self.str_to_float(weight_price),
+                                                      price=self.str_to_float(price)))
         return ticketlines
 
     def parse(self, ticket: dict):

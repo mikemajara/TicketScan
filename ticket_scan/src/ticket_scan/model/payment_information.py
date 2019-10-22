@@ -8,7 +8,6 @@ class PaymentInformationSchema(Schema):
     total = fields.Float(required=True)
     method = fields.Str(required=True,
                         validate=validate.OneOf([METHOD_CARD, METHOD_CASH]))
-    # ToDo: Do we really need returned?
     returned = fields.Str(allow_none=True)
 
     @validates("total")
