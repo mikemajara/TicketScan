@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View, Text } from 'react-native';
 import { ListItem, Icon } from 'react-native-elements';
-import { iOSUIKit, iOSColors } from 'react-native-typography';
+import { iOSUIKit, iOSColors, systemWeights } from 'react-native-typography';
 import { styleDebug } from '../helpers';
 
 
@@ -15,7 +15,8 @@ export default function ProductListItemComponent(props) {
         <View style={[styles.titleStyle, { ...styleDebug('red') }]}>
           <Text style={[styles.units, styles.titleTextStyle]}>{props.units}</Text>
           <Text style={[styles.name, styles.titleTextStyle]}>{props.name}</Text>
-          <Text style={[styles.price, styles.titleTextStyle]}>{props.price}</Text>
+          {props.units > 1 && (<Text style={[styles.name, styles.titleTextStyle]}>{props.price}</Text>)}
+          <Text style={[styles.price, styles.titleTextStyle]}>{props.total}</Text>
         </View>
       }
       titleStyle={[styles.titleStyle, { ...styleDebug('red') }]}
@@ -35,6 +36,7 @@ export default function ProductListItemComponent(props) {
       // rightElement={<Icon type="ionicon" name="ios-star" color='red' size={15} />}
       bottomDivider={props.bottomDivider}
       topDivider={props.topDivider}
+      onPress={props.onPress}
     />
   );
 }
@@ -60,7 +62,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   titleTextStyle: {
-    fontSize: 17,
+    ...iOSUIKit.body,
+    ...systemWeights.light,
   },
   units: {
   },
@@ -82,17 +85,20 @@ const styles = StyleSheet.create({
 });
 
 ProductListItemComponent.propTypes = {
-  units: PropTypes.string.isRequired,
+  units: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
-  price: PropTypes.string.isRequired,
+  total: PropTypes.number.isRequired,
+  price: PropTypes.number.isRequired,
   weight: PropTypes.string,
   weightPrice: PropTypes.string,
   leftIcon: PropTypes.node,
   bottomDivider: PropTypes.bool,
+  onPress: PropTypes.func,
 };
 ProductListItemComponent.defaultProps = {
   weight: '',
   weightPrice: '',
   leftIcon: null,
   bottomDivider: false,
+  onPress: () => { },
 };

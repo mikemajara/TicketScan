@@ -272,6 +272,9 @@ class MercadonaTicketParser(BaseTicketParser):
         ticket_object = Ticket(
             company=company,
             store=store,
+            datetime=found_date.value_requested[0],
+            lines=found_product_lines.value_requested,
+            payment_information=payment
         )
         ticket_response["company"] = CompanySchema().dump(company)
         ticket_response["store"] = StoreSchema().dump(store)

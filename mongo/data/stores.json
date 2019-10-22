@@ -1,9 +1,25 @@
 {
 	"_id": {
-		"$oid": "5d95c4043deb6a5c4efb9f16"
+		"$oid": "5d7683401855750cd80a8057"
 	},
 	"company_id": {
-		"$oid": "5d95c3da3deb6a5c4efb9eff"
+		"$oid": "5d76824c1855750cd80a8037"
+	},
+	"country": "Spain",
+	"city": "Murcia",
+	"address": "AVDA. CICLISTA MARIANO ROJAS-AV",
+	"address_strings": [
+		"AVDA. CICLISTA MARIANO ROJAS-AV",
+		"Murcia"
+	],
+	"phone": "968392509"
+}
+{
+	"_id": {
+		"$oid": "5d76845e1855750cd80a8079"
+	},
+	"company_id": {
+		"$oid": "5d7682a11855750cd80a8040"
 	},
 	"country": "SPAIN",
 	"city": "MURCIA",
@@ -16,17 +32,49 @@
 }
 {
 	"_id": {
-		"$oid": "5d95d7953deb6a5c4efba134"
+		"$oid": "5d8742d3dcad30c5cc30624d"
 	},
 	"company_id": {
-		"$oid": "5d95c3ae3deb6a5c4efb9ee7"
+		"$oid": "5d76824c1855750cd80a8037"
 	},
-	"country": "SPAIN",
-	"city": "MURCIA",
+	"country": "Spain",
+	"city": "Murcia",
 	"address": "C/ MAYOR, 7 - ESPINARDO",
 	"address_strings": [
 		"C/ MAYOR, 7 - ESPINARDO",
-		"MURCIA"
+		"Murcia"
+	],
+	"phone": "968392509"
+}
+{
+	"_id": {
+		"$oid": "5d87822cdcad30c5cc30740a"
+	},
+	"company_id": {
+		"$oid": "5d76824c1855750cd80a8037"
+	},
+	"country": "Spain",
+	"city": "Murcia",
+	"address": "Paseo Floridablanca, 4",
+	"address_strings": [
+		"Paseo Floridablanca, 4",
+		"Murcia"
+	],
+	"phone": "968392509"
+}
+{
+	"_id": {
+		"$oid": "5d93692f7767818a1d496372"
+	},
+	"company_id": {
+		"$oid": "5d76824c1855750cd80a8037"
+	},
+	"country": "Spain",
+	"city": "Murcia",
+	"address": "C/ CISNE s/n",
+	"address_strings": [
+		"C/ CISNE s/n",
+		"Murcia"
 	],
 	"phone": "968392509"
 }

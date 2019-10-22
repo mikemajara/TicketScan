@@ -36,12 +36,6 @@ export const ScannerStackNavigator = createStackNavigator(
   },
   {
     initialRouteName: 'ScannerView',
-    // where is the border comming from? 
-    cardStyle: {
-      // backgroundColor: iOSColors.lightGray,
-      // margin: 10
-      // borderBottomWidth: 0,
-    }
   }
 );
 
@@ -49,13 +43,19 @@ export const TicketListStackNavigator = createStackNavigator(
   {
     TicketList: {
       screen: TicketListViewContainer,
+      navigationOptions: {
+        title: 'Tickets',
+        headerStyle: {
+          borderBottomWidth: 0,
+        },
+      }
     },
     TicketView: {
       screen: TicketViewContainer,
     },
   },
   {
-    initialRouteName: 'TicketView',
+    initialRouteName: 'TicketList',
   }
 );
 
@@ -89,7 +89,7 @@ export const TabNavigator = createBottomTabNavigator(
             iconName = 'ios-qr-scanner';
             break;
           case 'TicketList':
-            type = 'font-awesome5'
+            type = 'material-community'
             iconName = 'receipt';
             break;
           case 'Settings':

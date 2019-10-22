@@ -27,7 +27,7 @@ __license__ = "proprietary"
 
 _logger = logging.getLogger(__name__)
 
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, abort
 from flask_pymongo import PyMongo, ObjectId
 import json
 
@@ -109,48 +109,75 @@ def main(args):
             companies = mongo.db.companies.find({})
             return jsonify(json.loads(json.dumps([company for company in companies], default=str)))
 
+        @app.route("/get_company/<company_id>", methods=['GET'])
+        def get_company(company_id):
+            company = mongo.db.companies.find_one(ObjectId(company_id))
+            if company is None:
+                return {}
+            return json.loads(json.dumps(company, default=str))
+
+        @app.route("/get_stores", defaults={'company_id': None}, methods=['GET'])
         @app.route("/get_stores/<company_id>", methods=['GET'])
         def get_stores(company_id):
-            stores = mongo.db.stores.find({"company_id": ObjectId(company_id)})
+            if company_id is not None:
+                stores = mongo.db.stores.find({"company_id": ObjectId(company_id)})
+            else:
+                stores = mongo.db.stores.find({})
             return jsonify(json.loads(json.dumps([store for store in stores], default=str)))
+
+        @app.route("/get_store/<store_id>", methods=['GET'])
+        def get_store(store_id):
+            store = mongo.db.stores.find_one(ObjectId(store_id))
+            if store is None:
+                return {}
+            return json.loads(json.dumps(store, default=str))
+
 
         ### Ticket ###
 
         @app.route("/add_ticket", methods=['POST'])
         def add_ticket():
             j = request.get_json()
-            _id = mongo.db.tickets.insert_one(j.get('ticket')).inserted_id
+            _id = mongo.db.tickets.insert_one(j).inserted_id
             return {'msg':'ok','_id': str(_id)}
 
         @app.route("/update_ticket", methods=['POST'])
         def update_ticket():
-            j = request.get_json()
-            # _id = j['ticket']['_id']
-            # del
-            ack = mongo.db.tickets.update_one(
-                {"_id": ObjectId(j.get('_id'))},
-                {"$set": j.get('ticket')}
-            ).acknowledged
-            return {'msg': ack}
+            try:
+                j = request.get_json()
+                # _id = j['ticket']['_id']
+                # del
+                _id = j.pop("_id")
+                ack = mongo.db.tickets.update_one(
+                    {"_id": ObjectId(_id)},
+                    {"$set": j}
+                ).acknowledged
+                return {'msg': ack}
+            except Exception as e:
+                _logger.error(e)
+                return abort(500)
 
         @app.route("/get_all_tickets", methods=['GET'])
         def get_all_tickets():
             tickets = mongo.db.tickets.find({})
-            return { 'tickets': json.loads(json.dumps([ticket for ticket in tickets], default=str))}
+            return jsonify(json.loads(json.dumps([ticket for ticket in tickets], default=str)))
 
-        @app.route("/get_ticket/<id>", methods=['GET'])
-        def get_ticket(id):
-            ticket = mongo.db.tickets.find_one(ObjectId(id))
+        @app.route("/get_ticket/<_id>", methods=['GET'])
+        def get_ticket(_id):
+            ticket = mongo.db.tickets.find_one(ObjectId(_id))
             if ticket is None:
                 return {}
             return json.loads(json.dumps(ticket, default=str))
 
-        @app.route("/delete_ticket/<id>", methods=['GET'])
-        def delete_ticket(id):
+        @app.route("/delete_ticket/<_id>", methods=['GET'])
+        def delete_ticket(_id):
             _id = mongo.db.tickets.delete_one({"_id": ObjectId(id)})
             return str(_id)
 
+        # Use for local development
         app.run(port=5001)
+        # Use for development in local network
+        # app.run('0.0.0.0', port=5001)
     else:
         _logger.info('App only meant to listen')
 

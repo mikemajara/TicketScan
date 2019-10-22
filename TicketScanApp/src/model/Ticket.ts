@@ -1,38 +1,17 @@
 import Store from './Store';
-import ProprietaryTicketCode from './ProprietaryTicketCode';
-import TicketLine from './TicketLine';
 import Company from './Company';
+import TicketLine from './TicketLine';
+import PaymentInformation from './PaymentInformation';
 
 class Ticket {
-
-  company: Company;
-  store: Store;
-  datetime: Date;
-  proprietaryTicketCodes: Array<ProprietaryTicketCode>;
-  paymentMethod: string;
-  total: number;
-  returned: number;
-  lines: Array<TicketLine>;
-
   constructor(
-    company: Company,
-    store: Store,
-    datetime: Date,
-    proprietaryTicketCodes: Array<ProprietaryTicketCode>,
-    paymentMethod: string,
-    total: number,
-    returned: number,
-    lines: Array<TicketLine>
-  ) {
-    this.company = company;
-    this.store = store;
-    this.datetime = datetime;
-    this.proprietaryTicketCodes = proprietaryTicketCodes;
-    this.paymentMethod = paymentMethod;
-    this.total = total;
-    this.returned = returned;
-    this.lines = lines;
-  }
+    private _id?: string,
+    private company?: Company,
+    private store?: Store,
+    private datetime?: Date,
+    private paymentInformation?: PaymentInformation,
+    private lines?: Array<TicketLine>,
+  ) { }
 }
 
 export default Ticket;

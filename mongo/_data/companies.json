@@ -1,0 +1,16 @@
+{
+	"_id": {
+		"$oid": "5d95c3ae3deb6a5c4efb9ee7"
+	},
+	"name": "MERCADONA S.A.",
+	"tax_id": "A-46103834",
+	"web": null
+}
+{
+	"_id": {
+		"$oid": "5d95c3da3deb6a5c4efb9eff"
+	},
+	"name": "LIDL SUPERMERCADOS S.A.U",
+	"tax_id": "A60195278",
+	"web": "www.lidl.es"
+}

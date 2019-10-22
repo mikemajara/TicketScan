@@ -1,6 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+# TODO
+#   Examples here are based on deprecated class ticket_parser
+#   replace these tests with generalized, and specific tests
+#   for tickets.
+
 import pytest
 from ticket_scan.scanner import ticket_parser
 from ticket_parser import ResultObject
