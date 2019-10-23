@@ -5,6 +5,7 @@ import json
 import natsort
 import time
 import logging
+from typing import List
 from ticket_scan.scanner import slicer
 from ticket_scan.scanner import ocr
 from ticket_scan.scanner.helpers import setup_logging
@@ -24,10 +25,20 @@ def save_dict_to_file(result_path, dictionary):
         json.dump(dictionary, f, ensure_ascii=False, indent=2)
 
 
-def get_sorted_file_list_for_path(path, prefix=""):
+def get_sorted_file_list_for_path(path, prefixes: List[str] = None, suffixes: List[str] = None):
+    """
+    Returns a sorted list of files for path. If prefixes or suffixes are provided, only those containing any
+    of the provided are returned.
+    :param path:
+    :param prefixes:
+    :param suffixes:
+    :return:
+    """
     file_list = os.listdir(path)
-    if len(prefix) > 0:
-        file_list = list(filter(lambda x: x.startswith(prefix), file_list))
+    if prefixes is not None:
+        file_list = list(filter(lambda x: any([x.startswith(pref) for pref in prefixes]), file_list))
+    if suffixes is not None:
+        file_list = list(filter(lambda x: any([x.endswith(suf) for suf in suffixes]), file_list))
     file_list = natsort.natsorted(file_list)
     return file_list
 
@@ -36,7 +47,7 @@ def extract_text_lines_from_path(path,
                                  oem=DEFAULT_OEM,
                                  psm=DEFAULT_PSM,
                                  side_margin=DEFAULT_SIDE_MARGIN,
-                                 file_images_prefix="",
+                                 prefixes: List[str]=None, suffixes: List[str]=None,
                                  *args, **kwargs
                                  ):
     """
@@ -52,7 +63,7 @@ def extract_text_lines_from_path(path,
     """
     text_recognition_dict = {}
 
-    file_list = get_sorted_file_list_for_path(path, prefix=file_images_prefix)
+    file_list = get_sorted_file_list_for_path(path, prefixes=prefixes, suffixes=suffixes)
 
     for file in file_list:
         filepath = os.path.join(path, file)
