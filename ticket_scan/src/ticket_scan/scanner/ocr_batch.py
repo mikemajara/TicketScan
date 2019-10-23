@@ -6,15 +6,23 @@ import natsort
 import time
 import logging
 from ticket_scan.scanner import slicer
-from ticket_scan.scanner.ocr import extract_text_from_image
+from ticket_scan.scanner import ocr
 from ticket_scan.scanner.helpers import setup_logging
 
 
 DEFAULT_OEM = 1
 DEFAULT_PSM = 7
 DEFAULT_SIDE_MARGIN = 5
+DEFAULT_PREFIX_CROPPED = "cropped"
+IMAGE_SUPPORTED_EXTENSIONS = ".png"
 
 logger = logging.getLogger(__name__)
+
+
+def save_dict_to_file(result_path, dictionary):
+    with open(result_path,"w") as f:
+        json.dump(dictionary, f, ensure_ascii=False, indent=2)
+
 
 def get_sorted_file_list_for_path(path, prefix=""):
     file_list = os.listdir(path)
@@ -23,9 +31,47 @@ def get_sorted_file_list_for_path(path, prefix=""):
     file_list = natsort.natsorted(file_list)
     return file_list
 
+def extract_text_lines_from_path(path,
+                                 oem=DEFAULT_OEM,
+                                 psm=DEFAULT_PSM,
+                                 side_margin=DEFAULT_SIDE_MARGIN,
+                                 file_images_prefix="",
+                                 *args, **kwargs
+                                 ):
+    """
+    Extracts text from all image files in a given path.
+    :param path:
+    :param oem:
+    :param psm:
+    :param side_margin:
+    :param file_images_prefix:
+    :param args:
+    :param kwargs:
+    :return:
+    """
+    text_recognition_dict = {}
 
-def extract_text_lines_from_image(path=None,
-                                  image=None,
+    file_list = get_sorted_file_list_for_path(path, prefix=file_images_prefix)
+
+    for file in file_list:
+        filepath = os.path.join(path, file)
+        image = cv2.imread(filepath)
+        text_recognition_dict[file] = \
+            ocr.extract_text_from_image(
+                img=image,
+                oem=oem,
+                psm=psm,
+                lang="spa",
+                side_margin=side_margin
+            )
+
+    result_path = os.path.join(path, f"text_recognition_{str(oem)}_{str(psm)}.json")
+    save_dict_to_file(result_path, text_recognition_dict)
+
+    return text_recognition_dict
+
+
+def extract_text_lines_from_image(image,
                                   oem=DEFAULT_OEM,
                                   psm=DEFAULT_PSM,
                                   side_margin=DEFAULT_SIDE_MARGIN,
@@ -33,55 +79,27 @@ def extract_text_lines_from_image(path=None,
                                   ):
     text_recognition_dict = {}
 
-    if path is not None:
-        file_list = get_sorted_file_list_for_path(path, prefix="cropped")
+    start = time.time()
+    slices = slicer.slice(image, *args, **kwargs)
+    end = time.time()
+    logger.info(f"sliced image in {str(end - start)}s")
 
-        for file in file_list:
+    start = time.time()
+    for idx, slice in enumerate(slices):
+        text_recognition_dict[idx] = \
+            ocr.extract_text_from_image(
+                img=slice,
+                oem=oem,
+                psm=psm,
+                lang="spa",
+                side_margin=side_margin
+            )
+    end = time.time()
+    logger.info(f"read slices in {str(end - start)}s")
 
-            if file.startswith("cropped"):
-                filepath = os.path.join(path, file)
-                print(filepath)
-                image = cv2.imread(filepath)
-                orig = image.copy()
-
-                text_recognised = extract_text_from_image(img=orig,
-                                                          oem=oem,
-                                                          psm=psm,
-                                                          lang="spa",
-                                                          side_margin=side_margin)
-                text_recognition_dict[file] = text_recognised
-
-        f = open(os.path.join(path, "text_recognition_" +
-                              str(oem) + "_" + str(psm) + ".json"), "w")
-        json.dump(text_recognition_dict, f, ensure_ascii=False, indent=2)
-
-        f = open(os.path.join(path, "result.json"), "w")
-        json.dump(text_recognition_dict, f, ensure_ascii=False, indent=2)
-
-        f.close()
-
-    if image is not None:
-        start = time.time()
-        slices = slicer.slice(image, *args, **kwargs)
-        end = time.time()
-        logger.info(f"sliced image in {str(end - start)}s")
-
-        start = time.time()
-        for idx, slice in enumerate(slices):
-            text_recognised = extract_text_from_image(img=slice,
-                                                      oem=oem,
-                                                      psm=psm,
-                                                      lang="spa",
-                                                      side_margin=side_margin)
-            text_recognition_dict[idx] = text_recognised
-        end = time.time()
-        logger.info(f"read slices in {str(end - start)}s")
-
-        image_path = os.path.dirname(image)
-        result_path = os.path.join(image_path, 'text_recognition_result.json')
-        f = open(result_path,"w")
-        json.dump(text_recognition_dict, f, ensure_ascii=False, indent=2)
-        f.close()
+    image_path = os.path.dirname(image)
+    result_path = os.path.join(image_path, 'text_recognition_result.json')
+    save_dict_to_file(result_path, text_recognition_dict)
 
     return text_recognition_dict
 
@@ -163,12 +181,23 @@ if __name__ == "__main__":
     assert args["path"] is None or os.path.isdir(args["path"])
     assert args["image"] is None or os.path.isfile(args["image"])
 
-    extract_text_lines_from_image(path=args["path"],
-                                  image=args["image"],
-                                  oem=args["oem"],
-                                  psm=args["psm"],
-                                  side_margin=args["side_margin"],
-                                  save_cropped=args["save_cropped"],
-                                  output_path=args["output_path"],
-                                  interactive=args["interactive"]
-                                  )
+    if args["path"] is not None:
+        extract_text_lines_from_path(path=args["path"],
+                                     oem=args["oem"],
+                                     psm=args["psm"],
+                                     side_margin=args["side_margin"],
+                                     save_cropped=args["save_cropped"],
+                                     output_path=args["output_path"],
+                                     interactive=args["interactive"]
+                                     )
+    elif args["image"] is not None:
+        extract_text_lines_from_image(image=args["image"],
+                                      oem=args["oem"],
+                                      psm=args["psm"],
+                                      side_margin=args["side_margin"],
+                                      save_cropped=args["save_cropped"],
+                                      output_path=args["output_path"],
+                                      interactive=args["interactive"]
+                                      )
+    else:
+        logger.error("path or image must be provided")
