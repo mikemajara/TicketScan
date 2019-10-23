@@ -1,20 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# TODO
-#   Examples here are based on deprecated class ticket_parser
-#   replace these tests with generalized, and specific tests
-#   for tickets.
 import os
 
 import cv2
 import pytest
 from ticket_scan.scanner.ocr import extract_text_from_image, extract_text_from_file
-
-
-__author__ = "Miguel López-N. Alcalde"
-__copyright__ = "Miguel López-N. Alcalde"
-__license__ = "proprietary"
 
 TEST_IMAGES_PATH = 'test_images'
 TEST_IMAGES_VALUES_FROM_FILE = {
