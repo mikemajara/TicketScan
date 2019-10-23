@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+import json
 import os
 
 import cv2
@@ -47,7 +47,54 @@ TEST_IMAGES_VALUES_FROM_FILE = {
         34: '«13A CLASICA',
         35: 'SE ADMLIEN DEVOLUCIONES CON TiCkEf'
     },
+    "8219702639756318720.jpeg": {
+        0: 'LTDL SUPERMERCADOS 5.A.U.',
+        1: 'Avenida Miguel de Cervantes N2 110',
+        2: '30009 Murcia',
+        3: 'NIF A60195278',
+        4: 'WWW. 110d1.es',
+        5: 'Flauta de cereales 1,50 B',
+        6: 'Pechugas codorniz 3,69 B',
+        7: 'Alcachofa unidad 1164',
+        8: '4 x 0,29',
+        9: 'Cápsulas Intenso 1,99 B',
+        10: 'Cáps:: 1s Ristretto 1,99 B',
+        11: 'Alitas de poilo 2,39 B',
+        12: 'Champ “ón 0,69 A',
+        13: 'e e e e e a a o A',
+        14: 'Entregado Il, 20,42',
+        15: 'IVAR. IVA +  PhNeto  =  FvYr',
+        16: 'mt',
+        17: 'Suma 1,12 19,29 13,41',
+        18: '3508  039467/02 12,01 19 12:55',
+        19: '- Devoluciones artículos de bazar con',
+        20: 'ticket de compra y embalaje original',
+        21: 'en un plazo máximo de 30 días sin',
+        22: 'perjuicio de la ley de garantías.',
+        23: 'Horario Tienda Lu a Sa 09:00 a 22:00',
+        24: '| - Atención al cliente',
+        25: 'www. 11d1.es/contacto Tel. 900958311',
+        26: 'o GRACIAS POR SU VISITA'
+    },
+    "cropped_247_227.png": {0: 'Murcia'},
+    "cropped_386_359.png": {0: '26/03/2019 20:54 0P; 11/2496'},
+    "cropped_606_581.png": {0: '4 1 PICOS PACK-2 1,08'}
 }
+
+
+def test_save_dict_to_file_creates_file_with_dict_content():
+    dictionary = {
+        '0': 'line 0',
+        '1': 'line 1',
+    }
+    fullpath = os.path.join(TEST_IMAGES_PATH, 'file.json')
+    ocr_batch.save_dict_to_file(fullpath, dictionary)
+    real_output = {}
+    assert os.path.isfile(fullpath)
+    with open(fullpath, "r") as f:
+        real_output = json.load(f)
+    expected_output = dictionary.copy()
+    assert expected_output == real_output
 
 
 def test_extract_text_lines_from_image_should_return_tested_dict():

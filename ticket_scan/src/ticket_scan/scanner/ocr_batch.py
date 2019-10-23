@@ -31,6 +31,7 @@ def get_sorted_file_list_for_path(path, prefix=""):
     file_list = natsort.natsorted(file_list)
     return file_list
 
+
 def extract_text_lines_from_path(path,
                                  oem=DEFAULT_OEM,
                                  psm=DEFAULT_PSM,
