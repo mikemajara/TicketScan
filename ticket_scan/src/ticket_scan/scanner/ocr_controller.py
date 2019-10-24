@@ -23,7 +23,7 @@ def scan_ticket(image, *args, **kwargs):
     for th_pxl_density in np.arange(3,7,.5):
         for line_padding in range(2, 8):
             results[str(th_pxl_density) + "_" + str(line_padding)] = ocr_batch.extract_text_lines_from_image(
-                image=image,
+                image_path=image,
                 line_padding=line_padding,
                 th_pxl_density=th_pxl_density,
                 *args, **kwargs

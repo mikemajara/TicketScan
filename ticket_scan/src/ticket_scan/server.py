@@ -101,7 +101,7 @@ class Server(Resource):
         if file:
             filepath = self.save_file(file)
             ticket_parser = self.get_parser_from_ticket(filepath)
-            result = ocr_batch.extract_text_lines_from_image(image=filepath, slicer_options=ticket_parser.slicer_options)
+            result = ocr_batch.extract_text_lines_from_image(image_path=filepath, slicer_options=ticket_parser.slicer_options)
             result = ticket_parser.parse(result)
             response = self.ticket_store.create(result)
         else:

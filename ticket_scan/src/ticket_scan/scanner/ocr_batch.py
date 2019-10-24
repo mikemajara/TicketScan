@@ -83,7 +83,7 @@ def extract_text_lines_from_path(path,
     return text_recognition_dict
 
 
-def extract_text_lines_from_image(image,
+def extract_text_lines_from_image(image_path,
                                   oem=DEFAULT_OEM,
                                   psm=DEFAULT_PSM,
                                   side_margin=DEFAULT_SIDE_MARGIN,
@@ -92,7 +92,7 @@ def extract_text_lines_from_image(image,
     text_recognition_dict = {}
 
     start = time.time()
-    slices = slicer.slice(image, *args, **kwargs)
+    slices = slicer.slice(image_path, *args, **kwargs)
     end = time.time()
     logger.info(f"sliced image in {str(end - start)}s")
 
@@ -109,7 +109,7 @@ def extract_text_lines_from_image(image,
     end = time.time()
     logger.info(f"read slices in {str(end - start)}s")
 
-    image_path = os.path.dirname(image)
+    image_path = os.path.dirname(image_path)
     result_path = os.path.join(image_path, 'text_recognition_result.json')
     save_dict_to_file(result_path, text_recognition_dict)
 
@@ -203,7 +203,7 @@ if __name__ == "__main__":
                                      interactive=args["interactive"]
                                      )
     elif args["image"] is not None:
-        extract_text_lines_from_image(image=args["image"],
+        extract_text_lines_from_image(image_path=args["image"],
                                       oem=args["oem"],
                                       psm=args["psm"],
                                       side_margin=args["side_margin"],

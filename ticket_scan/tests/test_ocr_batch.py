@@ -7,7 +7,7 @@ import cv2
 import pytest
 from ticket_scan.scanner import ocr_batch
 
-TEST_IMAGES_PATH = 'test_images'
+TEST_IMAGES_PATH = 'test_resources'
 TEST_IMAGES_VALUES_FROM_FILE = {
     "149533795324992.jpeg": {
         0: 'MERCADONA S.A.',
