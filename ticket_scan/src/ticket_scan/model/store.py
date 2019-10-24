@@ -3,8 +3,8 @@ from typing import List
 
 
 class StoreSchema(Schema):
-    _id = fields.Str()
-    company_id = fields.Str()
+    _id = fields.Str(required=True)
+    company_id = fields.Str(required=True)
     country = fields.Str()
     city = fields.Str()
     address = fields.Str()
