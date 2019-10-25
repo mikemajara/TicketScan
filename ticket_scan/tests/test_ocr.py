@@ -18,15 +18,15 @@ TEST_IMAGES_VALUES_FROM_IMAGE = {
     "cropped_606_581.png": "4 1 PICOS PACK-2 1,08",
 }
 
+
 def test_extract_text_from_file_should_return_tested_text():
-    for filename in TEST_IMAGES_VALUES_FROM_FILE.keys():
-        expected_result = TEST_IMAGES_VALUES_FROM_FILE[filename]
+    for filename, expected_result in TEST_IMAGES_VALUES_FROM_FILE.items():
         fullpath = os.path.join(TEST_IMAGES_PATH, filename)
         assert expected_result == extract_text_from_file(fullpath)
 
+
 def test_extract_text_from_image_should_return_tested_text():
-    for filename in TEST_IMAGES_VALUES_FROM_IMAGE.keys():
-        expected_result = TEST_IMAGES_VALUES_FROM_IMAGE[filename]
+    for filename, expected_result in TEST_IMAGES_VALUES_FROM_IMAGE.items():
         fullpath = os.path.join(TEST_IMAGES_PATH, filename)
         image = cv2.imread(fullpath)
         assert expected_result == extract_text_from_image(image)
