@@ -3,8 +3,6 @@
 import json
 import os
 
-import cv2
-import pytest
 from ticket_scan.scanner import ocr_batch
 
 TEST_IMAGES_PATH = 'test_resources'
@@ -81,8 +79,10 @@ TEST_IMAGES_VALUES_FROM_FILE = {
     "cropped_606_581.png": {0: '4 1 PICOS PACK-2 1,08'}
 }
 TESTED_DICT_EXTRACT_IMAGE_FROM_PATH = {
-    '149533795324992.jpeg': '', # todo this happens because of the parameters.
-    '8219702639756318720.jpeg': '', # if it weren't for the parameters in config, text would be extracted normally.
+    # todo this happens because of the parameters.
+    # if it weren't for the parameters in config, text would be extracted normally.
+    '149533795324992.jpeg': '',
+    '8219702639756318720.jpeg': '',
     'cropped_247_227.png': 'Murcia',
     'cropped_386_359.png': '26/03/2019 20:54 0P; 11/2496',
     'cropped_606_581.png': '4 1 PICOS PACK-2 1,08'
@@ -90,16 +90,15 @@ TESTED_DICT_EXTRACT_IMAGE_FROM_PATH = {
 
 
 def test_save_dict_to_file_should_create_file_with_dict_content():
-    dictionary = {
+    expected_output = {
         '0': 'line 0',
         '1': 'line 1',
     }
     fullpath = os.path.join(TEST_IMAGES_PATH, 'file.json')
-    ocr_batch.save_dict_to_file(fullpath, dictionary)
+    ocr_batch.save_dict_to_file(fullpath, expected_output)
     assert os.path.isfile(fullpath)
     with open(fullpath, "r") as f:
         real_output = json.load(f)
-    expected_output = dictionary.copy()
     assert expected_output == real_output
 
 
@@ -127,7 +126,7 @@ def test_get_sorted_file_list_for_path_with_jpeg_json_suffix_should_return_jpeg_
 def test_extract_text_lines_from_path_for_jpeg_png_should_return_tested_dict():
     expected_result = TESTED_DICT_EXTRACT_IMAGE_FROM_PATH
     fullpath = os.path.join(TEST_IMAGES_PATH)
-    assert expected_result == ocr_batch.extract_text_lines_from_path(fullpath, suffixes=["jpeg"])
+    assert expected_result == ocr_batch.extract_text_lines_from_path(fullpath, suffixes=["jpeg", "png"])
 
 
 def test_extract_text_lines_from_image_should_return_tested_dict():

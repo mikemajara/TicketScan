@@ -26,14 +26,6 @@ def save_dict_to_file(result_path, dictionary):
 
 
 def get_sorted_file_list_for_path(path, prefixes: List[str] = None, suffixes: List[str] = None):
-    """
-    Returns a sorted list of files for path. If prefixes or suffixes are provided, only those containing any
-    of the provided are returned.
-    :param path:
-    :param prefixes:
-    :param suffixes:
-    :return:
-    """
     file_list = os.listdir(path)
     if prefixes is not None:
         file_list = list(filter(lambda x: any([x.startswith(pref) for pref in prefixes]), file_list))
