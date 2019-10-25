@@ -41,8 +41,7 @@ TEST_IMAGES_VALUES_FROM_IMAGE = {
 def test_extract_text_from_file_should_return_tested_text():
     for filename, expected_result in TEST_IMAGES_VALUES_FROM_FILE.items():
         fullpath = os.path.join(TEST_IMAGES_PATH, filename)
-        real_result = extract_text_from_file(fullpath)
-        assert expected_result == real_result
+        assert expected_result == extract_text_from_file(fullpath)
 
 
 def test_extract_text_from_image_should_return_tested_text():
