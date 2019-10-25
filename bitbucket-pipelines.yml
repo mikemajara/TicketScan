@@ -1,0 +1,23 @@
+image: python:3.7.3
+
+pipelines:
+  pull-requests:
+    - parallel:
+        - step:
+            name: Python 3 Tests
+            caches:
+              - pip
+            script:
+              - cd ticket_scan
+              - pip install -r requirements.txt
+              - pip install -r requirements-dev.txt
+              - tox -e py37
+        - step:
+            name: Flake8
+            caches:
+              - pip
+            script:
+              - cd ticket_scan
+              - pip install -r requirements.txt
+              - pip install -r requirements-dev.txt
+              - tox -e flake8
