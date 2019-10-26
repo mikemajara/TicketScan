@@ -1,4 +1,4 @@
-image: python:3.7.3
+image: javiercvilla/ticket_scan:beta
 
 pipelines:
   pull-requests:
