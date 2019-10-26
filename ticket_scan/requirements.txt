@@ -15,16 +15,19 @@
 # numpy==1.13.3
 # scipy==1.0
 
-numpy
-imutils
-natsort
-opencv-python
-pillow
-pytesseract
+dateparser
 flask
 flask-restful
-dateparser
-regex
 fuzzywuzzy[speedup]
-requests
+imutils
 marshmallow # <- Review
+natsort
+numpy
+opencv-python
+pillow
+pymongo
+pytesseract
+regex
+requests
+
+
