@@ -20,6 +20,7 @@ import ProductListItemComponent from '../components/ProductListItemComponent';
 import TicketRepository from '../repository/TicketRepository';
 import LoadingComponent from '../components/LoadingComponent';
 import TicketLineDetailModal from '../components/TicketDetailModalComponent';
+import RaiseReversedIconComponent from '../components/RaiseReversedIconComponent';
 
 moment.locale('es');
 
@@ -78,15 +79,7 @@ export default function TicketViewContainer(props) {
             <CardComponent
               title={`${ticket.store.city}, ${ticket.store.address}`}
               icon={
-                <Icon
-                  reverse
-                  raised
-                  iconStyle={{ fontSize: 18 }}
-                  type="entypo"
-                  name="shop"
-                  color={iOSColors.orange}
-                  size={13}
-                />
+                <RaiseReversedIconComponent type="entypo" name="shop" color={iOSColors.orange} />
               }
             />
           </View>
@@ -94,30 +87,14 @@ export default function TicketViewContainer(props) {
             <CardComponent
               title={ticket.store.phone}
               icon={
-                <Icon
-                  reverse
-                  raised
-                  iconStyle={{ fontSize: 18 }}
-                  type="entypo"
-                  name="phone"
-                  color={iOSColors.green}
-                  size={13}
-                />
+                <RaiseReversedIconComponent type="entypo" name="phone" color={iOSColors.green} />
               }
             />
           </View>
           <CardComponent
             title={moment(ticket.datetime).format('llll')}
             icon={
-              <Icon
-                reverse
-                raised
-                iconStyle={{ fontSize: 18 }}
-                type="entypo"
-                name="calendar"
-                color={iOSColors.red}
-                size={13}
-              />
+              <RaiseReversedIconComponent type="entypo" name="calendar" color={iOSColors.red} />
             }
           />
         </View>
@@ -147,7 +124,8 @@ export default function TicketViewContainer(props) {
                   <Icon
                     type="ionicon"
                     name="ios-star"
-                    color={index % 2 ? iOSColors.yellow : 'transparent'}
+                    // color={index % 2 ? iOSColors.yellow : 'transparent'}
+                    color="transparent"
                     size={15}
                   />
                 }
@@ -161,30 +139,16 @@ export default function TicketViewContainer(props) {
         <CardComponent
           title={`${ticket.paymentInformation.method}`}
           icon={
-            <Icon
-              reverse
-              raised
-              iconStyle={{ fontSize: 18 }}
+            <RaiseReversedIconComponent
               type="material-community"
               name="cash-register"
               color={iOSColors.lightGray2}
-              size={13}
             />
           }
         />
         <CardComponent
           title={`${ticket.paymentInformation.total}`}
-          icon={
-            <Icon
-              reverse
-              raised
-              iconStyle={{ fontSize: 26 }}
-              type="foundation"
-              name="euro"
-              color="mediumseagreen"
-              size={13}
-            />
-          }
+          icon={<RaiseReversedIconComponent type="foundation" name="euro" color="mediumseagreen" />}
         />
       </View>
     </View>
