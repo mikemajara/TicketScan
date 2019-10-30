@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View, Alert, Text, FlatList, Modal, TouchableHighlight } from 'react-native';
 import { Button, ListItem, Icon } from 'react-native-elements';
 // import { Animated } from 'react-native-reanimated';
-import { iOSUIKit, iOSColors } from 'react-native-typography';
+import { iOSUIKit, iOSColors, systemWeights } from 'react-native-typography';
 import Entypo from 'react-native-vector-icons/Entypo';
 import moment from 'moment/min/moment-with-locales';
 
@@ -71,13 +71,14 @@ export default function TicketViewContainer(props) {
         <LoadingComponent isLoading={loading.isLoading} loadingText={loading.message} />
       )}
       <View style={styles.header}>
-        <View style={styles.companyName}>
-          <Text style={iOSUIKit.largeTitleEmphasized}>{ticket.company.name}</Text>
+        <View style={styles.companyNameContainer}>
+          <Text style={[styles.defaultTextStyle, iOSUIKit.largeTitleEmphasized]}>{ticket.company.name}</Text>
         </View>
-        <View style={styles.companyInfo}>
+        <View style={styles.companyInfoContainer}>
           <View style={styles.companyInfoRow1}>
             <CardComponent
               title={`${ticket.store.city}, ${ticket.store.address}`}
+              titleTextStyle={styles.headerTextStyle}
               icon={
                 <RaiseReversedIconComponent type="entypo" name="shop" color={iOSColors.orange} />
               }
@@ -86,6 +87,7 @@ export default function TicketViewContainer(props) {
           <View style={styles.companyInfoRow2}>
             <CardComponent
               title={ticket.store.phone}
+              titleTextStyle={styles.headerTextStyle}
               icon={
                 <RaiseReversedIconComponent type="entypo" name="phone" color={iOSColors.green} />
               }
@@ -93,6 +95,7 @@ export default function TicketViewContainer(props) {
           </View>
           <CardComponent
             title={moment(ticket.datetime).format('llll')}
+            titleTextStyle={styles.headerTextStyle}
             icon={
               <RaiseReversedIconComponent type="entypo" name="calendar" color={iOSColors.red} />
             }
@@ -160,6 +163,10 @@ const styles = StyleSheet.create({
     ...styleDebug('red'),
     flex: 1,
   },
+  defaultTextStyle: {
+    ...iOSUIKit.body,
+    ...systemWeights.light,
+  },
   header: {
     // ...styleDebug('blue'),
     borderBottomWidth: StyleSheet.hairlineWidth,
@@ -178,11 +185,15 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     paddingHorizontal: 10,
   },
-  companyName: {
+  companyNameContainer: {
     // ...styleDebug('orange'),
     alignSelf: 'center',
   },
-  companyInfo: {
+  headerTextStyle: {
+    fontSize: 18,
+    fontWeight: "400",
+  },
+  companyInfoContainer: {
     // ...styleDebug('red'),
     marginHorizontal: 10,
   },
