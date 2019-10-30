@@ -11,7 +11,7 @@ set -ex
 
 usage()
 {
-    echo "usage: ./export-database.sh <database_name> <data_directory"
+    echo "usage: ./initiate-database.sh <database_name> <data_directory>"
 }
 
 if [ $# -gt 1 ]; then

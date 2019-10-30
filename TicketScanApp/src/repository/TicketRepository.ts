@@ -20,10 +20,10 @@ export default class TicketRepository extends BaseRepository<Ticket> {
 
 
   fromJson(item: object): Ticket {
-    let { _id, company, store, date, lines, paymentInformation } = item;
+    let { _id, company, store, date, lines, payment_information } = item;
     company = new CompanyRepository().fromJson(company);
     date = moment(date, 'DD/MM/YYYY HH:mm').toDate();
-    return new Ticket(_id, company, store, date, paymentInformation, lines)
+    return new Ticket(_id, company, store, date, payment_information, lines)
   }
   fromJsonArray(items: object[]): Ticket[] {
     return items.map(item => this.fromJson(item));

@@ -113,13 +113,13 @@ def get_random_tickets(n):
         date = get_random_date(DATE_RNG[0], DATE_RNG[1], random.random())
         lines = get_random_lines()
         total = round(sum([l['total'] for l in lines]), 2)
-        paymentinformation = get_random_payment_info(total)
+        payment_information = get_random_payment_info(total)
         tickets.append({
             "company": company,
             "store": store,
             "date": date,
             "lines": lines,
-            "paymentinformation": paymentinformation,
+            "payment_information": payment_information,
         })
     return tickets
 
