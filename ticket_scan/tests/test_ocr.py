@@ -4,7 +4,7 @@
 import os
 
 import cv2
-import pytest
+from fuzzywuzzy import fuzz
 from ticket_scan.scanner.ocr import extract_text_from_image, extract_text_from_file
 
 TEST_IMAGES_PATH = 'test_images'
@@ -18,15 +18,17 @@ TEST_IMAGES_VALUES_FROM_IMAGE = {
     "cropped_606_581.png": "4 1 PICOS PACK-2 1,08",
 }
 
+DEFAULT_MIN_SIMILARITY_RATIO = 70
+
 def test_extract_text_from_file_should_return_tested_text():
     for filename in TEST_IMAGES_VALUES_FROM_FILE.keys():
         expected_result = TEST_IMAGES_VALUES_FROM_FILE[filename]
         fullpath = os.path.join(TEST_IMAGES_PATH, filename)
-        assert expected_result == extract_text_from_file(fullpath)
+        assert fuzz.ratio(expected_result, extract_text_from_file(fullpath)) > DEFAULT_MIN_SIMILARITY_RATIO
 
 def test_extract_text_from_image_should_return_tested_text():
     for filename in TEST_IMAGES_VALUES_FROM_IMAGE.keys():
         expected_result = TEST_IMAGES_VALUES_FROM_IMAGE[filename]
         fullpath = os.path.join(TEST_IMAGES_PATH, filename)
         image = cv2.imread(fullpath)
-        assert expected_result == extract_text_from_image(image)
+        assert fuzz.ratio(expected_result, extract_text_from_file(image)) > DEFAULT_MIN_SIMILARITY_RATIO
