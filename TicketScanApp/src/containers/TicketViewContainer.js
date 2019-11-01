@@ -75,24 +75,20 @@ export default function TicketViewContainer(props) {
           <Text style={[styles.defaultTextStyle, iOSUIKit.largeTitleEmphasized]}>{ticket.company.name}</Text>
         </View>
         <View style={styles.companyInfoContainer}>
-          <View style={styles.companyInfoRow1}>
-            <CardComponent
-              title={`${ticket.store.city}, ${ticket.store.address}`}
-              titleTextStyle={styles.headerTextStyle}
-              icon={
-                <RaiseReversedIconComponent type="entypo" name="shop" color={iOSColors.orange} />
-              }
-            />
-          </View>
-          <View style={styles.companyInfoRow2}>
-            <CardComponent
-              title={ticket.store.phone}
-              titleTextStyle={styles.headerTextStyle}
-              icon={
-                <RaiseReversedIconComponent type="entypo" name="phone" color={iOSColors.green} />
-              }
-            />
-          </View>
+          <CardComponent
+            title={`${ticket.store.city}, ${ticket.store.address}`}
+            titleTextStyle={styles.headerTextStyle}
+            icon={
+              <RaiseReversedIconComponent type="entypo" name="shop" color={iOSColors.orange} />
+            }
+          />
+          <CardComponent
+            title={ticket.store.phone}
+            titleTextStyle={styles.headerTextStyle}
+            icon={
+              <RaiseReversedIconComponent type="entypo" name="phone" color={iOSColors.green} />
+            }
+          />
           <CardComponent
             title={moment(ticket.datetime).format('llll')}
             titleTextStyle={styles.headerTextStyle}
@@ -168,7 +164,6 @@ const styles = StyleSheet.create({
     ...systemWeights.light,
   },
   header: {
-    // ...styleDebug('blue'),
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: iOSColors.lightGray2,
     paddingVertical: 5,
@@ -177,7 +172,6 @@ const styles = StyleSheet.create({
     ...styleDebug('darkgreen'),
   },
   footer: {
-    // ...styleDebug('purple'),
     flexDirection: 'row',
     justifyContent: 'space-between',
     borderTopWidth: StyleSheet.hairlineWidth,
@@ -186,7 +180,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   companyNameContainer: {
-    // ...styleDebug('orange'),
     alignSelf: 'center',
   },
   headerTextStyle: {
@@ -194,17 +187,7 @@ const styles = StyleSheet.create({
     fontWeight: "400",
   },
   companyInfoContainer: {
-    // ...styleDebug('red'),
     marginHorizontal: 10,
-  },
-  companyInfoRow1: {
-    // ...styleDebug('blue'),
-    flexDirection: 'row',
-  },
-  companyInfoRow2: {
-    // ...styleDebug('blue'),
-    flexDirection: 'row',
-    justifyContent: 'space-between',
   },
 });
 
