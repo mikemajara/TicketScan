@@ -38,7 +38,7 @@ TEST_IMAGES_VALUES_FROM_IMAGE = {
     "cropped_606_581.png": "4 1 PICOS PACK-2 1,08",
 }
 
-DEFAULT_MIN_SIMILARITY_RATIO = 70
+DEFAULT_MIN_SIMILARITY_RATIO = 65
 
 
 def test_extract_text_from_file_should_return_tested_text():
